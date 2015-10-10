@@ -1,0 +1,52 @@
+//
+// Created by Moustapha on 29/09/2015.
+//
+
+#ifndef BREAK_0_1_INFRASTRUCTURE_HPP
+#define BREAK_0_1_INFRASTRUCTURE_HPP
+
+#include "API.hpp"
+#include "Globals.hpp"
+#include "Engine.hpp"
+#include "Services.hpp"
+#include "OS.hpp"
+#include "Window.hpp"
+#include "GPUException.hpp"
+#include "Application.hpp"
+#include "IGXDevice.hpp"
+#include "InputDevice.hpp"
+#include "Mouse.hpp"
+#include "Keyboard.hpp"
+#include "TimeManager.hpp"
+#include "TimeStep.hpp"
+#include "RAMBuffer.hpp"
+#include "GPUHandle.hpp"
+#include "GPU_ISA.hpp"
+#include "GPUResource.hpp"
+#include "MemoryElement.hpp"
+#include "MemoryLayout.hpp"
+#include "Object.hpp"
+#include "Asset.hpp"
+#include "Pixel.hpp"
+#include "Image.hpp"
+#include "IndexSet.hpp"
+#include "VertexSet.hpp"
+#include "VertexBuffer.hpp"
+#include "IndexBuffer.hpp"
+#include "Argument.hpp"
+#include "GPUIns.hpp"
+#include "GPU_VM.hpp"
+#include "Primitive.hpp"
+#include "Texture.hpp"
+#include "Texture2D.hpp"
+#include "UniformBuffer.hpp"
+#include "Geometry.hpp"
+#include "ISet.hpp"
+#include "DXSamplerHandle.hpp"
+#include "DXShaderHandle.hpp"
+#include "DXTexture2DHandle.hpp"
+#include "GLHandle.hpp"
+#include "GLShaderHandle.hpp"
+#include "DXBufferHandle.hpp"
+
+#endif //BREAK_0_1_INFRASTRUCTURE_HPP
