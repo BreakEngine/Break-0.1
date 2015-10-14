@@ -48,5 +48,6 @@
 #include "GLHandle.hpp"
 #include "GLShaderHandle.hpp"
 #include "DXBufferHandle.hpp"
+#include "ResourceLoader.hpp"
 
 #endif //BREAK_0_1_INFRASTRUCTURE_HPP

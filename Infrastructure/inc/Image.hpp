@@ -20,9 +20,9 @@ namespace Break{
         class BREAK_API Image:public Asset{
 
             ///pointer to image pixels
-            RAMBufferPtr m_data;
+            Pixel* m_data;
 
-            u32 m_width, m_height, m_depth;
+            u32 m_width, m_height, m_depth, m_size;
 
             Image(const Image& val){};
 
@@ -62,7 +62,7 @@ namespace Break{
              * \param depth depth of the image (OPTIONAL, in case of 2D image)
              * \author Moustapha Saad
              */
-            Image(RAMBufferPtr pixels,unsigned int width,unsigned int height=1, unsigned int depth=1);
+            Image(Pixel* pixels,unsigned int width,unsigned int height=1, unsigned int depth=1);
 
             /**
              * \brief empty image constructor

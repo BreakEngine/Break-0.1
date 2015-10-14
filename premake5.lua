@@ -19,7 +19,8 @@ project "Break_Graphics"
 		"Graphics/deps/glm/include",
 	}
 	
-	buildoptions{"-std=c++11"}
+	configuration {"linux", "gmake"}
+		buildoptions{"-std=c++11", "-pthread"}
 	
 	filter "configurations:Debug"
 		defines {"DEBUG","COMPILE_DLL"}
@@ -38,6 +39,7 @@ project "Break_Infrastructure"
 	files {"Infrastructure/inc/**.hpp", "Infrastructure/src/**.cpp"}
 	
 	includedirs {"Infrastructure/inc"}
+	links {"glfw3", "glew32", "OPENGL32", "FreeImage"}
 	
 	if os.get() == "windows" then
 		
@@ -45,10 +47,12 @@ project "Break_Infrastructure"
 			"Infrastructure/deps/glm/include",
 			"Infrastructure/deps/glew-1.10.0/include",
 			"Infrastructure/deps/glfw-3.1.bin.WIN32/include",
+			"Infrastructure/deps/freeimage/",
 			os.getenv("DXSDK_DIR") .. "/Include"
 		}
 		libdirs{
 				"Infrastructure/deps/glew-1.10.0/lib/Release/Win32",
+				"Infrastructure/deps/freeimage/",
 				os.getenv("DXSDK_DIR") .. "/Lib/x86"
 		}
 		if _ACTION == "vs2010" then
@@ -72,9 +76,8 @@ project "Break_Infrastructure"
 		links {"d3d11", "dxgi", "d3dcompiler", "gdi32"}
 	end
 	
-	buildoptions{"-std=c++11"}
-	
-	links {"glfw3", "glew32", "OPENGL32"}
+	configuration {"linux", "gmake"}
+		buildoptions{"-std=c++11", "-pthread"}
 
 	filter "configurations:Debug"
 		defines {"DEBUG","COMPILE_DLL"}
@@ -101,7 +104,8 @@ project "Break"
 		"deps/glm/include/"
 	}
 	
-	buildoptions{"-std=c++11"}
+	configuration {"linux", "gmake"}
+		buildoptions{"-std=c++11", "-pthread"}
 
 	filter "configurations:Debug"
 		defines {"DEBUG"}

@@ -13,20 +13,24 @@ Image::Image()
     m_width = 0;
     m_height = 0;
     m_depth = 0;
+	m_size = 0;
     m_data = nullptr;
 }
 
 Image::~Image(){
-    m_data = nullptr;
+    if(m_data)
+		delete[] m_data;
 }
 
-Image::Image(RAMBufferPtr data,unsigned int width,unsigned int height/* =1 */, unsigned int depth/* =1 */)
+Image::Image(Pixel* data,unsigned int width,unsigned int height/* =1 */, unsigned int depth/* =1 */)
         :Asset("Image", Image::Type)
 {
     m_width = width;
     m_height = height;
     m_depth = depth;
-    m_data = data;
+	m_size = m_width*m_height*m_depth*sizeof(Pixel);
+	m_data = new Pixel[m_size];
+	memcpy(m_data,data,m_size);
 }
 
 Image::Image(unsigned int width,unsigned int height/* =1 */, unsigned int depth/* =1 */)
@@ -36,12 +40,12 @@ Image::Image(unsigned int width,unsigned int height/* =1 */, unsigned int depth/
     m_height = height;
     m_depth = depth;
 
-    auto dataSize = m_width *m_height * m_depth*sizeof(Pixel);
-    m_data = make_shared<RAMBuffer>(dataSize);
+    m_size = m_width *m_height * m_depth*sizeof(Pixel);
+    m_data = new Pixel[m_size];
 }
 
 Pixel* Image::getPixels(){
-    return (Pixel*)m_data->getData();
+    return m_data;
 }
 
 u32 Image::getWidth(){
@@ -58,7 +62,7 @@ u32 Image::getDepth(){
 
 u32 Image::getSize()
 {
-    return m_data->getCapacity();
+    return m_size;
 }
 
 void Image::setWidth(u32 val){
@@ -75,10 +79,11 @@ void Image::setDepth(u32 val){
 
 Pixel& Image::getPixel(unsigned int x,unsigned int y, unsigned int z){
     unsigned long ix = x+m_width *(y+m_depth*z);
-    Pixel* arr = (Pixel*)m_data->getData();
-    return arr[ix];
+    return m_data[ix];
 }
 
 ImagePtr Image::clone(){
-    return std::make_shared<Image>(m_data->clone(),m_width,m_height,m_depth);
+	Pixel* clone_pixels = new Pixel[m_size];
+	memcpy(clone_pixels,m_data,m_size);
+    return std::make_shared<Image>(clone_pixels,m_width,m_height,m_depth);
 }

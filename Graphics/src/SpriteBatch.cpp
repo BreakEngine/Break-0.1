@@ -25,6 +25,14 @@ glm::vec2 SpriteBatch::rotatePoint(glm::vec2 point, real32 angle){
     return glm::vec2(result.x,result.y);
 }
 
+glm::vec2 SpriteBatch::rotatePoint(glm::vec2 point, real32 angle, glm::vec2 origin,Rect dest){
+	auto mat = glm::translate(glm::mat4(1),glm::vec3(-(origin.x),-(origin.y),0));
+    mat = glm::rotate(mat,MathUtils::toRadians(angle),glm::vec3(0,0,1));
+	mat = glm::translate(mat,glm::vec3((origin.x),(origin.y),0));
+    auto result = mat*glm::vec4(point.x,point.y,0,1);
+    return glm::vec2(result.x,result.y);
+}
+
 SpriteBatch::SpriteBatch(GPUProgramPtr shader) {
     m_vertices.resize(limit*4);
     m_indices.resize(limit*6);
@@ -75,33 +83,59 @@ void SpriteBatch::begin() {
 
 void SpriteBatch::draw(Texture2D* texture, int x, int y, Color color)
 {
-    draw(texture,Rect(x,y,texture->getWidth(),texture->getHeight()),0,color);
+    draw(texture,Rect(x,y,texture->getWidth(),texture->getHeight()),0,glm::vec2(0,0),color);
 }
 
 void SpriteBatch::draw(Texture2D* texture, int x, int y, int width, int height, Color color)
 {
-    draw(texture,Rect(x,y,width,height),Rect(0,0,1,1),0,color);
+	if(texture)
+		draw(texture,Rect(x,y,width,height),Rect(0,0,texture->getWidth(),texture->getHeight()),0,glm::vec2(0,0),color);
+	else
+		draw(texture,Rect(x,y,width,height),Rect(0,0,1,1),0,glm::vec2(0,0),color);
 }
 
-void SpriteBatch::draw(Texture2D* texture, Rect dest, float angle, Color color)
+void SpriteBatch::draw(Texture2D* texture, Rect dest, float angle,glm::vec2 origin, Color color)
 {
     if(texture)
-        draw(texture,dest,Rect(0,0,texture->getWidth(),texture->getHeight()),angle,color);
+        draw(texture,dest,Rect(0,0,texture->getWidth(),texture->getHeight()),angle,origin,color);
     else
-        draw(texture,dest,Rect(0,0,1,1),angle,color);
+        draw(texture,dest,Rect(0,0,1,1),angle,origin,color);
 }
 
-void SpriteBatch::draw(Texture2D* texture, Rect dest, Rect src, float angle, Color color)
+void SpriteBatch::draw(Texture2D* texture, Rect dest, Rect src, float angle,glm::vec2 origin, Color color)
 {
+	origin.x *=-1;
+	origin.y *=-1;
     checkFlush(texture);
 
     if(m_count>=limit)
         flush();
 
-    auto p1 = rotatePoint(glm::vec2(0,0),angle)+glm::vec2(dest.x,dest.y);
-    auto p2 = rotatePoint(glm::vec2(0,dest.height),angle)+glm::vec2(dest.x,dest.y);
-    auto p3 = rotatePoint(glm::vec2(dest.width,0),angle)+glm::vec2(dest.x,dest.y);
-    auto p4 = rotatePoint(glm::vec2(dest.width,dest.height),angle)+glm::vec2(dest.x,dest.y);
+	
+    auto p1 = rotatePoint(glm::vec2(0,0),angle,origin,dest)+glm::vec2(dest.x,dest.y);
+    auto p2 = rotatePoint(glm::vec2(0,dest.height),angle,origin,dest)+glm::vec2(dest.x,dest.y);
+    auto p3 = rotatePoint(glm::vec2(dest.width,0),angle,origin,dest)+glm::vec2(dest.x,dest.y);
+    auto p4 = rotatePoint(glm::vec2(dest.width,dest.height),angle,origin,dest)+glm::vec2(dest.x,dest.y);
+	
+
+	/*
+	glm::vec2 p1,p2,p3,p4;
+
+	float cosA = cos(MathUtils::toRadians(angle));
+	float sinA = sin(MathUtils::toRadians(angle));
+	p1.x = dest.x+origin.x*cosA-origin.y*sinA;
+	p1.y = dest.y+origin.x*sinA+origin.y*cosA;
+
+	p2.x = dest.x+(origin.x+dest.width)*cosA-origin.y*sinA;
+	p2.y = dest.y+(origin.x+dest.width)*sinA+origin.y*cosA;
+
+	p3.x = dest.x+origin.x*cosA-(origin.y+dest.height)*sinA;
+	p3.y = dest.y+origin.x*sinA+(origin.y+dest.height)*cosA;
+
+	p4.x = dest.x+(origin.x+dest.width)* cosA-(origin.y+dest.height)*sinA;
+	p4.y = dest.y+(origin.x+dest.width)* sinA+(origin.y+dest.height)*cosA;
+	*/
+
 
     glm::vec2 t1,t2,t3,t4;
     if(texture){

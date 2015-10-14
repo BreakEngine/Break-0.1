@@ -25,7 +25,12 @@ namespace Break{
             }
             virtual void draw() override
             {
-                this->spriteBatch->draw(texture.get(),dest,src,angle,color);
+				if(spriteBatch){
+					if(texture)
+						this->spriteBatch->draw(texture.get(),dest,src,angle,origin,color);
+					else
+						this->spriteBatch->draw(NULL,dest,src,angle,origin,color);
+				}
 
                 Entity::draw();
             }
@@ -40,6 +45,8 @@ namespace Break{
             Rect src;
             ///angle of rotation
             real32 angle;
+
+			glm::vec2 origin;
             ///color tint of this sprite
             Infrastructure::Color color;
             ///sprite batch handle
@@ -52,6 +59,7 @@ namespace Break{
                 texture = nullptr;
                 dest = Rect(0,0,0,0);
                 src =  Rect(0,0,0,0);
+				origin =  glm::vec2(0,0);
                 angle = 0;
                 color = Infrastructure::Color(255,255,255,255);
             }
@@ -64,6 +72,7 @@ namespace Break{
                 this->angle = other.angle;
                 this->dest = other.dest;
                 this->src = other.src;
+				this->origin = other.origin;
             }
 
             ///texture init constructor
@@ -76,6 +85,7 @@ namespace Break{
                 dest = Rect(0,0,texture->getWidth(),texture->getHeight());
                 src =  Rect(0,0,texture->getWidth(),texture->getHeight());
                 angle = 0;
+				origin =  glm::vec2(0,0);
                 color = Infrastructure::Color(255,255,255,255);
             }
 
@@ -137,6 +147,16 @@ namespace Break{
             void setSourceRect(Rect val)
             {
                 src = val;
+            }
+
+			glm::vec2 getOrigin()
+            {
+	            return origin;
+            }
+
+			void setOrigin(float x,float y)
+            {
+	            origin = glm::vec2(x,y);
             }
 
             virtual ~Sprite()

@@ -44,6 +44,7 @@ namespace Break{
             void checkFlush(Infrastructure::Texture2D* texture);
             ///rotates a point
             glm::vec2 rotatePoint(glm::vec2 point, float angle);
+			glm::vec2 rotatePoint(glm::vec2 point, float angle, glm::vec2 origin,Rect dest);
         public:
 
             ///default constructor
@@ -86,7 +87,7 @@ namespace Break{
              * \param color color of the sprite
              * \auhtor Moustapha Saad
              */
-            void draw(Infrastructure::Texture2D*,Rect dest,float angle,Infrastructure::Color color);
+            void draw(Infrastructure::Texture2D*,Rect dest,float angle,glm::vec2 origin,Infrastructure::Color color);
 
             /**
              * \brief draw a sprite
@@ -97,7 +98,7 @@ namespace Break{
              * \param color color of the sprite
              * \auhtor Moustapha Saad
              */
-            void draw(Infrastructure::Texture2D*,Rect,Rect,float,Infrastructure::Color);
+            void draw(Infrastructure::Texture2D*,Rect,Rect,float,glm::vec2 origin,Infrastructure::Color);
 
             ///flushes the current sprites
             void flush();

@@ -7,6 +7,7 @@
 #include "Infrastructure/inc/Infrastructure.hpp"
 #include <Graphics.hpp>
 #include <glm/common.hpp>
+#include <fstream>
 using namespace Break;
 using namespace Break::Infrastructure;
 using namespace Break::Graphics;
@@ -38,6 +39,8 @@ public:
     GeometryPtr geo;
     GPUProgramPtr shader;
     SpriteBatch* sp;
+	Texture2DPtr tex;
+	SpritePtr sprite;
     TestApplication();
 
     ~TestApplication();
@@ -194,11 +197,18 @@ void TestApplication::loadResources() {
     cout<<"HONE"<<endl;
     shader->use();
 
+	ImagePtr img = ResourceLoader::load("res/tex/02.jpg");
+	tex = make_shared<Texture2D>(img);
+	sprite = make_shared<Sprite>(sp,tex);
+	sprite->setPosition(100,100);
+	sprite->setSize(100,100);
+	sprite->setOrigin(50,50);
+	//sprite->setRotation(45);
+
     Application::loadResources();
 }
 
 void TestApplication::setupScene() {
-
     Application::setupScene();
 }
 
@@ -233,21 +243,28 @@ void TestApplication::input() {
 }
 
 void TestApplication::update() {
+	
     Application::update();
 }
 
 void TestApplication::render() {
+	static float angle = 0;
+	angle+=0.3;
+	sprite->setRotation(angle);
     //shader->use();
     //geo->draw();
     
     sp->begin();
-	for(int i=0;i<20000;i++)
+	for(int i=0;i<0;i++)
 	{
 		sp->draw(NULL,rand()%800,rand()%600,10,10,Color(255,150,150,255));
 	}
-    sp->draw(NULL,0,0,100,100,Color(255,255,255,255));
-    sp->draw(NULL,0,0,1,1,Color(255,255,255,255));
-    sp->draw(NULL,-1,-1,1,1,Color(255,255,255,255));
+    //sp->draw(tex.get(),100,100,411,336,Color(255,255,255,255));
+
+	//sp->draw(tex.get(),Rect(0,0,100,100),45,Color(255,255,255,255));
+	sprite->draw();
+    //sp->draw(NULL,0,0,1,1,Color(255,255,255,255));
+    //sp->draw(NULL,-1,-1,1,1,Color(255,255,255,255));
     sp->end();
 
     Application::render();
