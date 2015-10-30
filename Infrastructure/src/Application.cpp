@@ -35,7 +35,7 @@ void Application::cleanUp(){
 void Application::input(){
 
 }
-void Application::update(/*TimeStep time*/){
+void Application::update(TimeStep time){
 
 }
 void Application::render(){

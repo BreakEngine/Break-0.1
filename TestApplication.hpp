@@ -41,6 +41,7 @@ public:
     SpriteBatch* sp;
 	Texture2DPtr tex;
 	SpritePtr sprite;
+	RAMBufferPtr sine;
     TestApplication();
 
     ~TestApplication();
@@ -55,7 +56,7 @@ public:
 
     void input() override;
 
-    void update(/*TimeStep time*/) override;
+    void update(TimeStep time) override;
 
     void render() override;
 
@@ -63,7 +64,7 @@ public:
 #endif //BREAK_0_1_TESTAPPLICATION_HPP
 
 TestApplication::TestApplication() : Application() {
-    window = std::make_shared<Window>(800,600,"Test");
+    window = std::make_shared<Window>(640,480,"Test");
 }
 
 TestApplication::~TestApplication() {
@@ -72,6 +73,19 @@ TestApplication::~TestApplication() {
 
 void TestApplication::init() {
     sp = new SpriteBatch();
+	sine = make_shared<RAMBuffer>(48000*4);
+
+//	s16* input = (s16*)sine->getData();
+//	for(int i=0;i<48000;i+=2)
+//	{
+//		input[i] = i%2==0?8000:-8000;
+//		input[i+1] = i%2==0?8000:-8000;
+//	}
+//	Services::getPlatform()->playSound(sine.get());
+	Services::getPlatform()->fileExists("res/tex/02.jpg");
+	Services::getPlatform()->fileExists("res/tex/52.jpg");
+	Services::getPlatform()->openFile("res/tex/02.jpg");
+
     Application::init();
 }
 
@@ -235,6 +249,21 @@ void TestApplication::input() {
     if(Keyboard::getKey(Keyboard::A) == Keyboard::State_Up){
         std::cout<<"A button Released"<<std::endl;
     }
+    
+	int speed = 4;
+    if(Keyboard::getKey(Keyboard::Right) == Keyboard::State_Down)
+    {
+	    sprite->move(speed,0);
+    }else if(Keyboard::getKey(Keyboard::Left) == Keyboard::State_Down)
+    {
+	    sprite->move(-speed,0);
+    }else if(Keyboard::getKey(Keyboard::Up) == Keyboard::State_Down)
+    {
+	    sprite->move(0,-speed);
+    }else if(Keyboard::getKey(Keyboard::Down) == Keyboard::State_Down)
+    {
+	    sprite->move(0,speed);
+    }
 
     if(Keyboard::getKey(Keyboard::Esc) == Keyboard::State_Down){
         shutdown();
@@ -242,15 +271,13 @@ void TestApplication::input() {
     Application::input();
 }
 
-void TestApplication::update() {
-	
-    Application::update();
+void TestApplication::update(TimeStep tick) {
+	//cout<<tick.delta<<" || "<<tick.elapsedTime<<" || "<<Services::getEngine()->getFPS()<<endl;
+	sprite->rotate(1);
+    Application::update(tick);
 }
 
 void TestApplication::render() {
-	static float angle = 0;
-	angle+=0.3;
-	sprite->setRotation(angle);
     //shader->use();
     //geo->draw();
     

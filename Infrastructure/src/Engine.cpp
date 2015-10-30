@@ -15,7 +15,7 @@
 #include <memory>
 #include <ServiceException.hpp>
 #include <iostream>
-
+#include "SoundDevice.hpp"
 using namespace std;
 using namespace Break;
 using namespace Break::Infrastructure;
@@ -32,6 +32,19 @@ Engine::Engine() {
     m_assetManager = nullptr;
     m_GPU_VM = nullptr;
 
+	m_soundDevice = make_shared<SoundDevice>();
+	AudioFormat format;
+	//can be configurable
+	format.SamplesPerSec = 48000;
+	format.BitsPerSample = 16;
+	format.Channels = 2;
+	//unit size
+	format.BlockAlign = (format.BitsPerSample*format.Channels/8);
+	//bytes per sec = samples per sec * unit size;
+	format.AvgBytePerSec = format.SamplesPerSec * format.BlockAlign;
+	m_soundDevice->setFormat(format);
+
+	Services::registerSoundDevice(m_soundDevice.get());
     Services::registerPlatform(m_platform.get());
 }
 
@@ -44,6 +57,7 @@ Engine::~Engine() {
     m_platform = nullptr;
     m_assetManager = nullptr;
     m_GPU_VM = nullptr;
+	m_soundDevice = nullptr;
 }
 
 void Engine::setup(ApplicationPtr app, API api, void *renderer) {
@@ -63,7 +77,6 @@ void Engine::setup(ApplicationPtr app, API api, void *renderer) {
     }else{
         throw invalid_argument("Unidentified API value");
     }
-
 
     m_GPU_VM = make_shared<GPU_VM>();
     Services::registerGPU_VM(m_GPU_VM.get());
@@ -101,17 +114,24 @@ void Engine::init() {
         Services::getGraphicsDevice()->init(m_app->getWindow());
         m_assetManager = make_shared<AssetManager>();
         Services::registerAssetManager(m_assetManager.get());
+		m_platform->initSound(window.get(),m_soundDevice->getFormat());
+		m_platform->setPullAudioCallback(&SoundDevice::FeedAudio,m_soundDevice.get());
+		
         m_app->init();
         m_app->loadResources();
         m_app->setupScene();
         Services::getGraphicsDevice()->start(m_app->getWindow());
     }else if(m_api == API::OpenGL3_3){
         Services::getGraphicsDevice()->init(m_app->getWindow());
+		m_platform->initSound(m_app->getWindow(),m_soundDevice->getFormat());
+		m_platform->setPullAudioCallback(&SoundDevice::FeedAudio,m_soundDevice.get());
+
         m_assetManager = make_shared<AssetManager>();
         Services::registerAssetManager(m_assetManager.get());
         m_app->init();
         m_app->loadResources();
         m_app->setupScene();
+		auto handle = m_platform->getNativeWindowHandle(m_app->getWindow());
         Services::getGraphicsDevice()->start(m_app->getWindow());
     }
     return;
@@ -158,7 +178,8 @@ void Engine::gameloop() {
     input();
     m_time._previousStep.delta = delta;
     m_time._previousStep.elapsedTime = m_time._totalElapsedTime;
-    //update(Time::_previousStep);
+    update();
+	m_platform->pullSound(m_soundDevice->getFormat());
     //if need render then render the scene
     if (needRender)
     {
@@ -184,7 +205,7 @@ void Engine::input() {
 
 void Engine::update() {
     //do update stuff
-    m_app->update();
+    m_app->update(m_time.getTimeStep());
     return;
 }
 

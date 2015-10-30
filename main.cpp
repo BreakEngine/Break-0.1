@@ -9,13 +9,8 @@ using namespace Break::Graphics;
 
 int main() {
     cout << "Hello, World!" << endl;
-
-    Rect x(0,0,10,10);
-
-    Transform xy;
-
     Engine* engine = Services::getEngine();
-    engine->setup(make_shared<TestApplication>(),API::DirectX11);
+	engine->setup(make_shared<TestApplication>(),API::OpenGL3_3);
     engine->join();
     engine->start();
     //e->setup(NULL,API::OpenGL3_3,NULL);

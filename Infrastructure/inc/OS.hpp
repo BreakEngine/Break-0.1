@@ -7,11 +7,12 @@
 
 #include "Globals.hpp"
 #include "Window.hpp"
+#include "SoundDevice.hpp"
 #include <memory>
 namespace Break{
     namespace Infrastructure {
 
-        /**
+	    /**
          * represents an OS of specific platform and you can call OS services
          */
         class BREAK_API OS{
@@ -36,6 +37,58 @@ namespace Break{
              * \return real64 represents time in nanoseconds
              */
             virtual real64 getTime()=0;
+
+			/**
+			 * \brief initializes platform sound
+			 * \param win window that sound will be rendered for
+			 * \author Moustapha Saad
+			 */
+			virtual void initSound(Window* win, AudioFormat format)=0;
+            
+            /**
+             * \brief inquires sound from user mixer or whatever he uses
+             * \author Moustapha Saad
+             */
+            virtual void pullSound(AudioFormat format)=0;
+
+			/**
+			 * \brief sets getAudio callback function to set samples to be rendered
+			 * \param function the audio callback function
+			 * \author Moustapha Saad
+			 */
+			virtual void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr)=0;
+
+			/**
+             * \brief check if file exists or not
+             * \param fileName path of the file
+			 * \return true if file exists, false otherwise
+             * \author Moustapha Saad
+             */
+			virtual bool fileExists(const std::string& fileName)=0;
+
+			/**
+             * \brief Opens a file for an operation
+             * \param fileName path of the file
+			 * \return a handle to that file
+             * \author Moustapha Saad
+             */
+			virtual void openFile(const std::string& fileName)=0;
+
+			/**
+			 * \brief Reads a file
+			 * \param handle a handle to file opened
+			 * \return a file in binary format
+			 * \author Moustapha Saad
+			 */
+			virtual void readFile(const void* handle)=0;
+
+			/**
+			 * \brief returns a native handle of the Window class handle
+			 * \param win pointer to the window that you need native handle to
+			 * \param handle a generic pointer to native handle [output]
+			 * \author Moustapha Saad
+			 */
+			virtual void* getNativeWindowHandle(Window* win)=0;
         };
         typedef std::shared_ptr<OS> OSPtr;
     }

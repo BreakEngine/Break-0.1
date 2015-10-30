@@ -59,6 +59,16 @@ void Services::registerAssetManager(Infrastructure::AssetManager* val){
     m_assetManager = val;
 }
 
+void Services::registerSoundDevice(Infrastructure::SoundDevice* val)
+{
+	m_soundDevice = val;
+}
+
 Infrastructure::AssetManager* Services::getAssetManager(){
     return m_assetManager;
+}
+
+Infrastructure::SoundDevice* Services::getSoundDevice()
+{
+	return m_soundDevice;
 }

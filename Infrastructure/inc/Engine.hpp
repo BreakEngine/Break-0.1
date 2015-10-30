@@ -21,6 +21,7 @@
 namespace Break{
     namespace Infrastructure{
 
+		class SoundDevice;
         class BREAK_API Engine{
             friend class IGXDevice;
         public:
@@ -116,6 +117,8 @@ namespace Break{
             }
         private:
 
+			void soundTest();
+
             void init();
 
             void gameloop();
@@ -158,6 +161,9 @@ namespace Break{
 
             ///GPU VM
             GPU_VMPtr m_GPU_VM;
+
+			///sound device pointer
+			std::shared_ptr<SoundDevice> m_soundDevice;
         };
 
     }

@@ -39,7 +39,9 @@ project "Break_Infrastructure"
 	files {"Infrastructure/inc/**.hpp", "Infrastructure/src/**.cpp"}
 	
 	includedirs {"Infrastructure/inc"}
-	links {"glfw3", "glew32", "OPENGL32", "FreeImage"}
+	links {"glfw3", "glew32", "OPENGL32", "FreeImage" 
+	-- ,"portaudio_static_x86"
+	}
 	
 	if os.get() == "windows" then
 		
@@ -48,11 +50,14 @@ project "Break_Infrastructure"
 			"Infrastructure/deps/glew-1.10.0/include",
 			"Infrastructure/deps/glfw-3.1.bin.WIN32/include",
 			"Infrastructure/deps/freeimage/",
+			-- "Infrastructure/deps/portaudio/inc/",
 			os.getenv("DXSDK_DIR") .. "/Include"
 		}
 		libdirs{
 				"Infrastructure/deps/glew-1.10.0/lib/Release/Win32",
 				"Infrastructure/deps/freeimage/",
+				-- "Infrastructure/deps/portaudio/lib/debug",
+				"C:/Program Files (x86)/Microsoft SDKs/Windows/v7.1A/Lib",
 				os.getenv("DXSDK_DIR") .. "/Lib/x86"
 		}
 		if _ACTION == "vs2010" then
@@ -73,7 +78,7 @@ project "Break_Infrastructure"
 			} 
 		end
 		
-		links {"d3d11", "dxgi", "d3dcompiler", "gdi32"}
+		links {"d3d11", "dxgi", "d3dcompiler", "gdi32", "dsound"}
 	end
 	
 	configuration {"linux", "gmake"}

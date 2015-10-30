@@ -59,14 +59,13 @@
       <PreprocessorDefinitions>DEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug\Break_Infrastructure.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -87,8 +86,8 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release\Break_Infrastructure.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -106,6 +105,7 @@
     <ClInclude Include="inc\DXShaderHandle.hpp" />
     <ClInclude Include="inc\DXTexture2DHandle.hpp" />
     <ClInclude Include="inc\Engine.hpp" />
+    <ClInclude Include="inc\File.hpp" />
     <ClInclude Include="inc\GLDevice.hpp" />
     <ClInclude Include="inc\GLHandle.hpp" />
     <ClInclude Include="inc\GLKeyboard.hpp" />
@@ -140,6 +140,7 @@
     <ClInclude Include="inc\SamplerState.hpp" />
     <ClInclude Include="inc\ServiceException.hpp" />
     <ClInclude Include="inc\Services.hpp" />
+    <ClInclude Include="inc\SoundDevice.hpp" />
     <ClInclude Include="inc\Texture.hpp" />
     <ClInclude Include="inc\Texture2D.hpp" />
     <ClInclude Include="inc\TimeManager.hpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\DXKeyboard.cpp" />
     <ClCompile Include="src\DXMouse.cpp" />
     <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\File.cpp" />
     <ClCompile Include="src\GLDevice.cpp" />
     <ClCompile Include="src\GLKeyboard.cpp" />
     <ClCompile Include="src\GLMouse.cpp" />

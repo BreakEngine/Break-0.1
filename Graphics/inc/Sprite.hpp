@@ -108,6 +108,11 @@ namespace Break{
                 return angle;
             }
 
+			void rotate(float theta)
+            {
+	            angle+=theta;
+            }
+
             glm::vec2 getPosition()
             {
                 return glm::vec2(dest.x,dest.y);
@@ -117,6 +122,12 @@ namespace Break{
             {
                 dest.x =x;
                 dest.y = y;
+            }
+
+			void move(float x, float y)
+            {
+	            dest.x+=x;
+				dest.y+=y;
             }
 
             glm::vec2 getSize()

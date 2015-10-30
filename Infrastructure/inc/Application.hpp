@@ -11,7 +11,9 @@
 
 namespace Break{
     namespace Infrastructure{
-        class BREAK_API Application{
+	    class TimeStep;
+
+	    class BREAK_API Application{
         protected:
             ///window of this application
             WindowPtr window;
@@ -88,7 +90,7 @@ namespace Break{
              * \param time time step that has info about delta time and elapsed time
              * \author Moustapha Saad
              */
-            virtual void update(/*TimeStep time*/);
+            virtual void update(TimeStep time);
 
             /**
              * \brief render function called once every frame
