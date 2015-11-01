@@ -27,10 +27,10 @@ namespace Break
 			AccessPermission m_accessPermission;
 		public:
 			File();
-			File(const std::string& path);
+			File(const std::string& path, AccessPermission permission = AccessPermission::READ_WRITE);
 			~File();
 
-			void open(const std::string& path);
+			void open(const std::string& path, AccessPermission permission = AccessPermission::READ_WRITE);
 
 			void close();
 
@@ -56,6 +56,7 @@ namespace Break
 			static Exists();
 			*/
 		};
+		typedef std::shared_ptr<File> FilePtr;
 	}
 }
 

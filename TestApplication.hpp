@@ -82,9 +82,10 @@ void TestApplication::init() {
 //		input[i+1] = i%2==0?8000:-8000;
 //	}
 //	Services::getPlatform()->playSound(sine.get());
-	Services::getPlatform()->fileExists("res/tex/02.jpg");
-	Services::getPlatform()->fileExists("res/tex/52.jpg");
-	Services::getPlatform()->openFile("res/tex/02.jpg");
+	File f;
+	f.open("res/tex/02.jpg",AccessPermission::READ);
+	cout<<f.getSize()<<endl;
+	cout<<Services::getPlatform()->getAbsolutePath("res/tex/02.jpg")<<endl;
 
     Application::init();
 }

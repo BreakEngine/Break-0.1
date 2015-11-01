@@ -14,9 +14,9 @@ File::File()
 	m_handle = nullptr;
 }
 
-File::File(const std::string& path)
+File::File(const std::string& path, AccessPermission permission)
 {
-	open(path);
+	open(path, permission);
 }
 
 File::~File()
@@ -29,10 +29,18 @@ File::~File()
 	m_handle = nullptr;
 }
 
-void File::open(const std::string& path)
+void File::open(const std::string& path, AccessPermission permission)
 {
 	//OS Open and fill data
-	m_handle = Services::getPlatform()->openFile(path);
+	u64 win_size = 0;
+	m_handle = Services::getPlatform()->openFile(path,permission,win_size);
+	m_accessPermission = permission;
+	if(m_handle)
+		m_open = true;
+	m_path = path;
+	m_name = path;
+	m_size = win_size;
+	m_readCursor = 0;
 }
 
 void File::close()
@@ -45,6 +53,7 @@ byte* File::read(u32 amount)
 {
 	//read amount of bytes
 	Services::getPlatform()->readFile(m_handle);
+	return nullptr;
 }
 
 void* File::getNativeHandle() const

@@ -8,6 +8,7 @@
 #include "Globals.hpp"
 #include "Window.hpp"
 #include "SoundDevice.hpp"
+#include "File.hpp"
 #include <memory>
 namespace Break{
     namespace Infrastructure {
@@ -69,10 +70,19 @@ namespace Break{
 			/**
              * \brief Opens a file for an operation
              * \param fileName path of the file
+			 * \param out_size out argument will contain the size of the opened file [OPTIONAL]
 			 * \return a handle to that file
              * \author Moustapha Saad
              */
-			virtual void openFile(const std::string& fileName)=0;
+			virtual void* openFile(const std::string& fileName,const AccessPermission permission, u64& out_size)=0;
+			
+			/**
+			 * \brief returns the absolute file path of the relative path
+			 * \param fileName path of the file
+			 * \return absolute file path
+			 * \author Moustapha Saad
+			 */
+			virtual std::string getAbsolutePath(const std::string& fileName) = 0;
 
 			/**
 			 * \brief Reads a file
@@ -81,6 +91,13 @@ namespace Break{
 			 * \author Moustapha Saad
 			 */
 			virtual void readFile(const void* handle)=0;
+
+			/**
+			 * \brief Closes a file
+			 * \param handle a handle to file opened
+			 * \author Moustapha Saad
+			 */
+			virtual void closeFile(const void* handle)=0;
 
 			/**
 			 * \brief returns a native handle of the Window class handle

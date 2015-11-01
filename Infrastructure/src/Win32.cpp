@@ -240,9 +240,21 @@ bool Win32::fileExists(const std::string& fileName)
 		return false;
 }
 
-void Win32::openFile(const std::string& fileName)
+void* Win32::openFile(const std::string& fileName, const AccessPermission permission, u64& out_size)
 {
-	HANDLE hFile = CreateFile(fileName.c_str(),GENERIC_READ,
+	DWORD win_permission = 0;
+	if(permission == AccessPermission::READ)
+	{
+		win_permission = GENERIC_READ;
+	}else if(permission == AccessPermission::WRITE)
+	{
+		win_permission = GENERIC_WRITE;
+	}else if(permission == AccessPermission::READ_WRITE)
+	{
+		win_permission = GENERIC_READ | GENERIC_WRITE;
+	}
+
+	HANDLE hFile = CreateFile(fileName.c_str(),win_permission,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,NULL, OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
 
 	if(hFile == INVALID_HANDLE_VALUE)
@@ -250,12 +262,25 @@ void Win32::openFile(const std::string& fileName)
 
 	LARGE_INTEGER fileSize;
 	if(!GetFileSizeEx(hFile,&fileSize)){
-		CloseHandle(hFile);
-		return;
+		throw ServiceException("Cannot query file size which named: "+fileName);
 	}
+	out_size = fileSize.QuadPart;
 	
-	CloseHandle(hFile);
-	return;
+	return hFile;
+}
+
+std::string Win32::getAbsolutePath(const std::string& fileName)
+{
+	TCHAR abs[4096];
+	TCHAR* pfileName;
+	u32 res = GetFullPathName(fileName.c_str(),4096,abs,&pfileName);
+	if(res > 0)
+	{
+		return string(abs);
+	}else
+	{
+		throw ServiceException("Cannot retrieve full file name of a file named: "+fileName);
+	}
 }
 
 void Win32::readFile(const void* handle)
@@ -267,6 +292,11 @@ void Win32::readFile(const void* handle)
 	if(hFile == INVALID_HANDLE_VALUE)
 		throw ServiceException("Cannot open file named: "+fileName);
 
+
+}
+
+void Win32::closeFile(const void* handle)
+{
 
 }
 

@@ -10,6 +10,7 @@
 #include "IGXDevice.hpp"
 #include "GPU_VM.hpp"
 #include "AssetManager.hpp"
+#include "SoundDevice.hpp"
 
 namespace Break{
     class BREAK_API Services{

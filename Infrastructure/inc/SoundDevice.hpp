@@ -17,7 +17,7 @@ namespace Break{
 			u16 Size;
 		};
 
-		class SoundDevice;
+		class BREAK_API SoundDevice;
 		typedef void (*GetAudioCallback)(byte*,u32,SoundDevice*);
 
 		class BREAK_API SoundDevice{

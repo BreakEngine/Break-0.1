@@ -41,9 +41,13 @@ namespace Break{
 
 			bool fileExists(const std::string& fileName) override;
 
-			void openFile(const std::string& fileName) override;
+			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
+
+			std::string getAbsolutePath(const std::string& fileName) override;
 
 			void readFile(const void* handle) override;
+
+			void closeFile(const void* handle) override;
 
 			void* getNativeWindowHandle(Window* win) override;
 

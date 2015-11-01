@@ -13,6 +13,7 @@ OS* Services::m_platform = nullptr;
 IGXDevice* Services::m_graphicsDevice = nullptr;
 GPU_VM* Services::m_GPU_VM = nullptr;
 AssetManager* Services::m_assetManager = nullptr;
+SoundDevice* Services::m_soundDevice = nullptr;
 
 
 void Services::registerEngine(Infrastructure::Engine *val) {
