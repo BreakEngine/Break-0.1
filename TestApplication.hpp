@@ -11,8 +11,37 @@
 using namespace Break;
 using namespace Break::Infrastructure;
 using namespace Break::Graphics;
-using namespace glm;
+
 using namespace std;
+
+inline u16 readLittleEndian16(u16 x){
+    u16 __x = x;
+    __x = ((((__x) >> 8) & 0xff) | (((__x) & 0xff) << 8));
+    return __x;
+}
+
+inline u32 readLittleEndian32(u32 x){
+    u32 __x = x;
+    __x = ((((__x) & 0xff000000) >> 24) | (((__x) & 0x00ff0000) >>  8) |
+    (((__x) & 0x0000ff00) <<  8) | (((__x) & 0x000000ff) << 24));
+    return __x;
+}
+struct WAVHeader{
+    u32 ChunckID; //big
+    u32 ChunckSize; //little
+    u32 Format; //big
+    u32 subChunck1ID; //big
+    u32 subChunck1Size; //little
+    u16 AudioFormat; //little
+    u16 NumChannels; //little
+    u32 SampleRate; //little
+    u32 ByteRate; //little
+    u16 BlockAlign; //little
+    u16 BitsPerSample; //little
+    u32 SubChunck2ID; //big
+    u32 SubChunck2Size; //big
+};
+
 
 class tv{
 public:
@@ -82,9 +111,42 @@ void TestApplication::init() {
 //		input[i+1] = i%2==0?8000:-8000;
 //	}
 //	Services::getPlatform()->playSound(sine.get());
-	File f;
+	File f,n;
+    File music;
+    music.open("res/music/01.wav");
+	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
+
+    Break::byte* bufferb = new Break::byte[sizeof(WAVHeader)];
+    music.read(sizeof(WAVHeader),bufferb);
+
+	void* buffer = bufferb;
+
+    //Left Right
+    WAVHeader* musicHeader = reinterpret_cast<WAVHeader*>(buffer);
+    musicHeader->ChunckID = readLittleEndian32(musicHeader->ChunckID);
+    musicHeader->Format = readLittleEndian32(musicHeader->Format);
+    musicHeader->subChunck1ID = readLittleEndian32(musicHeader->subChunck1ID);
+    musicHeader->SubChunck2ID = readLittleEndian32(musicHeader->SubChunck2ID);
+    // musicHeader.ChunckSize = readLittleEndian32(*(buffer+4));
+    // musicHeader.Format = *(buffer+8);
+    // musicHeader.subChunck1ID = *(buffer+12);
+    // musicHeader.subChunck1Size = readLittleEndian32(*(buffer+16));
+    // musicHeader.AudioFormat = readLittleEndian16(*(buffer+20));
+    // musicHeader.NumChannels = readLittleEndian16(*(buffer+22));
+    // musicHeader.SampleRate = readLittleEndian32(*(buffer+24));
+    // musicHeader.ByteRate = readLittleEndian32(*(buffer+28));
+    // musicHeader.BlockAlign = readLittleEndian16(*(buffer+32));
+    // musicHeader.BitsPerSample = readLittleEndian16(*(buffer+34));
+    // musicHeader.SubChunck2ID = *(buffer+36);
+    // musicHeader.SubChunck2Size = readLittleEndian32(*(buffer+40));
+    Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
+    music.read(musicHeader->ChunckSize,music_buffer);
+	Services::getSoundDevice()->play(music_buffer,musicHeader->ChunckSize);
+    //soundDevice->play(buffer);
+
 	cout<<f.getSize()<<endl;
+	cout<<f.getName()<<endl;
 	cout<<Services::getPlatform()->getAbsolutePath("res/tex/02.jpg")<<endl;
 
     Application::init();
@@ -96,10 +158,10 @@ void TestApplication::loadResources() {
     VertexSet<tv> veve(tv::getDeclaration());
     IndexSet soso;
 
-    veve.append(tv(vec4(1,-1,1,1)*0.5f,vec4(1,0,0,1),vec2(1,1)));
-    veve.append(tv(vec4(1,1,1,1)*0.5f,vec4(0,1,0,1),vec2(1,0)));
-    veve.append(tv(vec4(-1,-1,1,1)*0.5f,vec4(0,0,1,1),vec2(0,1)));
-    veve.append(tv(vec4(-1,1,1,1)*0.5f,vec4(1,0,1,1),vec2(0,0)));
+    veve.append(tv(glm::vec4(1,-1,1,1)*0.5f, glm::vec4(1,0,0,1), glm::vec2(1,1)));
+    veve.append(tv(glm::vec4(1,1,1,1)*0.5f, glm::vec4(0,1,0,1), glm::vec2(1,0)));
+    veve.append(tv(glm::vec4(-1,-1,1,1)*0.5f, glm::vec4(0,0,1,1), glm::vec2(0,1)));
+    veve.append(tv(glm::vec4(-1,1,1,1)*0.5f, glm::vec4(1,0,1,1), glm::vec2(0,0)));
 
     //Triangles
     soso.append(0);
@@ -203,11 +265,11 @@ void TestApplication::loadResources() {
     //shader->registerUniform("viewMatrix","MatrixBuffer",*48,16);
     //shader->registerUniform("projectionMatrix","MatrixBuffer",1*48,16);
     shader->registerSampler("diffuseS",0,std::make_shared<SamplerState>(),GPU_ISA::PIXEL_SHADER);
-    auto idmat = mat4(1);
+    auto idmat = glm::mat4(1);
     shader->setUniform("worldMatrix",&idmat);
     //shader->setUniform("viewMatrix",&idmat);
     //shader->setUniform("projectionMatrix",&idmat);
-    auto globalColor = vec4(1,1,1,1);
+    auto globalColor = glm::vec4(1,1,1,1);
     shader->setUniform("ucolor",&globalColor);
     cout<<"HONE"<<endl;
     shader->use();
@@ -250,7 +312,7 @@ void TestApplication::input() {
     if(Keyboard::getKey(Keyboard::A) == Keyboard::State_Up){
         std::cout<<"A button Released"<<std::endl;
     }
-    
+
 	int speed = 4;
     if(Keyboard::getKey(Keyboard::Right) == Keyboard::State_Down)
     {
@@ -279,9 +341,9 @@ void TestApplication::update(TimeStep tick) {
 }
 
 void TestApplication::render() {
-    //shader->use();
-    //geo->draw();
-    
+    shader->use();
+    geo->draw();
+
     sp->begin();
 	for(int i=0;i<0;i++)
 	{

@@ -35,7 +35,7 @@ Engine::Engine() {
 	m_soundDevice = make_shared<SoundDevice>();
 	AudioFormat format;
 	//can be configurable
-	format.SamplesPerSec = 48000;
+	format.SamplesPerSec = 44100;
 	format.BitsPerSample = 16;
 	format.Channels = 2;
 	//unit size
@@ -116,7 +116,7 @@ void Engine::init() {
         Services::registerAssetManager(m_assetManager.get());
 		m_platform->initSound(window.get(),m_soundDevice->getFormat());
 		m_platform->setPullAudioCallback(&SoundDevice::FeedAudio,m_soundDevice.get());
-		
+
         m_app->init();
         m_app->loadResources();
         m_app->setupScene();
@@ -216,4 +216,3 @@ void Engine::render() {
     m_device->swapBuffer(m_app->getWindow());
     return;
 }
-

@@ -21,11 +21,11 @@ namespace Break{
 
             static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-			GetAudioCallback m_pullAudio;
-			LPDIRECTSOUND m_DSoundDevice;
-			LPDIRECTSOUNDBUFFER m_DSoundBuffer;
-			SoundDevice* m_soundDevice;
-        public:
+      			GetAudioCallback m_pullAudio;
+      			LPDIRECTSOUND m_DSoundDevice;
+      			LPDIRECTSOUNDBUFFER m_DSoundBuffer;
+      			SoundDevice* m_soundDevice;
+            public:
 
             Win32();
 
@@ -35,23 +35,25 @@ namespace Break{
 
             real64 getTime() override;
 
-			void initSound(Window* win, AudioFormat format) override;
+      			void initSound(Window* win, AudioFormat format) override;
 
-			void pullSound(AudioFormat format) override;
+      			void pullSound(AudioFormat format) override;
 
-			bool fileExists(const std::string& fileName) override;
+      			bool fileExists(const std::string& fileName) override;
 
-			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
+      			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
 
-			std::string getAbsolutePath(const std::string& fileName) override;
+      			void* createFile(const std::string& fileName, const AccessPermission permission) override;
 
-			void readFile(const void* handle) override;
+      			std::string getAbsolutePath(const std::string& fileName) override;
 
-			void closeFile(const void* handle) override;
+      			bool readFile(const void* handle, void* buffer, u32 buffer_size) override;
 
-			void* getNativeWindowHandle(Window* win) override;
+      			void closeFile(const void* handle) override;
 
-			void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
+      			void* getNativeWindowHandle(Window* win) override;
+
+      			void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
         };
     }
 }

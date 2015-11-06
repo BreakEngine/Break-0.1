@@ -45,7 +45,7 @@ namespace Break{
 			 * \author Moustapha Saad
 			 */
 			virtual void initSound(Window* win, AudioFormat format)=0;
-            
+
             /**
              * \brief inquires sound from user mixer or whatever he uses
              * \author Moustapha Saad
@@ -75,7 +75,16 @@ namespace Break{
              * \author Moustapha Saad
              */
 			virtual void* openFile(const std::string& fileName,const AccessPermission permission, u64& out_size)=0;
-			
+
+			/**
+             * \brief Creates a file for an operation
+             * \param fileName path of the file
+			 * \param permission access permission of this file
+			 * \return a handle to that file
+             * \author Moustapha Saad
+             */
+			virtual void* createFile(const std::string& fileName, const AccessPermission permission) = 0;
+
 			/**
 			 * \brief returns the absolute file path of the relative path
 			 * \param fileName path of the file
@@ -90,7 +99,7 @@ namespace Break{
 			 * \return a file in binary format
 			 * \author Moustapha Saad
 			 */
-			virtual void readFile(const void* handle)=0;
+			virtual bool readFile(const void* handle, void* buffer, u32 buffer_size)=0;
 
 			/**
 			 * \brief Closes a file

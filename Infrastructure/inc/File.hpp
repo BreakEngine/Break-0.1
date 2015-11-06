@@ -27,14 +27,16 @@ namespace Break
 			AccessPermission m_accessPermission;
 		public:
 			File();
-			File(const std::string& path, AccessPermission permission = AccessPermission::READ_WRITE);
+			File(const std::string& path, AccessPermission permission = AccessPermission::READ);
 			~File();
 
-			void open(const std::string& path, AccessPermission permission = AccessPermission::READ_WRITE);
+			void open(const std::string& path, AccessPermission permission = AccessPermission::READ);
+
+			void create(const std::string& path, AccessPermission permission = AccessPermission::WRITE);
 
 			void close();
 
-			byte* read(u32 amount);
+			byte* read(u32 amount, byte* buffer = nullptr);
 
 			void* getNativeHandle() const;
 
@@ -47,6 +49,8 @@ namespace Break
 			u32 getSize() const;
 
 			u32 getReadCursor() const;
+
+			static bool Exists(const std::string& path);
 
 			/*
 			To be Added

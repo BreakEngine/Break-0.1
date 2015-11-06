@@ -192,6 +192,9 @@
     <ClInclude Include="inc\File.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Utils.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">

@@ -183,7 +183,7 @@ void Win32::initSound(Window* win, AudioFormat format)
 
 	if(FAILED(m_DSoundDevice->CreateSoundBuffer(&secDB,&m_DSoundBuffer,0)))
 		throw ServiceException("Failed to create Directsound's secondary buffer");
-	
+
 	if(FAILED(m_DSoundBuffer->Play(0,0,DSBPLAY_LOOPING)))
 		throw ServiceException("Failed to play Directsound buffer");
 }
@@ -265,7 +265,30 @@ void* Win32::openFile(const std::string& fileName, const AccessPermission permis
 		throw ServiceException("Cannot query file size which named: "+fileName);
 	}
 	out_size = fileSize.QuadPart;
-	
+
+	return hFile;
+}
+
+void* Win32::createFile(const std::string& fileName, const AccessPermission permission)
+{
+	DWORD win_permission = 0;
+	if(permission == AccessPermission::READ)
+	{
+		win_permission = GENERIC_READ;
+	}else if(permission == AccessPermission::WRITE)
+	{
+		win_permission = GENERIC_WRITE;
+	}else if(permission == AccessPermission::READ_WRITE)
+	{
+		win_permission = GENERIC_READ | GENERIC_WRITE;
+	}
+
+	HANDLE hFile = CreateFile(fileName.c_str(),win_permission,
+		FILE_SHARE_READ | FILE_SHARE_WRITE,NULL, CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+
+	if(hFile == INVALID_HANDLE_VALUE)
+		throw ServiceException("Cannot open file named: "+fileName);
+
 	return hFile;
 }
 
@@ -283,21 +306,22 @@ std::string Win32::getAbsolutePath(const std::string& fileName)
 	}
 }
 
-void Win32::readFile(const void* handle)
+bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
 {
-	std::string fileName = "res/tex/02.jpg";
-	HANDLE hFile = CreateFile(fileName.c_str(),GENERIC_READ,
-		FILE_SHARE_READ |FILE_SHARE_WRITE,NULL, OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-	if(hFile == INVALID_HANDLE_VALUE)
-		throw ServiceException("Cannot open file named: "+fileName);
-
-
+	DWORD actual_read = 0;
+	auto res = ReadFile(const_cast<void*>(handle), buffer, buffer_size, &actual_read, NULL);
+	if(actual_read == 0)
+		return false;
+	if(FAILED(res)){
+		throw ServiceException("unable to read from file");
+	}
+	return true;
 }
 
 void Win32::closeFile(const void* handle)
 {
-
+	if(!CloseHandle(const_cast<void*>(handle)))
+		throw ServiceException("Cannot Close a file");
 }
 
 void* Win32::getNativeWindowHandle(Window* win)

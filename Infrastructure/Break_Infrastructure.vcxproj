@@ -146,6 +146,7 @@
     <ClInclude Include="inc\TimeManager.hpp" />
     <ClInclude Include="inc\TimeStep.hpp" />
     <ClInclude Include="inc\UniformBuffer.hpp" />
+    <ClInclude Include="inc\Utils.hpp" />
     <ClInclude Include="inc\Vertex2DPos.hpp" />
     <ClInclude Include="inc\Vertex2DPosColor.hpp" />
     <ClInclude Include="inc\Vertex2DPosColorTex.hpp" />
