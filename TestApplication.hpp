@@ -142,6 +142,7 @@ void TestApplication::init() {
     // musicHeader.SubChunck2Size = readLittleEndian32(*(buffer+40));
     Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
     music.read(musicHeader->ChunckSize,music_buffer);
+    SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
 	Services::getSoundDevice()->play(music_buffer,musicHeader->ChunckSize);
     //soundDevice->play(buffer);
 

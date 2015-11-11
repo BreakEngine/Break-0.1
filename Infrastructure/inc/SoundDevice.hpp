@@ -82,10 +82,10 @@ namespace Break{
 				return m_format;
 			}
 
-			void play(byte* buffer, u32 buffer_size){
-				m_buffer = buffer;
-				m_bufferOffset = 0;
-				m_bufferSize = buffer_size;
+			void play(SoundEffect* track){
+				m_buffer = track->getData();
+				m_bufferOffset = track->getPlayingCursor();
+				m_bufferSize = track->getBufferSize();
 			}
 
 		private:

@@ -50,5 +50,6 @@
 #include "DXBufferHandle.hpp"
 #include "ResourceLoader.hpp"
 #include "File.hpp"
+#include "SoundEffect.hpp"
 
 #endif //BREAK_0_1_INFRASTRUCTURE_HPP
