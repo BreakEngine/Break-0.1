@@ -22,7 +22,7 @@ u32 SoundEffect::getPlayingCursor(){
     return m_playingCursor;
 }
 
-void setPlayingCursor(u32 newCursor){
+void SoundEffect::setPlayingCursor(u32 newCursor){
     m_playingCursor=newCursor;
 }
 

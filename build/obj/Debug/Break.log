@@ -1,4 +1,4 @@
-﻿Build started 06/11/2015 06:20:57 م.
+﻿Build started 13/11/2015 05:47:36 م.
      1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\deps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
@@ -284,10 +284,10 @@
                      _Kty=Break::Infrastructure::Keyboard::Keys,
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
-     1>h:\projects\break-0.1\testapplication.hpp(319): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(322): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(325): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(328): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(326): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(329): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(332): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(335): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): warning C4244: 'argument' : conversion from '__int64' to 'Break::u32', possible loss of data
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(_V0_t &&)' being compiled
                  with
@@ -316,4 +316,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.98
+Time Elapsed 00:00:04.59

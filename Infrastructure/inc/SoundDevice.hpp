@@ -2,6 +2,7 @@
 #define BREAK_0_1_SOUNDDEVICE_HPP
 
 #include "Globals.hpp"
+#include "SoundEffect.hpp"
 
 namespace Break{
 	namespace Infrastructure{
@@ -24,6 +25,8 @@ namespace Break{
 
 		class BREAK_API SoundDevice;
 		typedef void (*GetAudioCallback)(byte*,u32,SoundDevice*);
+
+		class BREAK_API Engine;
 
 		class BREAK_API SoundDevice{
 		public:
@@ -54,21 +57,25 @@ namespace Break{
 
 				s16 *SampleOut = (s16*)buffer;
 				u32 region1SampleCount = buffer_size/this_ptr->m_format.BlockAlign;
-				s16* input_buffer = (s16*)(this_ptr->m_buffer);
+				s16* input_buffer = (s16*)(this_ptr->m_buffer+this_ptr->m_bufferOffset);
 				//this_ptr->m_bufferOffset += buffer_size;
+				//printf("%d\n",this_ptr->m_bufferOffset);
 				for(u32 sampleIndex = 0;
 					sampleIndex < region1SampleCount && sampleIndex+this_ptr->m_bufferOffset < this_ptr->m_bufferSize;
 					++sampleIndex )
 				{
 					//cout<<SampleValue<<endl;
 					//printf("%d\n",SampleValue);
-					*SampleOut++ = *input_buffer++;
-					*SampleOut++ = *input_buffer++;
+//					*SampleOut++ = *input_buffer++;
+//					*SampleOut++ = *input_buffer++;
+					s16 r = rand()%(s16)(16000*this_ptr->volume);
+					*SampleOut++ = r;
+					*SampleOut++ = r;
 				}
 
 			}
 
-			SoundDevice(){}
+			SoundDevice(){volume = 1;}
 
 			virtual ~SoundDevice(){}
 
@@ -88,6 +95,7 @@ namespace Break{
 				m_bufferSize = track->getBufferSize();
 			}
 
+			real64 volume;
 		private:
 			AudioFormat m_format;
 

@@ -1,4 +1,4 @@
-﻿Build started 01/11/2015 11:54:22 م.
+﻿Build started 13/11/2015 05:28:39 م.
      1>Project "H:\Projects\Break-0.1\Infrastructure\Break_Infrastructure.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /Ideps\glm\include /I"deps\glew-1.10.0\include" /I"deps\glfw-3.1.bin.WIN32\include" /Ideps\freeimage /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\Application.cpp src\AssetManager.cpp src\DXDevice.cpp src\Engine.cpp src\File.cpp src\GLDevice.cpp src\GPUProgram.cpp src\GPU_VM.cpp src\IGXDevice.cpp src\Mouse.cpp src\Services.cpp src\Texture2D.cpp src\UniformBuffer.cpp src\Win32.cpp
@@ -948,6 +948,15 @@
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
+                 ]
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Utils.hpp(28): warning C4018: '<' : signed/unsigned mismatch
+     1>src\File.cpp(50): warning C4244: '=' : conversion from 'Break::u64' to 'Break::u32', possible loss of data
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Utils.hpp(16): warning C4018: '<' : signed/unsigned mismatch
+                 H:\Projects\Break-0.1\Infrastructure\inc\Utils.hpp(30) : see reference to function template instantiation 'int Break::Utils::find<char>(const std::vector<_Ty> &,T)' being compiled
+                 with
+                 [
+                     _Ty=char,
+                     T=char
                  ]
          GLDevice.cpp
      1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
@@ -2423,8 +2432,8 @@
          Generating Code...
      1>h:\projects\break-0.1\infrastructure\src\gldevice.cpp(221): warning C4715: 'Break::Infrastructure::GLDevice::getCompareFunc' : not all control paths return a value
      1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(481): warning C4715: 'Break::Infrastructure::DXDevice::getFormat' : not all control paths return a value
-     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(501): warning C4715: 'Break::Infrastructure::DXDevice::getAddressMode' : not all control paths return a value
      1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(533): warning C4715: 'Break::Infrastructure::DXDevice::getCompareFunc' : not all control paths return a value
+     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(501): warning C4715: 'Break::Infrastructure::DXDevice::getAddressMode' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break_Infrastructure.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"deps\glew-1.10.0\lib\Release\Win32" /LIBPATH:deps\freeimage /LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:"deps\glfw-3.1.bin.WIN32\lib-vc2012" glfw3.lib glew32.lib OPENGL32.lib FreeImage.lib d3d11.lib dxgi.lib d3dcompiler.lib gdi32.lib dsound.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break_Infrastructure.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break_Infrastructure.lib" /MACHINE:X86 /SAFESEH /DLL obj\Release\Application.obj
          obj\Release\AssetManager.obj
@@ -2449,6 +2458,7 @@
          obj\Release\ResourceLoader.obj
          obj\Release\SamplerState.obj
          obj\Release\Services.obj
+         obj\Release\SoundEffect.obj
          obj\Release\Texture.obj
          obj\Release\Texture2D.obj
          obj\Release\TimeManager.obj
@@ -2456,10 +2466,9 @@
          obj\Release\Win32.obj
          obj\Release\Window.obj
             Creating library ..\bin\Release\Break_Infrastructure.lib and object ..\bin\Release\Break_Infrastructure.exp
-     1>Services.obj : error LNK2001: unresolved external symbol "private: static class Break::Infrastructure::SoundDevice * Break::Services::m_soundDevice" (?m_soundDevice@Services@Break@@0PAVSoundDevice@Infrastructure@2@A)
-     1>..\bin\Release\Break_Infrastructure.dll : fatal error LNK1120: 1 unresolved externals
-     1>Done Building Project "H:\Projects\Break-0.1\Infrastructure\Break_Infrastructure.vcxproj" (Build target(s)) -- FAILED.
+         Break_Infrastructure.vcxproj -> H:\Projects\Break-0.1\Infrastructure\..\bin\Release\Break_Infrastructure.dll
+     1>Done Building Project "H:\Projects\Break-0.1\Infrastructure\Break_Infrastructure.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:26.18
+Time Elapsed 00:00:25.14

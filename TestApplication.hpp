@@ -143,7 +143,7 @@ void TestApplication::init() {
     Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
     music.read(musicHeader->ChunckSize,music_buffer);
     SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
-	Services::getSoundDevice()->play(music_buffer,musicHeader->ChunckSize);
+	Services::getSoundDevice()->play(musicEffect);
     //soundDevice->play(buffer);
 
 	cout<<f.getSize()<<endl;
@@ -313,6 +313,12 @@ void TestApplication::input() {
     if(Keyboard::getKey(Keyboard::A) == Keyboard::State_Up){
         std::cout<<"A button Released"<<std::endl;
     }
+
+	if(Keyboard::getKey(Keyboard::Up) == Keyboard::State_Down)
+		Services::getSoundDevice()->volume += 0.1;
+
+	if(Keyboard::getKey(Keyboard::Down) == Keyboard::State_Down && Services::getSoundDevice()->volume > 0)
+		Services::getSoundDevice()->volume -= 0.1;
 
 	int speed = 4;
     if(Keyboard::getKey(Keyboard::Right) == Keyboard::State_Down)
