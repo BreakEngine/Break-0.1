@@ -30,31 +30,6 @@ project "Break_Graphics"
 		defines {"NDEBUG","COMPILE_DLL"}
 		optimize "On"
 		
-project "Break_Physics"
-	kind "SharedLib"
-	language "C++"
-	targetdir "bin/%{cfg.buildcfg}"
-	location "Physics"
-	
-	files {"Physics/inc/**.hpp", "Physics/src/**.cpp"}
-	
-	links {"Break_Infrastructure"}
-	
-	includedirs{"Physics/inc",
-	"Infrastructure/inc",
-	"Physics/deps/glm/include"}
-	
-	configuration {"linux", "gmake"}
-		buildoptions{"-std=c++11", "-pthread"}
-		
-	filter "configurations:Debug"
-		defines {"DEBUG", "COMPILE_DLL"}
-		flags {"Symbols"}
-	
-	filter "configurations:Release"
-		defines {"NDEBUG", "COMPILE_DLL"}
-		optimize "On"
-		
 project "Break_Infrastructure"
 	kind "SharedLib"
 	language "C++"

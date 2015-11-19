@@ -51,7 +51,8 @@ namespace Break
 			u32 getReadCursor() const;
 
 			static bool Exists(const std::string& path);
-
+			void write(void* data, u32 writtenSize);
+			void write(std:: string str);
 			/*
 			To be Added
 			void rename();

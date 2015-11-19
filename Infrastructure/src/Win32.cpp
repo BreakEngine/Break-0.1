@@ -198,8 +198,6 @@ void Win32::pullSound(AudioFormat format)
 	if(FAILED(m_DSoundBuffer->GetCurrentPosition(&PlayCursor,&WriteCursor)))
 		throw ServiceException("Cannot get Directsound playing position");
 
-	printf("Play: %d, Write: %d\n",PlayCursor,WriteCursor);
-
 	DWORD BytesToLock = format.BlockAlign % format.AvgBytePerSec;
 	DWORD BytesToWrite;
 	if(BytesToLock > PlayCursor)

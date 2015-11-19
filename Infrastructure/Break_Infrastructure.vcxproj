@@ -141,7 +141,6 @@
     <ClInclude Include="inc\ServiceException.hpp" />
     <ClInclude Include="inc\Services.hpp" />
     <ClInclude Include="inc\SoundDevice.hpp" />
-    <ClInclude Include="inc\SoundEffect.hpp" />
     <ClInclude Include="inc\Texture.hpp" />
     <ClInclude Include="inc\Texture2D.hpp" />
     <ClInclude Include="inc\TimeManager.hpp" />
@@ -180,7 +179,6 @@
     <ClCompile Include="src\ResourceLoader.cpp" />
     <ClCompile Include="src\SamplerState.cpp" />
     <ClCompile Include="src\Services.cpp" />
-    <ClCompile Include="src\SoundEffect.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Texture2D.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />
