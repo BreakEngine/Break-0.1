@@ -65,7 +65,7 @@ project "Break_Infrastructure"
 	
 	includedirs {"Infrastructure/inc"}
 	links {"glfw3", "glew32", "OPENGL32", "FreeImage" 
-	-- ,"portaudio_static_x86"
+	,"portaudio_static_x86"
 	}
 	
 	if os.get() == "windows" then
@@ -75,13 +75,13 @@ project "Break_Infrastructure"
 			"Infrastructure/deps/glew-1.10.0/include",
 			"Infrastructure/deps/glfw-3.1.bin.WIN32/include",
 			"Infrastructure/deps/freeimage/",
-			-- "Infrastructure/deps/portaudio/inc/",
+			"Infrastructure/deps/portaudio_vs2012/inc/",
 			os.getenv("DXSDK_DIR") .. "/Include"
 		}
 		libdirs{
 				"Infrastructure/deps/glew-1.10.0/lib/Release/Win32",
 				"Infrastructure/deps/freeimage/",
-				-- "Infrastructure/deps/portaudio/lib/debug",
+				"Infrastructure/deps/portaudio_vs2012/lib/release",
 				"C:/Program Files (x86)/Microsoft SDKs/Windows/v7.1A/Lib",
 				os.getenv("DXSDK_DIR") .. "/Lib/x86"
 		}
@@ -125,12 +125,13 @@ project "Break"
 	files {"main.cpp", "TestApplication.hpp"}
 	
 	links {
-		"Break_Infrastructure", "Break_Graphics"
+		"Break_Infrastructure", "Break_Graphics", "Break_Physics"
 	}
 	
 	includedirs {
 		"Infrastructure/inc",
 		"Graphics/inc",
+		"Physics/inc",
 		"deps/glm/include/"
 	}
 	

@@ -57,15 +57,15 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;deps\portaudio_vs2012\inc;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;portaudio_static_x86.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;deps\portaudio_vs2012\lib\release;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug\Break_Infrastructure.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -74,7 +74,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;deps\portaudio_vs2012\inc;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -86,8 +86,8 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;portaudio_static_x86.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;deps\portaudio_vs2012\lib\release;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release\Break_Infrastructure.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -137,6 +137,7 @@
     <ClInclude Include="inc\Primitive.hpp" />
     <ClInclude Include="inc\RAMBuffer.hpp" />
     <ClInclude Include="inc\ResourceLoader.hpp" />
+    <ClInclude Include="inc\RingCursor.hpp" />
     <ClInclude Include="inc\SamplerState.hpp" />
     <ClInclude Include="inc\ServiceException.hpp" />
     <ClInclude Include="inc\Services.hpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="src\ResourceLoader.cpp" />
     <ClCompile Include="src\SamplerState.cpp" />
     <ClCompile Include="src\Services.cpp" />
+    <ClCompile Include="src\SoundDevice.cpp" />
     <ClCompile Include="src\SoundEffect.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Texture2D.cpp" />

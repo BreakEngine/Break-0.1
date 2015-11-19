@@ -22,18 +22,20 @@ using namespace Break;
 using namespace Break::Infrastructure;
 
 Win32::Win32(){
-	m_DSoundDevice = nullptr;
-	m_DSoundBuffer = nullptr;
+	stream = nullptr;
 	m_pullAudio = nullptr;
-	m_soundDevice = nullptr;
 }
 
 Win32::~Win32(){
-	m_DSoundDevice->Release();
-	m_DSoundDevice = nullptr;
-	m_DSoundBuffer->Release();
-	m_DSoundBuffer = nullptr;
-	m_soundDevice = nullptr;
+	auto err = Pa_StopStream(stream);
+	if(err != paNoError)
+		throw ServiceException("OS can't stop stream");
+	err = Pa_CloseStream(stream);
+	if(err != paNoError)
+		throw ServiceException("OS can't close stream");
+	Pa_Terminate();
+	stream = nullptr;
+	m_pullAudio = nullptr;
 }
 
 LRESULT Win32::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
@@ -135,101 +137,69 @@ real64 Win32::getTime(){
     return double(li.QuadPart)/freq;
 }
 
-void Win32::initSound(Window* win, AudioFormat format)
+struct paTestData
 {
-	if(!win)
-		return;
+	float sine[64];
+	int left_phase;
+	int right_phase;
+};
+int Win32::patestCallback(const void* inputBuffer, void* outputBuffer,
+				   unsigned long framesPerBuffer,
+				   const PaStreamCallbackTimeInfo* timeInfo,
+				   PaStreamCallbackFlags statusFlags,
+				   void* userData)
+{
+	GetAudioCallback m_pullAudio = static_cast<GetAudioCallback>(userData);
 
-	s32 bufferSize = format.AvgBytePerSec;
+	if(m_pullAudio)
+		m_pullAudio(static_cast<byte*>(outputBuffer),framesPerBuffer,userData);
 
-	if(FAILED(DirectSoundCreate(NULL, &m_DSoundDevice, NULL)))
-		throw ServiceException("Failed to init Directsound");
-
-	HWND window = (HWND) getNativeWindowHandle(win);
-
-	if(FAILED(m_DSoundDevice->SetCooperativeLevel(window, DSSCL_PRIORITY)))
-		throw ServiceException("Failed to set Cooperative Level for Directsound");
-
-	DSBUFFERDESC dsbd;
-	ZeroMemory(&dsbd,sizeof(DSBUFFERDESC));
-	dsbd.dwSize = sizeof(DSBUFFERDESC);
-	dsbd.dwFlags = DSBCAPS_PRIMARYBUFFER;
-	dsbd.dwBufferBytes = 0;
-	dsbd.lpwfxFormat = NULL;
-
-	LPDIRECTSOUNDBUFFER primary_buffer;
-	if(FAILED(m_DSoundDevice->CreateSoundBuffer(&dsbd,&primary_buffer,NULL)))
-		throw ServiceException("Failed to create Directsound's primary buffer");
-
-	WAVEFORMATEX waveFormat;
-	ZeroMemory(&waveFormat,sizeof(WAVEFORMATEX));
-	waveFormat.nSamplesPerSec = format.SamplesPerSec;
-	waveFormat.cbSize = format.Size;
-	waveFormat.nAvgBytesPerSec = format.AvgBytePerSec;
-	waveFormat.nBlockAlign = format.BlockAlign;
-	waveFormat.nChannels = format.Channels;
-	waveFormat.wBitsPerSample = format.BitsPerSample;
-	waveFormat.wFormatTag = WAVE_FORMAT_PCM;
-
-	if(FAILED(primary_buffer->SetFormat(&waveFormat)))
-		throw ServiceException("Failed to set Directsound wave format");
-
-	DSBUFFERDESC secDB;
-	ZeroMemory(&secDB,sizeof(DSBUFFERDESC));
-	secDB.dwSize = sizeof(DSBUFFERDESC);
-	secDB.dwFlags = 0;
-	secDB.dwBufferBytes = bufferSize;
-	secDB.lpwfxFormat = &waveFormat;
-
-	if(FAILED(m_DSoundDevice->CreateSoundBuffer(&secDB,&m_DSoundBuffer,0)))
-		throw ServiceException("Failed to create Directsound's secondary buffer");
-
-	if(FAILED(m_DSoundBuffer->Play(0,0,DSBPLAY_LOOPING)))
-		throw ServiceException("Failed to play Directsound buffer");
+	return paContinue;
 }
-
-void Win32::pullSound(AudioFormat format)
+void Win32::initSound(AudioFormat format)
 {
-	if(!m_pullAudio || !m_soundDevice)
-		return;
+	PaStreamParameters output_parameters;
+	PaError err;
 
-	DWORD PlayCursor, WriteCursor;
+	paTestData* data = new paTestData();
 
-	if(FAILED(m_DSoundBuffer->GetCurrentPosition(&PlayCursor,&WriteCursor)))
-		throw ServiceException("Cannot get Directsound playing position");
-
-	printf("Play: %d, Write: %d\n",PlayCursor,WriteCursor);
-
-	DWORD BytesToLock = format.BlockAlign % format.AvgBytePerSec;
-	DWORD BytesToWrite;
-	if(BytesToLock > PlayCursor)
+	for(int i=0;i<64;i++)
 	{
-		BytesToWrite = format.AvgBytePerSec - BytesToLock;
-		BytesToWrite += PlayCursor;
-	}else{
-		BytesToWrite = PlayCursor - BytesToLock;
+		data->sine[i] = (real32) sinf((real32)i/(real32)64 * 3.145 * 2.0);
 	}
+	data->left_phase = data->right_phase = 0;
+	err = Pa_Initialize();
+	if(err != paNoError)
+		throw ServiceException("Failed to init sound");
 
-	VOID* region1;
-	DWORD region1Size;
-	VOID* region2;
-	DWORD region2Size;
+	output_parameters.device = Pa_GetDefaultOutputDevice();
+	if(output_parameters.device == paNoDevice)
+		throw ServiceException("OS can't find audio device");
 
-	auto res = m_DSoundBuffer->Lock(BytesToLock, BytesToWrite, &region1, &region1Size, &region2, &region2Size,0);
-	if(FAILED(res))
-		throw ServiceException("Failed to lock Directsound buffer write pointer");
+	output_parameters.channelCount = format.Channels;
+	output_parameters.sampleFormat = paInt16;
+	output_parameters.suggestedLatency = Pa_GetDeviceInfo(output_parameters.device)->defaultLowOutputLatency;
+	output_parameters.hostApiSpecificStreamInfo = NULL;
 
-	if(region1Size>0)
-	{
-		m_pullAudio((byte*)region1,region1Size,m_soundDevice);
-	}
+	err = Pa_OpenStream(
+		&stream,
+		NULL,
+		&output_parameters,
+		format.SamplesPerSec,
+		512,
+		paClipOff,
+		patestCallback,
+		m_pullAudio
+		);
 
-	if(region2Size>0)
-	{
-		m_pullAudio((byte*)region2,region2Size,m_soundDevice);
-	}
+	if(err != paNoError)
+		throw ServiceException("OS can't open audio output stream");
 
-	m_DSoundBuffer->Unlock(region1,region1Size,region2,region2Size);
+	err = Pa_StartStream(stream);
+
+	if(err != paNoError)
+		throw ServiceException("OS can't start audio stream");
+
 }
 
 bool Win32::fileExists(const std::string& fileName)
@@ -341,9 +311,9 @@ void* Win32::getNativeWindowHandle(Window* win)
 	}
 }
 
-void Win32::setPullAudioCallback(GetAudioCallback function,SoundDevice* this_ptr)
+void Win32::setPullAudioCallback(GetAudioCallback function)
 {
 	m_pullAudio = function;
-	m_soundDevice = this_ptr;
+	//m_soundDevice = this_ptr;
 }
 #endif

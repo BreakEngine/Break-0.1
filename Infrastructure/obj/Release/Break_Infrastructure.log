@@ -1,7 +1,7 @@
-﻿Build started 13/11/2015 05:28:39 م.
+﻿Build started 17/11/2015 01:19:26 م.
      1>Project "H:\Projects\Break-0.1\Infrastructure\Break_Infrastructure.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /Ideps\glm\include /I"deps\glew-1.10.0\include" /I"deps\glfw-3.1.bin.WIN32\include" /Ideps\freeimage /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\Application.cpp src\AssetManager.cpp src\DXDevice.cpp src\Engine.cpp src\File.cpp src\GLDevice.cpp src\GPUProgram.cpp src\GPU_VM.cpp src\IGXDevice.cpp src\Mouse.cpp src\Services.cpp src\Texture2D.cpp src\UniformBuffer.cpp src\Win32.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /Ideps\glm\include /I"deps\glew-1.10.0\include" /I"deps\glfw-3.1.bin.WIN32\include" /Ideps\freeimage /Ideps\portaudio_vs2012\inc /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\Application.cpp src\AssetManager.cpp src\DXDevice.cpp src\DXKeyboard.cpp src\DXMouse.cpp src\Engine.cpp src\File.cpp src\GLDevice.cpp src\GLKeyboard.cpp src\GLMouse.cpp src\GPUProgram.cpp src\GPU_VM.cpp src\Globals.cpp src\IGXDevice.cpp src\Image.cpp src\Keyboard.cpp src\MemoryLayout.cpp src\Mouse.cpp src\Object.cpp src\RAMBuffer.cpp src\ResourceLoader.cpp src\SamplerState.cpp src\Services.cpp src\SoundDevice.cpp src\SoundEffect.cpp src\Texture.cpp src\Texture2D.cpp src\TimeManager.cpp src\UniformBuffer.cpp src\Win32.cpp src\Window.cpp
          Application.cpp
      1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
                  with
@@ -9,6 +9,13 @@
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
@@ -125,37 +132,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -265,6 +272,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -301,37 +315,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -438,6 +452,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -522,43 +543,63 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
                  ]
      1>src\DXDevice.cpp(761): warning C4018: '<' : signed/unsigned mismatch
      1>src\DXDevice.cpp(726): warning C4101: 'nElements' : unreferenced local variable
+         DXKeyboard.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Keyboard.hpp(175): warning C4251: 'Break::Infrastructure::Keyboard::m_data' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Keyboard'
+                 with
+                 [
+                     _Kty=Break::Infrastructure::Keyboard::Keys,
+                     _Ty=Break::Infrastructure::Keyboard::KeyState
+                 ]
+         DXMouse.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Mouse.hpp(109): warning C4251: 'Break::Infrastructure::Mouse::m_data' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Mouse'
+                 with
+                 [
+                     _Kty=Break::Infrastructure::Mouse::Buttons,
+                     _Ty=Break::Infrastructure::Mouse::ButtonState
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Mouse.hpp(112): warning C4251: 'Break::Infrastructure::Mouse::m_position' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Mouse'
+                 with
+                 [
+                     T=glm::uint,
+                     P=0
+                 ]
          Engine.cpp
      1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
                  with
@@ -566,6 +607,13 @@
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
@@ -682,37 +730,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -813,6 +861,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\MemoryElement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
                  with
                  [
@@ -914,37 +969,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -996,6 +1051,13 @@
                  with
                  [
                      _Ty=Break::Infrastructure::GPUHandle
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
@@ -1081,37 +1143,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -1135,6 +1197,28 @@
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
      1>src\GLDevice.cpp(526): warning C4018: '<' : signed/unsigned mismatch
+         GLKeyboard.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Keyboard.hpp(175): warning C4251: 'Break::Infrastructure::Keyboard::m_data' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Keyboard'
+                 with
+                 [
+                     _Kty=Break::Infrastructure::Keyboard::Keys,
+                     _Ty=Break::Infrastructure::Keyboard::KeyState
+                 ]
+         GLMouse.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Mouse.hpp(109): warning C4251: 'Break::Infrastructure::Mouse::m_data' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Mouse'
+                 with
+                 [
+                     _Kty=Break::Infrastructure::Mouse::Buttons,
+                     _Ty=Break::Infrastructure::Mouse::ButtonState
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Mouse.hpp(112): warning C4251: 'Break::Infrastructure::Mouse::m_position' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Mouse'
+                 with
+                 [
+                     T=glm::uint,
+                     P=0
+                 ]
+     1>src\GLMouse.cpp(36): warning C4244: '=' : conversion from 'double' to 'glm::uint', possible loss of data
+     1>src\GLMouse.cpp(37): warning C4244: '=' : conversion from 'double' to 'glm::uint', possible loss of data
          GPUProgram.cpp
      1>h:\projects\break-0.1\infrastructure\inc\MemoryElement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
                  with
@@ -1226,6 +1310,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -1258,37 +1349,37 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -1391,6 +1482,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -1416,41 +1514,42 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
                  ]
+         Globals.cpp
          IGXDevice.cpp
      1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
                  with
@@ -1490,6 +1589,13 @@
                  [
                      _Ty=Break::Infrastructure::GPUHandle
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -1574,41 +1680,71 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
                  ]
+         Image.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+         Keyboard.cpp
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Keyboard.hpp(175): warning C4251: 'Break::Infrastructure::Keyboard::m_data' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Keyboard'
+                 with
+                 [
+                     _Kty=Break::Infrastructure::Keyboard::Keys,
+                     _Ty=Break::Infrastructure::Keyboard::KeyState
+                 ]
+         MemoryLayout.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\MemoryElement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>H:\Projects\Break-0.1\Infrastructure\inc\MemoryLayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::MemoryElement
+                 ]
+     1>src\MemoryLayout.cpp(20): warning C4018: '<' : signed/unsigned mismatch
+     1>src\MemoryLayout.cpp(65): warning C4018: '<' : signed/unsigned mismatch
          Mouse.cpp
      1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
                  with
@@ -1616,6 +1752,13 @@
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
@@ -1732,37 +1875,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -1779,7 +1922,215 @@
                      T=glm::uint,
                      P=0
                  ]
+         Object.cpp
+         RAMBuffer.cpp
+     1>H:\Projects\Break-0.1\Infrastructure\inc\ServiceException.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+         Generating Code...
+     1>h:\projects\break-0.1\infrastructure\src\gldevice.cpp(221): warning C4715: 'Break::Infrastructure::GLDevice::getCompareFunc' : not all control paths return a value
+     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(481): warning C4715: 'Break::Infrastructure::DXDevice::getFormat' : not all control paths return a value
+     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(533): warning C4715: 'Break::Infrastructure::DXDevice::getCompareFunc' : not all control paths return a value
+     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(501): warning C4715: 'Break::Infrastructure::DXDevice::getAddressMode' : not all control paths return a value
+         Compiling...
+         ResourceLoader.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>H:\Projects\Break-0.1\Infrastructure\inc\ServiceException.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+         SamplerState.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\GPUResource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::GPUHandle
+                 ]
          Services.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\File.hpp(23): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\MemoryElement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\MemoryLayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::MemoryElement
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\ServiceException.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUResource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::GPUHandle
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Window
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\AssetManager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=Break::Infrastructure::AssetPtr
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\UniformBuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::RAMBuffer
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SamplerState
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=Break::Infrastructure::uniformRow
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=Break::Infrastructure::samplersRow
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Image
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUIns.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args' : class 'std::queue<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Arg
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::OS
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::IGXDevice
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Application
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::InputDevicePtr
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::AssetManager
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::GPU_VM
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundDevice
+                 ]
+         SoundDevice.cpp
+     1>H:\Projects\Break-0.1\Infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 H:\Projects\Break-0.1\Infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>H:\Projects\Break-0.1\Infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
                  with
                  [
@@ -1902,40 +2253,122 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
+                 ]
+     1>src\SoundDevice.cpp(46): warning C4018: '<' : signed/unsigned mismatch
+     1>src\SoundDevice.cpp(104): warning C4018: '<' : signed/unsigned mismatch
+         SoundEffect.cpp
+         Texture.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\MemoryElement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\MemoryLayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::MemoryElement
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUResource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::GPUHandle
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\UniformBuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::RAMBuffer
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SamplerState
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=Break::Infrastructure::uniformRow
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable' : class 'std::map<_Kty,_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Kty=std::string,
+                     _Ty=Break::Infrastructure::samplersRow
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\GPUProgram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Image
                  ]
          Texture2D.cpp
      1>h:\projects\break-0.1\infrastructure\inc\MemoryElement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
@@ -2028,6 +2461,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -2060,41 +2500,42 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
                  ]
+         TimeManager.cpp
          UniformBuffer.cpp
      1>h:\projects\break-0.1\infrastructure\inc\GPUResource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
                  with
@@ -2186,6 +2627,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -2218,37 +2666,37 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -2260,6 +2708,13 @@
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
@@ -2376,37 +2831,37 @@
                  [
                      _Ty=Break::Infrastructure::Arg
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -2429,13 +2884,20 @@
                      _Kty=Break::Infrastructure::Keyboard::Keys,
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
+     1>src\Win32.cpp(168): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         Window.cpp
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>C:\Program Files (x86)\Windows Kits\8.0\Include\shared\minwindef.h(130): warning C4005: 'APIENTRY' : macro redefinition
+                 H:\Projects\Break-0.1\Infrastructure\deps\glfw-3.1.bin.WIN32\include\GLFW/glfw3.h(85) : see previous definition of 'APIENTRY'
          Generating Code...
-     1>h:\projects\break-0.1\infrastructure\src\gldevice.cpp(221): warning C4715: 'Break::Infrastructure::GLDevice::getCompareFunc' : not all control paths return a value
-     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(481): warning C4715: 'Break::Infrastructure::DXDevice::getFormat' : not all control paths return a value
-     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(533): warning C4715: 'Break::Infrastructure::DXDevice::getCompareFunc' : not all control paths return a value
-     1>h:\projects\break-0.1\infrastructure\src\dxdevice.cpp(501): warning C4715: 'Break::Infrastructure::DXDevice::getAddressMode' : not all control paths return a value
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break_Infrastructure.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"deps\glew-1.10.0\lib\Release\Win32" /LIBPATH:deps\freeimage /LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:"deps\glfw-3.1.bin.WIN32\lib-vc2012" glfw3.lib glew32.lib OPENGL32.lib FreeImage.lib d3d11.lib dxgi.lib d3dcompiler.lib gdi32.lib dsound.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break_Infrastructure.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break_Infrastructure.lib" /MACHINE:X86 /SAFESEH /DLL obj\Release\Application.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break_Infrastructure.dll" /INCREMENTAL:NO /NOLOGO /LIBPATH:"deps\glew-1.10.0\lib\Release\Win32" /LIBPATH:deps\freeimage /LIBPATH:deps\portaudio_vs2012\lib\release /LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86" /LIBPATH:"deps\glfw-3.1.bin.WIN32\lib-vc2012" glfw3.lib glew32.lib OPENGL32.lib FreeImage.lib portaudio_static_x86.lib d3d11.lib dxgi.lib d3dcompiler.lib gdi32.lib dsound.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break_Infrastructure.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break_Infrastructure.lib" /MACHINE:X86 /SAFESEH /DLL obj\Release\Application.obj
          obj\Release\AssetManager.obj
          obj\Release\DXDevice.obj
          obj\Release\DXKeyboard.obj
@@ -2458,6 +2920,7 @@
          obj\Release\ResourceLoader.obj
          obj\Release\SamplerState.obj
          obj\Release\Services.obj
+         obj\Release\SoundDevice.obj
          obj\Release\SoundEffect.obj
          obj\Release\Texture.obj
          obj\Release\Texture2D.obj
@@ -2466,9 +2929,10 @@
          obj\Release\Win32.obj
          obj\Release\Window.obj
             Creating library ..\bin\Release\Break_Infrastructure.lib and object ..\bin\Release\Break_Infrastructure.exp
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
          Break_Infrastructure.vcxproj -> H:\Projects\Break-0.1\Infrastructure\..\bin\Release\Break_Infrastructure.dll
      1>Done Building Project "H:\Projects\Break-0.1\Infrastructure\Break_Infrastructure.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:25.14
+Time Elapsed 00:00:38.33

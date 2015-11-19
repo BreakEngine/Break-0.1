@@ -144,6 +144,9 @@
     <ClInclude Include="inc\ResourceLoader.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\RingCursor.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\SamplerState.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -267,6 +270,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Services.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundDevice.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SoundEffect.cpp">

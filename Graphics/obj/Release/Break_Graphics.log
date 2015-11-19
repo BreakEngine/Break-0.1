@@ -1,7 +1,9 @@
-﻿Build started 13/11/2015 05:29:05 م.
+﻿Build started 17/11/2015 01:20:04 م.
      1>Project "H:\Projects\Break-0.1\Graphics\Break_Graphics.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /I..\Infrastructure\inc /Ideps\glm\include /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\SpriteBatch.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /I..\Infrastructure\inc /Ideps\glm\include /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\MathUtils.cpp src\Rect.cpp src\SpriteBatch.cpp src\Transform.cpp
+         MathUtils.cpp
+         Rect.cpp
          SpriteBatch.cpp
      1>h:\projects\break-0.1\infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
                  with
@@ -100,6 +102,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(49): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(51): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffectPtr
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -125,37 +134,37 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(138): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(141): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(144): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(156): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(162): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(165): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(168): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundDevice
@@ -254,6 +263,39 @@
                      _Ty=Break::Infrastructure::RAMBuffer,
                      _V0_t=__int64
                  ]
+         Transform.cpp
+     1>H:\Projects\Break-0.1\Infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>H:\Projects\Break-0.1\Graphics\inc\Transform.hpp(22): warning C4251: 'Break::Graphics::Transform::matrix' : struct 'glm::detail::tmat4x4<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>H:\Projects\Break-0.1\Graphics\inc\Transform.hpp(26): warning C4251: 'Break::Graphics::Transform::position' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>H:\Projects\Break-0.1\Graphics\inc\Transform.hpp(28): warning C4251: 'Break::Graphics::Transform::rotation' : struct 'glm::detail::tquat<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>H:\Projects\Break-0.1\Graphics\inc\Transform.hpp(30): warning C4251: 'Break::Graphics::Transform::scale' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break_Graphics.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break_Graphics.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break_Graphics.lib" /MACHINE:X86 /SAFESEH /DLL obj\Release\MathUtils.obj
          obj\Release\Rect.obj
@@ -266,4 +308,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.29
+Time Elapsed 00:00:04.59

@@ -44,7 +44,8 @@ namespace Break{
 			 *
 			 * \author Moustapha Saad
 			 */
-            void setup(ApplicationPtr app, API api, void* renderer = NULL);
+            void setup(ApplicationPtr app, API api, void* renderer = NULL,
+                ISoundDevicePtr device = nullptr);
 
             /*!
 			 * \function start()
@@ -86,6 +87,8 @@ namespace Break{
              * \author Moustapha Saad
              */
             Application* getApplication();
+
+			void setSoundDevice(ISoundDevicePtr device);
 
             API getAPI(){
                 return m_api;
@@ -163,7 +166,7 @@ namespace Break{
             GPU_VMPtr m_GPU_VM;
 
 			///sound device pointer
-			std::shared_ptr<SoundDevice> m_soundDevice;
+			std::shared_ptr<ISoundDevice> m_soundDevice;
         };
 
     }

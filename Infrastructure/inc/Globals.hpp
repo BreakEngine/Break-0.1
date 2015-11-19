@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <map>
 #include <vector>
+#include <algorithm>
 
 #if defined(WIN32)||defined(_WIN32)||defined(__WIN32__)||defined(_WIN64)||defined(WIN64)||defined(__MINGW32__)||defined(__MINGW64__)
     #define OS_WINDOWS

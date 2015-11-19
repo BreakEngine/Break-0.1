@@ -44,20 +44,14 @@ namespace Break{
 			 * \param win window that sound will be rendered for
 			 * \author Moustapha Saad
 			 */
-			virtual void initSound(Window* win, AudioFormat format)=0;
-
-            /**
-             * \brief inquires sound from user mixer or whatever he uses
-             * \author Moustapha Saad
-             */
-            virtual void pullSound(AudioFormat format)=0;
+			virtual void initSound(AudioFormat format)=0;
 
 			/**
 			 * \brief sets getAudio callback function to set samples to be rendered
 			 * \param function the audio callback function
 			 * \author Moustapha Saad
 			 */
-			virtual void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr)=0;
+			virtual void setPullAudioCallback(GetAudioCallback function)=0;
 
 			/**
              * \brief check if file exists or not

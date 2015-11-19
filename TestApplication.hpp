@@ -71,6 +71,8 @@ public:
 	Texture2DPtr tex;
 	SpritePtr sprite;
 	RAMBufferPtr sine;
+	SoundEffectPtr musicEffect;
+	SoundEffectPtr musicEffect2;
     TestApplication();
 
     ~TestApplication();
@@ -98,6 +100,8 @@ TestApplication::TestApplication() : Application() {
 
 TestApplication::~TestApplication() {
     delete sp;
+	musicEffect = nullptr;
+	musicEffect2 = nullptr;
 }
 
 void TestApplication::init() {
@@ -112,13 +116,19 @@ void TestApplication::init() {
 //	}
 //	Services::getPlatform()->playSound(sine.get());
 	File f,n;
-    File music;
-    music.open("res/music/01.wav");
+    File music, music2;
+    music.open("res/music/Elipse.wav");
+	music2.open("res/music/my_village.wav");
 	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
 
     Break::byte* bufferb = new Break::byte[sizeof(WAVHeader)];
     music.read(sizeof(WAVHeader),bufferb);
+
+	Break::byte* buffer2 = new Break::byte[sizeof(WAVHeader)];
+	music2.read(sizeof(WAVHeader),buffer2);
+
+
 
 	void* buffer = bufferb;
 
@@ -128,6 +138,13 @@ void TestApplication::init() {
     musicHeader->Format = readLittleEndian32(musicHeader->Format);
     musicHeader->subChunck1ID = readLittleEndian32(musicHeader->subChunck1ID);
     musicHeader->SubChunck2ID = readLittleEndian32(musicHeader->SubChunck2ID);
+
+	WAVHeader* musicHeader2 = reinterpret_cast<WAVHeader*>(buffer2);
+    musicHeader2->ChunckID = readLittleEndian32(musicHeader2->ChunckID);
+    musicHeader2->Format = readLittleEndian32(musicHeader2->Format);
+    musicHeader2->subChunck1ID = readLittleEndian32(musicHeader2->subChunck1ID);
+    musicHeader2->SubChunck2ID = readLittleEndian32(musicHeader2->SubChunck2ID);
+
     // musicHeader.ChunckSize = readLittleEndian32(*(buffer+4));
     // musicHeader.Format = *(buffer+8);
     // musicHeader.subChunck1ID = *(buffer+12);
@@ -140,10 +157,22 @@ void TestApplication::init() {
     // musicHeader.BitsPerSample = readLittleEndian16(*(buffer+34));
     // musicHeader.SubChunck2ID = *(buffer+36);
     // musicHeader.SubChunck2Size = readLittleEndian32(*(buffer+40));
+	
     Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
     music.read(musicHeader->ChunckSize,music_buffer);
-    SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
-	Services::getSoundDevice()->play(musicEffect);
+
+	Break::byte* music_buffer2 = new Break::byte[musicHeader2->ChunckSize];
+	memset(music_buffer2,0,musicHeader2->ChunckSize);
+    music2.read(musicHeader2->ChunckSize,music_buffer2);
+    //SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
+	musicEffect = make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
+	musicEffect2 = make_shared<SoundEffect>(music_buffer2,musicHeader2->ChunckSize);
+	musicEffect->setVolume(0.1);
+	musicEffect2->setLooping(true);
+	//Services::getSoundDevice()->play(musicEffect);
+	//Services::getSoundDevice()->play(musicEffect2);
+	//musicEffect->play();
+	musicEffect2->play();
     //soundDevice->play(buffer);
 
 	cout<<f.getSize()<<endl;
@@ -314,11 +343,17 @@ void TestApplication::input() {
         std::cout<<"A button Released"<<std::endl;
     }
 
-	if(Keyboard::getKey(Keyboard::Up) == Keyboard::State_Down)
-		Services::getSoundDevice()->volume += 0.1;
+	auto volume = Services::getSoundDevice()->getVolume();
+	if(Keyboard::getKey(Keyboard::Up) == Keyboard::State_Down){
+		volume += 0.1;
+		Services::getSoundDevice()->setVolume(volume);
+	}
 
-	if(Keyboard::getKey(Keyboard::Down) == Keyboard::State_Down && Services::getSoundDevice()->volume > 0)
-		Services::getSoundDevice()->volume -= 0.1;
+	if(Keyboard::getKey(Keyboard::Down) == Keyboard::State_Down && volume > 0)
+	{
+		volume -= 0.1;
+		Services::getSoundDevice()->setVolume(volume);
+	}
 
 	int speed = 4;
     if(Keyboard::getKey(Keyboard::Right) == Keyboard::State_Down)
@@ -334,6 +369,19 @@ void TestApplication::input() {
     {
 	    sprite->move(0,speed);
     }
+
+	if(Keyboard::getKey(Keyboard::Space) == Keyboard::State_Down)
+	{
+		if(musicEffect2->isPlaying())
+			musicEffect2->pause();
+		else
+			musicEffect2->play();
+	}
+
+	if(Keyboard::getKey(Keyboard::S) == Keyboard::State_Down)
+	{
+		musicEffect2->stop();	
+	}
 
     if(Keyboard::getKey(Keyboard::Esc) == Keyboard::State_Down){
         shutdown();

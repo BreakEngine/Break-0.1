@@ -12,8 +12,7 @@
 #include "OS.hpp"
 #include "Window.hpp"
 #include <windows.h>
-#include <dsound.h>
-#include <string>
+#include <portaudio.h>
 
 namespace Break{
     namespace Infrastructure {
@@ -21,10 +20,15 @@ namespace Break{
 
             static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-      			GetAudioCallback m_pullAudio;
-      			LPDIRECTSOUND m_DSoundDevice;
-      			LPDIRECTSOUNDBUFFER m_DSoundBuffer;
-      			SoundDevice* m_soundDevice;
+			static int patestCallback(const void* inputBuffer, void* outputBuffer,
+				unsigned long framesPerBuffer,
+				const PaStreamCallbackTimeInfo* timeInfo,
+				PaStreamCallbackFlags statusFlags,
+				void* userData);
+
+  			GetAudioCallback m_pullAudio;
+
+			PaStream* stream;
             public:
 
             Win32();
@@ -35,25 +39,23 @@ namespace Break{
 
             real64 getTime() override;
 
-      			void initSound(Window* win, AudioFormat format) override;
+  			void initSound(AudioFormat format) override;
 
-      			void pullSound(AudioFormat format) override;
+  			bool fileExists(const std::string& fileName) override;
 
-      			bool fileExists(const std::string& fileName) override;
+  			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
 
-      			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
+  			void* createFile(const std::string& fileName, const AccessPermission permission) override;
 
-      			void* createFile(const std::string& fileName, const AccessPermission permission) override;
+  			std::string getAbsolutePath(const std::string& fileName) override;
 
-      			std::string getAbsolutePath(const std::string& fileName) override;
+  			bool readFile(const void* handle, void* buffer, u32 buffer_size) override;
 
-      			bool readFile(const void* handle, void* buffer, u32 buffer_size) override;
+  			void closeFile(const void* handle) override;
 
-      			void closeFile(const void* handle) override;
+  			void* getNativeWindowHandle(Window* win) override;
 
-      			void* getNativeWindowHandle(Window* win) override;
-
-      			void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
+  			void setPullAudioCallback(GetAudioCallback function) override;
         };
     }
 }

@@ -88,6 +88,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="inc\Test.hpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Break_Infrastructure.vcxproj">
       <Project>{8AFDE97B-768C-7345-1FAB-87400B1984EB}</Project>
     </ProjectReference>

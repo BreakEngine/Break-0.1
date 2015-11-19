@@ -1,4 +1,4 @@
-﻿Build started 13/11/2015 05:47:36 م.
+﻿Build started 18/11/2015 03:31:39 م.
      1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\deps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
@@ -134,6 +134,13 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
+     1>h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+                 ]
      1>h:\projects\break-0.1\infrastructure\inc\file.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
@@ -159,40 +166,40 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
-                     _Ty=Break::Infrastructure::SoundDevice
+                     _Ty=Break::Infrastructure::ISoundDevice
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(26): warning C4251: 'Break::Infrastructure::VertexBuffer::m_buffer' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::VertexBuffer'
                  with
@@ -284,10 +291,11 @@
                      _Kty=Break::Infrastructure::Keyboard::Keys,
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
-     1>h:\projects\break-0.1\testapplication.hpp(326): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(329): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(332): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(335): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\infrastructure\inc\ringcursor.hpp(39): warning C4172: returning address of local variable or temporary
+     1>h:\projects\break-0.1\testapplication.hpp(361): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(364): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(367): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(370): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): warning C4244: 'argument' : conversion from '__int64' to 'Break::u32', possible loss of data
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(_V0_t &&)' being compiled
                  with
@@ -316,4 +324,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.59
+Time Elapsed 00:00:04.47
