@@ -7,6 +7,8 @@ namespace Break{
         class BREAK_API Test{
         public:
             int x, y, z;
+
+            Test();
         };
     }
 }

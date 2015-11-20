@@ -72,7 +72,7 @@ public:
 	SpritePtr sprite;
 	RAMBufferPtr sine;
 	SoundEffectPtr musicEffect;
-	SoundEffectPtr musicEffect2;
+	SoundEffectPtr musicEffect2, loadedMusic;
     TestApplication();
 
     ~TestApplication();
@@ -102,6 +102,7 @@ TestApplication::~TestApplication() {
     delete sp;
 	musicEffect = nullptr;
 	musicEffect2 = nullptr;
+	loadedMusic = nullptr;
 }
 
 void TestApplication::init() {
@@ -119,6 +120,8 @@ void TestApplication::init() {
     File music, music2;
     music.open("res/music/Elipse.wav");
 	music2.open("res/music/my_village.wav");
+    loadedMusic = ResourceLoader::load<SoundEffect>("res/music/Elipse.wav");
+	loadedMusic->play();
 	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
 
@@ -157,7 +160,7 @@ void TestApplication::init() {
     // musicHeader.BitsPerSample = readLittleEndian16(*(buffer+34));
     // musicHeader.SubChunck2ID = *(buffer+36);
     // musicHeader.SubChunck2Size = readLittleEndian32(*(buffer+40));
-	
+
     Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
     music.read(musicHeader->ChunckSize,music_buffer);
 
@@ -168,11 +171,12 @@ void TestApplication::init() {
 	musicEffect = make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
 	musicEffect2 = make_shared<SoundEffect>(music_buffer2,musicHeader2->ChunckSize);
 	musicEffect->setVolume(0.1);
+	//musicEffect2->
 	musicEffect2->setLooping(true);
 	//Services::getSoundDevice()->play(musicEffect);
 	//Services::getSoundDevice()->play(musicEffect2);
 	//musicEffect->play();
-	musicEffect2->play();
+	//musicEffect2->play();
     //soundDevice->play(buffer);
 
 	cout<<f.getSize()<<endl;
@@ -304,7 +308,7 @@ void TestApplication::loadResources() {
     cout<<"HONE"<<endl;
     shader->use();
 
-	ImagePtr img = ResourceLoader::load("res/tex/02.jpg");
+	ImagePtr img = ResourceLoader::load<Image>("res/tex/02.jpg");
 	tex = make_shared<Texture2D>(img);
 	sprite = make_shared<Sprite>(sp,tex);
 	sprite->setPosition(100,100);
@@ -380,7 +384,7 @@ void TestApplication::input() {
 
 	if(Keyboard::getKey(Keyboard::S) == Keyboard::State_Down)
 	{
-		musicEffect2->stop();	
+		musicEffect2->stop();
 	}
 
     if(Keyboard::getKey(Keyboard::Esc) == Keyboard::State_Down){

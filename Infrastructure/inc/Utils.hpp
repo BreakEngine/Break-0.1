@@ -45,7 +45,28 @@ namespace Break
 			}
 			return result;
 		}
+
+		static u16 reverseBytes(u16 val)
+		{
+			u16 __x = val;
+			__x = (
+				((__x >> 8) & 0xFF) | ((__x & 0xFF) << 8)
+			);
+			return __x;
+		}
+
+		static u32 reverseBytes(u32 val)
+		{
+			u32 __x = val;
+			__x = (
+				((__x & 0xFF000000) >> 24) |
+				((__x & 0x00FF0000) >> 8) |
+				((__x & 0x0000FF00) << 8) |
+				((__x & 0x000000FF) << 24)
+			);
+			return __x;
+		}
 	};
 }
 
-#endif 
+#endif

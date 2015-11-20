@@ -1,7 +1,7 @@
-﻿Build started 18/11/2015 03:31:39 م.
-     1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 2 (Build target(s)).
+﻿Build started 20/11/2015 06:27:17 م.
+     1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 3 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\deps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\Physics\inc /I..\deps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
          main.cpp
      1>h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
                  with
@@ -292,10 +292,10 @@
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\ringcursor.hpp(39): warning C4172: returning address of local variable or temporary
-     1>h:\projects\break-0.1\testapplication.hpp(361): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(364): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(367): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(370): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(365): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(368): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(371): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(374): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): warning C4244: 'argument' : conversion from '__int64' to 'Break::u32', possible loss of data
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(_V0_t &&)' being compiled
                  with
@@ -315,13 +315,24 @@
                      _Ty=Break::Infrastructure::RAMBuffer,
                      _V0_t=__int64
                  ]
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(317): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::Image>(std::string)'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Image
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(317): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::SoundEffect>(std::string)'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffect
+                 ]
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Debug\Break.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\Debug\Break.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Debug\Break.lib" /MACHINE:X86 obj\Debug\main.obj
          "H:\Projects\Break-0.1\bin\Debug\Break_Infrastructure.lib"
+         "H:\Projects\Break-0.1\bin\Debug\Break_Physics.lib"
          "H:\Projects\Break-0.1\bin\Debug\Break_Graphics.lib"
          Break.vcxproj -> H:\Projects\Break-0.1\build\..\bin\Debug\Break.exe
      1>Done Building Project "H:\Projects\Break-0.1\build\Break.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.47
+Time Elapsed 00:00:05.67
