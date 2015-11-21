@@ -38,9 +38,31 @@ namespace Break
 
 			file.close();
 
-			music = std::make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
-			music->setSampleRate(musicHeader->SampleRate);
-			music->setSampleSize(musicHeader->BitsPerSample/8);
+			u32 ByteSize = musicHeader->BitsPerSample/8;
+			if(ByteSize == 2){
+				music = std::make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
+				music->setSampleRate(musicHeader->SampleRate);
+				music->setSampleSize(musicHeader->BitsPerSample/8);
+			}else if(ByteSize > 2){
+				u32 sample_count = (musicHeader->ChunckSize/ByteSize);
+				byte* new_music_buffer = new byte[sample_count*2];
+				std::memset(new_music_buffer,0,sample_count*2);
+				u32 original_it = ByteSize, new_it = 0;
+
+				for(u32 i=0;i<sample_count;i++){
+					new_music_buffer[new_it] = music_buffer[original_it-2];
+					new_it++;
+					new_music_buffer[new_it] = music_buffer[original_it-1];
+					new_it++;
+
+					original_it += (ByteSize);
+				}
+
+				music = std::make_shared<SoundEffect>(new_music_buffer,sample_count*2);
+				music->setSampleRate(musicHeader->SampleRate);
+				music->setSampleSize(2);
+				delete music_buffer;
+			}
 			return music;
 		}
 

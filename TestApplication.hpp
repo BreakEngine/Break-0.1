@@ -72,7 +72,7 @@ public:
 	SpritePtr sprite;
 	RAMBufferPtr sine;
 	SoundEffectPtr musicEffect;
-	SoundEffectPtr musicEffect2, loadedMusic;
+	SoundEffectPtr musicEffect2, loadedMusic, loadedMusic2;
     TestApplication();
 
     ~TestApplication();
@@ -121,7 +121,9 @@ void TestApplication::init() {
     music.open("res/music/Elipse.wav");
 	music2.open("res/music/my_village.wav");
     loadedMusic = ResourceLoader::load<SoundEffect>("res/music/Elipse.wav");
-	loadedMusic->play();
+    loadedMusic2 = ResourceLoader::load<SoundEffect>("res/music/village.wav");
+    loadedMusic2->play();
+	//loadedMusic->play();
 	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
 
