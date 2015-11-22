@@ -115,7 +115,34 @@ namespace Break{
 			 * \author Moustapha Saad
 			 */
 			virtual void* getNativeWindowHandle(Window* win)=0;
-        };
+			/*
+			-create new directory 
+			-param director name (string)
+			-path for the new directory 
+			-return value 
+				false when Already Exist OR INVALID PATH 
+				true when success
+			*/
+			virtual  bool creatDirectoryFolder(std::string name,std::string path)=0;
+
+			virtual  bool creatDirectoryFolder(std::string path)=0;
+			/*
+			-Check if Directory Exist 
+			-param Directory path (string)
+			-return value True if Exist 
+			-False INVALID_PATH OR FAILED
+			
+			*/
+
+			virtual bool Exists(std::string path)=0;
+			/*
+			Change Current Directory for current Process
+			param new Directory path
+			return value true when success
+			false when INVALID_PATH OR FAILED
+			*/
+			virtual bool changeCurrentDirectory(std::string newPath)=0;		
+};
         typedef std::shared_ptr<OS> OSPtr;
     }
 }

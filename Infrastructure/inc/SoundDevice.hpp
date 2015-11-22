@@ -82,7 +82,7 @@ namespace Break{
 				return m_format;
 			}
 
-			void play(SoundEffect* track){
+	void play(SoundEffect* track){
 				m_buffer = track->getData();
 				m_bufferOffset = track->getPlayingCursor();
 				m_bufferSize = track->getBufferSize();

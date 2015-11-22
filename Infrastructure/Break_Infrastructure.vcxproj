@@ -97,6 +97,7 @@
     <ClInclude Include="inc\Argument.hpp" />
     <ClInclude Include="inc\Asset.hpp" />
     <ClInclude Include="inc\AssetManager.hpp" />
+    <ClInclude Include="inc\Directory.hpp" />
     <ClInclude Include="inc\DXBufferHandle.hpp" />
     <ClInclude Include="inc\DXDevice.hpp" />
     <ClInclude Include="inc\DXKeyboard.hpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="inc\Window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Directory.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />
     <ClCompile Include="src\DXDevice.cpp" />

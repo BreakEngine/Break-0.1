@@ -195,6 +195,9 @@
     <ClInclude Include="inc\Utils.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Directory.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -282,6 +285,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\File.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Directory.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

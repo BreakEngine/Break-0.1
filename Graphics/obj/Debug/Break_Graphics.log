@@ -1,4 +1,4 @@
-﻿Build started 11/19/2015 8:53:45 PM.
+﻿Build started 11/21/2015 6:51:34 AM.
      1>Project "E:\Support\Break-0.1-master\Break-0.1\Graphics\Break_Graphics.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /I..\Infrastructure\inc /Ideps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\SpriteBatch.cpp
@@ -249,4 +249,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:03.78
+Time Elapsed 00:00:04.71

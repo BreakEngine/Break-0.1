@@ -54,7 +54,12 @@ namespace Break{
       			void* getNativeWindowHandle(Window* win) override;
 
       			void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
-        };
+
+				 bool creatDirectoryFolder(std::string name, std::string path) override ;
+				 bool creatDirectoryFolder(std::string path) override ;
+				 bool Exists(std::string path) override ;
+				 bool changeCurrentDirectory(std::string newPath) override ;
+		};
     }
 }
 

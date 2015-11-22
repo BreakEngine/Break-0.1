@@ -113,7 +113,7 @@ void TestApplication::init() {
 //	Services::getPlatform()->playSound(sine.get());
 	File f,n;
     File music;
-    music.open("res/music/01.wav");
+    music.open("");
 	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
 
