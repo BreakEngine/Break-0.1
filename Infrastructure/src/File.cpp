@@ -132,3 +132,14 @@ bool File::Exists(const std::string& path)
 {
 	return Services::getPlatform()->fileExists(path);
 }
+void File::rename(std::string newName){
+
+	m_name=newName;
+	Services::getPlatform()->renameFile(m_name,newName);
+}
+void File::copy(std::string fileName,std::string copyName,bool overWriteIfExist){
+	Services::getPlatform()->makeCopy(fileName,copyName,overWriteIfExist);
+}
+void File::move(std::string currentLocation,std::string newLocation){
+	Services::getPlatform()->moveFile(currentLocation,newLocation);
+}

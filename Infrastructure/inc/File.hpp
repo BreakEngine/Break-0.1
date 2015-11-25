@@ -53,11 +53,13 @@ namespace Break
 			static bool Exists(const std::string& path);
 			void write(void* data, u32 writtenSize);
 			void write(std:: string str);
-			/*
+			void rename(std::string newName);
+			void copy(std::string fileName,std::string copyName,bool overWriteIfExist);
+		   void  move(std::string currentLocation,std::string newLocation);
+			static bool Exists(const std::string& path);
+		   /*
 			To be Added
-			void rename();
-			void copy();
-			void move();
+
 			static Exists();
 			*/
 		};

@@ -9,6 +9,7 @@
 #include "Window.hpp"
 #include "SoundDevice.hpp"
 #include "File.hpp"
+#include "Directory.hpp"
 #include <memory>
 namespace Break{
     namespace Infrastructure {
@@ -123,9 +124,13 @@ namespace Break{
 				false when Already Exist OR INVALID PATH 
 				true when success
 			*/
-			virtual  bool creatDirectoryFolder(std::string name,std::string path)=0;
-
-			virtual  bool creatDirectoryFolder(std::string path)=0;
+			
+			virtual void makeCopy(std::string fileName,std::string copyName,bool overWrite )=0;
+			
+			virtual void  moveFile(std::string currentLocation,std::string newLocation)=0;
+			virtual void renameFile(std::string fileName,std::string newName)=0;
+			virtual  void* creatDirectoryFolder(std::string name,std::string path)=0;
+			
 			/*
 			-Check if Directory Exist 
 			-param Directory path (string)
@@ -141,7 +146,8 @@ namespace Break{
 			return value true when success
 			false when INVALID_PATH OR FAILED
 			*/
-			virtual bool changeCurrentDirectory(std::string newPath)=0;		
+			virtual bool changeCurrentDirectory(std::string newPath)=0;	
+			virtual void  ListDirectoryContents(std::vector<string> &out,std::string path)=0;
 };
         typedef std::shared_ptr<OS> OSPtr;
     }

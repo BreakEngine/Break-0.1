@@ -51,14 +51,20 @@ namespace Break{
 
       			void closeFile(const void* handle) override;
 
-      			void* getNativeWindowHandle(Window* win) override;
+      			void moveFile(std::string currentLocation,std::string newLocation) override;
+				
+				void renameFile(std::string fileName,std::string newName) override;
 
-      			void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
+				void* getNativeWindowHandle(Window* win) override;
+				
+				void  makeCopy(std::string fileName,std::string copyName,bool overWrite ) override;
+      			
+				void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
 
-				 bool creatDirectoryFolder(std::string name, std::string path) override ;
-				 bool creatDirectoryFolder(std::string path) override ;
+				 void* creatDirectoryFolder(std::string name, std::string path) override ;
 				 bool Exists(std::string path) override ;
 				 bool changeCurrentDirectory(std::string newPath) override ;
+				 void ListDirectoryContents(std::vector<string> &out,std::string path) override;
 		};
     }
 }

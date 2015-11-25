@@ -317,12 +317,19 @@ bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
 	}
 	return true;
 }
-
 void Win32::closeFile(const void* handle)
 {
 	if(!CloseHandle(const_cast<void*>(handle)))
 		throw ServiceException("Cannot Close a file");
 	
+}
+void Win32::renameFile(std::string fileName,std::string newName){
+	if(CopyFile(fileName.c_str(),newName.c_str(),true)==0){
+		throw ServiceException("Faild! Name Already Exist");
+		return;
+	}
+	DeleteFile(fileName.c_str());
+	return;
 }
 
 void* Win32::getNativeWindowHandle(Window* win)
@@ -340,38 +347,35 @@ void* Win32::getNativeWindowHandle(Window* win)
 	}
 }
 
+void Win32::makeCopy(std::string fileName, std::string copyName, bool overWrite ){
+	 CopyFile(fileName.c_str(),copyName.c_str(),!overWrite);
+}
+void Win32::moveFile(std::string currentLocation,std::string newLocation){
+	MoveFile(currentLocation.c_str(),newLocation.c_str());
+}
 void Win32::setPullAudioCallback(GetAudioCallback function,SoundDevice* this_ptr)
 {
 	m_pullAudio = function;
 	m_soundDevice = this_ptr;
 }
-bool Win32::creatDirectoryFolder(std::string name,std::string path){
+
+//Directory functions begin
+void* Win32::creatDirectoryFolder(std::string name,std::string path){
+	
 	path+='\\';
 	path+=name;
-	auto response=CreateDirectory(path.c_str(),NULL);
+	u32 response=(CreateDirectory(path.c_str(),NULL));
 	if(response==ERROR_ALREADY_EXISTS){
 		throw ServiceException("File Already Exist");
-		return false;
+		
 	}
 	else if(response == ERROR_PATH_NOT_FOUND){
 		throw ServiceException("Invalid Path");
-		return false;
-	}
-	return true;
-}
-bool Win32::creatDirectoryFolder(std::string path){
-	DWORD directoryPermission=0;
-
-	auto response=CreateDirectory(path.c_str(),NULL);
-	if(response==ERROR_ALREADY_EXISTS){
-		throw ServiceException("File Already Exist");
-		return false;
-	}
-	else if(response == ERROR_PATH_NOT_FOUND){
-		throw ServiceException("Invalid Path");
-		return false;
-	}
-	return true;
+		}
+	bool open=changeCurrentDirectory(path);
+	if(open==false)
+		throw ServiceException("Can not open created Folder named :" + name); 
+	return (void*)response ;
 }
 bool Win32::Exists(std::string path){
 	DWORD directoryType=GetFileAttributesA(path.c_str());
@@ -385,6 +389,7 @@ bool Win32::Exists(std::string path){
 }
 
 bool Win32::changeCurrentDirectory(std::string newPath){
+	
 	DWORD directoryType=GetFileAttributesA(newPath.c_str());
 	if (directoryType == INVALID_FILE_ATTRIBUTES){
 		throw ServiceException("Invalid Path");
@@ -394,5 +399,31 @@ bool Win32::changeCurrentDirectory(std::string newPath){
 	if(response != 0)
 		return true;
 	return false;
+}
+
+void Win32::ListDirectoryContents(std::vector<std::string> &out,std::string path){
+if (Exists(path)==false){// to be added have permission in subdirectory
+	throw ServiceException("invalid path");
+	return ;
+}
+	HANDLE dir;
+    WIN32_FIND_DATA file_data;
+	if ((dir = FindFirstFile((path + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE)// no files here
+	return;
+	 do {
+        const string file_name = file_data.cFileName;
+        const string full_file_name = path + "/" + file_name;
+        const bool is_directory = (file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
+
+        if (file_name[0] == '.')
+            continue;
+
+        if (is_directory)
+            continue;
+
+        out.push_back(full_file_name);
+    } while (FindNextFile(dir, &file_data));
+
+    FindClose(dir);
 }
 #endif
