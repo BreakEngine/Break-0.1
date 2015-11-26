@@ -93,14 +93,14 @@ namespace Break{
 			 * \return a file in binary format
 			 * \author Moustapha Saad
 			 */
-			virtual bool readFile(void* handle, void* buffer, u32 buffer_size)=0;
+			virtual bool readFile(const void* handle, void* buffer, u32 buffer_size)=0;
 
 			/**
 			 * \brief Closes a file
 			 * \param handle a handle to file opened
 			 * \author Moustapha Saad
 			 */
-			virtual void closeFile(void* handle)=0;
+			virtual void closeFile(const void* handle)=0;
 
 			/**
 			 * \brief returns a native handle of the Window class handle

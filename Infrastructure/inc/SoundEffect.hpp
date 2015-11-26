@@ -1,23 +1,20 @@
 #pragma once
 #include "Globals.hpp"
-#include "Object.hpp"
 #include <memory>
 
 namespace Break {
 	namespace Infrastructure{
-		class BREAK_API SoundEffect:public Object {
-		protected:
+		class BREAK_API SoundEffect {
+		private:
+
 			u32 m_dataSize;
 			byte* m_data;
 			real64 m_volume;
 			u32 m_playingCursor;
-			u32 m_SampleRate;
-			u32 m_SampleSize;
 			bool m_loop;
 			bool m_playing, m_pausing;
 
 		public:
-			RTTI(SoundEffect);
 
 			SoundEffect(byte* dataRecived,u32 dataSize, real64 volume = 1);
 			~SoundEffect();
@@ -33,12 +30,6 @@ namespace Break {
 
 			bool isLooping();
 			void setLooping(bool val);
-
-			void setSampleRate(u32 val);
-			u32 getSampleRate();
-
-			void setSampleSize(u32 val);
-			u32 getSampleSize();
 
 			bool isPlaying();
 
