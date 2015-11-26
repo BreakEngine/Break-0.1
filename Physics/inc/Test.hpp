@@ -8,7 +8,7 @@ namespace Break{
         public:
             int x, y, z;
 
-			Test();
+            Test();
         };
     }
 }

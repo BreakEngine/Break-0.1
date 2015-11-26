@@ -128,7 +128,6 @@
     <ClInclude Include="inc\Infrastructure.hpp" />
     <ClInclude Include="inc\InputDevice.hpp" />
     <ClInclude Include="inc\Keyboard.hpp" />
-    <ClInclude Include="inc\MathUtils.hpp" />
     <ClInclude Include="inc\MemoryElement.hpp" />
     <ClInclude Include="inc\MemoryLayout.hpp" />
     <ClInclude Include="inc\Mouse.hpp" />
@@ -148,7 +147,6 @@
     <ClInclude Include="inc\Texture2D.hpp" />
     <ClInclude Include="inc\TimeManager.hpp" />
     <ClInclude Include="inc\TimeStep.hpp" />
-    <ClInclude Include="inc\Transform2D.hpp" />
     <ClInclude Include="inc\UniformBuffer.hpp" />
     <ClInclude Include="inc\Utils.hpp" />
     <ClInclude Include="inc\Vertex2DPos.hpp" />

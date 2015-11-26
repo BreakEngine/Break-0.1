@@ -1,157 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\BlockAllocator.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BroadPhase.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ChainShape.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CircleCollision.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CircleShape.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Collision.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Distance.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DynamicTree.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EdgeCollision.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EdgeShape.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PolygonCollision.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PolygonShape.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StackAllocator.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TimeOfImpact.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Body2D.cpp" />
-    <ClCompile Include="src\BodyIsland.cpp" />
-    <ClCompile Include="src\Contact2D.cpp" />
-    <ClCompile Include="src\ContactManager.cpp" />
-    <ClCompile Include="src\ContactSolver.cpp" />
-    <ClCompile Include="src\ChainCircleContact.cpp" />
-    <ClCompile Include="src\ChainPolygonContact.cpp" />
-    <ClCompile Include="src\CircleContact.cpp" />
-    <ClCompile Include="src\EdgeCircleContact.cpp" />
-    <ClCompile Include="src\EdgePolygonContact.cpp" />
-    <ClCompile Include="src\Fixture.cpp" />
-    <ClCompile Include="src\Joint2D.cpp" />
-    <ClCompile Include="src\DistanceJoint.cpp" />
-    <ClCompile Include="src\FrictionJoint.cpp" />
-    <ClCompile Include="src\GearJoint.cpp" />
-    <ClCompile Include="src\PolygonCircleContact.cpp" />
-    <ClCompile Include="src\PolygonContact.cpp" />
-    <ClCompile Include="src\World2D.cpp" />
-    <ClCompile Include="src\WorldCallBacks.cpp" />
-    <ClCompile Include="src\RevoluteJoint.cpp" />
-    <ClCompile Include="src\MotorJoint.cpp" />
-    <ClCompile Include="src\PrismaticJoint.cpp" />
-    <ClCompile Include="src\MouseJoint.cpp" />
-    <ClCompile Include="src\RopeJoint.cpp" />
-    <ClCompile Include="src\PullyJoint.cpp" />
-    <ClCompile Include="src\WeldJoint.cpp" />
-    <ClCompile Include="src\WheelJoint.cpp" />
-    <ClCompile Include="src\BoxBody.cpp">
-      <Filter>Tools</Filter>
-    </ClCompile>
+    <Filter Include="inc">
+      <UniqueIdentifier>{1F80880B-8B89-887C-1405-9F7C800D947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\BlockAllocator.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\BroadPhase.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\ChainShape.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\CircleShape.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Collision.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Distance.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\DynamicTree.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\EdgeShape.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\GrowableStack.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\PolygonShape.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Shape.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\StackAllocator.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\TimeOfImpact.hpp">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\BodyIsland.hpp" />
-    <ClInclude Include="inc\Body2D.hpp" />
-    <ClInclude Include="inc\Fixture.hpp" />
-    <ClInclude Include="inc\ContactManager.hpp" />
-    <ClInclude Include="inc\ContactSolver.hpp" />
-    <ClInclude Include="inc\WorldCallBacks.hpp" />
-    <ClInclude Include="inc\Joint2D.hpp" />
-    <ClInclude Include="inc\Contact2D.hpp" />
-    <ClInclude Include="inc\World2D.hpp" />
-    <ClInclude Include="inc\ChainCircleContact.hpp" />
-    <ClInclude Include="inc\ChainPolygonContact.hpp" />
-    <ClInclude Include="inc\CircleContact.hpp" />
-    <ClInclude Include="inc\DistanceJoint.hpp" />
-    <ClInclude Include="inc\EdgeCircleContact.hpp" />
-    <ClInclude Include="inc\EdgePolygonContact.hpp" />
-    <ClInclude Include="inc\FrictionJoint.hpp" />
-    <ClInclude Include="inc\GearJoint.hpp" />
-    <ClInclude Include="inc\MotorJoint.hpp" />
-    <ClInclude Include="inc\MouseJoint.hpp" />
-    <ClInclude Include="inc\PolygonCircleContact.hpp" />
-    <ClInclude Include="inc\PolygonContact.hpp" />
-    <ClInclude Include="inc\PrismaticJoint.hpp" />
-    <ClInclude Include="inc\PullyJoint.hpp" />
-    <ClInclude Include="inc\RevoluteJoint.hpp" />
-    <ClInclude Include="inc\RopeJoint.hpp" />
-    <ClInclude Include="inc\WeldJoint.hpp" />
-    <ClInclude Include="inc\WheelJoint.hpp" />
-    <ClInclude Include="inc\Break2D.hpp" />
-    <ClInclude Include="inc\BoxBody.hpp">
-      <Filter>Tools</Filter>
+    <ClInclude Include="inc\Test.hpp">
+      <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{4ca683ad-96ea-4e66-bdd3-7a70c25f6609}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tools">
-      <UniqueIdentifier>{1298a1c6-df36-4fa5-84ef-cc5019a4dddc}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="src\Test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
