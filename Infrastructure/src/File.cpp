@@ -72,7 +72,6 @@ void File::close()
 {
 	//OS close
 	Services::getPlatform()->closeFile(m_handle);
-	m_open = false;
 }
 
 byte* File::read(u32 amount, byte* buffer)

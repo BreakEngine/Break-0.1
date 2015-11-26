@@ -91,14 +91,12 @@
     <ClInclude Include="inc\Component.hpp" />
     <ClInclude Include="inc\Entity.hpp" />
     <ClInclude Include="inc\Graphics.hpp" />
-    <ClInclude Include="inc\MathUtils.hpp" />
     <ClInclude Include="inc\Rect.hpp" />
     <ClInclude Include="inc\Sprite.hpp" />
     <ClInclude Include="inc\SpriteBatch.hpp" />
     <ClInclude Include="inc\Transform.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\MathUtils.cpp" />
     <ClCompile Include="src\Rect.cpp" />
     <ClCompile Include="src\SpriteBatch.cpp" />
     <ClCompile Include="src\Transform.cpp" />

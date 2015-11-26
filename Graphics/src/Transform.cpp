@@ -10,6 +10,7 @@ using namespace std;
 using namespace glm;
 using namespace Break;
 using namespace Break::Graphics;
+using namespace Break::Infrastructure;
 
 Transform::Transform(const glm::vec3 pos, const glm::quat rot, glm::vec3 scl):Object("Transform",Transform::Type)
 {

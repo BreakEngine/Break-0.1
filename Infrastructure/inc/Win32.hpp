@@ -49,9 +49,9 @@ namespace Break{
 
   			std::string getAbsolutePath(const std::string& fileName) override;
 
-  			bool readFile(void* handle, void* buffer, u32 buffer_size) override;
+  			bool readFile(const void* handle, void* buffer, u32 buffer_size) override;
 
-  			void closeFile(void* handle) override;
+  			void closeFile(const void* handle) override;
 
   			void* getNativeWindowHandle(Window* win) override;
 

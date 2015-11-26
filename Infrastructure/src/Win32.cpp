@@ -278,10 +278,10 @@ std::string Win32::getAbsolutePath(const std::string& fileName)
 	}
 }
 
-bool Win32::readFile(void* handle, void* buffer,u32 buffer_size)
+bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
 {
 	DWORD actual_read = 0;
-	auto res = ReadFile(handle, buffer, buffer_size, &actual_read, NULL);
+	auto res = ReadFile(const_cast<void*>(handle), buffer, buffer_size, &actual_read, NULL);
 	if(actual_read == 0)
 		return false;
 	if(FAILED(res)){
@@ -290,9 +290,9 @@ bool Win32::readFile(void* handle, void* buffer,u32 buffer_size)
 	return true;
 }
 
-void Win32::closeFile(void* handle)
+void Win32::closeFile(const void* handle)
 {
-	if(!CloseHandle(static_cast<HANDLE>(handle)))
+	if(!CloseHandle(const_cast<void*>(handle)))
 		throw ServiceException("Cannot Close a file");
 }
 
