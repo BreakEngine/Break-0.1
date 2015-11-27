@@ -1,7 +1,39 @@
-﻿Build started 21/11/2015 04:15:58 م.
+﻿Build started 27/11/2015 04:10:16 م.
      1>Project "H:\Projects\Break-0.1\Graphics\Break_Graphics.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /I..\Infrastructure\inc /Ideps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\SpriteBatch.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /I..\Infrastructure\inc /Ideps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\MathUtils.cpp src\Rect.cpp src\SpriteBatch.cpp src\Transform.cpp
+         Transform.cpp
+     1>h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\transform.hpp(22): warning C4251: 'Break::Graphics::Transform::matrix' : struct 'glm::detail::tmat4x4<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\transform.hpp(26): warning C4251: 'Break::Graphics::Transform::position' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\transform.hpp(28): warning C4251: 'Break::Graphics::Transform::rotation' : struct 'glm::detail::tquat<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\transform.hpp(30): warning C4251: 'Break::Graphics::Transform::scale' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Transform'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
          SpriteBatch.cpp
      1>h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
                  with
@@ -107,14 +139,14 @@
                  [
                      _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(23): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
                      _Elem=char,
@@ -261,15 +293,19 @@
                      _Ty=Break::Infrastructure::RAMBuffer,
                      _V0_t=__int64
                  ]
+         Rect.cpp
+         MathUtils.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Debug\Break_Graphics.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\Debug\Break_Graphics.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Debug\Break_Graphics.lib" /MACHINE:X86 /DLL obj\Debug\MathUtils.obj
          obj\Debug\Rect.obj
          obj\Debug\SpriteBatch.obj
          obj\Debug\Transform.obj
          "H:\Projects\Break-0.1\bin\Debug\Break_Infrastructure.lib"
+            Creating library ..\bin\Debug\Break_Graphics.lib and object ..\bin\Debug\Break_Graphics.exp
          Break_Graphics.vcxproj -> H:\Projects\Break-0.1\Graphics\..\bin\Debug\Break_Graphics.dll
      1>Done Building Project "H:\Projects\Break-0.1\Graphics\Break_Graphics.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.94
+Time Elapsed 00:00:05.01

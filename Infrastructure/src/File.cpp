@@ -133,3 +133,45 @@ bool File::Exists(const std::string& path)
 {
 	return Services::getPlatform()->fileExists(path);
 }
+
+bool File::write(void* data, u32 writtenSize){
+	//write in a file
+	if(!m_open)
+		throw ServiceException("Cannot write to a file not opened yet.");
+
+	if(m_accessPermission == AccessPermission::READ)
+		throw ServiceException("Cannot write to file '"+m_name+"' access permission is read");
+
+	return Services::getPlatform()->writeFile(m_handle, data, writtenSize);
+}
+
+bool File::write(const std::string& str){
+	//write in a file
+	if(str.size() <= 0)
+		return true;
+
+	char* ptr = const_cast<char*>(&str[0]);
+	return this->write(ptr, str.size());
+}
+
+bool File::Rename(const std::string& filePath, std::string newFilePath){
+	//Rename the file
+	return Services::getPlatform()->renameFile(filePath, newFilePath);
+}
+
+bool File::Copy(const std::string& fileName, const std::string& copyName, bool overwriteFlag)
+{
+	//Copy a file
+	return Services::getPlatform()->copyFile(fileName, copyName, overwriteFlag);
+}
+
+bool File::Move(const std::string& currentLocation, const std::string& newLocation)
+{
+	//move a file
+	return Services::getPlatform()->moveFile(currentLocation, newLocation);
+}
+
+bool File::Delete(const std::string& path)
+{
+	return Services::getPlatform()->deleteFile(path);
+}

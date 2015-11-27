@@ -52,5 +52,6 @@
 #include "File.hpp"
 #include "SoundEffect.hpp"
 #include "RingCursor.hpp"
+#include "Directory.hpp"
 
 #endif //BREAK_0_1_INFRASTRUCTURE_HPP

@@ -1,4 +1,4 @@
-﻿Build started 21/11/2015 04:16:59 م.
+﻿Build started 27/11/2015 04:15:33 م.
      1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\Physics\inc /I..\deps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
@@ -141,14 +141,14 @@
                  [
                      _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(23): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+     1>h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
                      _Elem=char,
@@ -292,10 +292,10 @@
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\ringcursor.hpp(39): warning C4172: returning address of local variable or temporary
-     1>h:\projects\break-0.1\testapplication.hpp(367): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(370): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(373): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\testapplication.hpp(376): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(380): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(383): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(386): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\testapplication.hpp(389): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): warning C4244: 'argument' : conversion from '__int64' to 'Break::u32', possible loss of data
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(_V0_t &&)' being compiled
                  with
@@ -315,12 +315,12 @@
                      _Ty=Break::Infrastructure::RAMBuffer,
                      _V0_t=__int64
                  ]
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(317): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::Image>(std::string)'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\xstring(1810): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::Image>(std::string)'
                  with
                  [
                      _Ty=Break::Infrastructure::Image
                  ]
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(317): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::SoundEffect>(std::string)'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\xstring(1810): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::SoundEffect>(std::string)'
                  with
                  [
                      _Ty=Break::Infrastructure::SoundEffect
@@ -335,4 +335,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.63
+Time Elapsed 00:00:04.20

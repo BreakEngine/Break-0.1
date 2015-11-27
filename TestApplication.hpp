@@ -106,6 +106,19 @@ TestApplication::~TestApplication() {
 }
 
 void TestApplication::init() {
+    FilePtr wr = make_shared<File>();
+	wr->create("KOKOTEST.txt");
+	wr->write("KOKO file is here");
+
+	bool ansD = Directory::Exists("res");
+	auto ansList = Directory::listContents();
+	ansD = Directory::createDirectory("kokoTest");
+	ansD = Directory::changeDirectory("res");
+	ansList = Directory::listContents();
+	ansD = Directory::Delete("../kokoTest");
+	ansD = Directory::changeDirectory("../");
+	auto pwd = Directory::getCurrentDirectory();
+
     sp = new SpriteBatch();
 	sine = make_shared<RAMBuffer>(48000*4);
 

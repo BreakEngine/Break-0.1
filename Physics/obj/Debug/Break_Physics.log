@@ -1,11 +1,15 @@
-﻿Build started 20/11/2015 06:27:12 م.
+﻿Build started 27/11/2015 04:10:16 م.
      1>Project "H:\Projects\Break-0.1\Physics\Break_Physics.vcxproj" on node 3 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Iinc /I..\Infrastructure\inc /Ideps\glm\include /ZI /nologo /W3 /WX- /Od /Oy- /D DEBUG /D COMPILE_DLL /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\Test.cpp
+         Test.cpp
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Debug\Break_Physics.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\Debug\Break_Physics.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Debug\Break_Physics.lib" /MACHINE:X86 /DLL obj\Debug\Test.obj
          "H:\Projects\Break-0.1\bin\Debug\Break_Infrastructure.lib"
+            Creating library ..\bin\Debug\Break_Physics.lib and object ..\bin\Debug\Break_Physics.exp
          Break_Physics.vcxproj -> H:\Projects\Break-0.1\Physics\..\bin\Debug\Break_Physics.dll
      1>Done Building Project "H:\Projects\Break-0.1\Physics\Break_Physics.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.59
+Time Elapsed 00:00:00.87

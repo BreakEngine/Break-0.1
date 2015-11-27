@@ -290,6 +290,16 @@ bool Win32::readFile(void* handle, void* buffer,u32 buffer_size)
 	return true;
 }
 
+bool Win32::writeFile(void* handle, void* buffer, u32 buffer_size)
+{
+	unsigned long written = 0;
+	bool res = WriteFile(handle, buffer, buffer_size, &written, NULL) != 0;
+	if(!res || written != buffer_size)
+		throw ServiceException("unable to write to file");
+
+	return true;
+}
+
 void Win32::closeFile(void* handle)
 {
 	if(!CloseHandle(static_cast<HANDLE>(handle)))
@@ -316,4 +326,75 @@ void Win32::setPullAudioCallback(GetAudioCallback function)
 	m_pullAudio = function;
 	//m_soundDevice = this_ptr;
 }
+
+bool Win32::copyFile(const std::string& path, const std::string& newPath, bool overwriteFlag)
+{
+	return CopyFile(path.c_str(), newPath.c_str(), !overwriteFlag) != 0;
+}
+
+bool Win32::moveFile(const std::string& path, const std::string& newPath)
+{
+	return MoveFile(path.c_str(), newPath.c_str()) != 0;
+}
+
+bool Win32::renameFile(const std::string& path, const std::string& newPath)
+{
+	return moveFile(path, newPath);
+}
+
+bool Win32::deleteFile(const std::string& path){
+	return DeleteFile(path.c_str()) != 0;
+}
+
+bool Win32::changeDirectory(const std::string& newPath){
+	return SetCurrentDirectory(newPath.c_str()) != 0;
+}
+
+bool Win32::directoryExists(const std::string& path){
+	DWORD ftyp = GetFileAttributesA(path.c_str());
+	if (ftyp == INVALID_FILE_ATTRIBUTES)
+    	return false;  //something is wrong with your path!
+
+  	if (ftyp & FILE_ATTRIBUTE_DIRECTORY)
+    	return true;   // this is a directory!
+
+  	return false;    // this is not a directory!
+}
+
+bool Win32::createDirectory(const std::string& path){
+	return CreateDirectory(path.c_str(), NULL) != 0;
+}
+
+std::string Win32::getCurrentDirectory(){
+	char buffer[2048];
+	u32 len = GetCurrentDirectory(2048,buffer);
+	return std::string(buffer,len);
+}
+
+std::vector<std::string> Win32::listDirContents(){
+	std::vector<std::string> res;
+	HANDLE dir;
+	WIN32_FIND_DATA file_data;
+	std::string path = "*";
+	if((dir = FindFirstFile(path.c_str(), &file_data)) == INVALID_HANDLE_VALUE)
+		return res;
+
+	do{
+		const std::string file_name = file_data.cFileName;
+		const bool is_directory = (file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
+
+		if(file_name[0] == '.')
+			continue;
+
+		res.push_back(file_name);
+	}while(FindNextFile(dir, &file_data));
+
+	FindClose(dir);
+	return res;
+}
+
+bool Win32::deleteDirectory(const std::string& path){
+	return RemoveDirectory(path.c_str()) != 0;
+}
+
 #endif

@@ -104,6 +104,7 @@
     <ClInclude Include="inc\DXSamplerHandle.hpp" />
     <ClInclude Include="inc\DXShaderHandle.hpp" />
     <ClInclude Include="inc\DXTexture2DHandle.hpp" />
+    <ClInclude Include="inc\Directory.hpp" />
     <ClInclude Include="inc\Engine.hpp" />
     <ClInclude Include="inc\File.hpp" />
     <ClInclude Include="inc\GLDevice.hpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="src\DXDevice.cpp" />
     <ClCompile Include="src\DXKeyboard.cpp" />
     <ClCompile Include="src\DXMouse.cpp" />
+    <ClCompile Include="src\Directory.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\File.cpp" />
     <ClCompile Include="src\GLDevice.cpp" />

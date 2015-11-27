@@ -45,6 +45,9 @@
     <ClInclude Include="inc\DXTexture2DHandle.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Directory.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\Engine.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -216,6 +219,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\DXMouse.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Directory.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine.cpp">
