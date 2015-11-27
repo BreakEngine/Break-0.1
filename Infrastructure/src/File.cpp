@@ -85,6 +85,7 @@ byte* File::read(u32 amount, byte* buffer)
 	byte* write_buffer;
 	if(buffer == nullptr)
 		write_buffer = new byte[amount];
+
 	else
 		write_buffer = buffer;
 
@@ -96,6 +97,15 @@ byte* File::read(u32 amount, byte* buffer)
 		m_readCursor += amount;
 		return write_buffer;
 	}
+}
+
+void File::write(void* hanlde, byte* buffer , u32 amount){
+	
+	if (buffer==nullptr || !m_open || m_accessPermission==AccessPermission::READ)
+		return;
+
+	Services::getPlatform()->writeInFile();
+
 }
 
 void* File::getNativeHandle() const
@@ -132,14 +142,21 @@ bool File::Exists(const std::string& path)
 {
 	return Services::getPlatform()->fileExists(path);
 }
+
 void File::rename(std::string newName){
 
 	m_name=newName;
 	Services::getPlatform()->renameFile(m_name,newName);
 }
+
 void File::copy(std::string fileName,std::string copyName,bool overWriteIfExist){
+
 	Services::getPlatform()->makeCopy(fileName,copyName,overWriteIfExist);
+
 }
+
 void File::move(std::string currentLocation,std::string newLocation){
+
 	Services::getPlatform()->moveFile(currentLocation,newLocation);
+
 }

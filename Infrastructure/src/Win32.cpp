@@ -37,102 +37,102 @@ Win32::~Win32(){
 }
 
 LRESULT Win32::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
-    switch(message)
-    {
-        case WM_DESTROY:
-            PostQuitMessage(0);
-            return 0;
-        //break;
-        case WM_KEYDOWN:
-            DXKeyboard::keyboardDown(wParam);
-            break;
-        case WM_KEYUP:
-            DXKeyboard::keyboardUp(wParam);
-            break;
-        case WM_LBUTTONDOWN:
-            DXMouse::mouseButton(0,0);
-            break;
-        case WM_LBUTTONUP:
-            DXMouse::mouseButton(0,1);
-            break;
-        case WM_RBUTTONDOWN:
-            DXMouse::mouseButton(2,0);
-            break;
-        case WM_RBUTTONUP:
-            DXMouse::mouseButton(2,1);
-            break;
-        case WM_MBUTTONDOWN:
-            DXMouse::mouseButton(1,0);
-            break;
-        case WM_MBUTTONUP:
-            DXMouse::mouseButton(1,1);
-            break;
-        case WM_MOUSEMOVE:
-            DXMouse::mouseMove(GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
-            break;
-    }
+	switch(message)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		return 0;
+		//break;
+	case WM_KEYDOWN:
+		DXKeyboard::keyboardDown(wParam);
+		break;
+	case WM_KEYUP:
+		DXKeyboard::keyboardUp(wParam);
+		break;
+	case WM_LBUTTONDOWN:
+		DXMouse::mouseButton(0,0);
+		break;
+	case WM_LBUTTONUP:
+		DXMouse::mouseButton(0,1);
+		break;
+	case WM_RBUTTONDOWN:
+		DXMouse::mouseButton(2,0);
+		break;
+	case WM_RBUTTONUP:
+		DXMouse::mouseButton(2,1);
+		break;
+	case WM_MBUTTONDOWN:
+		DXMouse::mouseButton(1,0);
+		break;
+	case WM_MBUTTONUP:
+		DXMouse::mouseButton(1,1);
+		break;
+	case WM_MOUSEMOVE:
+		DXMouse::mouseMove(GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
+		break;
+	}
 
-    return DefWindowProc (hWnd, message, wParam, lParam);
+	return DefWindowProc (hWnd, message, wParam, lParam);
 }
 
 WindowPtr Win32::createWindow(const u32 width, const u32 height, const std::string &title)
 {
-    auto ret = std::make_shared<Window>();
-    HWND hWnd;
-    WNDCLASSEXA wc;
+	auto ret = std::make_shared<Window>();
+	HWND hWnd;
+	WNDCLASSEXA wc;
 
-    ZeroMemory(&wc, sizeof(WNDCLASSEX));
+	ZeroMemory(&wc, sizeof(WNDCLASSEX));
 
-    wc.cbSize = sizeof(WNDCLASSEX);
-    wc.style = CS_HREDRAW | CS_VREDRAW;
-    wc.lpfnWndProc = &Win32::WindowProc;
-    wc.hInstance = NULL;
-    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
-    wc.lpszClassName = "WindowClass1";
+	wc.cbSize = sizeof(WNDCLASSEX);
+	wc.style = CS_HREDRAW | CS_VREDRAW;
+	wc.lpfnWndProc = &Win32::WindowProc;
+	wc.hInstance = NULL;
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
+	wc.lpszClassName = "WindowClass1";
 
-    RegisterClassExA(&wc);
+	RegisterClassExA(&wc);
 
-    RECT wr = { 0, 0, (LONG)width, (LONG)height };    // set the size, but not the position
-    AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);    // adjust the size
+	RECT wr = { 0, 0, (LONG)width, (LONG)height };    // set the size, but not the position
+	AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);    // adjust the size
 
-    hWnd = CreateWindowExA(NULL,
-                          "WindowClass1",
-                          title.c_str(),
-                          WS_OVERLAPPEDWINDOW,
-                          100,
-                          100,
-                          wr.right - wr.left,
-                          wr.bottom - wr.top,
-                          NULL,
-                          NULL,
-                          NULL,
-                          NULL);
-    ShowWindow(hWnd, SW_SHOW);
+	hWnd = CreateWindowExA(NULL,
+		"WindowClass1",
+		title.c_str(),
+		WS_OVERLAPPEDWINDOW,
+		100,
+		100,
+		wr.right - wr.left,
+		wr.bottom - wr.top,
+		NULL,
+		NULL,
+		NULL,
+		NULL);
+	ShowWindow(hWnd, SW_SHOW);
 
-    ret->setWidth(width);
-    ret->setHeight(height);
-    ret->setTitle(title);
-    ret->setHandle(hWnd);
+	ret->setWidth(width);
+	ret->setHeight(height);
+	ret->setTitle(title);
+	ret->setHandle(hWnd);
 
-    return ret;
+	return ret;
 }
 
 real64 Win32::getTime(){
-    static bool init = false;
-    static real64 freq;
-    LARGE_INTEGER li;
-    if(!init){
-        if(!QueryPerformanceFrequency((&li)))
-            throw ServiceException("Can't initialize the frequency timer");
-        freq = double(li.QuadPart);
-        init = true;
-    }
+	static bool init = false;
+	static real64 freq;
+	LARGE_INTEGER li;
+	if(!init){
+		if(!QueryPerformanceFrequency((&li)))
+			throw ServiceException("Can't initialize the frequency timer");
+		freq = double(li.QuadPart);
+		init = true;
+	}
 
-    if(!QueryPerformanceCounter((&li))){
-        throw ServiceException("QueryPerformanceCounter can't get the time");
-    }
-    return double(li.QuadPart)/freq;
+	if(!QueryPerformanceCounter((&li))){
+		throw ServiceException("QueryPerformanceCounter can't get the time");
+	}
+	return double(li.QuadPart)/freq;
 }
 
 void Win32::initSound(Window* win, AudioFormat format)
@@ -308,8 +308,10 @@ std::string Win32::getAbsolutePath(const std::string& fileName)
 
 bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
 {
+
 	DWORD actual_read = 0;
 	auto res = ReadFile(const_cast<void*>(handle), buffer, buffer_size, &actual_read, NULL);
+
 	if(actual_read == 0)
 		return false;
 	if(FAILED(res)){
@@ -317,17 +319,23 @@ bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
 	}
 	return true;
 }
+
+
 void Win32::closeFile(const void* handle)
 {
 	if(!CloseHandle(const_cast<void*>(handle)))
 		throw ServiceException("Cannot Close a file");
-	
+
 }
-void Win32::renameFile(std::string fileName,std::string newName){
-	if(CopyFile(fileName.c_str(),newName.c_str(),true)==0){
+
+
+void Win32::renameFile(std::string fileName, std::string newName){
+	if(CopyFile(fileName.c_str(),newName.c_str(),true) == 0){
+
 		throw ServiceException("Faild! Name Already Exist");
 		return;
 	}
+
 	DeleteFile(fileName.c_str());
 	return;
 }
@@ -340,90 +348,127 @@ void* Win32::getNativeWindowHandle(Window* win)
 
 	if(Services::getEngine()->getAPI() == API::OpenGL3_3){
 		return glfwGetWin32Window(win->getHandle<GLFWwindow*>());
-	}else if(Services::getEngine()->getAPI() == API::DirectX11){
+	}
+
+	else if(Services::getEngine()->getAPI() == API::DirectX11){
 		return win->getHandle<HWND>();
-	}else{
+	}
+
+	else{
 		return nullptr;
 	}
 }
+void Win32::writeInFile(void* fileHanlde, byte* writeBuffer, u32 writeAmount) {
+
+	bool result = WriteFile(fileHanlde, writeBuffer , writeAmount);
+
+	if(result != true)
+		throw ServiceException("Unable to write");
+}
+
 
 void Win32::makeCopy(std::string fileName, std::string copyName, bool overWrite ){
-	 CopyFile(fileName.c_str(),copyName.c_str(),!overWrite);
+
+	CopyFile(fileName.c_str(),copyName.c_str(),!overWrite);
 }
-void Win32::moveFile(std::string currentLocation,std::string newLocation){
+
+
+void Win32::moveFile(std::string currentLocation, std::string newLocation){
+
 	MoveFile(currentLocation.c_str(),newLocation.c_str());
 }
-void Win32::setPullAudioCallback(GetAudioCallback function,SoundDevice* this_ptr)
+
+
+void Win32::setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr)
 {
 	m_pullAudio = function;
 	m_soundDevice = this_ptr;
 }
 
 //Directory functions begin
-void* Win32::creatDirectoryFolder(std::string name,std::string path){
-	
+void* Win32::creatDirectoryFolder(std::string name, std::string path){
+
 	path+='\\';
 	path+=name;
-	u32 response=(CreateDirectory(path.c_str(),NULL));
-	if(response==ERROR_ALREADY_EXISTS){
+
+	u32 response = (CreateDirectory(path.c_str(),NULL));
+
+	if(response == ERROR_ALREADY_EXISTS){
+
 		throw ServiceException("File Already Exist");
-		
 	}
+
 	else if(response == ERROR_PATH_NOT_FOUND){
 		throw ServiceException("Invalid Path");
-		}
-	bool open=changeCurrentDirectory(path);
-	if(open==false)
+	}
+
+	bool open = changeCurrentDirectory(path);
+
+	if(open == false)
 		throw ServiceException("Can not open created Folder named :" + name); 
+
 	return (void*)response ;
 }
 bool Win32::Exists(std::string path){
-	DWORD directoryType=GetFileAttributesA(path.c_str());
+
+	DWORD directoryType = GetFileAttributesA(path.c_str());
+
 	if (directoryType == INVALID_FILE_ATTRIBUTES){
 		throw ServiceException("Invalid Path");
 		return false;
 	}
+
 	if(directoryType  & FILE_ATTRIBUTE_DIRECTORY)
 		return true;
+
 	return false;
 }
 
 bool Win32::changeCurrentDirectory(std::string newPath){
-	
-	DWORD directoryType=GetFileAttributesA(newPath.c_str());
+
+	DWORD directoryType = GetFileAttributesA(newPath.c_str());
+
 	if (directoryType == INVALID_FILE_ATTRIBUTES){
 		throw ServiceException("Invalid Path");
 		return false;
 	}
-	auto response=SetCurrentDirectory(newPath.c_str());
+
+	auto response = SetCurrentDirectory(newPath.c_str());
 	if(response != 0)
 		return true;
+
 	return false;
 }
 
-void Win32::ListDirectoryContents(std::vector<std::string> &out,std::string path){
-if (Exists(path)==false){// to be added have permission in subdirectory
-	throw ServiceException("invalid path");
-	return ;
-}
+void Win32::ListDirectoryContents(std::vector<std::string> &out, std::string path){
+
+	if (Exists(path) == false ){ // to be added have permission in subdirectory	
+		throw ServiceException("invalid path");
+		return ;
+	}
+
 	HANDLE dir;
-    WIN32_FIND_DATA file_data;
-	if ((dir = FindFirstFile((path + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE)// no files here
-	return;
-	 do {
-        const string file_name = file_data.cFileName;
-        const string full_file_name = path + "/" + file_name;
-        const bool is_directory = (file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
+	WIN32_FIND_DATA file_data;
 
-        if (file_name[0] == '.')
-            continue;
+	if ( (dir = FindFirstFile((path + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE )// no files here
+		return;
 
-        if (is_directory)
-            continue;
+	do {
+		const string file_name = file_data.cFileName;
 
-        out.push_back(full_file_name);
-    } while (FindNextFile(dir, &file_data));
+		const string full_file_name = path + "/" + file_name;
 
-    FindClose(dir);
+		const bool is_directory = (file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
+
+		if ( file_name[0] == '.')
+			continue;
+
+		if ( is_directory )
+			continue;
+
+		out.push_back( full_file_name );
+	} while ( FindNextFile(dir, &file_data) );
+
+	FindClose(dir);
 }
 #endif

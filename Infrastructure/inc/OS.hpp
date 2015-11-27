@@ -101,7 +101,18 @@ namespace Break{
 			 * \author Moustapha Saad
 			 */
 			virtual bool readFile(const void* handle, void* buffer, u32 buffer_size)=0;
-
+			
+			
+			/*
+				write in file 
+				fileHandle : a handle to opened File 
+				writeBuffer : the "to be written " Buffer
+				writeAmount : write amount
+			*/
+			
+			
+			virtual void writeInFile(void* fileHandle, byte* writeBuffer, u32 writeAmount)=0;
+			
 			/**
 			 * \brief Closes a file
 			 * \param handle a handle to file opened
@@ -116,7 +127,28 @@ namespace Break{
 			 * \author Moustapha Saad
 			 */
 			virtual void* getNativeWindowHandle(Window* win)=0;
+		
 			/*
+			- Copy Exist File 
+			- if the copy name already Exist 
+			-choose to Over write or no 
+			*/
+			virtual void makeCopy(std::string fileName,std::string copyName, bool overWrite )=0;
+			/*
+			movie File From its Location -path- to a new location
+			
+			*/
+
+			virtual void  moveFile(std::string currentLocation, std::string newLocation)=0;
+
+			/*
+			Set a new Name for Alerady Exist Folder
+			
+			*/
+			
+			virtual void renameFile(std::string fileName, std::string newName)=0;
+			
+				/*
 			-create new directory 
 			-param director name (string)
 			-path for the new directory 
@@ -124,12 +156,7 @@ namespace Break{
 				false when Already Exist OR INVALID PATH 
 				true when success
 			*/
-			
-			virtual void makeCopy(std::string fileName,std::string copyName,bool overWrite )=0;
-			
-			virtual void  moveFile(std::string currentLocation,std::string newLocation)=0;
-			virtual void renameFile(std::string fileName,std::string newName)=0;
-			virtual  void* creatDirectoryFolder(std::string name,std::string path)=0;
+			virtual  void* creatDirectoryFolder(std::string name, std::string path)=0;
 			
 			/*
 			-Check if Directory Exist 
@@ -147,8 +174,15 @@ namespace Break{
 			false when INVALID_PATH OR FAILED
 			*/
 			virtual bool changeCurrentDirectory(std::string newPath)=0;	
-			virtual void  ListDirectoryContents(std::vector<string> &out,std::string path)=0;
-};
+			
+			/*
+			Return a Vector with all Files inside a Directory/path
+			
+			*/		
+			virtual void  ListDirectoryContents(std::vector<std::string> &out, std::string path)=0;
+
+			
+		};
         typedef std::shared_ptr<OS> OSPtr;
     }
 }
