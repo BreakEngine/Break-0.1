@@ -73,6 +73,12 @@
     <ClCompile Include="src\BoxBody.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
+    <ClCompile Include="src\CircleBody.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Chains.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\BlockAllocator.hpp">
@@ -143,6 +149,12 @@
     <ClInclude Include="inc\WheelJoint.hpp" />
     <ClInclude Include="inc\Break2D.hpp" />
     <ClInclude Include="inc\BoxBody.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\CircleBody.hpp">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Chains.hpp">
       <Filter>Tools</Filter>
     </ClInclude>
   </ItemGroup>

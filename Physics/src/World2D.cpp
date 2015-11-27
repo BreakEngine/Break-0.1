@@ -948,7 +948,7 @@ void World::ClearForces()
 {
 	for (Body* body = m_bodyList; body; body = body->GetNext())
 	{
-		body->m_force = glm::vec2(0,0);
+		body->m_force = glm::vec2(0.0f,0.0f);
 		body->m_torque = 0.0f;
 	}
 }

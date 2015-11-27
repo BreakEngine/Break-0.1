@@ -46,7 +46,7 @@ Body::Body(const BodyDef* bd, World* world)
 	m_xf.p = bd->position;
 	m_xf.q.Set(bd->angle);
 
-	m_sweep.localCenter = glm::vec2(0,0);
+	m_sweep.localCenter = glm::vec2(0.0f,0.0f);
 	m_sweep.c0 = m_xf.p;
 	m_sweep.c = m_xf.p;
 	m_sweep.a0 = bd->angle;
@@ -65,7 +65,7 @@ Body::Body(const BodyDef* bd, World* world)
 	m_angularDamping = bd->angularDamping;
 	m_gravityScale = bd->gravityScale;
 
-	m_force = glm::vec2(0,0);
+	m_force = glm::vec2(0.0f,0.0f);
 	m_torque = 0.0f;
 
 	m_sleepTime = 0.0f;
@@ -116,7 +116,7 @@ void Body::SetType(BodyType type)
 
 	if (m_type == staticBody)
 	{
-		m_linearVelocity = glm::vec2(0,0);
+		m_linearVelocity = glm::vec2(0.0f,0.0f);
 		m_angularVelocity = 0.0f;
 		m_sweep.a0 = m_sweep.a;
 		m_sweep.c0 = m_sweep.c;
@@ -272,7 +272,7 @@ void Body::ResetMassData()
 	m_invMass = 0.0f;
 	m_I = 0.0f;
 	m_invI = 0.0f;
-	m_sweep.localCenter = glm::vec2(0,0);
+	m_sweep.localCenter = glm::vec2(0.0f,0.0f);
 
 	// Static and kinematic bodies have zero mass.
 	if (m_type == staticBody || m_type == kinematicBody)
@@ -286,7 +286,7 @@ void Body::ResetMassData()
 	assert(m_type == dynamicBody);
 
 	// Accumulate mass over all fixtures.
-	glm::vec2 localCenter = glm::vec2(0,0);
+	glm::vec2 localCenter = glm::vec2(0.0f,0.0f);
 	for (Fixture* f = m_fixtureList; f; f = f->m_next)
 	{
 		if (f->m_density == 0.0f)

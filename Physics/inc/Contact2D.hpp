@@ -21,7 +21,7 @@ namespace Break
 		/// For example, anything slides on ice.
 		inline real32 MixFriction(real32 friction1, real32 friction2)
 		{
-			return sqrt(friction1 * friction2);
+			return sqrtf(friction1 * friction2);
 		}
 
 		/// Restitution mixing law. The idea is allow for anything to bounce off an inelastic surface.

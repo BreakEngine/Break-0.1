@@ -67,9 +67,7 @@ namespace Break
 
 			void SetIdentity()
 			{
-				p.x = 0;
-				p.y = 0;
-
+				p = glm::vec2(0.0f,0.0f);
 				q.SetIdentity();
 			}
 

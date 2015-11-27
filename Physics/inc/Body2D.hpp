@@ -389,13 +389,13 @@ namespace Break
 			// m_flags
 			enum
 			{
-				islandFlag		= 0x0001,
-				awakeFlag			= 0x0002,
-				autoSleepFlag		= 0x0004,
-				bulletFlag		= 0x0008,
-				fixedRotationFlag	= 0x0010,
-				activeFlag		= 0x0020,
-				toiFlag			= 0x0040
+				islandFlag		  = 0x0001,
+				awakeFlag		  = 0x0002,
+				autoSleepFlag	  = 0x0004,
+				bulletFlag		  = 0x0008,
+				fixedRotationFlag = 0x0010,
+				activeFlag		  = 0x0020,
+				toiFlag			  = 0x0040
 			};
 
 			Body(const BodyDef* bd, World* world);
@@ -627,9 +627,9 @@ namespace Break
 			{
 				m_flags &= ~awakeFlag;
 				m_sleepTime = 0.0f;
-				m_linearVelocity = glm::vec2(0,0);
+				m_linearVelocity = glm::vec2(0.0f,0.0f);
 				m_angularVelocity = 0.0f;
-				m_force = glm::vec2(0,0);
+				m_force = glm::vec2(0.0f,0.0f);
 				m_torque = 0.0f;
 			}
 		}

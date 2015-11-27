@@ -73,12 +73,12 @@ static glm::vec2 ComputeCentroid(const glm::vec2* vs, s32 count)
 {
 	assert(count >= 3);
 
-	glm::vec2 c; c = glm::vec2(0.0f, 0.0f);
+	glm::vec2 c = glm::vec2(0.0f, 0.0f);
 	real32 area = 0.0f;
 
 	// pRef is the reference point for forming triangles.
 	// It's location doesn't change the result (except for rounding error).
-	glm::vec2 pRef(0.0f, 0.0f);
+	glm::vec2 pRef = glm::vec2(0.0f, 0.0f);
 #if 0
 	// This code would put the reference point inside the polygon.
 	for (s32 i = 0; i < count; ++i)

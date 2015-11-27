@@ -96,7 +96,9 @@
     <ClInclude Include="inc\BroadPhase.hpp" />
     <ClInclude Include="inc\ChainCircleContact.hpp" />
     <ClInclude Include="inc\ChainPolygonContact.hpp" />
+    <ClInclude Include="inc\Chains.hpp" />
     <ClInclude Include="inc\ChainShape.hpp" />
+    <ClInclude Include="inc\CircleBody.hpp" />
     <ClInclude Include="inc\CircleContact.hpp" />
     <ClInclude Include="inc\CircleShape.hpp" />
     <ClInclude Include="inc\Collision.hpp" />
@@ -147,7 +149,9 @@
     <ClCompile Include="src\BroadPhase.cpp" />
     <ClCompile Include="src\ChainCircleContact.cpp" />
     <ClCompile Include="src\ChainPolygonContact.cpp" />
+    <ClCompile Include="src\Chains.cpp" />
     <ClCompile Include="src\ChainShape.cpp" />
+    <ClCompile Include="src\CircleBody.cpp" />
     <ClCompile Include="src\CircleCollision.cpp" />
     <ClCompile Include="src\CircleContact.cpp" />
     <ClCompile Include="src\CircleShape.cpp" />

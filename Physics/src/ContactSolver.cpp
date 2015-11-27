@@ -69,8 +69,8 @@ ContactSolver::ContactSolver(ContactSolverDef* def)
 		vc->invIB = bodyB->m_invI;
 		vc->contactIndex = i;
 		vc->pointCount = pointCount;
-		vc->K = glm::mat2(0,0,0,0);
-		vc->normalMass = glm::mat2(0,0,0,0);
+		vc->K = glm::mat2(0.0f,0.0f,0.0f,0.0f);
+		vc->normalMass = glm::mat2(0.0f,0.0f,0.0f,0.0f);
 
 		ContactPositionConstraint* pc = m_positionConstraints + i;
 		pc->indexA = bodyA->m_islandIndex;
@@ -104,8 +104,8 @@ ContactSolver::ContactSolver(ContactSolverDef* def)
 				vcp->tangentImpulse = 0.0f;
 			}
 
-			vcp->rA = glm::vec2(0,0);
-			vcp->rB = glm::vec2(0,0);
+			vcp->rA = glm::vec2(0.0f,0.0f);
+			vcp->rB = glm::vec2(0.0f,0.0f);
 			vcp->normalMass = 0.0f;
 			vcp->tangentMass = 0.0f;
 			vcp->velocityBias = 0.0f;
@@ -221,7 +221,7 @@ void ContactSolver::InitializeVelocityConstraints()
 				// K is safe to invert.
 				//vc->K.ex.Set(k11, k12);
 				//vc->K.ey.Set(k12, k22);
-				vc->K = glm::mat2(k11,k22,k12,k22);
+				vc->K = glm::mat2(k11,k12,k12,k22);
 
 				//vc->normalMass = vc->K.GetInverse();
 				vc->normalMass = glm::inverse(vc->K);
@@ -229,7 +229,6 @@ void ContactSolver::InitializeVelocityConstraints()
 			else
 			{
 				// The constraints are redundant, just use one.
-				// TODO_ERIN use deepest?
 				vc->pointCount = 1;
 			}
 		}
@@ -473,7 +472,7 @@ void ContactSolver::SolveVelocityConstraints()
 				x.y = 0.0f;
 				vn1 = 0.0f;
 				//vn2 = vc->K.ex.y * x.x + b.y;
-				vn2 = vc->K[1][0] * x.x + b.y;   //<<===== to test here ((shaalan))
+				vn2 = vc->K[0][1] * x.x + b.y;   //<<===== to test here ((shaalan))
 
 				if (x.x >= 0.0f && vn2 >= 0.0f)
 				{
@@ -515,7 +514,7 @@ void ContactSolver::SolveVelocityConstraints()
 				x.x = 0.0f;
 				x.y = - cp2->normalMass * b.y;
 				//vn1 = vc->K.ey.x * x.y + b.x;
-				vn1 = vc->K[0][1] * x.y + b.x;  //<<======= to test here ((shaalan))
+				vn1 = vc->K[1][0] * x.y + b.x;  //<<======= to test here ((shaalan))
 				vn2 = 0.0f;
 
 				if (x.y >= 0.0f && vn1 >= 0.0f)
@@ -552,7 +551,7 @@ void ContactSolver::SolveVelocityConstraints()
 				// Case 4: x1 = 0 and x2 = 0
 				// 
 				// vn1 = b1
-				// vn2 = ;
+				// vn2 = b2;
 				x.x = 0.0f;
 				x.y = 0.0f;
 				vn1 = b.x;
@@ -706,6 +705,7 @@ bool ContactSolver::SolvePositionConstraints()
 
 			// Prevent large corrections and allow slop.
 			real32 C = glm::clamp(baumgarte * (separation + linearSlop), - maxLinearCorrection, 0.0f);
+
 
 			// Compute the effective mass.
 			real32 rnA = MathUtils::Cross2(rA, normal);

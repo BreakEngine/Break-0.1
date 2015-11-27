@@ -20,6 +20,8 @@
 
 //new impls
 #include "Physics\inc\BoxBody.hpp"
+#include "Physics\inc\CircleBody.hpp"
+#include "Physics\inc\Chains.hpp"
 
 using namespace Break;
 using namespace Break::Infrastructure;
@@ -34,8 +36,8 @@ class TestApplication: public Application
 {
 public:
 
-    
-    SpriteBatch* sp;
+
+	SpriteBatch* sp;
 
 	Texture2DPtr tex;
 	ImagePtr img;
@@ -61,24 +63,30 @@ public:
 	Rect BoxPosition;
 
 
+	vector<CircleBody*> circlebody;
+	Rect circlePosition;
 
-    TestApplication();
 
-    ~TestApplication();
+	ChainBody *chain;
 
-    void init() override;
 
-    void loadResources() override;
+	TestApplication();
 
-    void setupScene() override;
+	~TestApplication();
 
-    void cleanUp() override;
+	void init() override;
 
-    void input() override;
+	void loadResources() override;
 
-    void update(TimeStep time) override;
+	void setupScene() override;
 
-    void render() override;
+	void cleanUp() override;
+
+	void input() override;
+
+	void update(TimeStep time) override;
+
+	void render() override;
 
 };
 #endif //BREAK_0_1_TESTAPPLICATION_HPP
@@ -86,31 +94,35 @@ public:
 
 TestApplication::TestApplication() : Application()
 {
-    window = std::make_shared<Window>(640,480,"Test");
+	window = std::make_shared<Window>(640,480,"Test");
 }
 
 TestApplication::~TestApplication() 
 {
-    delete sp;
+	delete sp;
 }
 
 void TestApplication::init()
 {
-    sp = new SpriteBatch();
+	sp = new SpriteBatch();
 
 
 	//initialize physics..
 	world = new World(glm::vec2(0.0f,9.81f));
-	
+
 	//ground static box
 	statPosition = Rect(0,400,600,50);
 	staticbody = new BoxBody(world,statPosition,false);
 
 
-	BoxPosition = Rect(100,100, 50 , 50);
-	boxBody.push_back(new BoxBody(world,BoxPosition,true));
+	chain = new ChainBody(world,staticbody->Physics);
+	//boxBody.push_back(new BoxBody(world,BoxPosition,true));
 
-    Application::init();
+
+	//BoxPosition = Rect(100,100, 50 , 50);
+	//boxBody.push_back(new BoxBody(world,BoxPosition,true));
+
+	Application::init();
 }
 
 
@@ -118,52 +130,54 @@ void TestApplication::init()
 void TestApplication::loadResources()
 {
 	img = ResourceLoader::load("res/tex/ball.png");
-    tex = make_shared<Texture2D>(img);
+	tex = make_shared<Texture2D>(img);
 
 	img2 = ResourceLoader::load("res/tex/ground.png");
-    tex2 = make_shared<Texture2D>(img2);
+	tex2 = make_shared<Texture2D>(img2);
 
 	img3 = ResourceLoader::load("res/tex/box.png");
-    tex3 = make_shared<Texture2D>(img3);
+	tex3 = make_shared<Texture2D>(img3);
 
-    Application::loadResources();
+	Application::loadResources();
 }
 
 void TestApplication::setupScene() 
 {
-    Application::setupScene();
+	Application::setupScene();
 }
 
 void TestApplication::cleanUp() 
 {
-    Application::cleanUp();
+	Application::cleanUp();
 }
 
 
 
 void TestApplication::input() 
 {
-    auto m_pos = Mouse::getPosition();
-    //std::cout<<m_pos.x<<" || "<<m_pos.y<<std::endl;
-	
+	auto m_pos = Mouse::getPosition();
+	//std::cout<<m_pos.x<<" || "<<m_pos.y<<std::endl;
 
 
-    if(Mouse::getButton(Mouse::Left_Button) == Mouse::State_Down)
+
+	if(Mouse::getButton(Mouse::Left_Button) == Mouse::State_Down)
 	{
-    }
+		circlePosition = Rect(Mouse::getPosition().x,Mouse::getPosition().y,30,30);
+		circlebody.push_back(new CircleBody(world,circlePosition,15,true));
+	}
 
 	if(Mouse::getButton(Mouse::Right_Button) == Mouse::State_Down)
 	{
-		//BoxPosition = Rect(Mouse::getPosition().x,Mouse::getPosition().y,50,50);
-		//boxBody.push_back(new BoxBody(world,BoxPosition,true));
-    }
+		BoxPosition = Rect(Mouse::getPosition().x,Mouse::getPosition().y,50,50);
+		boxBody.push_back(new BoxBody(world,BoxPosition,true));
+	}
 
 
-    if(Keyboard::getKey(Keyboard::Esc) == Keyboard::State_Down)
+	if(Keyboard::getKey(Keyboard::Esc) == Keyboard::State_Down)
 	{
-        shutdown();
-    }
-    Application::input();
+		shutdown();
+	}
+	Application::input();
 }
 
 bool once = true;
@@ -174,7 +188,7 @@ void TestApplication::update(TimeStep tick)
 
 
 	world->Step(tick.delta * 5,8,3);
-    Application::update(tick);
+	Application::update(tick);
 }
 
 
@@ -182,22 +196,35 @@ void TestApplication::render()
 {
 
 
-    sp->begin();
+	sp->begin();
 
 
-
+	//boxes draw..
 	for(int i =0 ; i < boxBody.size(); ++i)
 	{
 		sp->draw(tex3.get(),boxBody[i]->GetRect(),boxBody[i]->GetAngle(),boxBody[i]->GetOrigin(),Color(255,255,255,255));
 	}
 
 
+	//Circles draw..
+    for(int i =0 ; i < circlebody.size(); ++i)
+	{
+		sp->draw(tex.get(),circlebody[i]->GetRect(),circlebody[i]->GetAngle(),circlebody[i]->GetOrigin(),Color(255,255,255,255));
+	}
+
+	//chain draw..
+	for(int i =0 ; i < chain->box.size(); ++i)
+	{
+		sp->draw(tex3.get(),chain->box[i]->GetRect(),chain->box[i]->GetAngle(),chain->box[i]->GetOrigin(),Color(255,255,255,255));
+	}
+
+	//ground draw..
 	sp->draw(tex2.get(), statPosition, 0, vec2(0,0) , Color(255,255,255,255));
 
 
-    sp->end();
+	sp->end();
 
-    Application::render();
+	Application::render();
 }
 
 
