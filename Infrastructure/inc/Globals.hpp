@@ -97,6 +97,8 @@
       ({ register unsigned int __x = (x); __bswap_constant_32 (__x); }))
 #endif
 
+#define PI 3.141592741f
+
 namespace Break{
 
     typedef unsigned char byte;

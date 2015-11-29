@@ -129,6 +129,7 @@
     <ClInclude Include="inc\Infrastructure.hpp" />
     <ClInclude Include="inc\InputDevice.hpp" />
     <ClInclude Include="inc\Keyboard.hpp" />
+    <ClInclude Include="inc\MathUtils.hpp" />
     <ClInclude Include="inc\MemoryElement.hpp" />
     <ClInclude Include="inc\MemoryLayout.hpp" />
     <ClInclude Include="inc\Mouse.hpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="inc\Pixel.hpp" />
     <ClInclude Include="inc\Primitive.hpp" />
     <ClInclude Include="inc\RAMBuffer.hpp" />
+    <ClInclude Include="inc\Rect.hpp" />
     <ClInclude Include="inc\ResourceLoader.hpp" />
     <ClInclude Include="inc\RingCursor.hpp" />
     <ClInclude Include="inc\SamplerState.hpp" />
@@ -176,10 +178,12 @@
     <ClCompile Include="src\IGXDevice.cpp" />
     <ClCompile Include="src\Image.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\MathUtils.cpp" />
     <ClCompile Include="src\MemoryLayout.cpp" />
     <ClCompile Include="src\Mouse.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\RAMBuffer.cpp" />
+    <ClCompile Include="src\Rect.cpp" />
     <ClCompile Include="src\ResourceLoader.cpp" />
     <ClCompile Include="src\SamplerState.cpp" />
     <ClCompile Include="src\Services.cpp" />

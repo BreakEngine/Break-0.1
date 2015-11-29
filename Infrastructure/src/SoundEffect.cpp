@@ -57,6 +57,7 @@ bool SoundEffect::isPlaying(){
 void SoundEffect::play(bool looping){
 	m_playing = true;
 	m_pausing = false;
+	m_loop = looping;
 	Services::getSoundDevice()->play(this);
 }
 

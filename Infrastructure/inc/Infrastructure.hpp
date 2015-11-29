@@ -53,5 +53,7 @@
 #include "SoundEffect.hpp"
 #include "RingCursor.hpp"
 #include "Directory.hpp"
+#include "MathUtils.hpp"
+#include "Rect.hpp"
 
 #endif //BREAK_0_1_INFRASTRUCTURE_HPP
