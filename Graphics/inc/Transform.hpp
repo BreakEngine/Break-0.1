@@ -54,6 +54,7 @@ namespace Break{
             ///returns a look at roataion vecto
             glm::vec4 getLookAt(glm::vec3 point,glm::vec3 up);
         };
+		typedef std::shared_ptr<Transform> transformation; 
     }
 }
 #endif //BREAK_0_1_TRANSFORM_HPP

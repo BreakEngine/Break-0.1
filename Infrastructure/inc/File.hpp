@@ -2,6 +2,7 @@
 #define FILE_HPP
 
 #include "Globals.hpp"
+#include <string>
 
 namespace Break
 {
@@ -28,19 +29,20 @@ namespace Break
 		public:
 			File();
 
-			File(const std::string& path, AccessPermission permission = AccessPermission::READ);
-			
+			File(const std::string& path,
+				AccessPermission permission = AccessPermission::READ);
 			~File();
 
-			void open(const std::string& path, AccessPermission permission = AccessPermission::READ);
 
-			void create(const std::string& path, AccessPermission permission = AccessPermission::WRITE);
+			void open(const std::string& path,
+				AccessPermission permission = AccessPermission::READ);
+
+			void create(const std::string& path,
+				AccessPermission permission = AccessPermission::WRITE);
 
 			void close();
 
 			byte* read(u32 amount, byte* buffer = nullptr);
-
-			void write(void* hanlde, byte* buffer , u32 amount);
 
 			void* getNativeHandle() const;
 
@@ -54,16 +56,21 @@ namespace Break
 
 			u32 getReadCursor() const;
 
+			bool write(void* data, u32 writtenSize);
+
+			bool write(const std::string& str);
+
 			static bool Exists(const std::string& path);
 
-			static void write(void* data, u32 writtenSize);
+			static bool Rename(const std::string& filePath, std::string newFilePath);
 
-			static void rename(std::string newName);
+			static bool Copy(const std::string& fileName, const std::string& copyName,
+				bool overwriteFlag);
 
-			static void copy(std::string fileName,std::string copyName,bool overWriteIfExist);
+			static bool Move(const std::string& currentLocation,
+				const std::string& newLocation);
 
-			static void  move(std::string currentLocation,std::string newLocation);
-
+			static bool Delete(const std::string& path);
 		};
 		typedef std::shared_ptr<File> FilePtr;
 	}

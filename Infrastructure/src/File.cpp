@@ -72,6 +72,7 @@ void File::close()
 {
 	//OS close
 	Services::getPlatform()->closeFile(m_handle);
+	m_open = false;
 }
 
 byte* File::read(u32 amount, byte* buffer)
@@ -85,7 +86,6 @@ byte* File::read(u32 amount, byte* buffer)
 	byte* write_buffer;
 	if(buffer == nullptr)
 		write_buffer = new byte[amount];
-
 	else
 		write_buffer = buffer;
 
@@ -97,15 +97,6 @@ byte* File::read(u32 amount, byte* buffer)
 		m_readCursor += amount;
 		return write_buffer;
 	}
-}
-
-void File::write(void* hanlde, byte* buffer , u32 amount){
-	
-	if (buffer==nullptr || !m_open || m_accessPermission==AccessPermission::READ)
-		return;
-
-	Services::getPlatform()->writeInFile();
-
 }
 
 void* File::getNativeHandle() const
@@ -143,20 +134,44 @@ bool File::Exists(const std::string& path)
 	return Services::getPlatform()->fileExists(path);
 }
 
-void File::rename(std::string newName){
+bool File::write(void* data, u32 writtenSize){
+	//write in a file
+	if(!m_open)
+		throw ServiceException("Cannot write to a file not opened yet.");
 
-	m_name=newName;
-	Services::getPlatform()->renameFile(m_name,newName);
+	if(m_accessPermission == AccessPermission::READ)
+		throw ServiceException("Cannot write to file '"+m_name+"' access permission is read");
+
+	return Services::getPlatform()->writeFile(m_handle, data, writtenSize);
 }
 
-void File::copy(std::string fileName,std::string copyName,bool overWriteIfExist){
+bool File::write(const std::string& str){
+	//write in a file
+	if(str.size() <= 0)
+		return true;
 
-	Services::getPlatform()->makeCopy(fileName,copyName,overWriteIfExist);
-
+	char* ptr = const_cast<char*>(&str[0]);
+	return this->write(ptr, str.size());
 }
 
-void File::move(std::string currentLocation,std::string newLocation){
+bool File::Rename(const std::string& filePath, std::string newFilePath){
+	//Rename the file
+	return Services::getPlatform()->renameFile(filePath, newFilePath);
+}
 
-	Services::getPlatform()->moveFile(currentLocation,newLocation);
+bool File::Copy(const std::string& fileName, const std::string& copyName, bool overwriteFlag)
+{
+	//Copy a file
+	return Services::getPlatform()->copyFile(fileName, copyName, overwriteFlag);
+}
 
+bool File::Move(const std::string& currentLocation, const std::string& newLocation)
+{
+	//move a file
+	return Services::getPlatform()->moveFile(currentLocation, newLocation);
+}
+
+bool File::Delete(const std::string& path)
+{
+	return Services::getPlatform()->deleteFile(path);
 }

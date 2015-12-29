@@ -1,7 +1,7 @@
-﻿Build started 01/11/2015 11:54:52 م.
+﻿Build started 29/11/2015 01:58:22 م.
      1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\deps\glm\include /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\Physics\inc /I..\deps\glm\include /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
          main.cpp
      1>H:\Projects\Break-0.1\Infrastructure\inc\Object.hpp(28): warning C4251: 'Break::Object::id' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Object'
                  with
@@ -134,14 +134,21 @@
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\File.hpp(21): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format' : struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(12) : see declaration of 'Break::Infrastructure::AudioFormat'
+     1>h:\projects\break-0.1\infrastructure\inc\SoundDevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+                 with
+                 [
+                     _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+                 ]
+     1>h:\projects\break-0.1\infrastructure\inc\File.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
                      _Elem=char,
                      _Traits=std::char_traits<char>,
                      _Alloc=std::allocator<char>
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\File.hpp(23): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+     1>h:\projects\break-0.1\infrastructure\inc\File.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
                  with
                  [
                      _Elem=char,
@@ -159,40 +166,40 @@
                      _Kty=std::string,
                      _Ty=Break::Infrastructure::AssetPtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(136): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::OS
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::IGXDevice
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::Application
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(154): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::InputDevicePtr
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(160): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::AssetManager
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
                      _Ty=Break::Infrastructure::GPU_VM
                  ]
-     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+     1>h:\projects\break-0.1\infrastructure\inc\Engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
                  with
                  [
-                     _Ty=Break::Infrastructure::SoundDevice
+                     _Ty=Break::Infrastructure::ISoundDevice
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\VertexBuffer.hpp(26): warning C4251: 'Break::Infrastructure::VertexBuffer::m_buffer' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::VertexBuffer'
                  with
@@ -248,12 +255,12 @@
                  [
                      _Ty=Break::Infrastructure::Geometry
                  ]
-     1>h:\projects\break-0.1\graphics\inc\Sprite.hpp(40): warning C4251: 'Break::Graphics::Sprite::texture' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Sprite'
+     1>h:\projects\break-0.1\graphics\inc\Sprite.hpp(41): warning C4251: 'Break::Graphics::Sprite::texture' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Sprite'
                  with
                  [
                      _Ty=Break::Infrastructure::Texture2D
                  ]
-     1>h:\projects\break-0.1\graphics\inc\Sprite.hpp(49): warning C4251: 'Break::Graphics::Sprite::origin' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Sprite'
+     1>h:\projects\break-0.1\graphics\inc\Sprite.hpp(50): warning C4251: 'Break::Graphics::Sprite::origin' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Sprite'
                  with
                  [
                      T=float,
@@ -284,10 +291,968 @@
                      _Kty=Break::Infrastructure::Keyboard::Keys,
                      _Ty=Break::Infrastructure::Keyboard::KeyState
                  ]
-     1>h:\projects\break-0.1\TestApplication.hpp(256): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(259): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(262): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(265): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\infrastructure\inc\RingCursor.hpp(39): warning C4172: returning address of local variable or temporary
+     1>h:\projects\break-0.1\infrastructure\inc\MathUtils.hpp(85): warning C4244: 'return' : conversion from 'glm::length_t' to 'Break::real32', possible loss of data
+     1>h:\projects\break-0.1\physics\inc\Transform2D.hpp(30): warning C4251: 'Break::Physics::Transform2D::p' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::Transform2D'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(57): warning C4251: 'Break::Physics::ManifoldPoint::localPoint' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ManifoldPoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(91): warning C4251: 'Break::Physics::Manifold::localNormal' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(92): warning C4251: 'Break::Physics::Manifold::localPoint' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(107): warning C4251: 'Break::Physics::WorldManifold::normal' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(108): warning C4251: 'Break::Physics::WorldManifold::points' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(131): warning C4251: 'Break::Physics::ClipVertex::v' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ClipVertex'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p1' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p2' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(146): warning C4251: 'Break::Physics::RayCastOutput::normal' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastOutput'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(203): warning C4251: 'Break::Physics::AABB::lowerBound' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Collision.hpp(204): warning C4251: 'Break::Physics::AABB::upperBound' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Shape.hpp(21): warning C4251: 'Break::Physics::MassData::center' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::MassData'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Sweep.hpp(47): warning C4251: 'Break::Physics::Sweep::localCenter' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c0' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Body2D.hpp(66): warning C4251: 'Break::Physics::BodyDef::position' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::BodyDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Body2D.hpp(72): warning C4251: 'Break::Physics::BodyDef::linearVelocity' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::BodyDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Body2D.hpp(427): warning C4251: 'Break::Physics::Body::m_linearVelocity' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::Body'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Body2D.hpp(430): warning C4251: 'Break::Physics::Body::m_force' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::Body'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Profile.hpp(26): warning C4251: 'Break::Physics::Position::c' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Position'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Profile.hpp(33): warning C4251: 'Break::Physics::Velocity::v' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Velocity'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PolygonShape.hpp(72): warning C4251: 'Break::Physics::PolygonShape::m_centroid' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PolygonShape.hpp(73): warning C4251: 'Break::Physics::PolygonShape::m_vertices' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PolygonShape.hpp(74): warning C4251: 'Break::Physics::PolygonShape::m_normals' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Chains.hpp(19): warning C4251: 'Break::Physics::ChainBody::box' : class 'std::vector<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Physics::ChainBody'
+                 with
+                 [
+                     _Ty=Break::Physics::BoxBody *
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ChainShape.hpp(73): warning C4251: 'Break::Physics::ChainShape::m_prevVertex' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::ChainShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ChainShape.hpp(73): warning C4251: 'Break::Physics::ChainShape::m_nextVertex' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::ChainShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\CircleShape.hpp(46): warning C4251: 'Break::Physics::CircleShape::m_p' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::CircleShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>H:\Projects\Break-0.1\Physics\inc\World2D.hpp(221): warning C4251: 'Break::Physics::World::m_gravity' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::World'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ContactSolver.hpp(22): warning C4251: 'Break::Physics::VelocityConstraintPoint::rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::VelocityConstraintPoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ContactSolver.hpp(23): warning C4251: 'Break::Physics::VelocityConstraintPoint::rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::VelocityConstraintPoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ContactSolver.hpp(34): warning C4251: 'Break::Physics::ContactVelocityConstraint::normal' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ContactSolver.hpp(35): warning C4251: 'Break::Physics::ContactVelocityConstraint::normalMass' : struct 'glm::detail::tmat2x2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\ContactSolver.hpp(36): warning C4251: 'Break::Physics::ContactVelocityConstraint::K' : struct 'glm::detail::tmat2x2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Distance.hpp(38): warning C4251: 'Break::Physics::DistanceProxy::m_buffer' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceProxy'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Distance.hpp(69): warning C4251: 'Break::Physics::DistanceOutput::pointA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Distance.hpp(70): warning C4251: 'Break::Physics::DistanceOutput::pointB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\Joint2D.hpp(43): warning C4251: 'Break::Physics::Jacobian::linear' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Jacobian'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(32): warning C4251: 'Break::Physics::DistanceJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(35): warning C4251: 'Break::Physics::DistanceJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(102): warning C4251: 'Break::Physics::DistanceJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(103): warning C4251: 'Break::Physics::DistanceJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(111): warning C4251: 'Break::Physics::DistanceJoint::m_u' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(112): warning C4251: 'Break::Physics::DistanceJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(113): warning C4251: 'Break::Physics::DistanceJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(114): warning C4251: 'Break::Physics::DistanceJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\DistanceJoint.hpp(115): warning C4251: 'Break::Physics::DistanceJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::DistanceJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\EdgeShape.hpp(40): warning C4251: 'Break::Physics::EdgeShape::m_vertex1' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\EdgeShape.hpp(40): warning C4251: 'Break::Physics::EdgeShape::m_vertex2' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\EdgeShape.hpp(43): warning C4251: 'Break::Physics::EdgeShape::m_vertex0' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\EdgeShape.hpp(43): warning C4251: 'Break::Physics::EdgeShape::m_vertex3' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(26): warning C4251: 'Break::Physics::FrictionJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::FrictionJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(29): warning C4251: 'Break::Physics::FrictionJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::FrictionJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(80): warning C4251: 'Break::Physics::FrictionJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(81): warning C4251: 'Break::Physics::FrictionJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(84): warning C4251: 'Break::Physics::FrictionJoint::m_linearImpulse' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(92): warning C4251: 'Break::Physics::FrictionJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(93): warning C4251: 'Break::Physics::FrictionJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(94): warning C4251: 'Break::Physics::FrictionJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(95): warning C4251: 'Break::Physics::FrictionJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\FrictionJoint.hpp(100): warning C4251: 'Break::Physics::FrictionJoint::m_linearMass' : struct 'glm::detail::tmat2x2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::FrictionJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(84): warning C4251: 'Break::Physics::GearJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(85): warning C4251: 'Break::Physics::GearJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(86): warning C4251: 'Break::Physics::GearJoint::m_localAnchorC' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(87): warning C4251: 'Break::Physics::GearJoint::m_localAnchorD' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(89): warning C4251: 'Break::Physics::GearJoint::m_localAxisC' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(90): warning C4251: 'Break::Physics::GearJoint::m_localAxisD' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(102): warning C4251: 'Break::Physics::GearJoint::m_lcA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(102): warning C4251: 'Break::Physics::GearJoint::m_lcB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(102): warning C4251: 'Break::Physics::GearJoint::m_lcC' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(102): warning C4251: 'Break::Physics::GearJoint::m_lcD' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(105): warning C4251: 'Break::Physics::GearJoint::m_JvAC' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\GearJoint.hpp(105): warning C4251: 'Break::Physics::GearJoint::m_JvBD' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::GearJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(27): warning C4251: 'Break::Physics::MotorJointDef::linearOffset' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::MotorJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(94): warning C4251: 'Break::Physics::MotorJoint::m_linearOffset' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(96): warning C4251: 'Break::Physics::MotorJoint::m_linearImpulse' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(105): warning C4251: 'Break::Physics::MotorJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(106): warning C4251: 'Break::Physics::MotorJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(107): warning C4251: 'Break::Physics::MotorJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(108): warning C4251: 'Break::Physics::MotorJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(109): warning C4251: 'Break::Physics::MotorJoint::m_linearError' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MotorJoint.hpp(115): warning C4251: 'Break::Physics::MotorJoint::m_linearMass' : struct 'glm::detail::tmat2x2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MotorJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(25): warning C4251: 'Break::Physics::MouseJointDef::target' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::MouseJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(93): warning C4251: 'Break::Physics::MouseJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(94): warning C4251: 'Break::Physics::MouseJoint::m_targetA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(100): warning C4251: 'Break::Physics::MouseJoint::m_impulse' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(107): warning C4251: 'Break::Physics::MouseJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(108): warning C4251: 'Break::Physics::MouseJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(111): warning C4251: 'Break::Physics::MouseJoint::m_mass' : struct 'glm::detail::tmat2x2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\MouseJoint.hpp(112): warning C4251: 'Break::Physics::MouseJoint::m_C' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::MouseJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(38): warning C4251: 'Break::Physics::PrismaticJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PrismaticJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(41): warning C4251: 'Break::Physics::PrismaticJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PrismaticJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(44): warning C4251: 'Break::Physics::PrismaticJointDef::localAxisA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PrismaticJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(146): warning C4251: 'Break::Physics::PrismaticJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(147): warning C4251: 'Break::Physics::PrismaticJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(148): warning C4251: 'Break::Physics::PrismaticJoint::m_localXAxisA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(149): warning C4251: 'Break::Physics::PrismaticJoint::m_localYAxisA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(151): warning C4251: 'Break::Physics::PrismaticJoint::m_impulse' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(164): warning C4251: 'Break::Physics::PrismaticJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(165): warning C4251: 'Break::Physics::PrismaticJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(170): warning C4251: 'Break::Physics::PrismaticJoint::m_axis' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(170): warning C4251: 'Break::Physics::PrismaticJoint::m_perp' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PrismaticJoint.hpp(173): warning C4251: 'Break::Physics::PrismaticJoint::m_K' : struct 'glm::detail::tmat3x3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PrismaticJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(35): warning C4251: 'Break::Physics::PulleyJointDef::groundAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(38): warning C4251: 'Break::Physics::PulleyJointDef::groundAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(41): warning C4251: 'Break::Physics::PulleyJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(44): warning C4251: 'Break::Physics::PulleyJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(109): warning C4251: 'Break::Physics::PulleyJoint::m_groundAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(110): warning C4251: 'Break::Physics::PulleyJoint::m_groundAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(115): warning C4251: 'Break::Physics::PulleyJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(116): warning C4251: 'Break::Physics::PulleyJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(124): warning C4251: 'Break::Physics::PulleyJoint::m_uA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(125): warning C4251: 'Break::Physics::PulleyJoint::m_uB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(126): warning C4251: 'Break::Physics::PulleyJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(127): warning C4251: 'Break::Physics::PulleyJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(128): warning C4251: 'Break::Physics::PulleyJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\PullyJoint.hpp(129): warning C4251: 'Break::Physics::PulleyJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(41): warning C4251: 'Break::Physics::RevoluteJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RevoluteJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(44): warning C4251: 'Break::Physics::RevoluteJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RevoluteJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(154): warning C4251: 'Break::Physics::RevoluteJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(155): warning C4251: 'Break::Physics::RevoluteJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(156): warning C4251: 'Break::Physics::RevoluteJoint::m_impulse' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(171): warning C4251: 'Break::Physics::RevoluteJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(172): warning C4251: 'Break::Physics::RevoluteJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(173): warning C4251: 'Break::Physics::RevoluteJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(174): warning C4251: 'Break::Physics::RevoluteJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RevoluteJoint.hpp(179): warning C4251: 'Break::Physics::RevoluteJoint::m_mass' : struct 'glm::detail::tmat3x3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RevoluteJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(24): warning C4251: 'Break::Physics::RopeJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RopeJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(27): warning C4251: 'Break::Physics::RopeJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RopeJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(77): warning C4251: 'Break::Physics::RopeJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(78): warning C4251: 'Break::Physics::RopeJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(86): warning C4251: 'Break::Physics::RopeJoint::m_u' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(87): warning C4251: 'Break::Physics::RopeJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(88): warning C4251: 'Break::Physics::RopeJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(89): warning C4251: 'Break::Physics::RopeJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\RopeJoint.hpp(90): warning C4251: 'Break::Physics::RopeJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::RopeJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(29): warning C4251: 'Break::Physics::WeldJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WeldJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(32): warning C4251: 'Break::Physics::WeldJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WeldJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(91): warning C4251: 'Break::Physics::WeldJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(92): warning C4251: 'Break::Physics::WeldJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(95): warning C4251: 'Break::Physics::WeldJoint::m_impulse' : struct 'glm::detail::tvec3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(100): warning C4251: 'Break::Physics::WeldJoint::m_rA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(101): warning C4251: 'Break::Physics::WeldJoint::m_rB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(102): warning C4251: 'Break::Physics::WeldJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(103): warning C4251: 'Break::Physics::WeldJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WeldJoint.hpp(108): warning C4251: 'Break::Physics::WeldJoint::m_mass' : struct 'glm::detail::tmat3x3<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WeldJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(35): warning C4251: 'Break::Physics::WheelJointDef::localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WheelJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(38): warning C4251: 'Break::Physics::WheelJointDef::localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WheelJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(41): warning C4251: 'Break::Physics::WheelJointDef::localAxisA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WheelJointDef'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(131): warning C4251: 'Break::Physics::WheelJoint::m_localAnchorA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(132): warning C4251: 'Break::Physics::WheelJoint::m_localAnchorB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(133): warning C4251: 'Break::Physics::WheelJoint::m_localXAxisA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(134): warning C4251: 'Break::Physics::WheelJoint::m_localYAxisA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(147): warning C4251: 'Break::Physics::WheelJoint::m_localCenterA' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(148): warning C4251: 'Break::Physics::WheelJoint::m_localCenterB' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(154): warning C4251: 'Break::Physics::WheelJoint::m_ax' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\physics\inc\WheelJoint.hpp(154): warning C4251: 'Break::Physics::WheelJoint::m_ay' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Physics::WheelJoint'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\TestApplication.hpp(435): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(438): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(441): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(444): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(469): warning C4244: 'argument' : conversion from 'Break::real64' to 'Break::real32', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(490): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(494): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(497): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(500): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(505): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(507): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(511): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(513): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
      1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\memory(873): warning C4244: 'argument' : conversion from '__int64' to 'Break::u32', possible loss of data
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(_V0_t &&)' being compiled
                  with
@@ -307,13 +1272,24 @@
                      _Ty=Break::Infrastructure::RAMBuffer,
                      _V0_t=__int64
                  ]
+     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstring(1810): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::Image>(std::string)'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Image
+                 ]
+     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstring(1810): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::SoundEffect>(std::string)'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::SoundEffect
+                 ]
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break.lib" /MACHINE:X86 /SAFESEH obj\Release\main.obj
          "H:\Projects\Break-0.1\bin\Release\Break_Infrastructure.lib"
+         "H:\Projects\Break-0.1\bin\Release\Break_Physics.lib"
          "H:\Projects\Break-0.1\bin\Release\Break_Graphics.lib"
          Break.vcxproj -> H:\Projects\Break-0.1\build\..\bin\Release\Break.exe
      1>Done Building Project "H:\Projects\Break-0.1\build\Break.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.80
+Time Elapsed 00:00:04.00

@@ -57,15 +57,15 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;deps\portaudio_vs2012\inc;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;portaudio_static_x86.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;deps\portaudio_vs2012\lib\release;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug\Break_Infrastructure.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -74,7 +74,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;deps\glm\include;deps\glew-1.10.0\include;deps\glfw-3.1.bin.WIN32\include;deps\freeimage;deps\portaudio_vs2012\inc;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -86,8 +86,8 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32.lib;OPENGL32.lib;FreeImage.lib;portaudio_static_x86.lib;d3d11.lib;dxgi.lib;d3dcompiler.lib;gdi32.lib;dsound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\glew-1.10.0\lib\Release\Win32;deps\freeimage;deps\portaudio_vs2012\lib\release;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86;deps\glfw-3.1.bin.WIN32\lib-vc2012;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release\Break_Infrastructure.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -97,7 +97,6 @@
     <ClInclude Include="inc\Argument.hpp" />
     <ClInclude Include="inc\Asset.hpp" />
     <ClInclude Include="inc\AssetManager.hpp" />
-    <ClInclude Include="inc\Directory.hpp" />
     <ClInclude Include="inc\DXBufferHandle.hpp" />
     <ClInclude Include="inc\DXDevice.hpp" />
     <ClInclude Include="inc\DXKeyboard.hpp" />
@@ -105,6 +104,7 @@
     <ClInclude Include="inc\DXSamplerHandle.hpp" />
     <ClInclude Include="inc\DXShaderHandle.hpp" />
     <ClInclude Include="inc\DXTexture2DHandle.hpp" />
+    <ClInclude Include="inc\Directory.hpp" />
     <ClInclude Include="inc\Engine.hpp" />
     <ClInclude Include="inc\File.hpp" />
     <ClInclude Include="inc\GLDevice.hpp" />
@@ -129,6 +129,7 @@
     <ClInclude Include="inc\Infrastructure.hpp" />
     <ClInclude Include="inc\InputDevice.hpp" />
     <ClInclude Include="inc\Keyboard.hpp" />
+    <ClInclude Include="inc\MathUtils.hpp" />
     <ClInclude Include="inc\MemoryElement.hpp" />
     <ClInclude Include="inc\MemoryLayout.hpp" />
     <ClInclude Include="inc\Mouse.hpp" />
@@ -137,11 +138,14 @@
     <ClInclude Include="inc\Pixel.hpp" />
     <ClInclude Include="inc\Primitive.hpp" />
     <ClInclude Include="inc\RAMBuffer.hpp" />
+    <ClInclude Include="inc\Rect.hpp" />
     <ClInclude Include="inc\ResourceLoader.hpp" />
+    <ClInclude Include="inc\RingCursor.hpp" />
     <ClInclude Include="inc\SamplerState.hpp" />
     <ClInclude Include="inc\ServiceException.hpp" />
     <ClInclude Include="inc\Services.hpp" />
     <ClInclude Include="inc\SoundDevice.hpp" />
+    <ClInclude Include="inc\SoundEffect.hpp" />
     <ClInclude Include="inc\Texture.hpp" />
     <ClInclude Include="inc\Texture2D.hpp" />
     <ClInclude Include="inc\TimeManager.hpp" />
@@ -157,12 +161,12 @@
     <ClInclude Include="inc\Window.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Directory.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\AssetManager.cpp" />
     <ClCompile Include="src\DXDevice.cpp" />
     <ClCompile Include="src\DXKeyboard.cpp" />
     <ClCompile Include="src\DXMouse.cpp" />
+    <ClCompile Include="src\Directory.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\File.cpp" />
     <ClCompile Include="src\GLDevice.cpp" />
@@ -174,13 +178,17 @@
     <ClCompile Include="src\IGXDevice.cpp" />
     <ClCompile Include="src\Image.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\MathUtils.cpp" />
     <ClCompile Include="src\MemoryLayout.cpp" />
     <ClCompile Include="src\Mouse.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\RAMBuffer.cpp" />
+    <ClCompile Include="src\Rect.cpp" />
     <ClCompile Include="src\ResourceLoader.cpp" />
     <ClCompile Include="src\SamplerState.cpp" />
     <ClCompile Include="src\Services.cpp" />
+    <ClCompile Include="src\SoundDevice.cpp" />
+    <ClCompile Include="src\SoundEffect.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\Texture2D.cpp" />
     <ClCompile Include="src\TimeManager.cpp" />

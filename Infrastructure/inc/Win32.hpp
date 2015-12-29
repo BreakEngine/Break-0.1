@@ -12,81 +12,75 @@
 #include "OS.hpp"
 #include "Window.hpp"
 #include <windows.h>
-#include <dsound.h>
-#include <string>
+#include <portaudio.h>
 
 namespace Break{
+    namespace Infrastructure {
+        class BREAK_API Win32: public OS{
 
-	namespace Infrastructure {
-	
-		class BREAK_API Win32: public OS{
+            static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-			static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+			static int patestCallback(const void* inputBuffer, void* outputBuffer,
+				unsigned long framesPerBuffer,
+				const PaStreamCallbackTimeInfo* timeInfo,
+				PaStreamCallbackFlags statusFlags,
+				void* userData);
 
-			GetAudioCallback m_pullAudio;
-		
-			LPDIRECTSOUND m_DSoundDevice;
-			
-			LPDIRECTSOUNDBUFFER m_DSoundBuffer;
-			
-			SoundDevice* m_soundDevice;
-	
-		public:
+  			GetAudioCallback m_pullAudio;
 
-			Win32();
+			PaStream* stream;
+            public:
 
-			~Win32();
+            Win32();
 
-			WindowPtr createWindow(const u32 width, const u32 height, const std::string &title) override;
+            ~Win32();
 
-			real64 getTime() override;
+            WindowPtr createWindow(const u32 width, const u32 height, const std::string &title) override;
 
-			//Sound
+            real64 getTime() override;
 
-			void initSound(Window* win, AudioFormat format) override;
+  			void initSound(AudioFormat format) override;
 
-			void pullSound(AudioFormat format) override;
+  			bool fileExists(const std::string& fileName) override;
 
-			void setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr) override;
-			
-		
-			// File
+  			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
 
+  			void* createFile(const std::string& fileName, const AccessPermission permission) override;
 
-			bool fileExists(const std::string& fileName) override;
+  			std::string getAbsolutePath(const std::string& fileName) override;
 
-			void* openFile(const std::string& fileName, const AccessPermission permission, u64& out_size) override;
+  			bool readFile(void* handle, void* buffer, u32 buffer_size) override;
 
-			void* createFile(const std::string& fileName, const AccessPermission permission) override;
+            bool writeFile(void* handle, void* buffer, u32 buffer_size) override;
 
-			std::string getAbsolutePath(const std::string& fileName) override;
+  			void closeFile(void* handle) override;
 
-			bool readFile(const void* handle, void* buffer, u32 buffer_size) override;
+  			void* getNativeWindowHandle(Window* win) override;
 
-			void closeFile(const void* handle) override;
+  			void setPullAudioCallback(GetAudioCallback function) override;
 
-			void moveFile(std::string currentLocation, std::string newLocation) override;
+            bool copyFile(const std::string& path, const std::string& newPath,
+                bool overwriteFlag) override;
 
-			void renameFile(std::string fileName, std::string newName) override;
+            bool moveFile(const std::string& path, const std::string& newPath) override;
 
-			void* getNativeWindowHandle(Window* win) override;
+            bool renameFile(const std::string& path, const std::string& newPath) override;
 
-			void  makeCopy(std::string fileName, std::string copyName, bool overWrite ) override;
+            bool deleteFile(const std::string& path) override;
 
-			void writeInFile(void* fileHanlde, byte* writeBuffer, u32 writeAmount) override;
+            bool changeDirectory(const std::string& newPath) override;
 
-			// Directory 
+            bool directoryExists(const std::string& path) override;
 
+            bool createDirectory(const std::string& path) override;
 
-			void* creatDirectoryFolder(std::string name, std::string path) override ;
+            std::string getCurrentDirectory() override;
 
-			bool Exists(std::string path) override ;
+            std::vector<std::string> listDirContents() override;
 
-			bool changeCurrentDirectory(std::string newPath) override ;
-
-			void ListDirectoryContents(std::vector<string> &out, std::string path) override;
-		};
-	}
+            bool deleteDirectory(const std::string& path) override;
+        };
+    }
 }
 
 #endif //windows if

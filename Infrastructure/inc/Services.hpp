@@ -21,7 +21,7 @@ namespace Break{
         static Infrastructure::IGXDevice* m_graphicsDevice;
         static Infrastructure::GPU_VM* m_GPU_VM;
         static Infrastructure::AssetManager* m_assetManager;
-		static Infrastructure::SoundDevice* m_soundDevice;
+		static Infrastructure::ISoundDevice* m_soundDevice;
 
         static void
         registerEngine(Infrastructure::Engine* val);
@@ -33,8 +33,8 @@ namespace Break{
         static void registerGPU_VM(Infrastructure::GPU_VM* val);
 
         static void registerAssetManager(Infrastructure::AssetManager* val);
-		
-		static void registerSoundDevice(Infrastructure::SoundDevice* val);
+
+		static void registerSoundDevice(Infrastructure::ISoundDevice* val);
     public:
 
         static Infrastructure::Engine* getEngine();
@@ -47,7 +47,7 @@ namespace Break{
 
         static Infrastructure::AssetManager* getAssetManager();
 
-		static Infrastructure::SoundDevice* getSoundDevice();
+		static Infrastructure::ISoundDevice* getSoundDevice();
     };
 }
 #endif //BREAK_0_1_SERVICES_HPP

@@ -22,212 +22,184 @@ using namespace Break;
 using namespace Break::Infrastructure;
 
 Win32::Win32(){
-	m_DSoundDevice = nullptr;
-	m_DSoundBuffer = nullptr;
+	stream = nullptr;
 	m_pullAudio = nullptr;
-	m_soundDevice = nullptr;
 }
 
 Win32::~Win32(){
-	m_DSoundDevice->Release();
-	m_DSoundDevice = nullptr;
-	m_DSoundBuffer->Release();
-	m_DSoundBuffer = nullptr;
-	m_soundDevice = nullptr;
+	auto err = Pa_StopStream(stream);
+	if(err != paNoError)
+		throw ServiceException("OS can't stop stream");
+	err = Pa_CloseStream(stream);
+	if(err != paNoError)
+		throw ServiceException("OS can't close stream");
+	Pa_Terminate();
+	stream = nullptr;
+	m_pullAudio = nullptr;
 }
 
 LRESULT Win32::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam){
-	switch(message)
-	{
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		return 0;
-		//break;
-	case WM_KEYDOWN:
-		DXKeyboard::keyboardDown(wParam);
-		break;
-	case WM_KEYUP:
-		DXKeyboard::keyboardUp(wParam);
-		break;
-	case WM_LBUTTONDOWN:
-		DXMouse::mouseButton(0,0);
-		break;
-	case WM_LBUTTONUP:
-		DXMouse::mouseButton(0,1);
-		break;
-	case WM_RBUTTONDOWN:
-		DXMouse::mouseButton(2,0);
-		break;
-	case WM_RBUTTONUP:
-		DXMouse::mouseButton(2,1);
-		break;
-	case WM_MBUTTONDOWN:
-		DXMouse::mouseButton(1,0);
-		break;
-	case WM_MBUTTONUP:
-		DXMouse::mouseButton(1,1);
-		break;
-	case WM_MOUSEMOVE:
-		DXMouse::mouseMove(GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
-		break;
-	}
+    switch(message)
+    {
+        case WM_DESTROY:
+            PostQuitMessage(0);
+            return 0;
+        //break;
+        case WM_KEYDOWN:
+            DXKeyboard::keyboardDown(wParam);
+            break;
+        case WM_KEYUP:
+            DXKeyboard::keyboardUp(wParam);
+            break;
+        case WM_LBUTTONDOWN:
+            DXMouse::mouseButton(0,0);
+            break;
+        case WM_LBUTTONUP:
+            DXMouse::mouseButton(0,1);
+            break;
+        case WM_RBUTTONDOWN:
+            DXMouse::mouseButton(2,0);
+            break;
+        case WM_RBUTTONUP:
+            DXMouse::mouseButton(2,1);
+            break;
+        case WM_MBUTTONDOWN:
+            DXMouse::mouseButton(1,0);
+            break;
+        case WM_MBUTTONUP:
+            DXMouse::mouseButton(1,1);
+            break;
+        case WM_MOUSEMOVE:
+            DXMouse::mouseMove(GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
+            break;
+    }
 
-	return DefWindowProc (hWnd, message, wParam, lParam);
+    return DefWindowProc (hWnd, message, wParam, lParam);
 }
 
 WindowPtr Win32::createWindow(const u32 width, const u32 height, const std::string &title)
 {
-	auto ret = std::make_shared<Window>();
-	HWND hWnd;
-	WNDCLASSEXA wc;
+    auto ret = std::make_shared<Window>();
+    HWND hWnd;
+    WNDCLASSEXA wc;
 
-	ZeroMemory(&wc, sizeof(WNDCLASSEX));
+    ZeroMemory(&wc, sizeof(WNDCLASSEX));
 
-	wc.cbSize = sizeof(WNDCLASSEX);
-	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = &Win32::WindowProc;
-	wc.hInstance = NULL;
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
-	wc.lpszClassName = "WindowClass1";
+    wc.cbSize = sizeof(WNDCLASSEX);
+    wc.style = CS_HREDRAW | CS_VREDRAW;
+    wc.lpfnWndProc = &Win32::WindowProc;
+    wc.hInstance = NULL;
+    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
+    wc.lpszClassName = "WindowClass1";
 
-	RegisterClassExA(&wc);
+    RegisterClassExA(&wc);
 
-	RECT wr = { 0, 0, (LONG)width, (LONG)height };    // set the size, but not the position
-	AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);    // adjust the size
+    RECT wr = { 0, 0, (LONG)width, (LONG)height };    // set the size, but not the position
+    AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);    // adjust the size
 
-	hWnd = CreateWindowExA(NULL,
-		"WindowClass1",
-		title.c_str(),
-		WS_OVERLAPPEDWINDOW,
-		100,
-		100,
-		wr.right - wr.left,
-		wr.bottom - wr.top,
-		NULL,
-		NULL,
-		NULL,
-		NULL);
-	ShowWindow(hWnd, SW_SHOW);
+    hWnd = CreateWindowExA(NULL,
+                          "WindowClass1",
+                          title.c_str(),
+                          WS_OVERLAPPEDWINDOW,
+                          100,
+                          100,
+                          wr.right - wr.left,
+                          wr.bottom - wr.top,
+                          NULL,
+                          NULL,
+                          NULL,
+                          NULL);
+    ShowWindow(hWnd, SW_SHOW);
 
-	ret->setWidth(width);
-	ret->setHeight(height);
-	ret->setTitle(title);
-	ret->setHandle(hWnd);
+    ret->setWidth(width);
+    ret->setHeight(height);
+    ret->setTitle(title);
+    ret->setHandle(hWnd);
 
-	return ret;
+    return ret;
 }
 
 real64 Win32::getTime(){
-	static bool init = false;
-	static real64 freq;
-	LARGE_INTEGER li;
-	if(!init){
-		if(!QueryPerformanceFrequency((&li)))
-			throw ServiceException("Can't initialize the frequency timer");
-		freq = double(li.QuadPart);
-		init = true;
-	}
+    static bool init = false;
+    static real64 freq;
+    LARGE_INTEGER li;
+    if(!init){
+        if(!QueryPerformanceFrequency((&li)))
+            throw ServiceException("Can't initialize the frequency timer");
+        freq = double(li.QuadPart);
+        init = true;
+    }
 
-	if(!QueryPerformanceCounter((&li))){
-		throw ServiceException("QueryPerformanceCounter can't get the time");
-	}
-	return double(li.QuadPart)/freq;
+    if(!QueryPerformanceCounter((&li))){
+        throw ServiceException("QueryPerformanceCounter can't get the time");
+    }
+    return double(li.QuadPart)/freq;
 }
 
-void Win32::initSound(Window* win, AudioFormat format)
+struct paTestData
 {
-	if(!win)
-		return;
+	float sine[64];
+	int left_phase;
+	int right_phase;
+};
+int Win32::patestCallback(const void* inputBuffer, void* outputBuffer,
+				   unsigned long framesPerBuffer,
+				   const PaStreamCallbackTimeInfo* timeInfo,
+				   PaStreamCallbackFlags statusFlags,
+				   void* userData)
+{
+	GetAudioCallback m_pullAudio = static_cast<GetAudioCallback>(userData);
 
-	s32 bufferSize = format.AvgBytePerSec;
+	if(m_pullAudio)
+		m_pullAudio(static_cast<byte*>(outputBuffer),framesPerBuffer,userData);
 
-	if(FAILED(DirectSoundCreate(NULL, &m_DSoundDevice, NULL)))
-		throw ServiceException("Failed to init Directsound");
-
-	HWND window = (HWND) getNativeWindowHandle(win);
-
-	if(FAILED(m_DSoundDevice->SetCooperativeLevel(window, DSSCL_PRIORITY)))
-		throw ServiceException("Failed to set Cooperative Level for Directsound");
-
-	DSBUFFERDESC dsbd;
-	ZeroMemory(&dsbd,sizeof(DSBUFFERDESC));
-	dsbd.dwSize = sizeof(DSBUFFERDESC);
-	dsbd.dwFlags = DSBCAPS_PRIMARYBUFFER;
-	dsbd.dwBufferBytes = 0;
-	dsbd.lpwfxFormat = NULL;
-
-	LPDIRECTSOUNDBUFFER primary_buffer;
-	if(FAILED(m_DSoundDevice->CreateSoundBuffer(&dsbd,&primary_buffer,NULL)))
-		throw ServiceException("Failed to create Directsound's primary buffer");
-
-	WAVEFORMATEX waveFormat;
-	ZeroMemory(&waveFormat,sizeof(WAVEFORMATEX));
-	waveFormat.nSamplesPerSec = format.SamplesPerSec;
-	waveFormat.cbSize = format.Size;
-	waveFormat.nAvgBytesPerSec = format.AvgBytePerSec;
-	waveFormat.nBlockAlign = format.BlockAlign;
-	waveFormat.nChannels = format.Channels;
-	waveFormat.wBitsPerSample = format.BitsPerSample;
-	waveFormat.wFormatTag = WAVE_FORMAT_PCM;
-
-	if(FAILED(primary_buffer->SetFormat(&waveFormat)))
-		throw ServiceException("Failed to set Directsound wave format");
-
-	DSBUFFERDESC secDB;
-	ZeroMemory(&secDB,sizeof(DSBUFFERDESC));
-	secDB.dwSize = sizeof(DSBUFFERDESC);
-	secDB.dwFlags = 0;
-	secDB.dwBufferBytes = bufferSize;
-	secDB.lpwfxFormat = &waveFormat;
-
-	if(FAILED(m_DSoundDevice->CreateSoundBuffer(&secDB,&m_DSoundBuffer,0)))
-		throw ServiceException("Failed to create Directsound's secondary buffer");
-
-	if(FAILED(m_DSoundBuffer->Play(0,0,DSBPLAY_LOOPING)))
-		throw ServiceException("Failed to play Directsound buffer");
+	return paContinue;
 }
-
-void Win32::pullSound(AudioFormat format)
+void Win32::initSound(AudioFormat format)
 {
-	if(!m_pullAudio || !m_soundDevice)
-		return;
+	PaStreamParameters output_parameters;
+	PaError err;
 
-	DWORD PlayCursor, WriteCursor;
+	paTestData* data = new paTestData();
 
-	if(FAILED(m_DSoundBuffer->GetCurrentPosition(&PlayCursor,&WriteCursor)))
-		throw ServiceException("Cannot get Directsound playing position");
-
-	DWORD BytesToLock = format.BlockAlign % format.AvgBytePerSec;
-	DWORD BytesToWrite;
-	if(BytesToLock > PlayCursor)
+	for(int i=0;i<64;i++)
 	{
-		BytesToWrite = format.AvgBytePerSec - BytesToLock;
-		BytesToWrite += PlayCursor;
-	}else{
-		BytesToWrite = PlayCursor - BytesToLock;
+		data->sine[i] = (real32) sinf((real32)i/(real32)64 * 3.145 * 2.0);
 	}
+	data->left_phase = data->right_phase = 0;
+	err = Pa_Initialize();
+	if(err != paNoError)
+		throw ServiceException("Failed to init sound");
 
-	VOID* region1;
-	DWORD region1Size;
-	VOID* region2;
-	DWORD region2Size;
+	output_parameters.device = Pa_GetDefaultOutputDevice();
+	if(output_parameters.device == paNoDevice)
+		throw ServiceException("OS can't find audio device");
 
-	auto res = m_DSoundBuffer->Lock(BytesToLock, BytesToWrite, &region1, &region1Size, &region2, &region2Size,0);
-	if(FAILED(res))
-		throw ServiceException("Failed to lock Directsound buffer write pointer");
+	output_parameters.channelCount = format.Channels;
+	output_parameters.sampleFormat = paInt16;
+	output_parameters.suggestedLatency = Pa_GetDeviceInfo(output_parameters.device)->defaultLowOutputLatency;
+	output_parameters.hostApiSpecificStreamInfo = NULL;
 
-	if(region1Size>0)
-	{
-		m_pullAudio((byte*)region1,region1Size,m_soundDevice);
-	}
+	err = Pa_OpenStream(
+		&stream,
+		NULL,
+		&output_parameters,
+		format.SamplesPerSec,
+		512,
+		paClipOff,
+		patestCallback,
+		m_pullAudio
+		);
 
-	if(region2Size>0)
-	{
-		m_pullAudio((byte*)region2,region2Size,m_soundDevice);
-	}
+	if(err != paNoError)
+		throw ServiceException("OS can't open audio output stream");
 
-	m_DSoundBuffer->Unlock(region1,region1Size,region2,region2Size);
+	err = Pa_StartStream(stream);
+
+	if(err != paNoError)
+		throw ServiceException("OS can't start audio stream");
+
 }
 
 bool Win32::fileExists(const std::string& fileName)
@@ -306,12 +278,10 @@ std::string Win32::getAbsolutePath(const std::string& fileName)
 	}
 }
 
-bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
+bool Win32::readFile(void* handle, void* buffer,u32 buffer_size)
 {
-
 	DWORD actual_read = 0;
-	auto res = ReadFile(const_cast<void*>(handle), buffer, buffer_size, &actual_read, NULL);
-
+	auto res = ReadFile(handle, buffer, buffer_size, &actual_read, NULL);
 	if(actual_read == 0)
 		return false;
 	if(FAILED(res)){
@@ -320,24 +290,20 @@ bool Win32::readFile(const void* handle, void* buffer,u32 buffer_size)
 	return true;
 }
 
-
-void Win32::closeFile(const void* handle)
+bool Win32::writeFile(void* handle, void* buffer, u32 buffer_size)
 {
-	if(!CloseHandle(const_cast<void*>(handle)))
-		throw ServiceException("Cannot Close a file");
+	unsigned long written = 0;
+	bool res = WriteFile(handle, buffer, buffer_size, &written, NULL) != 0;
+	if(!res || written != buffer_size)
+		throw ServiceException("unable to write to file");
 
+	return true;
 }
 
-
-void Win32::renameFile(std::string fileName, std::string newName){
-	if(CopyFile(fileName.c_str(),newName.c_str(),true) == 0){
-
-		throw ServiceException("Faild! Name Already Exist");
-		return;
-	}
-
-	DeleteFile(fileName.c_str());
-	return;
+void Win32::closeFile(void* handle)
+{
+	if(!CloseHandle(static_cast<HANDLE>(handle)))
+		throw ServiceException("Cannot Close a file");
 }
 
 void* Win32::getNativeWindowHandle(Window* win)
@@ -348,127 +314,87 @@ void* Win32::getNativeWindowHandle(Window* win)
 
 	if(Services::getEngine()->getAPI() == API::OpenGL3_3){
 		return glfwGetWin32Window(win->getHandle<GLFWwindow*>());
-	}
-
-	else if(Services::getEngine()->getAPI() == API::DirectX11){
+	}else if(Services::getEngine()->getAPI() == API::DirectX11){
 		return win->getHandle<HWND>();
-	}
-
-	else{
+	}else{
 		return nullptr;
 	}
 }
-void Win32::writeInFile(void* fileHanlde, byte* writeBuffer, u32 writeAmount) {
 
-	bool result = WriteFile(fileHanlde, writeBuffer , writeAmount);
-
-	if(result != true)
-		throw ServiceException("Unable to write");
-}
-
-
-void Win32::makeCopy(std::string fileName, std::string copyName, bool overWrite ){
-
-	CopyFile(fileName.c_str(),copyName.c_str(),!overWrite);
-}
-
-
-void Win32::moveFile(std::string currentLocation, std::string newLocation){
-
-	MoveFile(currentLocation.c_str(),newLocation.c_str());
-}
-
-
-void Win32::setPullAudioCallback(GetAudioCallback function, SoundDevice* this_ptr)
+void Win32::setPullAudioCallback(GetAudioCallback function)
 {
 	m_pullAudio = function;
-	m_soundDevice = this_ptr;
+	//m_soundDevice = this_ptr;
 }
 
-//Directory functions begin
-void* Win32::creatDirectoryFolder(std::string name, std::string path){
-
-	path+='\\';
-	path+=name;
-
-	u32 response = (CreateDirectory(path.c_str(),NULL));
-
-	if(response == ERROR_ALREADY_EXISTS){
-
-		throw ServiceException("File Already Exist");
-	}
-
-	else if(response == ERROR_PATH_NOT_FOUND){
-		throw ServiceException("Invalid Path");
-	}
-
-	bool open = changeCurrentDirectory(path);
-
-	if(open == false)
-		throw ServiceException("Can not open created Folder named :" + name); 
-
-	return (void*)response ;
-}
-bool Win32::Exists(std::string path){
-
-	DWORD directoryType = GetFileAttributesA(path.c_str());
-
-	if (directoryType == INVALID_FILE_ATTRIBUTES){
-		throw ServiceException("Invalid Path");
-		return false;
-	}
-
-	if(directoryType  & FILE_ATTRIBUTE_DIRECTORY)
-		return true;
-
-	return false;
+bool Win32::copyFile(const std::string& path, const std::string& newPath, bool overwriteFlag)
+{
+	return CopyFile(path.c_str(), newPath.c_str(), !overwriteFlag) != 0;
 }
 
-bool Win32::changeCurrentDirectory(std::string newPath){
-
-	DWORD directoryType = GetFileAttributesA(newPath.c_str());
-
-	if (directoryType == INVALID_FILE_ATTRIBUTES){
-		throw ServiceException("Invalid Path");
-		return false;
-	}
-
-	auto response = SetCurrentDirectory(newPath.c_str());
-	if(response != 0)
-		return true;
-
-	return false;
+bool Win32::moveFile(const std::string& path, const std::string& newPath)
+{
+	return MoveFile(path.c_str(), newPath.c_str()) != 0;
 }
 
-void Win32::ListDirectoryContents(std::vector<std::string> &out, std::string path){
+bool Win32::renameFile(const std::string& path, const std::string& newPath)
+{
+	return moveFile(path, newPath);
+}
 
-	if (Exists(path) == false ){ // to be added have permission in subdirectory	
-		throw ServiceException("invalid path");
-		return ;
-	}
+bool Win32::deleteFile(const std::string& path){
+	return DeleteFile(path.c_str()) != 0;
+}
 
+bool Win32::changeDirectory(const std::string& newPath){
+	return SetCurrentDirectory(newPath.c_str()) != 0;
+}
+
+bool Win32::directoryExists(const std::string& path){
+	DWORD ftyp = GetFileAttributesA(path.c_str());
+	if (ftyp == INVALID_FILE_ATTRIBUTES)
+    	return false;  //something is wrong with your path!
+
+  	if (ftyp & FILE_ATTRIBUTE_DIRECTORY)
+    	return true;   // this is a directory!
+
+  	return false;    // this is not a directory!
+}
+
+bool Win32::createDirectory(const std::string& path){
+	return CreateDirectory(path.c_str(), NULL) != 0;
+}
+
+std::string Win32::getCurrentDirectory(){
+	char buffer[2048];
+	u32 len = GetCurrentDirectory(2048,buffer);
+	return std::string(buffer,len);
+}
+
+std::vector<std::string> Win32::listDirContents(){
+	std::vector<std::string> res;
 	HANDLE dir;
 	WIN32_FIND_DATA file_data;
+	std::string path = "*";
+	if((dir = FindFirstFile(path.c_str(), &file_data)) == INVALID_HANDLE_VALUE)
+		return res;
 
-	if ( (dir = FindFirstFile((path + "/*").c_str(), &file_data)) == INVALID_HANDLE_VALUE )// no files here
-		return;
-
-	do {
-		const string file_name = file_data.cFileName;
-
-		const string full_file_name = path + "/" + file_name;
-
+	do{
+		const std::string file_name = file_data.cFileName;
 		const bool is_directory = (file_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
 
-		if ( file_name[0] == '.')
+		if(file_name[0] == '.')
 			continue;
 
-		if ( is_directory )
-			continue;
-
-		out.push_back( full_file_name );
-	} while ( FindNextFile(dir, &file_data) );
+		res.push_back(file_name);
+	}while(FindNextFile(dir, &file_data));
 
 	FindClose(dir);
+	return res;
 }
+
+bool Win32::deleteDirectory(const std::string& path){
+	return RemoveDirectory(path.c_str()) != 0;
+}
+
 #endif

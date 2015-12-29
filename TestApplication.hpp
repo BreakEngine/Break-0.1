@@ -8,9 +8,11 @@
 #include <Graphics.hpp>
 #include <glm/common.hpp>
 #include <fstream>
+#include <Physics.hpp>
 using namespace Break;
 using namespace Break::Infrastructure;
 using namespace Break::Graphics;
+using namespace Break::Physics;
 
 using namespace std;
 
@@ -71,6 +73,27 @@ public:
 	Texture2DPtr tex;
 	SpritePtr sprite;
 	RAMBufferPtr sine;
+	SoundEffectPtr musicEffect;
+	SoundEffectPtr musicEffect2, loadedMusic, loadedMusic2;
+
+	vector<glm::vec2> posii;
+
+	Texture2DPtr p_tex, p_tex2, p_tex3;
+	ImagePtr p_img, p_img2, p_img3;
+
+	World* world;
+
+	Rect statPosition;
+	BoxBody* staticBody;
+
+	vector<BoxBody*> boxBody;
+	Rect BoxPosition;
+
+	vector<CircleBody*> circleBody;
+	Rect circlePosition;
+
+	ChainBody *chain;
+
     TestApplication();
 
     ~TestApplication();
@@ -88,19 +111,47 @@ public:
     void update(TimeStep time) override;
 
     void render() override;
-
+	
+	//adhaam test
+	
+	ShapeBatch* shp;
+	std::vector<Infrastructure::Vertex2DPosColor> v;
 };
 #endif //BREAK_0_1_TESTAPPLICATION_HPP
 
 TestApplication::TestApplication() : Application() {
-    window = std::make_shared<Window>(640,480,"Test");
+    window = std::make_shared<Window>(800,600,"Test");
+	world = nullptr;
 }
 
 TestApplication::~TestApplication() {
     delete sp;
+	delete world;
+	musicEffect = nullptr;
+	musicEffect2 = nullptr;
+	loadedMusic = nullptr;
 }
 
 void TestApplication::init() {
+	world = new World(glm::vec2(0.0,9.18f));
+	statPosition = Rect(0,450,500,50);
+	staticBody = new BoxBody(world, statPosition, false);
+
+	chain = new ChainBody(world, staticBody->Physics);
+
+    FilePtr wr = make_shared<File>();
+	wr->create("KOKOTEST.txt");
+	wr->write("KOKO file is here");
+
+	bool ansD = Directory::Exists("res");
+	auto ansList = Directory::listContents();
+	ansD = Directory::createDirectory("kokoTest");
+	ansD = Directory::changeDirectory("res");
+	ansList = Directory::listContents();
+	ansD = Directory::Delete("../kokoTest");
+	ansD = Directory::changeDirectory("../");
+	auto pwd = Directory::getCurrentDirectory();
+
     sp = new SpriteBatch();
 	sine = make_shared<RAMBuffer>(48000*4);
 
@@ -112,13 +163,23 @@ void TestApplication::init() {
 //	}
 //	Services::getPlatform()->playSound(sine.get());
 	File f,n;
-    File music;
-    music.open("");
+    File music, music2;
+    music.open("res/music/Elipse.wav");
+	music2.open("res/music/my_village.wav");
+    loadedMusic = ResourceLoader::load<SoundEffect>("res/music/Elipse.wav");
+    loadedMusic2 = ResourceLoader::load<SoundEffect>("res/music/village.wav");
+    loadedMusic2->play(true);
+	//loadedMusic->play();
 	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
 
     Break::byte* bufferb = new Break::byte[sizeof(WAVHeader)];
     music.read(sizeof(WAVHeader),bufferb);
+
+	Break::byte* buffer2 = new Break::byte[sizeof(WAVHeader)];
+	music2.read(sizeof(WAVHeader),buffer2);
+
+
 
 	void* buffer = bufferb;
 
@@ -128,6 +189,13 @@ void TestApplication::init() {
     musicHeader->Format = readLittleEndian32(musicHeader->Format);
     musicHeader->subChunck1ID = readLittleEndian32(musicHeader->subChunck1ID);
     musicHeader->SubChunck2ID = readLittleEndian32(musicHeader->SubChunck2ID);
+
+	WAVHeader* musicHeader2 = reinterpret_cast<WAVHeader*>(buffer2);
+    musicHeader2->ChunckID = readLittleEndian32(musicHeader2->ChunckID);
+    musicHeader2->Format = readLittleEndian32(musicHeader2->Format);
+    musicHeader2->subChunck1ID = readLittleEndian32(musicHeader2->subChunck1ID);
+    musicHeader2->SubChunck2ID = readLittleEndian32(musicHeader2->SubChunck2ID);
+
     // musicHeader.ChunckSize = readLittleEndian32(*(buffer+4));
     // musicHeader.Format = *(buffer+8);
     // musicHeader.subChunck1ID = *(buffer+12);
@@ -140,20 +208,44 @@ void TestApplication::init() {
     // musicHeader.BitsPerSample = readLittleEndian16(*(buffer+34));
     // musicHeader.SubChunck2ID = *(buffer+36);
     // musicHeader.SubChunck2Size = readLittleEndian32(*(buffer+40));
+
     Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
     music.read(musicHeader->ChunckSize,music_buffer);
-    SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
-	Services::getSoundDevice()->play(music_buffer,musicHeader->ChunckSize);
+
+	Break::byte* music_buffer2 = new Break::byte[musicHeader2->ChunckSize];
+	memset(music_buffer2,0,musicHeader2->ChunckSize);
+    music2.read(musicHeader2->ChunckSize,music_buffer2);
+    //SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
+	musicEffect = make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
+	musicEffect2 = make_shared<SoundEffect>(music_buffer2,musicHeader2->ChunckSize);
+	musicEffect->setVolume(0.1);
+	//musicEffect2->
+	musicEffect2->setLooping(true);
+	//Services::getSoundDevice()->play(musicEffect);
+	//Services::getSoundDevice()->play(musicEffect2);
+	//musicEffect->play();
+	//musicEffect2->play();
     //soundDevice->play(buffer);
 
 	cout<<f.getSize()<<endl;
 	cout<<f.getName()<<endl;
 	cout<<Services::getPlatform()->getAbsolutePath("res/tex/02.jpg")<<endl;
+	
+
 
     Application::init();
 }
 
 void TestApplication::loadResources() {
+	p_img = ResourceLoader::load<Image>("res/tex/ball.png");
+	p_tex = make_shared<Texture2D>(p_img);
+
+	p_img2 = ResourceLoader::load<Image>("res/tex/ground.png");
+	p_tex2 = make_shared<Texture2D>(p_img2);
+
+	p_img3 = ResourceLoader::load<Image>("res/tex/box.png");
+	p_tex3 = make_shared<Texture2D>(p_img3);
+
     Services::getEngine()->setType(Time::UNLIMITED);
 
     VertexSet<tv> veve(tv::getDeclaration());
@@ -275,7 +367,7 @@ void TestApplication::loadResources() {
     cout<<"HONE"<<endl;
     shader->use();
 
-	ImagePtr img = ResourceLoader::load("res/tex/02.jpg");
+	ImagePtr img = ResourceLoader::load<Image>("res/tex/02.jpg");
 	tex = make_shared<Texture2D>(img);
 	sprite = make_shared<Sprite>(sp,tex);
 	sprite->setPosition(100,100);
@@ -283,6 +375,20 @@ void TestApplication::loadResources() {
 	sprite->setOrigin(50,50);
 	//sprite->setRotation(45);
 
+
+		//
+	shp = new ShapeBatch(nullptr);
+	glm::vec2 va(70,30);
+	glm::vec2 vb(70,70);
+	glm::vec2 vc(30,70);
+	glm::vec2 vd(30,30);
+	glm::vec4 vvv((1,100,200,3));
+	Infrastructure::Vertex2DPosColor a(va, vvv), b(vb,vvv), c(vc, vvv), d(vd, vvv);
+	v.push_back(a);
+	v.push_back(b);
+	v.push_back(c);
+	v.push_back(d);
+	
     Application::loadResources();
 }
 
@@ -298,21 +404,49 @@ void TestApplication::input() {
     auto m_pos = Mouse::getPosition();
     //std::cout<<m_pos.x<<" || "<<m_pos.y<<std::endl;
 
-    if(Mouse::getButton(Mouse::Left_Button) == Mouse::State_Down){
-        std::cout<<"left button Pressed"<<std::endl;
-    }
+    if(Mouse::getButton(Mouse::Left_Button) == Mouse::State_Down)
+	{
+		circlePosition = Rect(m_pos.x,m_pos.y,30,30);
+		circleBody.push_back(new CircleBody(world,circlePosition,15,true));
+	}
 
-    if(Mouse::getButton(Mouse::Left_Button) == Mouse::State_Up){
-        std::cout<<"left button Released"<<std::endl;
-    }
+	if(Mouse::getButton(Mouse::Right_Button) == Mouse::State_Down)
+	{
+		std::cout<<m_pos.x<<" || "<<m_pos.y<<std::endl;
+		BoxPosition = Rect(m_pos.x,m_pos.y,50,50);
+		boxBody.push_back(new BoxBody(world,BoxPosition,true));
+	}
+
+	if(Mouse::getButton(Mouse::Middle_Button) == Mouse::State_Down)
+	{
+		posii.push_back(glm::vec2(m_pos.x,m_pos.y));
+	}
 
     if(Keyboard::getKey(Keyboard::A) == Keyboard::State_Down){
         std::cout<<"A button Pressed"<<std::endl;
     }
 
+	if(Keyboard::getKey(Keyboard::R) == Keyboard::State_Up){
+        cout<<"Total: "<<boxBody.size()+circleBody.size()<<endl;
+		cout<<"Circles: "<<circleBody.size()<<endl;
+		cout<<"Boxes: "<<boxBody.size()<<endl;
+    }
+
     if(Keyboard::getKey(Keyboard::A) == Keyboard::State_Up){
         std::cout<<"A button Released"<<std::endl;
     }
+
+	auto volume = Services::getSoundDevice()->getVolume();
+	if(Keyboard::getKey(Keyboard::Up) == Keyboard::State_Down){
+		volume += 0.1;
+		Services::getSoundDevice()->setVolume(volume);
+	}
+
+	if(Keyboard::getKey(Keyboard::Down) == Keyboard::State_Down && volume > 0)
+	{
+		volume -= 0.1;
+		Services::getSoundDevice()->setVolume(volume);
+	}
 
 	int speed = 4;
     if(Keyboard::getKey(Keyboard::Right) == Keyboard::State_Down)
@@ -329,6 +463,19 @@ void TestApplication::input() {
 	    sprite->move(0,speed);
     }
 
+	if(Keyboard::getKey(Keyboard::Space) == Keyboard::State_Down)
+	{
+		if(musicEffect2->isPlaying())
+			musicEffect2->pause();
+		else
+			musicEffect2->play();
+	}
+
+	if(Keyboard::getKey(Keyboard::S) == Keyboard::State_Down)
+	{
+		musicEffect2->stop();
+	}
+
     if(Keyboard::getKey(Keyboard::Esc) == Keyboard::State_Down){
         shutdown();
     }
@@ -338,12 +485,14 @@ void TestApplication::input() {
 void TestApplication::update(TimeStep tick) {
 	//cout<<tick.delta<<" || "<<tick.elapsedTime<<" || "<<Services::getEngine()->getFPS()<<endl;
 	sprite->rotate(1);
+	world->Step(tick.delta * 5,7,3);
+
     Application::update(tick);
 }
 
 void TestApplication::render() {
-    shader->use();
-    geo->draw();
+   shader->use();
+   geo->draw();
 
     sp->begin();
 	for(int i=0;i<0;i++)
@@ -356,7 +505,40 @@ void TestApplication::render() {
 	sprite->draw();
     //sp->draw(NULL,0,0,1,1,Color(255,255,255,255));
     //sp->draw(NULL,-1,-1,1,1,Color(255,255,255,255));
+
+	for(int i=0;i<posii.size();i++)
+	{
+		//sp->draw(p_tex.get(),Rect(posii[i].x,posii[i].y,p_tex->getWidth(),p_tex->getHeight()),Rect(0,0,p_tex->getWidth(),p_tex->getHeight()),0,glm::vec2(p_tex->getWidth()/2,p_tex->getHeight()/2),Color(255,255,255,255));
+		//sp->draw(tex.get(), posii[i].x,posii[i].y,10,10,Color(255,255,255,255));
+		sp->draw(NULL, posii[i].x,posii[i].y,10,10,Color(100,255,100,255));
+	}
+
+	for(int i =0 ; i < boxBody.size(); ++i)
+	{
+		Rect r = boxBody[i]->GetRect();
+		sp->draw(p_tex3.get(),boxBody[i]->GetRect(),boxBody[i]->GetAngle(),boxBody[i]->GetOrigin(),Color(255,255,255,255));
+	}
+
+
+	//Circles draw..
+    for(int i =0 ; i < circleBody.size(); ++i)
+	{
+		sp->draw(p_tex.get(),circleBody[i]->GetRect(),circleBody[i]->GetAngle(),circleBody[i]->GetOrigin(),Color(255,255,255,255));
+	}
+
+	//chain draw..
+	for(int i =0 ; i < chain->box.size(); ++i)
+	{
+		sp->draw(p_tex3.get(),chain->box[i]->GetRect(),chain->box[i]->GetAngle(),chain->box[i]->GetOrigin(),Color(255,255,255,255));
+	}
+
+	//ground draw..
+	sp->draw(p_tex2.get(), staticBody->GetRect(), 0, glm::vec2(0,0) , Color(255,255,255,255));
+
     sp->end();
 
-    Application::render();
+	shp->Begin();
+	shp->Draw(v);
+	shp->End();
+	Application::render();
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="inc">
@@ -45,7 +45,13 @@
     <ClInclude Include="inc\DXTexture2DHandle.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Directory.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\Engine.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\File.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\GLDevice.hpp">
@@ -114,6 +120,9 @@
     <ClInclude Include="inc\Keyboard.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\MathUtils.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\MemoryElement.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -138,7 +147,13 @@
     <ClInclude Include="inc\RAMBuffer.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Rect.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\ResourceLoader.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\RingCursor.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\SamplerState.hpp">
@@ -151,6 +166,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\SoundDevice.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SoundEffect.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\Texture.hpp">
@@ -166,6 +184,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\UniformBuffer.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Utils.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\Vertex2DPos.hpp">
@@ -189,15 +210,6 @@
     <ClInclude Include="inc\Window.hpp">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\File.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Utils.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Directory.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -215,7 +227,13 @@
     <ClCompile Include="src\DXMouse.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Directory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\Engine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\File.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\GLDevice.cpp">
@@ -245,6 +263,9 @@
     <ClCompile Include="src\Keyboard.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\MathUtils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\MemoryLayout.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -257,6 +278,9 @@
     <ClCompile Include="src\RAMBuffer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Rect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\ResourceLoader.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -264,6 +288,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Services.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundDevice.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundEffect.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Texture.cpp">
@@ -282,12 +312,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Window.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\File.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Directory.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

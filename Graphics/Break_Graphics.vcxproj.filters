@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="inc">
@@ -18,12 +18,6 @@
     <ClInclude Include="inc\Graphics.hpp">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\MathUtils.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Rect.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Sprite.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -33,18 +27,24 @@
     <ClInclude Include="inc\Transform.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeBatch.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Shape.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ShapeBatch.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\MathUtils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rect.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SpriteBatch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Transform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeBatch.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -14,7 +14,8 @@ namespace Break{
         public:
             glm::vec2 position;
             glm::vec4 color;
-
+			Vertex2DPosColor(){
+			};
             explicit Vertex2DPosColor(glm::vec2 pos, glm::vec4 c):position(pos), color(c){}
 
             static MemoryLayout getDescription(){

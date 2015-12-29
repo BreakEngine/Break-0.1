@@ -2,98 +2,81 @@
 #define BREAK_0_1_SOUNDDEVICE_HPP
 
 #include "Globals.hpp"
+#include "SoundEffect.hpp"
+#include <vector>
 
 namespace Break{
 	namespace Infrastructure{
 
 		struct AudioFormat
 		{
-			u16 FormatTag;
 			u16 Channels;
 			u32 SamplesPerSec;
-			u32 AvgBytePerSec;
-			u16 BlockAlign;
-			u16 BitsPerSample;
-			u16 Size;
+			u16 SampleSize;
+
+			AudioFormat()
+			{
+				Channels = 2;
+				SamplesPerSec = 48000;
+				SampleSize = 2;
+			}
 		};
 
-		//struct WAVHeader{};
-		//data
+		typedef void (*GetAudioCallback)(byte*,u32,void*);
 
-
-
-		class BREAK_API SoundDevice;
-		typedef void (*GetAudioCallback)(byte*,u32,SoundDevice*);
-
-		class BREAK_API SoundDevice{
+		class BREAK_API ISoundDevice{
 		public:
-			static void FeedAudio(byte* buffer, u32 buffer_size, SoundDevice* this_ptr)
-			{
-				//printf("%d\n",buffer_size);
-				// static s32 samplesPerSec=  this_ptr->getFormat().SamplesPerSec;
-				// static u32 RunningSampleIndex = 0;
-				// static s32 Hz = 256;
-				// static s32 SquareWavePeriod = samplesPerSec/Hz;
-				//
-				// s16 *SampleOut = (s16*)buffer;
-				// u32 region1SampleCount = buffer_size/this_ptr->m_format.BlockAlign;
-				// for(u32 sampleIndex = 0;
-				// 	sampleIndex < region1SampleCount;
-				// 	++sampleIndex)
-				// {
-				// 	s16 SampleValue = (RunningSampleIndex / (SquareWavePeriod/2))%2 ? 1000: -1000;
-				// 	//cout<<SampleValue<<endl;
-				// 	//printf("%d\n",SampleValue);
-				// 	*SampleOut++ = SampleValue;
-				// 	*SampleOut++ = SampleValue/2;
-				// 	++RunningSampleIndex;
-				// }
+			ISoundDevice();
+			virtual ~ISoundDevice();
 
-				if(!this_ptr->m_buffer || this_ptr->m_bufferOffset >= this_ptr->m_bufferSize)
-					return;
+			virtual void play(SoundEffect* track)=0;
 
-				s16 *SampleOut = (s16*)buffer;
-				u32 region1SampleCount = buffer_size/this_ptr->m_format.BlockAlign;
-				s16* input_buffer = (s16*)(this_ptr->m_buffer);
-				//this_ptr->m_bufferOffset += buffer_size;
-				for(u32 sampleIndex = 0;
-					sampleIndex < region1SampleCount && sampleIndex+this_ptr->m_bufferOffset < this_ptr->m_bufferSize;
-					++sampleIndex )
-				{
-					//cout<<SampleValue<<endl;
-					//printf("%d\n",SampleValue);
-					*SampleOut++ = *input_buffer++;
-					*SampleOut++ = *input_buffer++;
-				}
+			virtual void stop(SoundEffect* track)=0;
 
-			}
+			virtual void setVolume(real64 volume)=0;
+			virtual real64 getVolume()=0;
 
-			SoundDevice(){}
+			virtual void setFormat(AudioFormat format)=0;
+			virtual AudioFormat getFormat()=0;
 
-			virtual ~SoundDevice(){}
+			virtual GetAudioCallback getAudioFeedCallback()=0;
+		};
+		typedef std::shared_ptr<ISoundDevice> ISoundDevicePtr;
 
-			void setFormat(AudioFormat format)
-			{
-				m_format = format;
-			}
+		class BREAK_API Engine;
 
-			AudioFormat getFormat()
-			{
-				return m_format;
-			}
+		class BREAK_API SoundDevice : public ISoundDevice{
+			friend class Engine;
 
-	void play(SoundEffect* track){
-				m_buffer = track->getData();
-				m_bufferOffset = track->getPlayingCursor();
-				m_bufferSize = track->getBufferSize();
-			}
+			static void FeedAudio(byte* buffer, u32 framesPerBuffer, void* userData);
+		public:
 
+			SoundDevice();
+
+			virtual ~SoundDevice();
+
+			void setFormat(AudioFormat format) override;
+
+			AudioFormat getFormat() override;
+
+			void play(SoundEffect* track) override;
+
+			void stop(SoundEffect* track) override;
+
+			void setVolume(real64 volume) override;
+
+			real64 getVolume() override;
+
+			GetAudioCallback getAudioFeedCallback() override;
 		private:
 			AudioFormat m_format;
+			real64 m_volume;
+			std::vector<std::pair<SoundEffect*,bool> > m_sounds;
 
 			byte* m_buffer;
 			u32 m_bufferOffset;
 			u32 m_bufferSize;
+			u32 m_written;
 		};
 		typedef std::shared_ptr<SoundDevice> SoundDevicePtr;
 	}
