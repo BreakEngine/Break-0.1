@@ -9,10 +9,14 @@
 #include "IGXDevice.hpp"
 #include <glm/glm.hpp>
 
+struct GLFWwindow;
+
 namespace Break{
     namespace Infrastructure{
         class BREAK_API GLDevice: public IGXDevice{
         protected:
+
+			static void resizeWindowFunc(GLFWwindow* window, s32 width, s32 height);
             /**
 			 * \brief applys filter to a texture based on our enums
 			 * \param filter filter that will be applied
@@ -47,6 +51,9 @@ namespace Break{
             void clearBuffer() override;
 
             void swapBuffer(Window* window) override;
+
+			void updateViewport(u32 width, u32 height) override;
+
 
             void setCursorPostion(int x, int y) override;
 

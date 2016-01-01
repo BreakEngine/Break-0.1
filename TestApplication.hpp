@@ -70,15 +70,22 @@ public:
     GeometryPtr geo;
     GPUProgramPtr shader;
     SpriteBatch* sp;
+	ShapeBatch* bat;
 	Texture2DPtr tex;
 	SpritePtr sprite;
 	RAMBufferPtr sine;
 	SoundEffectPtr musicEffect;
 	SoundEffectPtr musicEffect2, loadedMusic, loadedMusic2;
 
+	vector<Vertex2DPosColorTex> tri;
+
+	FTRenderer* renderer;
+	FontFacePtr font;
+	Text* txt;
+
 	vector<glm::vec2> posii;
 
-	Texture2DPtr p_tex, p_tex2, p_tex3;
+	Texture2DPtr p_tex, p_tex2, p_tex3, t_tex;
 	ImagePtr p_img, p_img2, p_img3;
 
 	World* world;
@@ -126,9 +133,21 @@ TestApplication::~TestApplication() {
 	musicEffect = nullptr;
 	musicEffect2 = nullptr;
 	loadedMusic = nullptr;
+	font = nullptr;
+	delete txt;
+	delete renderer;
+	delete bat;
 }
 
 void TestApplication::init() {
+	bat = new ShapeBatch();
+	renderer = new FTRenderer();
+	font = ResourceLoader<FontFace>::load("res/fonts/Arial.ttf");
+	txt = new Text(renderer,font,"KoKo WaWa");
+	txt->setText("Break KoKo");
+	txt->size = 24;
+	txt->angle = 30;
+	//txt->color = Color(255,0,0,255);
 	world = new World(glm::vec2(0.0,9.18f));
 	statPosition = Rect(0,450,500,50);
 	staticBody = new BoxBody(world, statPosition, false);
@@ -162,9 +181,9 @@ void TestApplication::init() {
     File music, music2;
     music.open("res/music/Elipse.wav");
 	music2.open("res/music/my_village.wav");
-    loadedMusic = ResourceLoader::load<SoundEffect>("res/music/Elipse.wav");
-    loadedMusic2 = ResourceLoader::load<SoundEffect>("res/music/village.wav");
-    loadedMusic2->play(true);
+    loadedMusic = ResourceLoader<SoundEffect>::load("res/music/Elipse.wav");
+    loadedMusic2 = ResourceLoader<SoundEffect>::load("res/music/village.wav");
+    //loadedMusic2->play(true);
 	//loadedMusic->play();
 	n.create("TEST.txt");
 	f.open("res/tex/02.jpg",AccessPermission::READ);
@@ -231,13 +250,13 @@ void TestApplication::init() {
 }
 
 void TestApplication::loadResources() {
-	p_img = ResourceLoader::load<Image>("res/tex/ball.png");
+	p_img = ResourceLoader<Image>::load("res/tex/ball.png");
 	p_tex = make_shared<Texture2D>(p_img);
 
-	p_img2 = ResourceLoader::load<Image>("res/tex/ground.png");
+	p_img2 = ResourceLoader<Image>::load("res/tex/ground.png");
 	p_tex2 = make_shared<Texture2D>(p_img2);
 
-	p_img3 = ResourceLoader::load<Image>("res/tex/box.png");
+	p_img3 = ResourceLoader<Image>::load("res/tex/box.png");
 	p_tex3 = make_shared<Texture2D>(p_img3);
 
     Services::getEngine()->setType(Time::UNLIMITED);
@@ -361,7 +380,7 @@ void TestApplication::loadResources() {
     cout<<"HONE"<<endl;
     shader->use();
 
-	ImagePtr img = ResourceLoader::load<Image>("res/tex/02.jpg");
+	ImagePtr img = ResourceLoader<Image>::load("res/tex/02.jpg");
 	tex = make_shared<Texture2D>(img);
 	sprite = make_shared<Sprite>(sp,tex);
 	sprite->setPosition(100,100);
@@ -373,6 +392,15 @@ void TestApplication::loadResources() {
 }
 
 void TestApplication::setupScene() {
+	//t_tex = make_shared<Texture2D>(txt->m_image);
+	
+	tri.push_back(Vertex2DPosColorTex(glm::vec2(0,0),Color(255,255,255,255),glm::vec2(0)));
+	tri.push_back(Vertex2DPosColorTex(glm::vec2(100,0),Color(255,255,255,255),glm::vec2(0)));
+	tri.push_back(Vertex2DPosColorTex(glm::vec2(100,100),Color(255,255,255,255),glm::vec2(0)));
+	tri.push_back(Vertex2DPosColorTex(glm::vec2(0,100),Color(255,255,255,255),glm::vec2(0)));
+	tri.push_back(Vertex2DPosColorTex(glm::vec2(200,200),Color(255,255,255,255),glm::vec2(0)));
+	tri.push_back(Vertex2DPosColorTex(glm::vec2(100,200),Color(255,255,255,255),glm::vec2(0)));
+
     Application::setupScene();
 }
 
@@ -471,10 +499,26 @@ void TestApplication::update(TimeStep tick) {
 }
 
 void TestApplication::render() {
+//	renderer->render("Break moka moka");
+//	t_tex->update(renderer->m_image);
+
+
+
+
     shader->use();
     geo->draw();
 
+	bat->begin();
+	bat->draw(tri);
+	bat->end();
+
     sp->begin();
+	for(int i=0;i<10;i++){
+		txt->position = glm::vec2(300,300);
+		txt->angle = rand()%360;
+		txt->draw(sp);
+	}
+
 	for(int i=0;i<0;i++)
 	{
 		sp->draw(NULL,rand()%800,rand()%600,10,10,Color(255,150,150,255));

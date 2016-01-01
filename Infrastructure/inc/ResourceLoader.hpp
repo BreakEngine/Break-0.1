@@ -32,11 +32,30 @@ namespace Break
 		class Image;
 		class SoundEffect;
 
+		template<class T>
 		class BREAK_API ResourceLoader
-		{
+		{		
 		protected:
 
-			static std::shared_ptr<SoundEffect> loadWAV(std::string file);
+//			static std::shared_ptr<SoundEffect> loadWAV(std::string file);
+		public:
+			static std::shared_ptr<T> load(std::string file)
+			{
+				throw ServiceException("Unimplemented resource loader");
+				return nullptr;
+			}
+
+//			
+//			template<>
+//			static std::shared_ptr<Image> load<Image>(std::string file);
+//
+//			template<>
+//			static std::shared_ptr<SoundEffect> load<SoundEffect>(std::string file);
+		};
+
+		/*class BREAK_API ResourceLoader
+		{
+
 		public:
 
 			template<class T>
@@ -51,7 +70,7 @@ namespace Break
 
 			template<>
 			static std::shared_ptr<SoundEffect> load<SoundEffect>(std::string file);
-		};
+		};*/
 	}
 }
 

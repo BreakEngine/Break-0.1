@@ -120,6 +120,17 @@ namespace Break{
              */
             Pixel& getPixel(unsigned int x, unsigned int y=0, unsigned int z=0);
 
+			/**
+             * \brief single pixel setter
+			 * \param pixel pixel value to be set
+             * \param x x index of the image
+             * \param y y index of the image (OPTIONAL, in case of 1D image)
+             * \param z z index of the image (OPTIONAL, in case of 2D image)
+             * \author Moustapha Saad
+             */
+			
+			void setPixel(Pixel& pixel, u32 x, u32 y=0, u32 z= 0);
+
             /**
              * \brief returns a new image object with the same data
              * \author Moustapha Saad

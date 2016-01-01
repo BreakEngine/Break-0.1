@@ -11,7 +11,7 @@ using namespace Break::Graphics;
 int main() {
     cout << "Hello, World!" << endl;
     Engine* engine = Services::getEngine();
-	engine->setup(make_shared<TestApplication>(),API::DirectX11);
+	engine->setup(make_shared<TestApplication>(),API::OpenGL3_3);
     engine->join();
     engine->start();
     //e->setup(NULL,API::OpenGL3_3,NULL);

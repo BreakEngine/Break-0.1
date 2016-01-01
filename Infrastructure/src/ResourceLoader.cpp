@@ -15,7 +15,7 @@ namespace Break
 {
 	namespace Infrastructure
 	{
-		std::shared_ptr<SoundEffect> ResourceLoader::loadWAV(std::string filePath){
+		std::shared_ptr<SoundEffect> loadWAV(std::string filePath){
 			details::WAVHeader* musicHeader;
 			SoundEffectPtr music = nullptr;
 			File file;
@@ -67,7 +67,7 @@ namespace Break
 		}
 
 		template<>
-		ImagePtr ResourceLoader::load<Image>(std::string file)
+		ImagePtr ResourceLoader<Image>::load(std::string file)
 		{
 			FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 
@@ -112,7 +112,7 @@ namespace Break
 		}
 
 		template<>
-		SoundEffectPtr ResourceLoader::load<SoundEffect>(std::string file){
+		SoundEffectPtr ResourceLoader<SoundEffect>::load(std::string file){
 			SoundEffectPtr res = nullptr;
 			vector<char> delimiters(3);
 			delimiters.push_back('.');

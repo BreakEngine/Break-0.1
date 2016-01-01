@@ -118,6 +118,7 @@
     <ClInclude Include="inc\Joint2D.hpp" />
     <ClInclude Include="inc\MotorJoint.hpp" />
     <ClInclude Include="inc\MouseJoint.hpp" />
+    <ClInclude Include="inc\PTimeStep.hpp" />
     <ClInclude Include="inc\Physics.hpp" />
     <ClInclude Include="inc\PhysicsGlobals.hpp" />
     <ClInclude Include="inc\PolygonCircleContact.hpp" />
@@ -125,7 +126,6 @@
     <ClInclude Include="inc\PolygonShape.hpp" />
     <ClInclude Include="inc\PrismaticJoint.hpp" />
     <ClInclude Include="inc\Profile.hpp" />
-    <ClInclude Include="inc\PTimeStep.hpp" />
     <ClInclude Include="inc\PullyJoint.hpp" />
     <ClInclude Include="inc\RevoluteJoint.hpp" />
     <ClInclude Include="inc\RopeJoint.hpp" />

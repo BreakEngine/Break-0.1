@@ -64,7 +64,10 @@ namespace Break{
 
                 ins.args.push(GPU_ISA::GEOMETRY);
                 ins.args.push(m_vertexBuffer->getHandle());
-                ins.args.push(m_indexBuffer->getHandle());
+				if(m_indexBuffer != nullptr)
+					ins.args.push(m_indexBuffer->getHandle());
+				else
+					ins.args.push(NULL);
                 MemoryLayout layout = m_vertexBuffer->getMemoryLayout();
                 ins.args.push(&layout);
                 m_handle = Services::getGPU_VM()->execute(ins);

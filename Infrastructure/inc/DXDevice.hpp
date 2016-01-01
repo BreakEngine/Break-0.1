@@ -17,6 +17,7 @@ namespace Break{
     namespace Infrastructure{
         class BREAK_API DXDevice: public IGXDevice{
         protected:
+			static void resizeWindowFunc(s32 width, s32 height);
 
             ///swap chain to control frame buffer
             IDXGISwapChain* m_swapChain;
@@ -43,6 +44,8 @@ namespace Break{
             unsigned int m_videoCardMemory;
             char m_videoCardDescription[128];
 
+			bool m_inited;
+
 
             //takes element type and returns element DX format
             DXGI_FORMAT getFormat(MemoryElement& element);
@@ -50,6 +53,7 @@ namespace Break{
             D3D11_COMPARISON_FUNC getCompareFunc(CompareFunction func);
             D3D11_FILTER getFilter(TextureFilter filter);
         public:
+			DXDevice();
             ~DXDevice();
 
             void init(Window* window) override;
@@ -61,6 +65,8 @@ namespace Break{
             void swapBuffer(Window* window) override;
 
             void setCursorPostion(int x, int y) override;
+
+			void updateViewport(u32 width, u32 height) override;
 
             virtual GPUHandlePtr vm_createVertexBuffer(GPU_ISA type, u32 size, void* data) override;
 

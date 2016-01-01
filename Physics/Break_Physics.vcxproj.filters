@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="inc">
@@ -99,6 +99,15 @@
     <ClInclude Include="inc\MouseJoint.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\PTimeStep.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Physics.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\PhysicsGlobals.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\PolygonCircleContact.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -111,6 +120,9 @@
     <ClInclude Include="inc\PrismaticJoint.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Profile.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\PullyJoint.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -120,13 +132,22 @@
     <ClInclude Include="inc\RopeJoint.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Rotation2D.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\Shape.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\StackAllocator.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Sweep.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\TimeOfImpact.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Transform2D.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\WeldJoint.hpp">
@@ -139,27 +160,6 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\WorldCallBacks.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Rotation2D.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Transform2D.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Sweep.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Profile.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\PTimeStep.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\PhysicsGlobals.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="inc\Physics.hpp">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

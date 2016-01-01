@@ -67,6 +67,8 @@ namespace Break{
 			 */
             virtual void setCursorPostion(int x, int y) =0;
 
+			virtual void updateViewport(u32 width, u32 height) = 0;
+
             /*!
 			 * \function virtual GPUHandlePtr vm_createVertexBuffer(GPU_ISA type, u32 size, void* data)
 			 *

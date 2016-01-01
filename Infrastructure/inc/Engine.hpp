@@ -167,6 +167,7 @@ namespace Break{
 
 			///sound device pointer
 			std::shared_ptr<ISoundDevice> m_soundDevice;
+
         };
 
     }

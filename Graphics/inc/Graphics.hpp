@@ -10,5 +10,9 @@
 #include "Component.hpp"
 #include "Sprite.hpp"
 #include "SpriteBatch.hpp"
+#include "FTRenderer.hpp"
+#include "FontFace.h"
+#include "Text.h"
+#include "ShapeBatch.h"
 
 #endif //BREAK_0_1_GRAPHICS_HPP

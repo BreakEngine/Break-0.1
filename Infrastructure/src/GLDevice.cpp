@@ -71,6 +71,7 @@ void GLDevice::start(Window* window){
     glfwSetKeyCallback(window->getHandle<GLFWwindow*>(),&GLKeyboard::keyboardFunc);
     glfwSetMouseButtonCallback(window->getHandle<GLFWwindow*>(),&GLMouse::mouseFunc);
     glfwSetCursorPosCallback(window->getHandle<GLFWwindow*>(),&GLMouse::mouseMotion);
+	glfwSetWindowSizeCallback(window->getHandle<GLFWwindow*>(),&GLDevice::resizeWindowFunc);
 
     while(!glfwWindowShouldClose(window->getHandle<GLFWwindow*>())){
         IGXDevice::gameloop();
@@ -90,9 +91,22 @@ void GLDevice::swapBuffer(Window* window){
     glfwSwapBuffers(window->getHandle<GLFWwindow*>());
 }
 
+void GLDevice::updateViewport(u32 width, u32 height)
+{
+	glViewport(0,0,width,height);
+}
+
 void GLDevice::setCursorPostion(int x, int y){
     Window* win = Services::getEngine()->getApplication()->getWindow();
     glfwSetCursorPos(win->getHandle<GLFWwindow*>(),(double)x,(double)y);
+}
+
+void GLDevice::resizeWindowFunc(GLFWwindow* window, s32 width, s32 height)
+{
+	Window* win = Services::getEngine()->getApplication()->getWindow();
+	Services::getGraphicsDevice()->updateViewport(width,height);
+	win->setWidth((u32)width);
+	win->setHeight((u32)height);
 }
 
 void GLDevice::applyFilter2D(TextureFilter filter, bool mipmap,GLenum target)

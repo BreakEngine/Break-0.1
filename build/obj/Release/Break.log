@@ -1,4 +1,4 @@
-﻿Build started 29/11/2015 01:58:22 م.
+﻿Build started 01/01/2016 08:26:08 م.
      1>Project "H:\Projects\Break-0.1\build\Break.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\Infrastructure\inc /I..\Graphics\inc /I..\Physics\inc /I..\deps\glm\include /Zi /nologo /W3 /WX- /Ox /Oi /Oy- /D NDEBUG /D _MBCS /GF /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
@@ -265,6 +265,55 @@
                  [
                      T=float,
                      P=0
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\FTRenderer.hpp(50): warning C4251: 'Break::Graphics::FTRenderer::m_image' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::FTRenderer'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Image
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\Text.h(19): warning C4251: 'Break::Graphics::Text::m_image' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Image
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\Text.h(20): warning C4251: 'Break::Graphics::Text::m_texture' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Texture2D
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\Text.h(22): warning C4251: 'Break::Graphics::Text::m_str' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\Text.h(23): warning C4251: 'Break::Graphics::Text::m_font' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+                 with
+                 [
+                     _Ty=Break::Graphics::FontFace
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\Text.h(31): warning C4251: 'Break::Graphics::Text::origin' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\Text.h(32): warning C4251: 'Break::Graphics::Text::position' : struct 'glm::detail::tvec2<T,P>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\ShapeBatch.h(23): warning C4251: 'Break::Graphics::ShapeBatch::m_vertices' : class 'Break::Infrastructure::VertexSet<T>' needs to have dll-interface to be used by clients of class 'Break::Graphics::ShapeBatch'
+                 with
+                 [
+                     T=Break::Infrastructure::Vertex2DPosColorTex
+                 ]
+     1>h:\projects\break-0.1\graphics\inc\ShapeBatch.h(27): warning C4251: 'Break::Graphics::ShapeBatch::m_geometry' : class 'std::shared_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'Break::Graphics::ShapeBatch'
+                 with
+                 [
+                     _Ty=Break::Infrastructure::Geometry
                  ]
      1>h:\projects\break-0.1\infrastructure\inc\GPUException.hpp(19): warning C4251: 'Break::Infrastructure::GPUException::_msg' : class 'std::basic_string<_Elem,_Traits,_Alloc>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUException'
                  with
@@ -1240,19 +1289,19 @@
                      T=float,
                      P=0
                  ]
-     1>h:\projects\break-0.1\TestApplication.hpp(435): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(438): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(441): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(444): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(469): warning C4244: 'argument' : conversion from 'Break::real64' to 'Break::real32', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(490): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\projects\break-0.1\TestApplication.hpp(494): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(497): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\projects\break-0.1\TestApplication.hpp(500): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(505): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\projects\break-0.1\TestApplication.hpp(507): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>h:\projects\break-0.1\TestApplication.hpp(511): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\projects\break-0.1\TestApplication.hpp(513): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(462): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(465): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(468): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(471): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(496): warning C4244: 'argument' : conversion from 'Break::real64' to 'Break::real32', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(533): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(537): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(540): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(543): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(548): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(550): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>h:\projects\break-0.1\TestApplication.hpp(554): warning C4018: '<' : signed/unsigned mismatch
+     1>h:\projects\break-0.1\TestApplication.hpp(556): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
      1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\memory(873): warning C4244: 'argument' : conversion from '__int64' to 'Break::u32', possible loss of data
                  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(_V0_t &&)' being compiled
                  with
@@ -1272,16 +1321,6 @@
                      _Ty=Break::Infrastructure::RAMBuffer,
                      _V0_t=__int64
                  ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstring(1810): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::Image>(std::string)'
-                 with
-                 [
-                     _Ty=Break::Infrastructure::Image
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstring(1810): warning C4506: no definition for inline function 'std::shared_ptr<_Ty> Break::Infrastructure::ResourceLoader::load<Break::Infrastructure::SoundEffect>(std::string)'
-                 with
-                 [
-                     _Ty=Break::Infrastructure::SoundEffect
-                 ]
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"mainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break.lib" /MACHINE:X86 /SAFESEH obj\Release\main.obj
          "H:\Projects\Break-0.1\bin\Release\Break_Infrastructure.lib"
@@ -1292,4 +1331,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.00
+Time Elapsed 00:00:05.34

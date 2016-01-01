@@ -87,3 +87,12 @@ ImagePtr Image::clone(){
 	memcpy(clone_pixels,m_data,m_size);
     return std::make_shared<Image>(clone_pixels,m_width,m_height,m_depth);
 }
+
+void Image::setPixel(Pixel& pixel, u32 x, u32 y, u32 z)
+{
+	unsigned long ix = x+m_width *(y+m_depth*z);
+    m_data[ix].R = pixel.R;
+	m_data[ix].G = pixel.G;
+	m_data[ix].B = pixel.B;
+	m_data[ix].A = pixel.A;
+}

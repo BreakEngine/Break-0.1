@@ -72,6 +72,12 @@ LRESULT Win32::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case WM_MOUSEMOVE:
             DXMouse::mouseMove(GET_X_LPARAM(lParam),GET_Y_LPARAM(lParam));
             break;
+		case WM_SIZE:
+			Window* win = Services::getEngine()->getApplication()->getWindow();
+			Services::getGraphicsDevice()->updateViewport(LOWORD(lParam), HIWORD(lParam));
+			win->setWidth(LOWORD(lParam));
+			win->setHeight(HIWORD(lParam));
+			break;
     }
 
     return DefWindowProc (hWnd, message, wParam, lParam);
