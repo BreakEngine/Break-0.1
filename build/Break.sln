@@ -1,6 +1,5 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Break", "Break.vcxproj", "{2A8FE90C-96A3-11BE-5F25-B51DCBF80DEF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Break_Graphics", "..\Graphics\Break_Graphics.vcxproj", "{DA361F26-C604-132C-AF98-83529B05EF90}"
@@ -34,8 +33,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

@@ -55,5 +55,6 @@
 #include "Directory.hpp"
 #include "MathUtils.hpp"
 #include "Rect.hpp"
+#include "Block.h"
 
 #endif //BREAK_0_1_INFRASTRUCTURE_HPP

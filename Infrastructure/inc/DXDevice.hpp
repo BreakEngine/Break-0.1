@@ -46,6 +46,7 @@ namespace Break{
 
 			bool m_inited;
 
+			Infrastructure::Color m_clearColor;
 
             //takes element type and returns element DX format
             DXGI_FORMAT getFormat(MemoryElement& element);
@@ -59,6 +60,8 @@ namespace Break{
             void init(Window* window) override;
 
             void start(Window* window) override;
+
+			void setClearColor(Infrastructure::Color color) override;
 
             void clearBuffer() override;
 

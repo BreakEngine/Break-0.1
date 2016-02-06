@@ -1,17 +1,396 @@
-﻿Build started 01/01/2016 08:24:03 م.
-     1>Project "H:\Projects\Break-0.1\Graphics\Break_Graphics.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Debug\Break_Graphics.dll" /INCREMENTAL /NOLOGO /LIBPATH:deps\freetype\lib freetype262d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\Debug\Break_Graphics.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Debug\Break_Graphics.lib" /MACHINE:X86 /DLL obj\Debug\FontFace.obj
-         obj\Debug\FTRenderer.obj
-         obj\Debug\ShapeBatch.obj
-         obj\Debug\SpriteBatch.obj
-         obj\Debug\Text.obj
-         obj\Debug\Transform.obj
-         "H:\Projects\Break-0.1\bin\Debug\Break_Infrastructure.lib"
-            Creating library ..\bin\Debug\Break_Graphics.lib and object ..\bin\Debug\Break_Graphics.exp
-         Break_Graphics.vcxproj -> H:\Projects\Break-0.1\Graphics\..\bin\Debug\Break_Graphics.dll
-     1>Done Building Project "H:\Projects\Break-0.1\Graphics\Break_Graphics.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.83
+﻿  FTRenderer.cpp
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\graphics\inc\ftrenderer.hpp(50): warning C4251: 'Break::Graphics::FTRenderer::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Graphics::FTRenderer'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(90): warning C4018: '<': signed/unsigned mismatch
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(114): warning C4018: '<': signed/unsigned mismatch
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(116): warning C4018: '<': signed/unsigned mismatch
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(147): warning C4018: '<': signed/unsigned mismatch
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(198): warning C4018: '<': signed/unsigned mismatch
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(207): warning C4018: '<': signed/unsigned mismatch
+h:\projects\break-0.1\graphics\src\ftrenderer.cpp(209): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  Text.cpp
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(26): warning C4251: 'Break::Infrastructure::VertexBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::VertexBuffer'
+h:\projects\break-0.1\infrastructure\inc\indexset.hpp(18): warning C4251: 'Break::Infrastructure::IndexSet::m_data': class 'std::vector<Break::u32,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::IndexSet'
+          with
+          [
+              _Ty=Break::u32
+          ]
+h:\projects\break-0.1\infrastructure\inc\indexbuffer.hpp(22): warning C4251: 'Break::Infrastructure::IndexBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::IndexBuffer'
+h:\projects\break-0.1\infrastructure\inc\geometry.hpp(20): warning C4251: 'Break::Infrastructure::Geometry::m_vertexBuffer': class 'std::shared_ptr<Break::Infrastructure::VertexBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Geometry'
+h:\projects\break-0.1\infrastructure\inc\geometry.hpp(21): warning C4251: 'Break::Infrastructure::Geometry::m_indexBuffer': class 'std::shared_ptr<Break::Infrastructure::IndexBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Geometry'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(16): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::position': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(17): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::color': struct 'glm::detail::tvec4<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(18): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::texCoord': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\graphics\inc\spritebatch.hpp(30): warning C4251: 'Break::Graphics::SpriteBatch::m_vertices': class 'Break::Infrastructure::VertexSet<Break::Infrastructure::Vertex2DPosColorTex>' needs to have dll-interface to be used by clients of class 'Break::Graphics::SpriteBatch'
+h:\projects\break-0.1\graphics\inc\spritebatch.hpp(34): warning C4251: 'Break::Graphics::SpriteBatch::m_geometry': class 'std::shared_ptr<Break::Infrastructure::Geometry>' needs to have dll-interface to be used by clients of class 'Break::Graphics::SpriteBatch'
+h:\projects\break-0.1\graphics\inc\text.h(19): warning C4251: 'Break::Graphics::Text::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+h:\projects\break-0.1\graphics\inc\text.h(20): warning C4251: 'Break::Graphics::Text::m_texture': class 'std::shared_ptr<Break::Infrastructure::Texture2D>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+h:\projects\break-0.1\graphics\inc\text.h(22): warning C4251: 'Break::Graphics::Text::m_str': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+h:\projects\break-0.1\graphics\inc\text.h(23): warning C4251: 'Break::Graphics::Text::m_font': class 'std::shared_ptr<Break::Graphics::FontFace>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+h:\projects\break-0.1\graphics\inc\text.h(31): warning C4251: 'Break::Graphics::Text::origin': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+h:\projects\break-0.1\graphics\inc\text.h(32): warning C4251: 'Break::Graphics::Text::position': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Text'
+h:\projects\break-0.1\graphics\inc\ftrenderer.hpp(50): warning C4251: 'Break::Graphics::FTRenderer::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Graphics::FTRenderer'
+h:\projects\break-0.1\graphics\src\text.cpp(82): warning C4244: 'argument': conversion from 'Break::real64' to 'float', possible loss of data
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warning C4244: 'argument': conversion from '__int64' to 'Break::u32', possible loss of data
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(__int64 &&)' being compiled
+          with
+          [
+              _Ty=Break::Infrastructure::RAMBuffer
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(__int64 &&)' being compiled
+          with
+          [
+              _Ty=Break::Infrastructure::RAMBuffer
+          ]
+  h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(104): note: see reference to function template instantiation 'std::shared_ptr<Break::Infrastructure::RAMBuffer> std::make_shared<Break::Infrastructure::RAMBuffer,__int64>(__int64 &&)' being compiled
+  SpriteBatch.cpp
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(26): warning C4251: 'Break::Infrastructure::VertexBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::VertexBuffer'
+h:\projects\break-0.1\infrastructure\inc\indexset.hpp(18): warning C4251: 'Break::Infrastructure::IndexSet::m_data': class 'std::vector<Break::u32,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::IndexSet'
+          with
+          [
+              _Ty=Break::u32
+          ]
+h:\projects\break-0.1\infrastructure\inc\indexbuffer.hpp(22): warning C4251: 'Break::Infrastructure::IndexBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::IndexBuffer'
+h:\projects\break-0.1\infrastructure\inc\geometry.hpp(20): warning C4251: 'Break::Infrastructure::Geometry::m_vertexBuffer': class 'std::shared_ptr<Break::Infrastructure::VertexBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Geometry'
+h:\projects\break-0.1\infrastructure\inc\geometry.hpp(21): warning C4251: 'Break::Infrastructure::Geometry::m_indexBuffer': class 'std::shared_ptr<Break::Infrastructure::IndexBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Geometry'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(16): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::position': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(17): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::color': struct 'glm::detail::tvec4<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(18): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::texCoord': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\graphics\inc\spritebatch.hpp(30): warning C4251: 'Break::Graphics::SpriteBatch::m_vertices': class 'Break::Infrastructure::VertexSet<Break::Infrastructure::Vertex2DPosColorTex>' needs to have dll-interface to be used by clients of class 'Break::Graphics::SpriteBatch'
+h:\projects\break-0.1\graphics\inc\spritebatch.hpp(34): warning C4251: 'Break::Graphics::SpriteBatch::m_geometry': class 'std::shared_ptr<Break::Infrastructure::Geometry>' needs to have dll-interface to be used by clients of class 'Break::Graphics::SpriteBatch'
+h:\projects\break-0.1\infrastructure\inc\mathutils.hpp(85): warning C4244: 'return': conversion from 'glm::length_t' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\graphics\inc\entity.hpp(19): warning C4251: 'Break::Graphics::Entity::m_children': class 'std::vector<std::shared_ptr<Break::Graphics::Entity>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Entity'
+          with
+          [
+              _Ty=std::shared_ptr<Break::Graphics::Entity>
+          ]
+h:\projects\break-0.1\graphics\inc\entity.hpp(22): warning C4251: 'Break::Graphics::Entity::m_components': class 'std::vector<Break::Graphics::ComponentPtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Entity'
+          with
+          [
+              _Ty=Break::Graphics::ComponentPtr
+          ]
+h:\projects\break-0.1\graphics\inc\sprite.hpp(41): warning C4251: 'Break::Graphics::Sprite::texture': class 'std::shared_ptr<Break::Infrastructure::Texture2D>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Sprite'
+h:\projects\break-0.1\graphics\inc\sprite.hpp(50): warning C4251: 'Break::Graphics::Sprite::origin': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Graphics::Sprite'
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warning C4244: 'argument': conversion from '__int64' to 'Break::u32', possible loss of data
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(__int64 &&)' being compiled
+          with
+          [
+              _Ty=Break::Infrastructure::RAMBuffer
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(__int64 &&)' being compiled
+          with
+          [
+              _Ty=Break::Infrastructure::RAMBuffer
+          ]
+  h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(104): note: see reference to function template instantiation 'std::shared_ptr<Break::Infrastructure::RAMBuffer> std::make_shared<Break::Infrastructure::RAMBuffer,__int64>(__int64 &&)' being compiled
+  ShapeBatch.cpp
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(26): warning C4251: 'Break::Infrastructure::VertexBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::VertexBuffer'
+h:\projects\break-0.1\infrastructure\inc\indexset.hpp(18): warning C4251: 'Break::Infrastructure::IndexSet::m_data': class 'std::vector<Break::u32,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::IndexSet'
+          with
+          [
+              _Ty=Break::u32
+          ]
+h:\projects\break-0.1\infrastructure\inc\indexbuffer.hpp(22): warning C4251: 'Break::Infrastructure::IndexBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::IndexBuffer'
+h:\projects\break-0.1\infrastructure\inc\geometry.hpp(20): warning C4251: 'Break::Infrastructure::Geometry::m_vertexBuffer': class 'std::shared_ptr<Break::Infrastructure::VertexBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Geometry'
+h:\projects\break-0.1\infrastructure\inc\geometry.hpp(21): warning C4251: 'Break::Infrastructure::Geometry::m_indexBuffer': class 'std::shared_ptr<Break::Infrastructure::IndexBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Geometry'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(16): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::position': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(17): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::color': struct 'glm::detail::tvec4<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\infrastructure\inc\vertex2dposcolortex.hpp(18): warning C4251: 'Break::Infrastructure::Vertex2DPosColorTex::texCoord': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Vertex2DPosColorTex'
+h:\projects\break-0.1\graphics\inc\shapebatch.h(23): warning C4251: 'Break::Graphics::ShapeBatch::m_vertices': class 'Break::Infrastructure::VertexSet<Break::Infrastructure::Vertex2DPosColorTex>' needs to have dll-interface to be used by clients of class 'Break::Graphics::ShapeBatch'
+h:\projects\break-0.1\graphics\inc\shapebatch.h(27): warning C4251: 'Break::Graphics::ShapeBatch::m_geometry': class 'std::shared_ptr<Break::Infrastructure::Geometry>' needs to have dll-interface to be used by clients of class 'Break::Graphics::ShapeBatch'
+h:\projects\break-0.1\graphics\src\shapebatch.cpp(70): warning C4018: '<': signed/unsigned mismatch
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warning C4244: 'argument': conversion from '__int64' to 'Break::u32', possible loss of data
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(__int64 &&)' being compiled
+          with
+          [
+              _Ty=Break::Infrastructure::RAMBuffer
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<__int64>(__int64 &&)' being compiled
+          with
+          [
+              _Ty=Break::Infrastructure::RAMBuffer
+          ]
+  h:\projects\break-0.1\infrastructure\inc\vertexbuffer.hpp(104): note: see reference to function template instantiation 'std::shared_ptr<Break::Infrastructure::RAMBuffer> std::make_shared<Break::Infrastructure::RAMBuffer,__int64>(__int64 &&)' being compiled
+  Generating Code...
+h:\projects\break-0.1\infrastructure\inc\indexset.hpp(55): warning C4172: returning address of local variable or temporary: x
+h:\projects\break-0.1\infrastructure\inc\indexset.hpp(55): warning C4172: returning address of local variable or temporary: x
+h:\projects\break-0.1\infrastructure\inc\indexset.hpp(55): warning C4172: returning address of local variable or temporary: x
+     Creating library ..\bin\Debug\Break_Graphics.lib and object ..\bin\Debug\Break_Graphics.exp
+  Break_Graphics.vcxproj -> H:\Projects\Break-0.1\Graphics\..\bin\Debug\Break_Graphics.dll

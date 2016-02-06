@@ -35,6 +35,10 @@ namespace Break{
 
             ~Win32();
 
+			Block virtualAllocate(size_t size, void* loc = 0) override;
+
+			void virtualFree(void* ptr, size_t size) override;
+
             WindowPtr createWindow(const u32 width, const u32 height, const std::string &title) override;
 
             real64 getTime() override;

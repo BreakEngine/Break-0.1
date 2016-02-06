@@ -1,55 +1,348 @@
-﻿Build started 01/01/2016 08:24:03 م.
-     1>Project "H:\Projects\Break-0.1\Physics\Break_Physics.vcxproj" on node 3 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Debug\Break_Physics.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\bin\Debug\Break_Physics.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Debug\Break_Physics.lib" /MACHINE:X86 /DLL obj\Debug\BlockAllocator.obj
-         obj\Debug\Body2D.obj
-         obj\Debug\BodyIsland.obj
-         obj\Debug\BoxBody.obj
-         obj\Debug\BroadPhase.obj
-         obj\Debug\ChainCircleContact.obj
-         obj\Debug\ChainPolygonContact.obj
-         obj\Debug\ChainShape.obj
-         obj\Debug\Chains.obj
-         obj\Debug\CircleBody.obj
-         obj\Debug\CircleCollision.obj
-         obj\Debug\CircleContact.obj
-         obj\Debug\CircleShape.obj
-         obj\Debug\Collision.obj
-         obj\Debug\Contact2D.obj
-         obj\Debug\ContactManager.obj
-         obj\Debug\ContactSolver.obj
-         obj\Debug\Distance.obj
-         obj\Debug\DistanceJoint.obj
-         obj\Debug\DynamicTree.obj
-         obj\Debug\EdgeCircleContact.obj
-         obj\Debug\EdgeCollision.obj
-         obj\Debug\EdgePolygonContact.obj
-         obj\Debug\EdgeShape.obj
-         obj\Debug\Fixture.obj
-         obj\Debug\FrictionJoint.obj
-         obj\Debug\GearJoint.obj
-         obj\Debug\Joint2D.obj
-         obj\Debug\MotorJoint.obj
-         obj\Debug\MouseJoint.obj
-         obj\Debug\PolygonCircleContact.obj
-         obj\Debug\PolygonCollision.obj
-         obj\Debug\PolygonContact.obj
-         obj\Debug\PolygonShape.obj
-         obj\Debug\PrismaticJoint.obj
-         obj\Debug\PullyJoint.obj
-         obj\Debug\RevoluteJoint.obj
-         obj\Debug\RopeJoint.obj
-         obj\Debug\StackAllocator.obj
-         obj\Debug\TimeOfImpact.obj
-         obj\Debug\WeldJoint.obj
-         obj\Debug\WheelJoint.obj
-         obj\Debug\World2D.obj
-         obj\Debug\WorldCallBacks.obj
-         "H:\Projects\Break-0.1\bin\Debug\Break_Infrastructure.lib"
-            Creating library ..\bin\Debug\Break_Physics.lib and object ..\bin\Debug\Break_Physics.exp
-         Break_Physics.vcxproj -> H:\Projects\Break-0.1\Physics\..\bin\Debug\Break_Physics.dll
-     1>Done Building Project "H:\Projects\Break-0.1\Physics\Break_Physics.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:01.47
+﻿  BodyIsland.cpp
+h:\projects\break-0.1\infrastructure\inc\mathutils.hpp(85): warning C4244: 'return': conversion from 'glm::length_t' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\inc\transform2d.hpp(30): warning C4251: 'Break::Physics::Transform2D::p': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Transform2D'
+h:\projects\break-0.1\physics\inc\distance.hpp(38): warning C4251: 'Break::Physics::DistanceProxy::m_buffer': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceProxy'
+h:\projects\break-0.1\physics\inc\distance.hpp(69): warning C4251: 'Break::Physics::DistanceOutput::pointA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+h:\projects\break-0.1\physics\inc\distance.hpp(70): warning C4251: 'Break::Physics::DistanceOutput::pointB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+h:\projects\break-0.1\physics\inc\collision.hpp(57): warning C4251: 'Break::Physics::ManifoldPoint::localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ManifoldPoint'
+h:\projects\break-0.1\physics\inc\collision.hpp(91): warning C4251: 'Break::Physics::Manifold::localNormal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(92): warning C4251: 'Break::Physics::Manifold::localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(107): warning C4251: 'Break::Physics::WorldManifold::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(108): warning C4251: 'Break::Physics::WorldManifold::points': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(131): warning C4251: 'Break::Physics::ClipVertex::v': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ClipVertex'
+h:\projects\break-0.1\physics\inc\collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p1': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+h:\projects\break-0.1\physics\inc\collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p2': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+h:\projects\break-0.1\physics\inc\collision.hpp(146): warning C4251: 'Break::Physics::RayCastOutput::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastOutput'
+h:\projects\break-0.1\physics\inc\collision.hpp(203): warning C4251: 'Break::Physics::AABB::lowerBound': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+h:\projects\break-0.1\physics\inc\collision.hpp(204): warning C4251: 'Break::Physics::AABB::upperBound': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+h:\projects\break-0.1\physics\inc\shape.hpp(21): warning C4251: 'Break::Physics::MassData::center': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::MassData'
+h:\projects\break-0.1\physics\inc\sweep.hpp(47): warning C4251: 'Break::Physics::Sweep::localCenter': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c0': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\body2d.hpp(66): warning C4251: 'Break::Physics::BodyDef::position': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::BodyDef'
+h:\projects\break-0.1\physics\inc\body2d.hpp(72): warning C4251: 'Break::Physics::BodyDef::linearVelocity': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::BodyDef'
+h:\projects\break-0.1\physics\inc\body2d.hpp(427): warning C4251: 'Break::Physics::Body::m_linearVelocity': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Body'
+h:\projects\break-0.1\physics\inc\body2d.hpp(430): warning C4251: 'Break::Physics::Body::m_force': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Body'
+h:\projects\break-0.1\physics\inc\profile.hpp(26): warning C4251: 'Break::Physics::Position::c': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Position'
+h:\projects\break-0.1\physics\inc\profile.hpp(33): warning C4251: 'Break::Physics::Velocity::v': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Velocity'
+h:\projects\break-0.1\physics\inc\world2d.hpp(221): warning C4251: 'Break::Physics::World::m_gravity': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::World'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(22): warning C4251: 'Break::Physics::VelocityConstraintPoint::rA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::VelocityConstraintPoint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(23): warning C4251: 'Break::Physics::VelocityConstraintPoint::rB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::VelocityConstraintPoint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(34): warning C4251: 'Break::Physics::ContactVelocityConstraint::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(35): warning C4251: 'Break::Physics::ContactVelocityConstraint::normalMass': struct 'glm::detail::tmat2x2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(36): warning C4251: 'Break::Physics::ContactVelocityConstraint::K': struct 'glm::detail::tmat2x2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+h:\projects\break-0.1\physics\inc\joint2d.hpp(43): warning C4251: 'Break::Physics::Jacobian::linear': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Jacobian'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\physics\src\bodyisland.cpp(174): warning C4244: 'initializing': conversion from 'const Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(243): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(259): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(280): warning C4244: 'initializing': conversion from 'double' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(327): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(336): warning C4244: 'initializing': conversion from 'double' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(336): warning C4244: 'initializing': conversion from 'double' to 'const Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(457): warning C4244: 'initializing': conversion from 'const Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\bodyisland.cpp(478): warning C4244: 'initializing': conversion from 'double' to 'Break::real32', possible loss of data
+  Generating Code...
+  Compiling...
+  World2D.cpp
+h:\projects\break-0.1\infrastructure\inc\mathutils.hpp(85): warning C4244: 'return': conversion from 'glm::length_t' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\inc\transform2d.hpp(30): warning C4251: 'Break::Physics::Transform2D::p': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Transform2D'
+h:\projects\break-0.1\physics\inc\collision.hpp(57): warning C4251: 'Break::Physics::ManifoldPoint::localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ManifoldPoint'
+h:\projects\break-0.1\physics\inc\collision.hpp(91): warning C4251: 'Break::Physics::Manifold::localNormal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(92): warning C4251: 'Break::Physics::Manifold::localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(107): warning C4251: 'Break::Physics::WorldManifold::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(108): warning C4251: 'Break::Physics::WorldManifold::points': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(131): warning C4251: 'Break::Physics::ClipVertex::v': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ClipVertex'
+h:\projects\break-0.1\physics\inc\collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p1': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+h:\projects\break-0.1\physics\inc\collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p2': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+h:\projects\break-0.1\physics\inc\collision.hpp(146): warning C4251: 'Break::Physics::RayCastOutput::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastOutput'
+h:\projects\break-0.1\physics\inc\collision.hpp(203): warning C4251: 'Break::Physics::AABB::lowerBound': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+h:\projects\break-0.1\physics\inc\collision.hpp(204): warning C4251: 'Break::Physics::AABB::upperBound': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+h:\projects\break-0.1\physics\inc\profile.hpp(26): warning C4251: 'Break::Physics::Position::c': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Position'
+h:\projects\break-0.1\physics\inc\profile.hpp(33): warning C4251: 'Break::Physics::Velocity::v': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Velocity'
+h:\projects\break-0.1\physics\inc\world2d.hpp(221): warning C4251: 'Break::Physics::World::m_gravity': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::World'
+h:\projects\break-0.1\physics\inc\shape.hpp(21): warning C4251: 'Break::Physics::MassData::center': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::MassData'
+h:\projects\break-0.1\physics\inc\sweep.hpp(47): warning C4251: 'Break::Physics::Sweep::localCenter': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c0': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\body2d.hpp(66): warning C4251: 'Break::Physics::BodyDef::position': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::BodyDef'
+h:\projects\break-0.1\physics\inc\body2d.hpp(72): warning C4251: 'Break::Physics::BodyDef::linearVelocity': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::BodyDef'
+h:\projects\break-0.1\physics\inc\body2d.hpp(427): warning C4251: 'Break::Physics::Body::m_linearVelocity': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Body'
+h:\projects\break-0.1\physics\inc\body2d.hpp(430): warning C4251: 'Break::Physics::Body::m_force': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Body'
+h:\projects\break-0.1\physics\inc\joint2d.hpp(43): warning C4251: 'Break::Physics::Jacobian::linear': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Jacobian'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(35): warning C4251: 'Break::Physics::PulleyJointDef::groundAnchorA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(38): warning C4251: 'Break::Physics::PulleyJointDef::groundAnchorB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(41): warning C4251: 'Break::Physics::PulleyJointDef::localAnchorA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(44): warning C4251: 'Break::Physics::PulleyJointDef::localAnchorB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::PulleyJointDef'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(109): warning C4251: 'Break::Physics::PulleyJoint::m_groundAnchorA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(110): warning C4251: 'Break::Physics::PulleyJoint::m_groundAnchorB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(115): warning C4251: 'Break::Physics::PulleyJoint::m_localAnchorA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(116): warning C4251: 'Break::Physics::PulleyJoint::m_localAnchorB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(124): warning C4251: 'Break::Physics::PulleyJoint::m_uA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(125): warning C4251: 'Break::Physics::PulleyJoint::m_uB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(126): warning C4251: 'Break::Physics::PulleyJoint::m_rA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(127): warning C4251: 'Break::Physics::PulleyJoint::m_rB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(128): warning C4251: 'Break::Physics::PulleyJoint::m_localCenterA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\pullyjoint.hpp(129): warning C4251: 'Break::Physics::PulleyJoint::m_localCenterB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PulleyJoint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(22): warning C4251: 'Break::Physics::VelocityConstraintPoint::rA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::VelocityConstraintPoint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(23): warning C4251: 'Break::Physics::VelocityConstraintPoint::rB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::VelocityConstraintPoint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(34): warning C4251: 'Break::Physics::ContactVelocityConstraint::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(35): warning C4251: 'Break::Physics::ContactVelocityConstraint::normalMass': struct 'glm::detail::tmat2x2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+h:\projects\break-0.1\physics\inc\contactsolver.hpp(36): warning C4251: 'Break::Physics::ContactVelocityConstraint::K': struct 'glm::detail::tmat2x2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ContactVelocityConstraint'
+h:\projects\break-0.1\physics\inc\circleshape.hpp(46): warning C4251: 'Break::Physics::CircleShape::m_p': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::CircleShape'
+h:\projects\break-0.1\physics\inc\edgeshape.hpp(40): warning C4251: 'Break::Physics::EdgeShape::m_vertex1': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+h:\projects\break-0.1\physics\inc\edgeshape.hpp(40): warning C4251: 'Break::Physics::EdgeShape::m_vertex2': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+h:\projects\break-0.1\physics\inc\edgeshape.hpp(43): warning C4251: 'Break::Physics::EdgeShape::m_vertex0': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+h:\projects\break-0.1\physics\inc\edgeshape.hpp(43): warning C4251: 'Break::Physics::EdgeShape::m_vertex3': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::EdgeShape'
+h:\projects\break-0.1\physics\inc\chainshape.hpp(73): warning C4251: 'Break::Physics::ChainShape::m_prevVertex': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::ChainShape'
+h:\projects\break-0.1\physics\inc\chainshape.hpp(73): warning C4251: 'Break::Physics::ChainShape::m_nextVertex': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::ChainShape'
+h:\projects\break-0.1\physics\inc\polygonshape.hpp(72): warning C4251: 'Break::Physics::PolygonShape::m_centroid': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+h:\projects\break-0.1\physics\inc\polygonshape.hpp(73): warning C4251: 'Break::Physics::PolygonShape::m_vertices': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+h:\projects\break-0.1\physics\inc\polygonshape.hpp(74): warning C4251: 'Break::Physics::PolygonShape::m_normals': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+h:\projects\break-0.1\physics\inc\distance.hpp(38): warning C4251: 'Break::Physics::DistanceProxy::m_buffer': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceProxy'
+h:\projects\break-0.1\physics\inc\distance.hpp(69): warning C4251: 'Break::Physics::DistanceOutput::pointA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+h:\projects\break-0.1\physics\inc\distance.hpp(70): warning C4251: 'Break::Physics::DistanceOutput::pointB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\physics\src\world2d.cpp(555): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\world2d.cpp(841): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\world2d.cpp(914): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\world2d.cpp(922): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\world2d.cpp(930): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\world2d.cpp(945): warning C4244: '=': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+  TimeOfImpact.cpp
+h:\projects\break-0.1\infrastructure\inc\mathutils.hpp(85): warning C4244: 'return': conversion from 'glm::length_t' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\inc\transform2d.hpp(30): warning C4251: 'Break::Physics::Transform2D::p': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Transform2D'
+h:\projects\break-0.1\physics\inc\collision.hpp(57): warning C4251: 'Break::Physics::ManifoldPoint::localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ManifoldPoint'
+h:\projects\break-0.1\physics\inc\collision.hpp(91): warning C4251: 'Break::Physics::Manifold::localNormal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(92): warning C4251: 'Break::Physics::Manifold::localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::Manifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(107): warning C4251: 'Break::Physics::WorldManifold::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(108): warning C4251: 'Break::Physics::WorldManifold::points': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::WorldManifold'
+h:\projects\break-0.1\physics\inc\collision.hpp(131): warning C4251: 'Break::Physics::ClipVertex::v': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::ClipVertex'
+h:\projects\break-0.1\physics\inc\collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p1': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+h:\projects\break-0.1\physics\inc\collision.hpp(138): warning C4251: 'Break::Physics::RayCastInput::p2': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastInput'
+h:\projects\break-0.1\physics\inc\collision.hpp(146): warning C4251: 'Break::Physics::RayCastOutput::normal': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::RayCastOutput'
+h:\projects\break-0.1\physics\inc\collision.hpp(203): warning C4251: 'Break::Physics::AABB::lowerBound': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+h:\projects\break-0.1\physics\inc\collision.hpp(204): warning C4251: 'Break::Physics::AABB::upperBound': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::AABB'
+h:\projects\break-0.1\physics\inc\distance.hpp(38): warning C4251: 'Break::Physics::DistanceProxy::m_buffer': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceProxy'
+h:\projects\break-0.1\physics\inc\distance.hpp(69): warning C4251: 'Break::Physics::DistanceOutput::pointA': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+h:\projects\break-0.1\physics\inc\distance.hpp(70): warning C4251: 'Break::Physics::DistanceOutput::pointB': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::DistanceOutput'
+h:\projects\break-0.1\physics\inc\sweep.hpp(47): warning C4251: 'Break::Physics::Sweep::localCenter': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c0': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\sweep.hpp(48): warning C4251: 'Break::Physics::Sweep::c': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::Sweep'
+h:\projects\break-0.1\physics\inc\shape.hpp(21): warning C4251: 'Break::Physics::MassData::center': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'Break::Physics::MassData'
+h:\projects\break-0.1\physics\inc\circleshape.hpp(46): warning C4251: 'Break::Physics::CircleShape::m_p': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::CircleShape'
+h:\projects\break-0.1\physics\inc\polygonshape.hpp(72): warning C4251: 'Break::Physics::PolygonShape::m_centroid': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+h:\projects\break-0.1\physics\inc\polygonshape.hpp(73): warning C4251: 'Break::Physics::PolygonShape::m_vertices': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+h:\projects\break-0.1\physics\inc\polygonshape.hpp(74): warning C4251: 'Break::Physics::PolygonShape::m_normals': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of class 'Break::Physics::PolygonShape'
+h:\projects\break-0.1\infrastructure\inc\window.hpp(28): warning C4251: 'Break::Infrastructure::Window::m_title': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Window'
+h:\projects\break-0.1\infrastructure\inc\object.hpp(28): warning C4251: 'Break::Object::id': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Object'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(72): warning C4251: 'Break::Infrastructure::SoundDevice::m_format': struct 'Break::Infrastructure::AudioFormat' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+  h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(12): note: see declaration of 'Break::Infrastructure::AudioFormat'
+h:\projects\break-0.1\infrastructure\inc\sounddevice.hpp(74): warning C4251: 'Break::Infrastructure::SoundDevice::m_sounds': class 'std::vector<std::pair<Break::Infrastructure::SoundEffect *,bool>,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::SoundDevice'
+          with
+          [
+              _Ty=std::pair<Break::Infrastructure::SoundEffect *,bool>
+          ]
+h:\projects\break-0.1\infrastructure\inc\file.hpp(22): warning C4251: 'Break::Infrastructure::File::m_path': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\file.hpp(24): warning C4251: 'Break::Infrastructure::File::m_name': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::File'
+h:\projects\break-0.1\infrastructure\inc\memoryelement.hpp(36): warning C4251: 'Break::Infrastructure::MemoryElement::semantic': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryElement'
+h:\projects\break-0.1\infrastructure\inc\memorylayout.hpp(27): warning C4251: 'Break::Infrastructure::MemoryLayout::elements': class 'std::vector<Break::Infrastructure::MemoryElement,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::MemoryLayout'
+          with
+          [
+              _Ty=Break::Infrastructure::MemoryElement
+          ]
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): warning C4275: non dll-interface class 'std::exception' used as base for dll-interface class 'Break::Infrastructure::ServiceException'
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\vcruntime_exception.h(43): note: see declaration of 'std::exception'
+  h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(16): note: see declaration of 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\serviceexception.hpp(19): warning C4251: 'Break::Infrastructure::ServiceException::_msg': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::ServiceException'
+h:\projects\break-0.1\infrastructure\inc\gpuresource.hpp(22): warning C4251: 'Break::Infrastructure::GPUResource::m_handle': class 'std::shared_ptr<Break::Infrastructure::GPUHandle>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUResource'
+h:\projects\break-0.1\infrastructure\inc\application.hpp(19): warning C4251: 'Break::Infrastructure::Application::window': class 'std::shared_ptr<Break::Infrastructure::Window>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Application'
+h:\projects\break-0.1\infrastructure\inc\assetmanager.hpp(19): warning C4251: 'Break::Infrastructure::AssetManager::m_assetTable': class 'std::map<std::string,Break::Infrastructure::AssetPtr,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::AssetManager'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::AssetPtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\uniformbuffer.hpp(21): warning C4251: 'Break::Infrastructure::UniformBuffer::m_buffer': class 'std::shared_ptr<Break::Infrastructure::RAMBuffer>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::UniformBuffer'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(23): warning C4251: 'Break::Infrastructure::uniformRow::m_blockName': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::uniformRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(30): warning C4251: 'Break::Infrastructure::samplersRow::m_state': class 'std::shared_ptr<Break::Infrastructure::SamplerState>' needs to have dll-interface to be used by clients of struct 'Break::Infrastructure::samplersRow'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(44): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformBlocks': class 'std::map<std::string,std::shared_ptr<Break::Infrastructure::UniformBuffer>,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=std::shared_ptr<Break::Infrastructure::UniformBuffer>
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(46): warning C4251: 'Break::Infrastructure::GPUProgram::m_uniformsTable': class 'std::map<std::string,Break::Infrastructure::uniformRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::uniformRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(48): warning C4251: 'Break::Infrastructure::GPUProgram::m_samplersTable': class 'std::map<std::string,Break::Infrastructure::samplersRow,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+          with
+          [
+              _Kty=std::string,
+              _Ty=Break::Infrastructure::samplersRow
+          ]
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_vs': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\gpuprogram.hpp(51): warning C4251: 'Break::Infrastructure::GPUProgram::m_ps': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUProgram'
+h:\projects\break-0.1\infrastructure\inc\texture.hpp(62): warning C4251: 'Break::Infrastructure::Texture::m_image': class 'std::shared_ptr<Break::Infrastructure::Image>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Texture'
+h:\projects\break-0.1\infrastructure\inc\gpuins.hpp(21): warning C4251: 'Break::Infrastructure::GPUIns::args': class 'std::queue<Break::Infrastructure::Arg,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::GPUIns'
+          with
+          [
+              _Ty=Break::Infrastructure::Arg
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(139): warning C4251: 'Break::Infrastructure::Engine::m_platform': class 'std::shared_ptr<Break::Infrastructure::OS>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(142): warning C4251: 'Break::Infrastructure::Engine::m_device': class 'std::shared_ptr<Break::Infrastructure::IGXDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(145): warning C4251: 'Break::Infrastructure::Engine::m_app': class 'std::shared_ptr<Break::Infrastructure::Application>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(157): warning C4251: 'Break::Infrastructure::Engine::m_inputDevices': class 'std::vector<Break::Infrastructure::InputDevicePtr,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+          with
+          [
+              _Ty=Break::Infrastructure::InputDevicePtr
+          ]
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(163): warning C4251: 'Break::Infrastructure::Engine::m_assetManager': class 'std::shared_ptr<Break::Infrastructure::AssetManager>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(166): warning C4251: 'Break::Infrastructure::Engine::m_GPU_VM': class 'std::shared_ptr<Break::Infrastructure::GPU_VM>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\infrastructure\inc\engine.hpp(169): warning C4251: 'Break::Infrastructure::Engine::m_soundDevice': class 'std::shared_ptr<Break::Infrastructure::ISoundDevice>' needs to have dll-interface to be used by clients of class 'Break::Infrastructure::Engine'
+h:\projects\break-0.1\physics\src\timeofimpact.cpp(233): warning C4251: 'SeparationFunction::m_localPoint': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'SeparationFunction'
+h:\projects\break-0.1\physics\src\timeofimpact.cpp(234): warning C4251: 'SeparationFunction::m_axis': struct 'glm::detail::tvec2<float,0>' needs to have dll-interface to be used by clients of struct 'SeparationFunction'
+h:\projects\break-0.1\physics\src\timeofimpact.cpp(54): warning C4244: 'initializing': conversion from 'glm::length_t' to 'Break::real32', possible loss of data
+h:\projects\break-0.1\physics\src\timeofimpact.cpp(468): warning C4244: 'initializing': conversion from 'Break::real64' to 'Break::real32', possible loss of data
+  Generating Code...
+     Creating library ..\bin\Debug\Break_Physics.lib and object ..\bin\Debug\Break_Physics.exp
+  Break_Physics.vcxproj -> H:\Projects\Break-0.1\Physics\..\bin\Debug\Break_Physics.dll

@@ -16,6 +16,8 @@ namespace Break{
         class BREAK_API GLDevice: public IGXDevice{
         protected:
 
+			Infrastructure::Color m_clearColor;
+
 			static void resizeWindowFunc(GLFWwindow* window, s32 width, s32 height);
             /**
 			 * \brief applys filter to a texture based on our enums
@@ -47,6 +49,8 @@ namespace Break{
             void init(Window* window) override;
 
             void start(Window* window) override;
+
+			void setClearColor(Infrastructure::Color color) override;
 
             void clearBuffer() override;
 

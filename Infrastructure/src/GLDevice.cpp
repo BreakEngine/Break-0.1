@@ -19,6 +19,7 @@ GLDevice::~GLDevice(){
 }
 
 void GLDevice::init(Window* my_window){
+	m_clearColor = Color(0, 0, 0, 0);
     GLFWwindow* window;
     if( !glfwInit() )
     {
@@ -81,6 +82,12 @@ void GLDevice::start(Window* window){
         glfwPollEvents();
         //glfwWaitEvents();
     }
+}
+
+void GLDevice::setClearColor(Infrastructure::Color color) {
+	m_clearColor = color;
+	glm::vec4 c = color;
+	glClearColor(c.r, c.g, c.b, c.a);
 }
 
 void GLDevice::clearBuffer(){

@@ -83,6 +83,18 @@ LRESULT Win32::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc (hWnd, message, wParam, lParam);
 }
 
+Block Win32::virtualAllocate(size_t size, void* loc) {
+	Block res;
+	res.ptr = static_cast<byte*>(VirtualAlloc(loc, size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE));
+	res.size = size;
+	return res;
+}
+
+void Win32::virtualFree(void* ptr, size_t size) {
+	VirtualFree(ptr, size, MEM_RELEASE);
+	ptr = nullptr;
+}
+
 WindowPtr Win32::createWindow(const u32 width, const u32 height, const std::string &title)
 {
     auto ret = std::make_shared<Window>();

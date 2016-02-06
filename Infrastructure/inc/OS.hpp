@@ -9,7 +9,9 @@
 #include "Window.hpp"
 #include "SoundDevice.hpp"
 #include "File.hpp"
+#include "Block.h"
 #include <memory>
+
 namespace Break{
     namespace Infrastructure {
 
@@ -22,6 +24,23 @@ namespace Break{
             OS(){}
 
             virtual ~OS(){}
+
+			/**
+			* \brief allocates memory
+			* \param ptr memory pointer
+			* \param size size of memory block to be freed
+			* \return allocated memory block
+			* \author Moustapha Saad
+			*/
+			virtual Block virtualAllocate(size_t size, void* loc = 0) = 0;
+
+			/**
+			* \brief frees memory
+			* \param ptr memory pointer
+			* \param size size of memory block to be freed
+			* \author Moustapha Saad
+			*/
+			virtual void virtualFree(void* ptr, size_t size) = 0;
 
             /**
              * \brief creates a window

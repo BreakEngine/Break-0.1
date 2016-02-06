@@ -574,10 +574,16 @@ D3D11_FILTER DXDevice::getFilter(TextureFilter filter)
 DXDevice::DXDevice()
 {
 	m_inited = false;
+	m_clearColor = Color(0, 0, 0, 0);
+}
+
+void DXDevice::setClearColor(Infrastructure::Color color) {
+	m_clearColor = color;
 }
 
 void DXDevice::clearBuffer() {
-    float c[4] = {0,0,0,0};
+	glm::vec4 cc = m_clearColor;
+    float c[4] = {cc.r,cc.g,cc.b,cc.a};
     m_deviceContext->ClearRenderTargetView(m_renderTargetView,c);
     m_deviceContext->ClearDepthStencilView(m_depthStencilView,D3D11_CLEAR_DEPTH,1.0f,0);
 }

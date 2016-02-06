@@ -44,6 +44,8 @@ namespace Break{
              * \author Moustapha Saad
              */
             virtual void start(Window* window) = 0;
+			
+			virtual void setClearColor(Infrastructure::Color color) = 0;
 
             /**
              * \brief clears buffer of this graphics device
