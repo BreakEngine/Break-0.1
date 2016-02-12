@@ -16,6 +16,7 @@
 #include <ServiceException.hpp>
 #include <iostream>
 #include "SoundDevice.hpp"
+#include "MemoryManager.h"
 using namespace std;
 using namespace Break;
 using namespace Break::Infrastructure;
@@ -32,6 +33,7 @@ Engine::Engine() {
     m_assetManager = nullptr;
     m_GPU_VM = nullptr;
 	m_soundDevice = nullptr;
+	m_memorySize = MEMORY_DEFAULT_SIZE;
 
 	Services::registerSoundDevice(m_soundDevice.get());
     Services::registerPlatform(m_platform.get());
@@ -78,6 +80,8 @@ void Engine::setup(ApplicationPtr app, API api, void *renderer, ISoundDevicePtr 
 
     m_GPU_VM = make_shared<GPU_VM>();
     Services::registerGPU_VM(m_GPU_VM.get());
+	m_memory = std::make_shared<Memory>(m_platform->virtualAllocate(m_memorySize));
+	Services::registerMemory(m_memory.get());
 }
 
 void Engine::start() {

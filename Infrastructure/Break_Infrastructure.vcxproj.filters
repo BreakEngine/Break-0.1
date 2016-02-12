@@ -213,6 +213,9 @@
     <ClInclude Include="inc\Block.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\MemoryManager.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -315,6 +318,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MemoryManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -14,7 +14,7 @@ IGXDevice* Services::m_graphicsDevice = nullptr;
 GPU_VM* Services::m_GPU_VM = nullptr;
 AssetManager* Services::m_assetManager = nullptr;
 ISoundDevice* Services::m_soundDevice = nullptr;
-
+Memory* Services::m_memoryManager = nullptr;
 
 void Services::registerEngine(Infrastructure::Engine *val) {
     if(m_engine)
@@ -65,6 +65,11 @@ void Services::registerSoundDevice(Infrastructure::ISoundDevice* val)
 	m_soundDevice = val;
 }
 
+void Services::registerMemory(Infrastructure::Memory* val)
+{
+	m_memoryManager = val;
+}
+
 Infrastructure::AssetManager* Services::getAssetManager(){
     return m_assetManager;
 }
@@ -72,4 +77,9 @@ Infrastructure::AssetManager* Services::getAssetManager(){
 Infrastructure::ISoundDevice* Services::getSoundDevice()
 {
 	return m_soundDevice;
+}
+
+Infrastructure::Memory* Services::getMemory()
+{
+	return m_memoryManager;
 }

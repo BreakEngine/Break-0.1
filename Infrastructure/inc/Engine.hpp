@@ -22,6 +22,8 @@ namespace Break{
     namespace Infrastructure{
 
 		class SoundDevice;
+		class Memory;
+
         class BREAK_API Engine{
             friend class IGXDevice;
         public:
@@ -118,7 +120,19 @@ namespace Break{
             u32 getFrameLimit(){
                 return m_time._frameLimit;
             }
+
+			void setMemorySize(size_t val)
+            {
+				m_memorySize = val;
+            }
+
+			size_t getMemorySize()
+            {
+				return m_memorySize;
+            }
         private:
+
+			static constexpr size_t MEMORY_DEFAULT_SIZE = MEGABYTE(512);
 
 			void soundTest();
 
@@ -167,6 +181,12 @@ namespace Break{
 
 			///sound device pointer
 			std::shared_ptr<ISoundDevice> m_soundDevice;
+
+			///memoryManager
+			std::shared_ptr<Memory> m_memory;
+
+			//memory size
+			size_t m_memorySize;
 
         };
 

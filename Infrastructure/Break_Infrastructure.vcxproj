@@ -134,6 +134,7 @@
     <ClInclude Include="inc\MathUtils.hpp" />
     <ClInclude Include="inc\MemoryElement.hpp" />
     <ClInclude Include="inc\MemoryLayout.hpp" />
+    <ClInclude Include="inc\MemoryManager.h" />
     <ClInclude Include="inc\Mouse.hpp" />
     <ClInclude Include="inc\OS.hpp" />
     <ClInclude Include="inc\Object.hpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\MathUtils.cpp" />
     <ClCompile Include="src\MemoryLayout.cpp" />
+    <ClCompile Include="src\MemoryManager.cpp" />
     <ClCompile Include="src\Mouse.cpp" />
     <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\RAMBuffer.cpp" />

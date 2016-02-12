@@ -9,6 +9,7 @@
 #include <glm/common.hpp>
 #include <fstream>
 #include <Physics.hpp>
+
 using namespace Break;
 using namespace Break::Infrastructure;
 using namespace Break::Graphics;
@@ -238,8 +239,8 @@ void TestApplication::init() {
 	musicEffect2->setLooping(true);
 	//Services::getSoundDevice()->play(musicEffect);
 	//Services::getSoundDevice()->play(musicEffect2);
-	//musicEffect->play();
-	//musicEffect2->play();
+	musicEffect->play();
+	musicEffect2->play();
     //soundDevice->play(buffer);
 
 	cout<<f.getSize()<<endl;
@@ -391,7 +392,32 @@ void TestApplication::loadResources() {
     Application::loadResources();
 }
 
+struct K
+{
+	int x, y;
+	float a;
+	bool b;
+
+	K(int _x, int _y, float _a, bool _b):x(_x),y(_y),a(_a),b(_b)
+	{
+		std::cout << "PARAMS" << std::endl;
+	}
+
+	K()
+	{
+		std::cout << "NO PARAMS" << std::endl;
+	}
+};
+
 void TestApplication::setupScene() {
+
+	auto A = Services::getMemory()->allocateBlock(100);
+	auto B = Services::getMemory()->allocateBlock(50);
+	auto C = Services::getMemory()->allocateBlock(25);
+
+	Services::getMemory()->deallocateBlock(A);
+	Services::getMemory()->deallocateBlock(B);
+
 	//t_tex = make_shared<Texture2D>(txt->m_image);
 	
 	tri.push_back(Vertex2DPosColorTex(glm::vec2(0,0),Color(255,255,255,255),glm::vec2(0)));

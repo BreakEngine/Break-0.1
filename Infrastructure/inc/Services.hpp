@@ -10,6 +10,7 @@
 #include "IGXDevice.hpp"
 #include "GPU_VM.hpp"
 #include "AssetManager.hpp"
+#include "MemoryManager.h"
 #include "SoundDevice.hpp"
 
 namespace Break{
@@ -22,6 +23,7 @@ namespace Break{
         static Infrastructure::GPU_VM* m_GPU_VM;
         static Infrastructure::AssetManager* m_assetManager;
 		static Infrastructure::ISoundDevice* m_soundDevice;
+		static Infrastructure::Memory* m_memoryManager;
 
         static void
         registerEngine(Infrastructure::Engine* val);
@@ -35,6 +37,8 @@ namespace Break{
         static void registerAssetManager(Infrastructure::AssetManager* val);
 
 		static void registerSoundDevice(Infrastructure::ISoundDevice* val);
+
+		static void registerMemory(Infrastructure::Memory* val);
     public:
 
         static Infrastructure::Engine* getEngine();
@@ -48,6 +52,8 @@ namespace Break{
         static Infrastructure::AssetManager* getAssetManager();
 
 		static Infrastructure::ISoundDevice* getSoundDevice();
+
+		static Infrastructure::Memory* getMemory();
     };
 }
 #endif //BREAK_0_1_SERVICES_HPP

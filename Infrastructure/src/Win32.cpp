@@ -85,8 +85,13 @@ LRESULT Win32::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 Block Win32::virtualAllocate(size_t size, void* loc) {
 	Block res;
+
 	res.ptr = static_cast<byte*>(VirtualAlloc(loc, size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE));
 	res.size = size;
+
+	if (res.ptr == nullptr)
+		throw ServiceException("Unable to allocate virtual memory");
+
 	return res;
 }
 

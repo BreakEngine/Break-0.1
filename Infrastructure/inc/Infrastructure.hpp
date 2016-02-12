@@ -56,5 +56,6 @@
 #include "MathUtils.hpp"
 #include "Rect.hpp"
 #include "Block.h"
+#include "MemoryManager.h"
 
 #endif //BREAK_0_1_INFRASTRUCTURE_HPP
