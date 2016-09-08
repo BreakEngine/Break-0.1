@@ -9,6 +9,7 @@
 #include "Asset.hpp"
 #include "Pixel.hpp"
 #include "RAMBuffer.hpp"
+#include <cstring>
 
 namespace Break{
     namespace Infrastructure{

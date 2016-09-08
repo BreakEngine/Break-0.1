@@ -8,6 +8,7 @@
 #include "Globals.hpp"
 #include "IGXDevice.hpp"
 #include <glm/glm.hpp>
+#include <cstring>
 
 struct GLFWwindow;
 

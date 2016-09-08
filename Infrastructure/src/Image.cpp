@@ -30,7 +30,7 @@ Image::Image(Pixel* data,unsigned int width,unsigned int height/* =1 */, unsigne
     m_depth = depth;
 	m_size = m_width*m_height*m_depth*sizeof(Pixel);
 	m_data = new Pixel[m_size];
-	memcpy(m_data,data,m_size);
+    std::memcpy(m_data,data,m_size);
 }
 
 Image::Image(unsigned int width,unsigned int height/* =1 */, unsigned int depth/* =1 */)
@@ -84,7 +84,7 @@ Pixel& Image::getPixel(unsigned int x,unsigned int y, unsigned int z){
 
 ImagePtr Image::clone(){
 	Pixel* clone_pixels = new Pixel[m_size];
-	memcpy(clone_pixels,m_data,m_size);
+    std::memcpy(clone_pixels,m_data,m_size);
     return std::make_shared<Image>(clone_pixels,m_width,m_height,m_depth);
 }
 

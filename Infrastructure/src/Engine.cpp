@@ -4,14 +4,20 @@
 
 #include "Engine.hpp"
 #include "Services.hpp"
+
+#ifdef OS_WINDOWS
 #include "Win32.hpp"
 #include "DXDevice.hpp"
+#include "DXMouse.hpp"
+#include "DXKeyboard.hpp"
+#elif __linux__
+#include "Linux32.hpp"
+#endif
+
 #include "GLDevice.hpp"
 #include "TimeManager.hpp"
-#include "DXMouse.hpp"
 #include "GLMouse.hpp"
 #include "GLKeyboard.hpp"
-#include "DXKeyboard.hpp"
 #include <memory>
 #include <ServiceException.hpp>
 #include <iostream>
@@ -23,6 +29,8 @@ using namespace Break::Infrastructure;
 Engine::Engine() {
     #ifdef OS_WINDOWS
     m_platform = make_shared<Win32>();
+    #elif __linux__
+    m_platform = make_shared<Linux32>();
     #endif
 
     m_device = nullptr;
@@ -63,10 +71,14 @@ void Engine::setup(ApplicationPtr app, API api, void *renderer, ISoundDevicePtr 
     }
 
     if(api == API::DirectX11){
+        #ifdef OS_WINDOWS
         m_device = make_shared<DXDevice>();
         Services::registerGXDevice(m_device.get());
         m_inputDevices.push_back(make_shared<DXMouse>());
         m_inputDevices.push_back(make_shared<DXKeyboard>());
+        #elif __linux__
+        throw invalid_argument("Can't run directx on Linux");
+        #endif
     }else if(api == API::OpenGL3_3){
         m_device = make_shared<GLDevice>();
         Services::registerGXDevice(m_device.get());
@@ -75,6 +87,7 @@ void Engine::setup(ApplicationPtr app, API api, void *renderer, ISoundDevicePtr 
     }else{
         throw invalid_argument("Unidentified API value");
     }
+
 
     m_GPU_VM = make_shared<GPU_VM>();
     Services::registerGPU_VM(m_GPU_VM.get());
@@ -128,8 +141,8 @@ void Engine::init() {
         Services::getGraphicsDevice()->start(m_app->getWindow());
     }else if(m_api == API::OpenGL3_3){
         Services::getGraphicsDevice()->init(m_app->getWindow());
-		m_platform->setPullAudioCallback(m_soundDevice->getAudioFeedCallback());
-		m_platform->initSound(m_soundDevice->getFormat());
+        //m_platform->setPullAudioCallback(m_soundDevice->getAudioFeedCallback());
+        //m_platform->initSound(m_soundDevice->getFormat());
         m_assetManager = make_shared<AssetManager>();
         Services::registerAssetManager(m_assetManager.get());
         m_app->init();
