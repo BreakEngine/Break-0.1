@@ -109,6 +109,8 @@ void Linux32::setPullAudioCallback(GetAudioCallback function){
 }
 
 bool Linux32::fileExists(const std::string& fileName){
+    if (access( fileName.c_str(), F_OK ) != -1)
+        return true;
     return false;
 }
 

@@ -11,6 +11,7 @@
 #include <string>
 #include "Window.hpp"
 #include <portaudio.h>
+#include <unistd.h>
 
 namespace Break{
 namespace Infrastructure {

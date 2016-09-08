@@ -119,6 +119,7 @@ void TestApplication::init() {
     wr->write("hi");
     wr->close();
     //wr->write("shouldn't be written");
+    cout << File::Exists("/home/adam/test") << endl;
 	bool ansD = Directory::Exists("res");
 	auto ansList = Directory::listContents();
 	ansD = Directory::createDirectory("kokoTest");
