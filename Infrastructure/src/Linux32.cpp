@@ -126,7 +126,13 @@ void* Linux32::createFile(const std::string& fileName, const AccessPermission pe
 }
 
 std::string Linux32::getAbsolutePath(const std::string& fileName){
-    return "";
+    if(fileName[0] == '/')
+        if (this->fileExists(fileName))
+            return fileName;
+        else
+            return nullptr;
+    char* dummy;
+    return std::string( realpath( fileName.c_str(), dummy) );
 }
 
 bool Linux32::readFile(void* handle, void* buffer, u32 buffer_size){
@@ -177,8 +183,11 @@ bool Linux32::changeDirectory(const std::string& newPath){
     return false;
 }
 
-bool Linux32::directoryExists(const std::string& path){
-    return false;
+bool Linux32::directoryExists(const std::string& path)
+{
+    struct stat st;
+    stat(path.c_str(), &st);
+    return S_ISDIR(st.st_mode);
 }
 
 bool Linux32::createDirectory(const std::string& path){
