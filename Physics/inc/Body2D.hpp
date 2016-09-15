@@ -406,8 +406,8 @@ namespace Break
 			Body(const BodyDef* bd, World* world);
 			~Body();
 
-			void SynchronizeFixtures();
-			void SynchronizeTransform2D();
+            void SynchronizeFixtures();
+            void SynchronizeTransform2D();
 
 			// This is used to prevent connected bodies from colliding.
 			// It may lie, depending on the collideConnected flag.

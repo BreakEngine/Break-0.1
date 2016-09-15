@@ -60,7 +60,7 @@ void BroadPhase::BufferMove(s32 proxyId)
 		s32* oldBuffer = m_moveBuffer;
 		m_moveCapacity *= 2;
 		m_moveBuffer = (s32*)malloc(m_moveCapacity * sizeof(s32));
-		memcpy(m_moveBuffer, oldBuffer, m_moveCount * sizeof(s32));
+        memcpy(m_moveBuffer, oldBuffer, m_moveCount * sizeof(s32));
 		free(oldBuffer);
 	}
 
@@ -94,7 +94,7 @@ bool BroadPhase::QueryCallback(s32 proxyId)
 		Pair* oldBuffer = m_pairBuffer;
 		m_pairCapacity *= 2;
 		m_pairBuffer = (Pair*)malloc(m_pairCapacity * sizeof(Pair));
-		memcpy(m_pairBuffer, oldBuffer, m_pairCount * sizeof(Pair));
+        memcpy(m_pairBuffer, oldBuffer, m_pairCount * sizeof(Pair));
 		free(oldBuffer);
 	}
 

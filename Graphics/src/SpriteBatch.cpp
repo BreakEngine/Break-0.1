@@ -74,9 +74,11 @@ void SpriteBatch::begin() {
     auto idmat = glm::mat4(1);
     auto proj = glm::ortho(0.0f,(float)Services::getEngine()->getApplication()->getWindow()->getWidth(),(float)Services::getEngine()->getApplication()->getWindow()->getHeight(),0.0f,-10.0f,10.0f);
 
-    m_shader->setUniform("model", &glm::mat4(1));
-    m_shader->setUniform("view", &glm::mat4(1));
+    glm::mat4* dummy = new glm::mat4(1);
+    m_shader->setUniform("model", dummy);
+    m_shader->setUniform("view", dummy);
     m_shader->setUniform("projection",&proj);
+    delete dummy;
 
     m_shader->use();
 }

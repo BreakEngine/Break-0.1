@@ -3,6 +3,7 @@
 #include "Globals.hpp"
 #include "Collision.hpp"
 #include "DynamicTree.hpp"
+#include <cstring>
 
 namespace Break
 {

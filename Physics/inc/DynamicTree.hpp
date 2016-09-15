@@ -193,11 +193,11 @@ namespace Break
 			glm::vec2 p1 = input.p1;
 			glm::vec2 p2 = input.p2;
 			glm::vec2 r = p2 - p1;
-			assert( MathUtils::LengthSquared(r) > 0.0f);
+            assert( Infrastructure::MathUtils::LengthSquared(r) > 0.0f);
 			r = glm::normalize(r);
 
 			// v is perpendicular to the segment.
-			glm::vec2 v = MathUtils::Cross2(1.0f, r);
+            glm::vec2 v = Infrastructure::MathUtils::Cross2(1.0f, r);
 			glm::vec2 abs_v = glm::abs(v);
 
 			// Separating axis for segment (Gino, p80).
