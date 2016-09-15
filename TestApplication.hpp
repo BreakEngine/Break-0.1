@@ -167,7 +167,7 @@ void TestApplication::init() {
     ansD = Directory::changeDirectory("../");
     auto pwd = Directory::getCurrentDirectory();
 
-//    sp = new SpriteBatch();
+    sp = new SpriteBatch();
 //    sine = make_shared<RAMBuffer>(48000*4);
 
 //	s16* input = (s16*)sine->getData();
