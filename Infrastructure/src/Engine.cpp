@@ -141,8 +141,8 @@ void Engine::init() {
         Services::getGraphicsDevice()->start(m_app->getWindow());
     }else if(m_api == API::OpenGL3_3){
         Services::getGraphicsDevice()->init(m_app->getWindow());
-        m_platform->setPullAudioCallback(m_soundDevice->getAudioFeedCallback());
-        m_platform->initSound(m_soundDevice->getFormat());
+        //m_platform->setPullAudioCallback(m_soundDevice->getAudioFeedCallback());
+        //m_platform->initSound(m_soundDevice->getFormat());
         m_assetManager = make_shared<AssetManager>();
         Services::registerAssetManager(m_assetManager.get());
         m_app->init();

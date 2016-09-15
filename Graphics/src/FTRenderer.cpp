@@ -58,7 +58,7 @@ FTRenderer::FTRenderer():Object("FTRenderer",FTRenderer::Type)
 	m_image = make_shared<Infrastructure::Image>(width,height);
 	FT_Error error = FT_Init_FreeType(&library);
 	if(error)
-		std::cerr<<"CANNOT INIT LIB"<<std::endl;
+        std::cerr<<"Cannot initialize freetype."<<std::endl;
 
 	error = FT_New_Face(library,
 		"res/fonts/Arial.ttf",
@@ -67,13 +67,14 @@ FTRenderer::FTRenderer():Object("FTRenderer",FTRenderer::Type)
 
 	if(error == FT_Err_Unknown_File_Format)
 	{
-		std::cerr<<"File Not Supported"<<std::endl;
+        std::cerr<<"Font file not supported."<<std::endl;
 	}else if(error)
 	{
-		std::cerr<<"ANOTHER ERROR"<<std::endl;
+        std::cerr<<"So"
+                   "mething's wrong with freetype."<<std::endl;
 	}
 
-	error = FT_Set_Char_Size(face,0,16*64,300,300);
+    error = FT_Set_Char_Size(face,0,16*64,300,300);
 //	auto glyph_index = FT_Get_Char_Index(face,'a');
 //	error = FT_Load_Glyph(face,glyph_index,FT_LOAD_DEFAULT);
 //	FT_Render_Glyph(face->glyph,FT_RENDER_MODE_NORMAL);

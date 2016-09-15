@@ -167,8 +167,8 @@ void TestApplication::init() {
     ansD = Directory::changeDirectory("../");
     auto pwd = Directory::getCurrentDirectory();
 
-    sp = new SpriteBatch();
-    sine = make_shared<RAMBuffer>(48000*4);
+//    sp = new SpriteBatch();
+//    sine = make_shared<RAMBuffer>(48000*4);
 
 //	s16* input = (s16*)sine->getData();
 //	for(int i=0;i<48000;i+=2)
@@ -177,39 +177,39 @@ void TestApplication::init() {
 //		input[i+1] = i%2==0?8000:-8000;
 //	}
 //	Services::getPlatform()->playSound(sine.get());
-    File f,n;
-    File music, music2;
-    music.open("res/music/Elipse.wav");
-    music2.open("res/music/my_village.wav");
-    loadedMusic = ResourceLoader<SoundEffect>::load("res/music/Elipse.wav");
-    loadedMusic2 = ResourceLoader<SoundEffect>::load("res/music/village.wav");
-    //loadedMusic2->play(true);
-    //loadedMusic->play();
-    n.create("TEST.txt");
-    f.open("res/tex/02.jpg",AccessPermission::READ);
+//    File f,n;
+//    File music, music2;
+//    music.open("res/music/Elipse.wav");
+//    music2.open("res/music/my_village.wav");
+//    loadedMusic = ResourceLoader<SoundEffect>::load("res/music/Elipse.wav");
+//    loadedMusic2 = ResourceLoader<SoundEffect>::load("res/music/village.wav");
+//    //loadedMusic2->play(true);
+//    //loadedMusic->play();
+//    n.create("TEST.txt");
+//    f.open("res/tex/02.jpg",AccessPermission::READ);
 
-    Break::byte* bufferb = new Break::byte[sizeof(WAVHeader)];
-    music.read(sizeof(WAVHeader),bufferb);
+//    Break::byte* bufferb = new Break::byte[sizeof(WAVHeader)];
+//    music.read(sizeof(WAVHeader),bufferb);
 
-    Break::byte* buffer2 = new Break::byte[sizeof(WAVHeader)];
-    music2.read(sizeof(WAVHeader),buffer2);
+//    Break::byte* buffer2 = new Break::byte[sizeof(WAVHeader)];
+//    music2.read(sizeof(WAVHeader),buffer2);
 
 
 
-    void* buffer = bufferb;
+//    void* buffer = bufferb;
 
-    //Left Right
-    WAVHeader* musicHeader = reinterpret_cast<WAVHeader*>(buffer);
-    musicHeader->ChunckID = readLittleEndian32(musicHeader->ChunckID);
-    musicHeader->Format = readLittleEndian32(musicHeader->Format);
-    musicHeader->subChunck1ID = readLittleEndian32(musicHeader->subChunck1ID);
-    musicHeader->SubChunck2ID = readLittleEndian32(musicHeader->SubChunck2ID);
+//    //Left Right
+//    WAVHeader* musicHeader = reinterpret_cast<WAVHeader*>(buffer);
+//    musicHeader->ChunckID = readLittleEndian32(musicHeader->ChunckID);
+//    musicHeader->Format = readLittleEndian32(musicHeader->Format);
+//    musicHeader->subChunck1ID = readLittleEndian32(musicHeader->subChunck1ID);
+//    musicHeader->SubChunck2ID = readLittleEndian32(musicHeader->SubChunck2ID);
 
-    WAVHeader* musicHeader2 = reinterpret_cast<WAVHeader*>(buffer2);
-    musicHeader2->ChunckID = readLittleEndian32(musicHeader2->ChunckID);
-    musicHeader2->Format = readLittleEndian32(musicHeader2->Format);
-    musicHeader2->subChunck1ID = readLittleEndian32(musicHeader2->subChunck1ID);
-    musicHeader2->SubChunck2ID = readLittleEndian32(musicHeader2->SubChunck2ID);
+//    WAVHeader* musicHeader2 = reinterpret_cast<WAVHeader*>(buffer2);
+//    musicHeader2->ChunckID = readLittleEndian32(musicHeader2->ChunckID);
+//    musicHeader2->Format = readLittleEndian32(musicHeader2->Format);
+//    musicHeader2->subChunck1ID = readLittleEndian32(musicHeader2->subChunck1ID);
+//    musicHeader2->SubChunck2ID = readLittleEndian32(musicHeader2->SubChunck2ID);
 
     // musicHeader.ChunckSize = readLittleEndian32(*(buffer+4));
     // musicHeader.Format = *(buffer+8);
@@ -224,27 +224,28 @@ void TestApplication::init() {
     // musicHeader.SubChunck2ID = *(buffer+36);
     // musicHeader.SubChunck2Size = readLittleEndian32(*(buffer+40));
 
-    Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
-    music.read(musicHeader->ChunckSize,music_buffer);
+//    Break::byte* music_buffer = new Break::byte[musicHeader->ChunckSize];
+//    music.read(musicHeader->ChunckSize,music_buffer);
 
-    Break::byte* music_buffer2 = new Break::byte[musicHeader2->ChunckSize];
-    memset(music_buffer2,0,musicHeader2->ChunckSize);
-    music2.read(musicHeader2->ChunckSize,music_buffer2);
-    //SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
-    musicEffect = make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
-    musicEffect2 = make_shared<SoundEffect>(music_buffer2,musicHeader2->ChunckSize);
-    musicEffect->setVolume(0.1);
-    //musicEffect2->
-    musicEffect2->setLooping(true);
+//    Break::byte* music_buffer2 = new Break::byte[musicHeader2->ChunckSize];
+//    memset(music_buffer2,0,musicHeader2->ChunckSize);
+//    music2.read(musicHeader2->ChunckSize,music_buffer2);
+//    //SoundEffect* musicEffect=new SoundEffect(music_buffer,musicHeader->ChunckSize);
+//    musicEffect = make_shared<SoundEffect>(music_buffer,musicHeader->ChunckSize);
+//    musicEffect2 = make_shared<SoundEffect>(music_buffer2,musicHeader2->ChunckSize);
+//    musicEffect->setVolume(0.1);
+//    //musicEffect2->
+//    musicEffect2->setLooping(true);
     //Services::getSoundDevice()->play(musicEffect);
     //Services::getSoundDevice()->play(musicEffect2);
     //musicEffect->play();
     //musicEffect2->play();
     //soundDevice->play(buffer);
 
-    cout<<f.getSize()<<endl;
-    cout<<f.getName()<<endl;
-    cout<<Services::getPlatform()->getAbsolutePath("res/tex/02.jpg")<<endl;
+//    cout<<f.getSize()<<endl;
+//    cout<<f.getName()<<endl;
+    string path = Services::getPlatform()->getAbsolutePath("res/tex/02.jpg");
+        cout<< path <<endl;
 
     Application::init();
 }

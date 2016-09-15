@@ -2,7 +2,6 @@
 #include <Infrastructure.hpp>
 #include <TestApplication.hpp>
 using namespace std;
-using namespace Break;
 using namespace Break::Infrastructure;
 
 //THIS IS ORIGINAL

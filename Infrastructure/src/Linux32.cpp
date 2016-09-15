@@ -130,9 +130,13 @@ std::string Linux32::getAbsolutePath(const std::string& fileName){
         if (this->fileExists(fileName))
             return fileName;
         else
-            return nullptr;
-    char* dummy;
-    return std::string( realpath( fileName.c_str(), dummy) );
+            return "";
+    char* dummy = nullptr;
+    dummy = realpath( fileName.c_str(), dummy);
+    //std::string tmp = std::string( realpath( fileName.c_str(), dummy) );
+    if (dummy == nullptr)
+        return "";
+    return std::string(dummy);
 }
 
 bool Linux32::readFile(void* handle, void* buffer, u32 buffer_size){
