@@ -324,7 +324,7 @@ void GLDevice::vm_mapVertexBuffer(GPUHandle* _handle, u32 size, void* data)
     if(GPUPtr == NULL)
         throw ServiceException("Cannot Map Vertex Buffer: Failed to get buffer pointer");
 
-    memcpy(GPUPtr,data,size);
+    std::memcpy(GPUPtr,data,size);
     glUnmapBuffer(GL_ARRAY_BUFFER);
 
     glBindBuffer(GL_ARRAY_BUFFER,0);
@@ -343,7 +343,7 @@ void GLDevice::vm_mapIndexBuffer(GPUHandle* _handle, u32 size, void* data)
     if(GPUPtr == NULL)
         throw ServiceException("Cannot Map Index Buffer: Failed to get buffer pointer");
 
-    memcpy(GPUPtr,data,size);
+    std::memcpy(GPUPtr,data,size);
     glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
@@ -478,7 +478,7 @@ void GLDevice::vm_mapUniformBuffer(GPUHandle* _handle, u32 size, void* data)
     if(GPUPtr == NULL)
         throw ServiceException("Cannot Map Uniform Buffer: Failed to get buffer pointer");
 
-    memcpy(GPUPtr,data,size);
+    std::memcpy(GPUPtr,data,size);
     glUnmapBuffer(GL_UNIFORM_BUFFER);
 
     glBindBuffer(GL_UNIFORM_BUFFER,0);
@@ -650,7 +650,7 @@ void GLDevice::vm_applySamplerTexture2D(GPUHandle* sampler, GPUHandle* texture, 
     applyFilter2D(filter,mipmaps,GL_TEXTURE_2D);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,getAddressMode(U));
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,getAddressMode(V));
-    float border[4] = {border_color.R,border_color.G,border_color.B,border_color.A};
+    float border[4] = {(float)border_color.R,(float)border_color.G,(float)border_color.B,(float)border_color.A};
     glTexParameterfv(GL_TEXTURE_2D,GL_TEXTURE_BORDER_COLOR,border);
     if(func != CompareFunction::NEVER)
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_COMPARE_FUNC,getCompareFunc(func));

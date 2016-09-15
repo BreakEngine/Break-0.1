@@ -1,5 +1,6 @@
 #pragma once
 #include "Globals.hpp"
+#include <cstring>
 
 namespace Break
 {

@@ -321,7 +321,7 @@ void Island::Solve(Profile* profile, const PTimeStep& step, const glm::vec2& gra
 		body->m_sweep.a = m_positions[i].a;
 		body->m_linearVelocity = m_velocities[i].v;
 		body->m_angularVelocity = m_velocities[i].w;
-		body->SynchronizeTransform2D();
+        body->SynchronizeTransform2D();
 	}
 
 	profile->solvePosition = Services::getPlatform()->getTime()-captureTimer;

@@ -10,7 +10,7 @@
 namespace Break{
     namespace Infrastructure{
         /**
-		 * \brief represents a pixel object (BGRA)
+         * \brief represents a pixel object (RGBA)
 		 */
         struct BREAK_API Pixel{
             ///pixel data

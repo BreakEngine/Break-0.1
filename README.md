@@ -15,9 +15,19 @@ Break is a little game engine for small to medium games, Break philosophy is to 
 - Font Rendering
 - GUI
 
+### Dependencies
+Here is a list of package you'll need to install to get this up and running:</br>
+
+open the terminal and type the following: </br>
+
+on **ubuntu**: 
+`sudo apt-get install libglu1-mesa-dev mesa-common-dev libgl1-mesa-dev libx11-dev build-essential libassimp-dev qtcreator glew-utils libglew-dev libglfw3-dev qt5-default libfreeimage-dev libportaudio-dev libfreetype6-dev` </br>
+on **fedora**: 
+`sudo yum install make automake gcc gcc-c++ kernel-devel mesa-libGLU-devel glew-devel derelict-GLFW3-devel assimp-devel libX11-devel qt-creator qt5-qtbase freeimage-devel portaudio-devel freetype-devel`</br>
+
 ### Developed and Maintained By: ###
 
 - Moustapha Saad Abdel-Hameed (moustapha.saad.abdelhamed@gmail.com)
 - Mohamed Shaalan (mohamed_sh3lan61@yahoo.com)
 
-#### Kudos for Support ASU for gathering the team in first place and providing support on non-technical areas letting the devs in the right atmosphere for coding. ####
+#### Kudos for Support ASU for gathering the team in the first place and providing support on non-technical areas letting the devs in the right atmosphere for coding. ####

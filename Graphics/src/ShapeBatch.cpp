@@ -1,5 +1,5 @@
 #include "ShapeBatch.h"
-#include <glm/gtc/matrix_transform.inl>
+#include <glm/gtc/matrix_transform.hpp>
 #include <stack>
 using namespace Break;
 using namespace Break::Infrastructure;

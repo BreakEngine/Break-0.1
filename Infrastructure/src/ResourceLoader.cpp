@@ -77,7 +77,7 @@ namespace Break
 
 			unsigned int width(0), height(0);
 
-			fif = FreeImage_GetFileType(file.c_str(),0);
+            fif = FreeImage_GetFileType(file.c_str(), 0);
 
 			if(fif==FIF_UNKNOWN)
 			{
