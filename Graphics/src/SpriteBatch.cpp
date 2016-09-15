@@ -74,6 +74,8 @@ void SpriteBatch::begin() {
     auto idmat = glm::mat4(1);
     auto proj = glm::ortho(0.0f,(float)Services::getEngine()->getApplication()->getWindow()->getWidth(),(float)Services::getEngine()->getApplication()->getWindow()->getHeight(),0.0f,-10.0f,10.0f);
 
+    // GCC and Cland do not allow passing reference to temperory objects
+    // so I had to make this dummy object as a workaround.
     glm::mat4* dummy = new glm::mat4(1);
     m_shader->setUniform("model", dummy);
     m_shader->setUniform("view", dummy);
