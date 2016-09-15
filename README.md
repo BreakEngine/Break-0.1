@@ -30,4 +30,4 @@ on **fedora**:
 - Moustapha Saad Abdel-Hameed (moustapha.saad.abdelhamed@gmail.com)
 - Mohamed Shaalan (mohamed_sh3lan61@yahoo.com)
 
-#### Kudos for Support ASU for gathering the team in first place and providing support on non-technical areas letting the devs in the right atmosphere for coding. ####
+#### Kudos for Support ASU for gathering the team in the first place and providing support on non-technical areas letting the devs in the right atmosphere for coding. ####
