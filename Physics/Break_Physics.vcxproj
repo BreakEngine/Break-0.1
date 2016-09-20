@@ -57,7 +57,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Physics\inc;..\Infrastructure\inc;deps\glm\include;..\Graphics\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;..\Infrastructure\inc;deps\glm\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -96,8 +96,8 @@
     <ClInclude Include="inc\BroadPhase.hpp" />
     <ClInclude Include="inc\ChainCircleContact.hpp" />
     <ClInclude Include="inc\ChainPolygonContact.hpp" />
-    <ClInclude Include="inc\Chains.hpp" />
     <ClInclude Include="inc\ChainShape.hpp" />
+    <ClInclude Include="inc\Chains.hpp" />
     <ClInclude Include="inc\CircleBody.hpp" />
     <ClInclude Include="inc\CircleContact.hpp" />
     <ClInclude Include="inc\CircleShape.hpp" />
@@ -118,28 +118,27 @@
     <ClInclude Include="inc\Joint2D.hpp" />
     <ClInclude Include="inc\MotorJoint.hpp" />
     <ClInclude Include="inc\MouseJoint.hpp" />
+    <ClInclude Include="inc\PTimeStep.hpp" />
+    <ClInclude Include="inc\Physics.hpp" />
+    <ClInclude Include="inc\PhysicsGlobals.hpp" />
     <ClInclude Include="inc\PolygonCircleContact.hpp" />
     <ClInclude Include="inc\PolygonContact.hpp" />
     <ClInclude Include="inc\PolygonShape.hpp" />
     <ClInclude Include="inc\PrismaticJoint.hpp" />
+    <ClInclude Include="inc\Profile.hpp" />
     <ClInclude Include="inc\PullyJoint.hpp" />
     <ClInclude Include="inc\RevoluteJoint.hpp" />
     <ClInclude Include="inc\RopeJoint.hpp" />
+    <ClInclude Include="inc\Rotation2D.hpp" />
     <ClInclude Include="inc\Shape.hpp" />
     <ClInclude Include="inc\StackAllocator.hpp" />
+    <ClInclude Include="inc\Sweep.hpp" />
     <ClInclude Include="inc\TimeOfImpact.hpp" />
+    <ClInclude Include="inc\Transform2D.hpp" />
     <ClInclude Include="inc\WeldJoint.hpp" />
     <ClInclude Include="inc\WheelJoint.hpp" />
     <ClInclude Include="inc\World2D.hpp" />
     <ClInclude Include="inc\WorldCallBacks.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Graphics\Break_Graphics.vcxproj">
-      <Project>{da361f26-c604-132c-af98-83529b05ef90}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastructure\Break_Infrastructure.vcxproj">
-      <Project>{8AFDE97B-768C-7345-1FAB-87400B1984EB}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlockAllocator.cpp" />
@@ -149,8 +148,8 @@
     <ClCompile Include="src\BroadPhase.cpp" />
     <ClCompile Include="src\ChainCircleContact.cpp" />
     <ClCompile Include="src\ChainPolygonContact.cpp" />
-    <ClCompile Include="src\Chains.cpp" />
     <ClCompile Include="src\ChainShape.cpp" />
+    <ClCompile Include="src\Chains.cpp" />
     <ClCompile Include="src\CircleBody.cpp" />
     <ClCompile Include="src\CircleCollision.cpp" />
     <ClCompile Include="src\CircleContact.cpp" />
@@ -186,6 +185,11 @@
     <ClCompile Include="src\WheelJoint.cpp" />
     <ClCompile Include="src\World2D.cpp" />
     <ClCompile Include="src\WorldCallBacks.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Break_Infrastructure.vcxproj">
+      <Project>{8AFDE97B-768C-7345-1FAB-87400B1984EB}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

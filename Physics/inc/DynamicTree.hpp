@@ -4,7 +4,7 @@
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 #define _nullNode (-1)

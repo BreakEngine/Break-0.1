@@ -1,12 +1,13 @@
 #pragma once
 #include "Globals.hpp"
 #include "MathUtils.hpp"
+#include "Transform2D.hpp"
 
 using namespace Break::Infrastructure;
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		class BREAK_API Shape;

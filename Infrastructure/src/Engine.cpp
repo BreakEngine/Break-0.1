@@ -47,7 +47,7 @@ Engine::~Engine() {
     m_assetManager = nullptr;
     m_GPU_VM = nullptr;
 	m_soundDevice = nullptr;
-}
+} 
 
 void Engine::setup(ApplicationPtr app, API api, void *renderer, ISoundDevicePtr soundDevice) {
     m_api = api;

@@ -3,7 +3,7 @@
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		/// Rope joint definition. This requires two body anchor points and
@@ -69,9 +69,9 @@ namespace Break
 			friend class Joint;
 			RopeJoint(const RopeJointDef* data);
 
-			void InitVelocityConstraints(const Infrastructure::SolverData& data);
-			void SolveVelocityConstraints(const Infrastructure::SolverData& data);
-			bool SolvePositionConstraints(const Infrastructure::SolverData& data);
+			void InitVelocityConstraints(const SolverData& data);
+			void SolveVelocityConstraints(const SolverData& data);
+			bool SolvePositionConstraints(const SolverData& data);
 
 			// Solver shared
 			glm::vec2 m_localAnchorA;

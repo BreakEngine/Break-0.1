@@ -7,7 +7,7 @@
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		struct BREAK_API Pair
@@ -139,7 +139,7 @@ namespace Break
 		{
 			const AABB& aabbA = m_tree.GetFatAABB(proxyIdA);
 			const AABB& aabbB = m_tree.GetFatAABB(proxyIdB);
-			return physics::TestOverlap(aabbA, aabbB);
+			return Physics::TestOverlap(aabbA, aabbB);
 		}
 
 		inline const AABB& BroadPhase::GetFatAABB(s32 proxyId) const

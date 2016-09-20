@@ -1,9 +1,10 @@
 #include "CircleBody.hpp"
-
+#include "World2D.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/constants.hpp>
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::Graphics;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 CircleBody::CircleBody(World *world,Rect position , int radius,  bool isDynamic)

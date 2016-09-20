@@ -3,7 +3,7 @@
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		/// A circle shape.

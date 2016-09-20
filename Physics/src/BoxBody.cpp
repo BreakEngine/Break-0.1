@@ -1,16 +1,19 @@
 #include "BoxBody.hpp"
+#include <World2D.hpp>
+#include <Body2D.hpp>
+#include <Fixture.hpp>
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::Graphics;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 BoxBody::BoxBody(World *world,Rect position ,  bool isDynamic)
 {
 	_world = world;
 	R =position;
 	bodyDef.position = glm::vec2(position.x  , position.y );
-	bodyDef.angle = 0.0f;
+
+	bodyDef.angle = 0;
 
 	if(isDynamic)
 		bodyDef.type = dynamicBody;  

@@ -4,7 +4,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 
@@ -81,8 +81,8 @@ void PulleyJoint::InitVelocityConstraints(const SolverData& data)
 
 	Rotation2D qA(aA), qB(aB);
 	
-	m_rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	m_rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	m_rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	m_rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 
 	// Get the pulley axes.
 	m_uA = cA + m_rA - m_groundAnchorA;
@@ -184,8 +184,8 @@ bool PulleyJoint::SolvePositionConstraints(const SolverData& data)
 
 	Rotation2D qA(aA), qB(aB);
 
-	glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 
 	// Get the pulley axes.
 	glm::vec2 uA = cA + rA - m_groundAnchorA;

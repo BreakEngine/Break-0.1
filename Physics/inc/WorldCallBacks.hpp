@@ -1,10 +1,11 @@
 #pragma once
 #include "Globals.hpp"
-
+#include "PhysicsGlobals.hpp"
+#include <glm/glm.hpp>
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		class BREAK_API Fixture;

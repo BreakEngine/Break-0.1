@@ -3,7 +3,7 @@
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		/// Friction joint definition.
@@ -73,9 +73,9 @@ namespace Break
 
 			FrictionJoint(const FrictionJointDef* def);
 
-			void InitVelocityConstraints(const Infrastructure::SolverData& data);
-			void SolveVelocityConstraints(const Infrastructure::SolverData& data);
-			bool SolvePositionConstraints(const Infrastructure::SolverData& data);
+			void InitVelocityConstraints(const SolverData& data);
+			void SolveVelocityConstraints(const SolverData& data);
+			bool SolvePositionConstraints(const SolverData& data);
 
 			glm::vec2 m_localAnchorA;
 			glm::vec2 m_localAnchorB;

@@ -1,10 +1,12 @@
 #pragma once
 #include "MathUtils.hpp"
 #include "TimeStep.hpp"
+#include "Profile.hpp"
+#include "PhysicsGlobals.hpp"
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		class BREAK_API Body;
@@ -147,11 +149,11 @@ namespace Break
 			Joint(const JointDef* def);
 			virtual ~Joint() {}
 
-			virtual void InitVelocityConstraints(const Infrastructure::SolverData& data) = 0;
-			virtual void SolveVelocityConstraints(const Infrastructure::SolverData& data) = 0;
+			virtual void InitVelocityConstraints(const SolverData& data) = 0;
+			virtual void SolveVelocityConstraints(const SolverData& data) = 0;
 
 			// This returns true if the position errors are within tolerance.
-			virtual bool SolvePositionConstraints(const Infrastructure::SolverData& data) = 0;
+			virtual bool SolvePositionConstraints(const SolverData& data) = 0;
 
 			JointType m_type;
 			Joint* m_prev;

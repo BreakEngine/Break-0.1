@@ -2,23 +2,26 @@
 
 #include "Break2D.hpp"
 #include "Rect.hpp"
+#include <World2D.hpp>
+#include "Fixture.hpp"
+#include "CircleShape.hpp"
 
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 
 		class BREAK_API CircleBody
 		{
 		public:
-			CircleBody(World *world,Graphics::Rect position , int radius,  bool isDynamic);
+			CircleBody(World *world,Infrastructure::Rect position , int radius,  bool isDynamic);
 			~CircleBody();
 
 
 
-			Graphics::Rect GetRect();
+			Infrastructure::Rect GetRect();
 			double GetAngle();
 			glm::vec2 GetOrigin();
 
@@ -27,7 +30,7 @@ namespace Break
 		private:
 
 			World *_world;
-			Graphics::Rect R;
+			Infrastructure::Rect R;
 
 			BodyDef bodyDef;
 			FixtureDef fixturedef;

@@ -2,10 +2,13 @@
 #include "MathUtils.hpp"
 #include "Collision.hpp"
 #include "TimeStep.hpp"
+#include "PTimeStep.hpp"
+#include "PhysicsGlobals.hpp"
+#include "Profile.hpp"
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 
@@ -44,7 +47,7 @@ namespace Break
 
 		struct BREAK_API ContactSolverDef
 		{
-			TimeStep step;
+			PTimeStep step;
 			Contact** contacts;
 			s32 count;
 			Position* positions;
@@ -67,7 +70,7 @@ namespace Break
 			bool SolvePositionConstraints();
 			bool SolveTOIPositionConstraints(s32 toiIndexA, s32 toiIndexB);
 
-			TimeStep m_step;
+			PTimeStep m_step;
 			Position* m_positions;
 			Velocity* m_velocities;
 			StackAllocator* m_allocator;

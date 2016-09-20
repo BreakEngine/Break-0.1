@@ -29,6 +29,8 @@ namespace Break{
             ///scale vector
             glm::vec3 scale;
 
+			glm::mat4 _rotation_matrix;
+
             ///default constructor
             Transform(const glm::vec3 pos = glm::vec3(0),
                       const glm::quat rot = glm::quat(),

@@ -6,7 +6,7 @@
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		class BREAK_API ChainBody

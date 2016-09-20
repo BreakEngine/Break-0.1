@@ -6,7 +6,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 
@@ -94,8 +94,8 @@ struct BREAK_API Simplex
 			v->indexB = cache->indexB[i];
 			glm::vec2 wALocal = proxyA->GetVertex(v->indexA);
 			glm::vec2 wBLocal = proxyB->GetVertex(v->indexB);
-			v->wA = MathUtils::Mul(Transform2DA, wALocal);
-			v->wB = MathUtils::Mul(Transform2DB, wBLocal);
+			v->wA = Transform2D::Mul(Transform2DA, wALocal);
+			v->wB = Transform2D::Mul(Transform2DB, wBLocal);
 			v->w = v->wB - v->wA;
 			v->a = 0.0f;
 		}
@@ -121,8 +121,8 @@ struct BREAK_API Simplex
 			v->indexB = 0;
 			glm::vec2 wALocal = proxyA->GetVertex(0);
 			glm::vec2 wBLocal = proxyB->GetVertex(0);
-			v->wA = MathUtils::Mul(Transform2DA, wALocal);
-			v->wB = MathUtils::Mul(Transform2DB, wBLocal);
+			v->wA = Transform2D::Mul(Transform2DA, wALocal);
+			v->wB = Transform2D::Mul(Transform2DB, wBLocal);
 			v->w = v->wB - v->wA;
 			v->a = 1.0f;
 			m_count = 1;
@@ -429,7 +429,7 @@ void Simplex::Solve3()
 // GJK using Voronoi regions (Christer Ericson) and Barycentric coordinates.
 s32 _gjkCalls, _gjkIters, _gjkMaxIters;
 
-void physics::Distance(DistanceOutput* output,SimplexCache* cache,const DistanceInput* input)
+void Physics::Distance(DistanceOutput* output,SimplexCache* cache,const DistanceInput* input)
 {
 	++_gjkCalls; 
 
@@ -518,11 +518,11 @@ void physics::Distance(DistanceOutput* output,SimplexCache* cache,const Distance
 
 		// Compute a tentative new simplex vertex using support points.
 		SimplexVertex* vertex = vertices + simplex.m_count;
-		vertex->indexA = proxyA->GetSupport(MathUtils::MulT(Transform2DA.q, -d));
-		vertex->wA = MathUtils::Mul(Transform2DA, proxyA->GetVertex(vertex->indexA));
+		vertex->indexA = proxyA->GetSupport(Rotation2D::MulT(Transform2DA.q, -d));
+		vertex->wA = Transform2D::Mul(Transform2DA, proxyA->GetVertex(vertex->indexA));
 		glm::vec2 wBLocal;
-		vertex->indexB = proxyB->GetSupport(MathUtils::MulT(Transform2DB.q, d));
-		vertex->wB = MathUtils::Mul(Transform2DB, proxyB->GetVertex(vertex->indexB));
+		vertex->indexB = proxyB->GetSupport(Rotation2D::MulT(Transform2DB.q, d));
+		vertex->wB = Transform2D::Mul(Transform2DB, proxyB->GetVertex(vertex->indexB));
 		vertex->w = vertex->wB - vertex->wA;
 
 		// Iteration count is equated to the number of support point calls.

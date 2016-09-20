@@ -45,6 +45,9 @@
     <ClInclude Include="inc\DXTexture2DHandle.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\Directory.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\Engine.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -117,6 +120,9 @@
     <ClInclude Include="inc\Keyboard.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\MathUtils.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
     <ClInclude Include="inc\MemoryElement.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -139,6 +145,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\RAMBuffer.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Rect.hpp">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="inc\ResourceLoader.hpp">
@@ -201,10 +210,31 @@
     <ClInclude Include="inc\Window.hpp">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\MathUtils.hpp">
+    <ClInclude Include="inc\Material.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Transform2D.hpp">
+    <ClInclude Include="inc\stb_image.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AssetHelper.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\SceneAnimator.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AnimEvaluator.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\AssimpModelLoader.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Mesh.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ShaderHelper.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Node.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
@@ -222,6 +252,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\DXMouse.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Directory.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine.cpp">
@@ -257,6 +290,9 @@
     <ClCompile Include="src\Keyboard.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\MathUtils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\MemoryLayout.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -267,6 +303,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\RAMBuffer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rect.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\ResourceLoader.cpp">
@@ -300,6 +339,30 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Material.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb_image.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AnimEvaluator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneAnimator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AssimpModelLoader.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mesh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShaderHelper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Node.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,7 +3,7 @@
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		/// Distance joint definition. This requires defining an
@@ -90,9 +90,9 @@ namespace Break
 			friend class Joint;
 			DistanceJoint(const DistanceJointDef* data);
 
-			void InitVelocityConstraints(const Infrastructure::SolverData& data);
-			void SolveVelocityConstraints(const Infrastructure::SolverData& data);
-			bool SolvePositionConstraints(const Infrastructure::SolverData& data);
+			void InitVelocityConstraints(const SolverData& data);
+			void SolveVelocityConstraints(const SolverData& data);
+			bool SolvePositionConstraints(const SolverData& data);
 
 			real32 m_frequencyHz;
 			real32 m_dampingRatio;

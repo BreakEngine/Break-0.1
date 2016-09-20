@@ -4,7 +4,7 @@
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		/// A line segment (edge) shape. These can be connected in chains or loops

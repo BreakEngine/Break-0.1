@@ -4,7 +4,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 // p = attached point, m = mouse point
@@ -23,7 +23,7 @@ MouseJoint::MouseJoint(const MouseJointDef* def) : Joint(def)
 	assert(MathUtils::IsVal(def->dampingRatio) && def->dampingRatio >= 0.0f);
 
 	m_targetA = def->target;
-	m_localAnchorB = MathUtils::MulT(m_bodyB->GetTransform2D(), m_targetA);
+	m_localAnchorB = Transform2D::MulT(m_bodyB->GetTransform2D(), m_targetA);
 
 	m_maxForce = def->maxForce;
 	m_impulse = glm::vec2(0,0);
@@ -117,7 +117,7 @@ void MouseJoint::InitVelocityConstraints(const SolverData& data)
 	m_beta = h * k * m_gamma;
 
 	// Compute the effective mass matrix.
-	m_rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	m_rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 
 	// K    = [(1/m1 + 1/m2) * eye(2) - skew(r1) * invI1 * skew(r1) - skew(r2) * invI2 * skew(r2)]
 	//      = [1/m1+1/m2     0    ] + invI1 * [r1.y*r1.y -r1.x*r1.y] + invI2 * [r1.y*r1.y -r1.x*r1.y]

@@ -4,15 +4,15 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
-void physics::CollideCircles(Manifold* manifold,const CircleShape* circleA, const Transform2D& xfA,const CircleShape* circleB, const Transform2D& xfB)
+void Physics::CollideCircles(Manifold* manifold,const CircleShape* circleA, const Transform2D& xfA,const CircleShape* circleB, const Transform2D& xfB)
 {
 	manifold->pointCount = 0;
 
-	glm::vec2 pA = MathUtils::Mul(xfA, circleA->m_p);
-	glm::vec2 pB = MathUtils::Mul(xfB, circleB->m_p);
+	glm::vec2 pA = Transform2D::Mul(xfA, circleA->m_p);
+	glm::vec2 pB = Transform2D::Mul(xfB, circleB->m_p);
 
 	glm::vec2 d = pB - pA;
 	real32 distSqr = glm::dot(d, d);
@@ -32,13 +32,13 @@ void physics::CollideCircles(Manifold* manifold,const CircleShape* circleA, cons
 	manifold->points[0].id.key = 0;
 }
 
-void physics::CollidePolygonAndCircle(Manifold* manifold,const PolygonShape* polygonA, const Transform2D& xfA,const CircleShape* circleB, const Transform2D& xfB)
+void Physics::CollidePolygonAndCircle(Manifold* manifold,const PolygonShape* polygonA, const Transform2D& xfA,const CircleShape* circleB, const Transform2D& xfB)
 {
 	manifold->pointCount = 0;
 
 	// Compute circle position in the frame of the polygon.
-	glm::vec2 c = MathUtils::Mul(xfB, circleB->m_p);
-	glm::vec2 cLocal = MathUtils::MulT(xfA, c);
+	glm::vec2 c = Transform2D::Mul(xfB, circleB->m_p);
+	glm::vec2 cLocal = Transform2D::MulT(xfA, c);
 
 	// Find the min separating edge.
 	s32 normalIndex = 0;

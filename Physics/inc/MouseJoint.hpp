@@ -4,7 +4,7 @@
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		/// Mouse joint definition. This requires a world target point,
@@ -86,9 +86,9 @@ namespace Break
 
 			MouseJoint(const MouseJointDef* def);
 
-			void InitVelocityConstraints(const Infrastructure::SolverData& data);
-			void SolveVelocityConstraints(const Infrastructure::SolverData& data);
-			bool SolvePositionConstraints(const Infrastructure::SolverData& data);
+			void InitVelocityConstraints(const SolverData& data);
+			void SolveVelocityConstraints(const SolverData& data);
+			bool SolvePositionConstraints(const SolverData& data);
 
 			glm::vec2 m_localAnchorB;
 			glm::vec2 m_targetA;

@@ -1,9 +1,10 @@
 #include "CircleShape.hpp"
 #include <new>
+#include <glm/gtc/constants.hpp>
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 Shape* CircleShape::Clone(BlockAllocator* allocator) const
@@ -21,7 +22,7 @@ s32 CircleShape::GetChildCount() const
 
 bool CircleShape::TestPoint(const Transform2D& Transform2D, const glm::vec2& p) const
 {
-	glm::vec2 center = Transform2D.p + MathUtils::Mul(Transform2D.q, m_p);
+	glm::vec2 center = Transform2D.p + Rotation2D::Mul(Transform2D.q, m_p);
 	glm::vec2 d = p - center;
 	return glm::dot(d, d) <= m_radius * m_radius;
 }
@@ -34,7 +35,7 @@ bool CircleShape::RayCast(RayCastOutput* output, const RayCastInput& input,const
 {
 	NOT_USED(childIndex);
 
-	glm::vec2 position = Transform2D.p + MathUtils::Mul(Transform2D.q, m_p);
+	glm::vec2 position = Transform2D.p + Rotation2D::Mul(Transform2D.q, m_p);
 	glm::vec2 s = input.p1 - position;
 	real32 b = glm::dot(s, s) - m_radius * m_radius;
 
@@ -70,7 +71,7 @@ void CircleShape::ComputeAABB(AABB* aabb, const Transform2D& Transform2D, s32 ch
 {
 	NOT_USED(childIndex);
 
-	glm::vec2 p = Transform2D.p + MathUtils::Mul(Transform2D.q, m_p);
+	glm::vec2 p = Transform2D.p + Rotation2D::Mul(Transform2D.q, m_p);
 	aabb->lowerBound = glm::vec2(p.x - m_radius, p.y - m_radius);
 	aabb->upperBound = glm::vec2(p.x + m_radius, p.y + m_radius);
 }

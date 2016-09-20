@@ -10,7 +10,8 @@
 #include <Pixel.hpp>
 #include "Entity.hpp"
 #include "SpriteBatch.hpp"
-#include "Rect.hpp"
+#include <Rect.hpp>
+
 namespace Break{
     namespace Graphics{
         class BREAK_API Sprite: public Entity{
@@ -40,9 +41,9 @@ namespace Break{
             Infrastructure::Texture2DPtr texture;
 
             ///destenation rectangle, the rectangle of the screen that this sprite will be drawn to
-            Rect dest;
+            Infrastructure::Rect dest;
             ///source rectangle, the rectangle of the texture that this sprite will be mapped to
-            Rect src;
+            Infrastructure::Rect src;
             ///angle of rotation
             real32 angle;
 
@@ -57,8 +58,8 @@ namespace Break{
             {
                 spriteBatch = batcher;
                 texture = nullptr;
-                dest = Rect(0,0,0,0);
-                src =  Rect(0,0,0,0);
+                dest = Infrastructure::Rect(0,0,0,0);
+                src =  Infrastructure::Rect(0,0,0,0);
 				origin =  glm::vec2(0,0);
                 angle = 0;
                 color = Infrastructure::Color(255,255,255,255);
@@ -82,8 +83,8 @@ namespace Break{
 
                 texture = tex;
 
-                dest = Rect(0,0,texture->getWidth(),texture->getHeight());
-                src =  Rect(0,0,texture->getWidth(),texture->getHeight());
+                dest = Infrastructure::Rect(0,0,texture->getWidth(),texture->getHeight());
+                src =  Infrastructure::Rect(0,0,texture->getWidth(),texture->getHeight());
                 angle = 0;
 				origin =  glm::vec2(0,0);
                 color = Infrastructure::Color(255,255,255,255);
@@ -151,11 +152,11 @@ namespace Break{
                 texture = tex;
             }
 
-            Rect getSourceRect(){
+            Infrastructure::Rect getSourceRect(){
                 return src;
             }
 
-            void setSourceRect(Rect val)
+            void setSourceRect(Infrastructure::Rect val)
             {
                 src = val;
             }

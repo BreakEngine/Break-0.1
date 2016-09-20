@@ -49,13 +49,36 @@ namespace Break{
 
   			std::string getAbsolutePath(const std::string& fileName) override;
 
-  			bool readFile(const void* handle, void* buffer, u32 buffer_size) override;
+  			bool readFile(void* handle, void* buffer, u32 buffer_size) override;
 
-  			void closeFile(const void* handle) override;
+            bool writeFile(void* handle, void* buffer, u32 buffer_size) override;
+
+  			void closeFile(void* handle) override;
 
   			void* getNativeWindowHandle(Window* win) override;
 
   			void setPullAudioCallback(GetAudioCallback function) override;
+
+            bool copyFile(const std::string& path, const std::string& newPath,
+                bool overwriteFlag) override;
+
+            bool moveFile(const std::string& path, const std::string& newPath) override;
+
+            bool renameFile(const std::string& path, const std::string& newPath) override;
+
+            bool deleteFile(const std::string& path) override;
+
+            bool changeDirectory(const std::string& newPath) override;
+
+            bool directoryExists(const std::string& path) override;
+
+            bool createDirectory(const std::string& path) override;
+
+            std::string getCurrentDirectory() override;
+
+            std::vector<std::string> listDirContents() override;
+
+            bool deleteDirectory(const std::string& path) override;
         };
     }
 }

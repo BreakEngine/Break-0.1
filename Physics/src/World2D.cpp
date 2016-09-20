@@ -15,11 +15,12 @@
 #include "TimeManager.hpp"
 
 #include <new>
+#include <Services.hpp>
 
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 World::World(const glm::vec2& gravity)
@@ -365,7 +366,7 @@ void World::SetAllowSleeping(bool flag)
 }
 
 // Find islands, integrate and solve constraints, solve position constraints
-void World::Solve(const TimeStep& step)
+void World::Solve(const PTimeStep& step)
 {
 	m_profile.solveInit = 0.0f;
 	m_profile.solveVelocity = 0.0f;
@@ -551,12 +552,12 @@ void World::Solve(const TimeStep& step)
 
 		// Look for new contacts.
 		m_contactManager.FindNewContacts();
-		m_profile.broadphase = timer.GetMilliseconds();
+		m_profile.broadphase = Services::getPlatform()->getTime();
 	}
 }
 
 // Find TOI contacts and solve them.
-void World::SolveTOI(const TimeStep& step)
+void World::SolveTOI(const PTimeStep& step)
 {
 	Island island(2 * maxTOIContacts, maxTOIContacts, 0, &m_stackAllocator, m_contactManager.m_contactListener);
 
@@ -835,7 +836,7 @@ void World::SolveTOI(const TimeStep& step)
 			}
 		}
 
-		TimeStep subStep;
+		PTimeStep subStep;
 		subStep.delta = (1.0f - minAlpha) * step.delta;
 		subStep.inv_dt = 1.0f / subStep.delta;
 		subStep.dtRatio = 1.0f;
@@ -889,7 +890,7 @@ void World::Step(real32 dt, s32 velocityIterations, s32 positionIterations)
 
 	m_flags |= locked;
 
-	TimeStep step;
+	PTimeStep step;
 	step.delta = dt;
 	step.velocityIterations	= velocityIterations;
 	step.positionIterations = positionIterations;
@@ -910,7 +911,7 @@ void World::Step(real32 dt, s32 velocityIterations, s32 positionIterations)
 	{
 		Time timer;
 		m_contactManager.Collide();
-		m_profile.collide = timer.GetMilliseconds();
+		m_profile.collide = Services::getPlatform()->getTime();
 	}
 
 	// Integrate velocities, solve velocity constraints, and integrate positions.
@@ -918,7 +919,7 @@ void World::Step(real32 dt, s32 velocityIterations, s32 positionIterations)
 	{
 		Time timer;
 		Solve(step);
-		m_profile.solve = timer.GetMilliseconds();
+		m_profile.solve = Services::getPlatform()->getTime();
 	}
 
 	// Handle TOI events.
@@ -926,7 +927,7 @@ void World::Step(real32 dt, s32 velocityIterations, s32 positionIterations)
 	{
 		Time timer;
 		SolveTOI(step);
-		m_profile.solveTOI = timer.GetMilliseconds();
+		m_profile.solveTOI = Services::getPlatform()->getTime();
 	}
 
 	if (step.delta > 0.0f)
@@ -941,7 +942,7 @@ void World::Step(real32 dt, s32 velocityIterations, s32 positionIterations)
 
 	m_flags &= ~locked;
 
-	m_profile.step = stepTimer.GetMilliseconds();
+	m_profile.step = Services::getPlatform()->getTime();
 }
 
 void World::ClearForces()
@@ -962,7 +963,7 @@ struct WorldQueryWrapper
 	}
 
 	const BroadPhase* broadPhase;
-	physics::QueryCallback* callback;
+	Physics::QueryCallback* callback;
 };
 
 void World::QueryAABB(QueryCallback* callback, const AABB& aabb) const
@@ -995,7 +996,7 @@ struct WorldRayCastWrapper
 	}
 
 	const BroadPhase* broadPhase;
-	physics::RayCastCallback* callback;
+	Physics::RayCastCallback* callback;
 };
 
 void World::RayCast(RayCastCallback* callback, const glm::vec2& point1, const glm::vec2& point2) const

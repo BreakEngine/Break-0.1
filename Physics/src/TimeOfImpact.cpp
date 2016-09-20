@@ -4,10 +4,11 @@
 #include "CircleShape.hpp"
 #include "PolygonShape.hpp"
 #include "TimeManager.hpp"
-
+#include "Sweep.hpp"
+#include <Services.hpp>
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 real32 toiTime, toiMaxTime;
@@ -47,8 +48,8 @@ struct BREAK_API SeparationFunction
 			m_type = points;
 			glm::vec2 localPointA = m_proxyA->GetVertex(cache->indexA[0]);
 			glm::vec2 localPointB = m_proxyB->GetVertex(cache->indexB[0]);
-			glm::vec2 pointA = MathUtils::Mul(xfA, localPointA);
-			glm::vec2 pointB = MathUtils::Mul(xfB, localPointB);
+			glm::vec2 pointA = Transform2D::Mul(xfA, localPointA);
+			glm::vec2 pointB = Transform2D::Mul(xfB, localPointB);
 			m_axis = pointB - pointA;
 			real32 s = m_axis.length();
 			return s;
@@ -62,13 +63,13 @@ struct BREAK_API SeparationFunction
 
 			m_axis = MathUtils::Cross2(localPoint - localPointB1, 1.0f);
 			m_axis = glm::normalize(m_axis);
-			glm::vec2 normal = MathUtils::Mul(xfB.q, m_axis);
+			glm::vec2 normal = Rotation2D::Mul(xfB.q, m_axis);
 
 			m_localPoint = 0.5f * (localPointB1 + localPoint);
-			glm::vec2 pointB = MathUtils::Mul(xfB, m_localPoint);
+			glm::vec2 pointB = Transform2D::Mul(xfB, m_localPoint);
 
 			glm::vec2 localPointA = proxyA->GetVertex(cache->indexA[0]);
-			glm::vec2 pointA = MathUtils::Mul(xfA, localPointA);
+			glm::vec2 pointA = Transform2D::Mul(xfA, localPointA);
 
 			real32 s = glm::dot(pointA - pointB, normal);
 			if (s < 0.0f)
@@ -87,13 +88,13 @@ struct BREAK_API SeparationFunction
 
 			m_axis = MathUtils::Cross2(localPointA2 - localPointA1, 1.0f);
 			m_axis = glm::normalize(m_axis);
-			glm::vec2 normal = MathUtils::Mul(xfA.q, m_axis);
+			glm::vec2 normal = Rotation2D::Mul(xfA.q, m_axis);
 
 			m_localPoint = 0.5f * (localPointA1 + localPointA2);
-			glm::vec2 pointA = MathUtils::Mul(xfA, m_localPoint);
+			glm::vec2 pointA = Transform2D::Mul(xfA, m_localPoint);
 
 			glm::vec2 localPointB = m_proxyB->GetVertex(cache->indexB[0]);
-			glm::vec2 pointB = MathUtils::Mul(xfB, localPointB);
+			glm::vec2 pointB = Transform2D::Mul(xfB, localPointB);
 
 			real32 s = glm::dot(pointB - pointA, normal);
 			if (s < 0.0f)
@@ -116,8 +117,8 @@ struct BREAK_API SeparationFunction
 		{
 		case points:
 			{
-				glm::vec2 axisA = MathUtils::MulT(xfA.q,  m_axis);
-				glm::vec2 axisB = MathUtils::MulT(xfB.q, -m_axis);
+				glm::vec2 axisA = Rotation2D::MulT(xfA.q,  m_axis);
+				glm::vec2 axisB = Rotation2D::MulT(xfB.q, -m_axis);
 
 				*indexA = m_proxyA->GetSupport(axisA);
 				*indexB = m_proxyB->GetSupport(axisB);
@@ -125,8 +126,8 @@ struct BREAK_API SeparationFunction
 				glm::vec2 localPointA = m_proxyA->GetVertex(*indexA);
 				glm::vec2 localPointB = m_proxyB->GetVertex(*indexB);
 
-				glm::vec2 pointA = MathUtils::Mul(xfA, localPointA);
-				glm::vec2 pointB = MathUtils::Mul(xfB, localPointB);
+				glm::vec2 pointA = Transform2D::Mul(xfA, localPointA);
+				glm::vec2 pointB = Transform2D::Mul(xfB, localPointB);
 
 				real32 separation = glm::dot(pointB - pointA, m_axis);
 				return separation;
@@ -134,16 +135,16 @@ struct BREAK_API SeparationFunction
 
 		case faceA:
 			{
-				glm::vec2 normal = MathUtils::Mul(xfA.q, m_axis);
-				glm::vec2 pointA = MathUtils::Mul(xfA, m_localPoint);
+				glm::vec2 normal = Rotation2D::Mul(xfA.q, m_axis);
+				glm::vec2 pointA = Transform2D::Mul(xfA, m_localPoint);
 
-				glm::vec2 axisB = MathUtils::MulT(xfB.q, -normal);
+				glm::vec2 axisB = Rotation2D::MulT(xfB.q, -normal);
 
 				*indexA = -1;
 				*indexB = m_proxyB->GetSupport(axisB);
 
 				glm::vec2 localPointB = m_proxyB->GetVertex(*indexB);
-				glm::vec2 pointB = MathUtils::Mul(xfB, localPointB);
+				glm::vec2 pointB = Transform2D::Mul(xfB, localPointB);
 
 				real32 separation = glm::dot(pointB - pointA, normal);
 				return separation;
@@ -151,16 +152,16 @@ struct BREAK_API SeparationFunction
 
 		case faceB:
 			{
-				glm::vec2 normal = MathUtils::Mul(xfB.q, m_axis);
-				glm::vec2 pointB = MathUtils::Mul(xfB, m_localPoint);
+				glm::vec2 normal = Rotation2D::Mul(xfB.q, m_axis);
+				glm::vec2 pointB = Transform2D::Mul(xfB, m_localPoint);
 
-				glm::vec2 axisA = MathUtils::MulT(xfA.q, -normal);
+				glm::vec2 axisA = Rotation2D::MulT(xfA.q, -normal);
 
 				*indexB = -1;
 				*indexA = m_proxyA->GetSupport(axisA);
 
 				glm::vec2 localPointA = m_proxyA->GetVertex(*indexA);
-				glm::vec2 pointA = MathUtils::Mul(xfA, localPointA);
+				glm::vec2 pointA = Transform2D::Mul(xfA, localPointA);
 
 				real32 separation = glm::dot(pointA - pointB, normal);
 				return separation;
@@ -188,8 +189,8 @@ struct BREAK_API SeparationFunction
 				glm::vec2 localPointA = m_proxyA->GetVertex(indexA);
 				glm::vec2 localPointB = m_proxyB->GetVertex(indexB);
 
-				glm::vec2 pointA = MathUtils::Mul(xfA, localPointA);
-				glm::vec2 pointB = MathUtils::Mul(xfB, localPointB);
+				glm::vec2 pointA = Transform2D::Mul(xfA, localPointA);
+				glm::vec2 pointB = Transform2D::Mul(xfB, localPointB);
 				real32 separation = glm::dot(pointB - pointA, m_axis);
 
 				return separation;
@@ -197,11 +198,11 @@ struct BREAK_API SeparationFunction
 
 		case faceA:
 			{
-				glm::vec2 normal = MathUtils::Mul(xfA.q, m_axis);
-				glm::vec2 pointA = MathUtils::Mul(xfA, m_localPoint);
+				glm::vec2 normal = Rotation2D::Mul(xfA.q, m_axis);
+				glm::vec2 pointA = Transform2D::Mul(xfA, m_localPoint);
 
 				glm::vec2 localPointB = m_proxyB->GetVertex(indexB);
-				glm::vec2 pointB = MathUtils::Mul(xfB, localPointB);
+				glm::vec2 pointB = Transform2D::Mul(xfB, localPointB);
 
 				real32 separation = glm::dot(pointB - pointA, normal);
 				return separation;
@@ -209,11 +210,11 @@ struct BREAK_API SeparationFunction
 
 		case faceB:
 			{
-				glm::vec2 normal = MathUtils::Mul(xfB.q, m_axis);
-				glm::vec2 pointB = MathUtils::Mul(xfB, m_localPoint);
+				glm::vec2 normal = Rotation2D::Mul(xfB.q, m_axis);
+				glm::vec2 pointB = Transform2D::Mul(xfB, m_localPoint);
 
 				glm::vec2 localPointA = m_proxyA->GetVertex(indexA);
-				glm::vec2 pointA = MathUtils::Mul(xfA, localPointA);
+				glm::vec2 pointA = Transform2D::Mul(xfA, localPointA);
 
 				real32 separation = glm::dot(pointA - pointB, normal);
 				return separation;
@@ -235,7 +236,7 @@ struct BREAK_API SeparationFunction
 
 // CCD via the local separating axis method. This seeks progression
 // by computing the largest time at which separation is maintained.
-void physics::TimeOfImpact(TOIOutput* output, const TOIInput* input)
+void Physics::TimeOfImpact(TOIOutput* output, const TOIInput* input)
 {
 	Time timer;
 
@@ -464,7 +465,7 @@ void physics::TimeOfImpact(TOIOutput* output, const TOIInput* input)
 
 	toiMaxIters = glm::max(toiMaxIters, iter);
 
-	real32 time = timer.GetMilliseconds();
+	real32 time = Services::getPlatform()->getTime();
 	toiMaxTime = glm::max(toiMaxTime, time);
 	toiTime += time;
 }

@@ -5,7 +5,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 ChainShape::~ChainShape()
 {
@@ -161,8 +161,8 @@ void ChainShape::ComputeAABB(AABB* aabb, const Transform2D& xf, s32 childIndex) 
 		i2 = 0;
 	}
 
-	glm::vec2 v1 = MathUtils::Mul(xf, m_vertices[i1]);
-	glm::vec2 v2 = MathUtils::Mul(xf, m_vertices[i2]);
+	glm::vec2 v1 = Transform2D::Mul(xf, m_vertices[i1]);
+	glm::vec2 v2 = Transform2D::Mul(xf, m_vertices[i2]);
 
 	aabb->lowerBound = glm::min(v1, v2);
 	aabb->upperBound = glm::max(v1, v2);

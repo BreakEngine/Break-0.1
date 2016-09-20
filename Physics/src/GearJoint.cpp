@@ -7,7 +7,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 // Gear Joint:
@@ -73,7 +73,7 @@ GearJoint::GearJoint(const GearJointDef* def)
 		m_localAxisC = prismatic->m_localXAxisA;
 
 		glm::vec2 pC = m_localAnchorC;
-		glm::vec2 pA = MathUtils::MulT(xfC.q, MathUtils::Mul(xfA.q, m_localAnchorA) + (xfA.p - xfC.p));
+		glm::vec2 pA = Rotation2D::MulT(xfC.q, Rotation2D::Mul(xfA.q, m_localAnchorA) + (xfA.p - xfC.p));
 		coordinateA = glm::dot(pA - pC, m_localAxisC);
 	}
 
@@ -105,7 +105,7 @@ GearJoint::GearJoint(const GearJointDef* def)
 		m_localAxisD = prismatic->m_localXAxisA;
 
 		glm::vec2 pD = m_localAnchorD;
-		glm::vec2 pB = MathUtils::MulT(xfD.q, MathUtils::Mul(xfB.q, m_localAnchorB) + (xfB.p - xfD.p));
+		glm::vec2 pB = Rotation2D::MulT(xfD.q, Rotation2D::Mul(xfB.q, m_localAnchorB) + (xfB.p - xfD.p));
 		coordinateB = glm::dot(pB - pD, m_localAxisD);
 	}
 
@@ -164,9 +164,9 @@ void GearJoint::InitVelocityConstraints(const SolverData& data)
 	}
 	else
 	{
-		glm::vec2 u = MathUtils::Mul(qC, m_localAxisC);
-		glm::vec2 rC = MathUtils::Mul(qC, m_localAnchorC - m_lcC);
-		glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_lcA);
+		glm::vec2 u = Rotation2D::Mul(qC, m_localAxisC);
+		glm::vec2 rC = Rotation2D::Mul(qC, m_localAnchorC - m_lcC);
+		glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_lcA);
 		m_JvAC = u;
 		m_JwC = MathUtils::Cross2(rC, u);
 		m_JwA = MathUtils::Cross2(rA, u);
@@ -182,9 +182,9 @@ void GearJoint::InitVelocityConstraints(const SolverData& data)
 	}
 	else
 	{
-		glm::vec2 u = MathUtils::Mul(qD, m_localAxisD);
-		glm::vec2 rD = MathUtils::Mul(qD, m_localAnchorD - m_lcD);
-		glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_lcB);
+		glm::vec2 u = Rotation2D::Mul(qD, m_localAxisD);
+		glm::vec2 rD = Rotation2D::Mul(qD, m_localAnchorD - m_lcD);
+		glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_lcB);
 		m_JvBD = m_ratio * u;
 		m_JwD = m_ratio * MathUtils::Cross2(rD, u);
 		m_JwB = m_ratio * MathUtils::Cross2(rB, u);
@@ -288,16 +288,16 @@ bool GearJoint::SolvePositionConstraints(const SolverData& data)
 	}
 	else
 	{
-		glm::vec2 u = MathUtils::Mul(qC, m_localAxisC);
-		glm::vec2 rC = MathUtils::Mul(qC, m_localAnchorC - m_lcC);
-		glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_lcA);
+		glm::vec2 u = Rotation2D::Mul(qC, m_localAxisC);
+		glm::vec2 rC = Rotation2D::Mul(qC, m_localAnchorC - m_lcC);
+		glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_lcA);
 		JvAC = u;
 		JwC = MathUtils::Cross2(rC, u);
 		JwA = MathUtils::Cross2(rA, u);
 		mass += m_mC + m_mA + m_iC * JwC * JwC + m_iA * JwA * JwA;
 
 		glm::vec2 pC = m_localAnchorC - m_lcC;
-		glm::vec2 pA = MathUtils::MulT(qC, rA + (cA - cC));
+		glm::vec2 pA = Rotation2D::MulT(qC, rA + (cA - cC));
 		coordinateA = glm::dot(pA - pC, m_localAxisC);
 	}
 
@@ -312,16 +312,16 @@ bool GearJoint::SolvePositionConstraints(const SolverData& data)
 	}
 	else
 	{
-		glm::vec2 u = MathUtils::Mul(qD, m_localAxisD);
-		glm::vec2 rD = MathUtils::Mul(qD, m_localAnchorD - m_lcD);
-		glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_lcB);
+		glm::vec2 u = Rotation2D::Mul(qD, m_localAxisD);
+		glm::vec2 rD = Rotation2D::Mul(qD, m_localAnchorD - m_lcD);
+		glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_lcB);
 		JvBD = m_ratio * u;
 		JwD = m_ratio * MathUtils::Cross2(rD, u);
 		JwB = m_ratio * MathUtils::Cross2(rB, u);
 		mass += m_ratio * m_ratio * (m_mD + m_mB) + m_iD * JwD * JwD + m_iB * JwB * JwB;
 
 		glm::vec2 pD = m_localAnchorD - m_lcD;
-		glm::vec2 pB = MathUtils::MulT(qD, rB + (cB - cD));
+		glm::vec2 pB = Rotation2D::MulT(qD, rB + (cB - cD));
 		coordinateB = glm::dot(pB - pD, m_localAxisD);
 	}
 

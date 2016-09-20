@@ -1,4 +1,5 @@
 //
+//
 // Created by Moustapha on 01/10/2015.
 //
 
@@ -446,6 +447,7 @@ void DXDevice::init(Window *window) {
     // Release the factory.
     factory->Release();
     factory = 0;
+	m_inited = true;
 }
 
 DXGI_FORMAT DXDevice::getFormat(MemoryElement& element){
@@ -569,6 +571,11 @@ D3D11_FILTER DXDevice::getFilter(TextureFilter filter)
     }
 }
 
+DXDevice::DXDevice()
+{
+	m_inited = false;
+}
+
 void DXDevice::clearBuffer() {
     float c[4] = {0,0,0,0};
     m_deviceContext->ClearRenderTargetView(m_renderTargetView,c);
@@ -592,6 +599,40 @@ void DXDevice::setCursorPostion(int x, int y){
         ClientToScreen(hnd,&pt);
         SetCursorPos(pt.x,pt.y);
     }
+}
+
+void DXDevice::updateViewport(u32 width, u32 height)
+{
+	if(m_inited){
+	
+		m_deviceContext->OMSetRenderTargets(0,0,0);
+
+		m_renderTargetView->Release();
+
+		HRESULT hr;
+
+		hr = m_swapChain->ResizeBuffers(0,0,0, DXGI_FORMAT_UNKNOWN, 0);
+
+		ID3D11Texture2D* m_buffer;
+	
+		hr = m_swapChain->GetBuffer(0,__uuidof(ID3D11Texture2D), (void**)&m_buffer);
+
+		m_device->CreateRenderTargetView(m_buffer,NULL,&m_renderTargetView);
+
+		m_buffer->Release();
+
+		m_deviceContext->OMSetRenderTargets(1,&m_renderTargetView,NULL);
+
+		D3D11_VIEWPORT vp;
+		vp.Width = width;
+		vp.Height = height;
+		vp.MinDepth = 0.0f;
+		vp.MaxDepth = 1.0f;
+		vp.TopLeftX = 0;
+		vp.TopLeftY = 0;
+
+		m_deviceContext->RSSetViewports(1,&vp);
+	}
 }
 
 GPUHandlePtr DXDevice::vm_createVertexBuffer(GPU_ISA type, u32 size, void *data) {
@@ -908,8 +949,19 @@ void DXDevice::vm_mapTexture2D(GPUHandle *_handle, Image &img) {
 
     if(!mappedData.pData)
         throw ServiceException("Cannot map texture2D");
+	//mappedData.RowPitch = img.getWidth()*sizeof(Pixel);
+	//mappedData.DepthPitch = img.getWidth()*sizeof(Pixel)*img.getHeight();
     //memcpy(mappedData.pData,UBuffer->getData(offset),size);
-    memcpy(mappedData.pData,img.getPixels(),img.getSize());
+	auto row_size = img.getWidth()*sizeof(Pixel);
+	byte* write_ptr = static_cast<byte*>(mappedData.pData);
+	byte* read_ptr = reinterpret_cast<byte*>(img.getPixels());
+	for(int i=0;i<img.getHeight();i++)
+	{
+		memcpy(write_ptr,read_ptr,row_size);
+		read_ptr += row_size;
+		write_ptr += mappedData.RowPitch;
+	}
+    //memcpy(mappedData.pData,img.getPixels(),img.getSize());
 
     m_deviceContext->Unmap(handle->texture,0);
 }

@@ -3,7 +3,7 @@
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		/// Wheel joint definition. This requires defining a line of
@@ -120,9 +120,9 @@ namespace Break
 			friend class Joint;
 			WheelJoint(const WheelJointDef* def);
 
-			void InitVelocityConstraints(const Infrastructure::SolverData& data);
-			void SolveVelocityConstraints(const Infrastructure::SolverData& data);
-			bool SolvePositionConstraints(const Infrastructure::SolverData& data);
+			void InitVelocityConstraints(const SolverData& data);
+			void SolveVelocityConstraints(const SolverData& data);
+			bool SolvePositionConstraints(const SolverData& data);
 
 			real32 m_frequencyHz;
 			real32 m_dampingRatio;

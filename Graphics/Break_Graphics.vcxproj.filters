@@ -18,9 +18,6 @@
     <ClInclude Include="inc\Graphics.hpp">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Rect.hpp">
-      <Filter>inc</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Sprite.hpp">
       <Filter>inc</Filter>
     </ClInclude>
@@ -30,15 +27,54 @@
     <ClInclude Include="inc\Transform.hpp">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\FTRenderer.hpp">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FontFace.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Text.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\ShapeBatch.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Model_3D.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scene3D.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\FP_Camera.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Rect.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SpriteBatch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Transform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FTRenderer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FontFace.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Text.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeBatch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model_3D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene3D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FP_Camera.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

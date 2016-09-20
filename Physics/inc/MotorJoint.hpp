@@ -4,7 +4,7 @@
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		/// Motor joint definition.
@@ -86,9 +86,9 @@ namespace Break
 
 			MotorJoint(const MotorJointDef* def);
 
-			void InitVelocityConstraints(const Infrastructure::SolverData& data);
-			void SolveVelocityConstraints(const Infrastructure::SolverData& data);
-			bool SolvePositionConstraints(const Infrastructure::SolverData& data);
+			void InitVelocityConstraints(const SolverData& data);
+			void SolveVelocityConstraints(const SolverData& data);
+			bool SolvePositionConstraints(const SolverData& data);
 
 			// Solver shared
 			glm::vec2 m_linearOffset;

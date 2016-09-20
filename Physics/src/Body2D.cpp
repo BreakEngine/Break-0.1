@@ -3,10 +3,13 @@
 #include "World2D.hpp"
 #include "Contact2D.hpp"
 #include "Joint2D.hpp"
+#include "Transform2D.hpp"
+#include "Sweep.hpp"
+#include "Rotation2D.hpp"
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 Body::Body(const BodyDef* bd, World* world)
@@ -331,7 +334,7 @@ void Body::ResetMassData()
 	// Move center of mass.
 	glm::vec2 oldCenter = m_sweep.c;
 	m_sweep.localCenter = localCenter;
-	m_sweep.c0 = m_sweep.c = MathUtils::Mul(m_xf, m_sweep.localCenter);
+	m_sweep.c0 = m_sweep.c = Physics::Transform2D::Mul(m_xf, m_sweep.localCenter);
 
 	// Update center of mass velocity.
 	m_linearVelocity += MathUtils::Cross2(m_angularVelocity, m_sweep.c - oldCenter);
@@ -372,7 +375,7 @@ void Body::SetMassData(const MassData* massData)
 	// Move center of mass.
 	glm::vec2 oldCenter = m_sweep.c;
 	m_sweep.localCenter =  massData->center;
-	m_sweep.c0 = m_sweep.c = MathUtils::Mul(m_xf, m_sweep.localCenter);
+	m_sweep.c0 = m_sweep.c = Transform2D::Mul(m_xf, m_sweep.localCenter);
 
 	// Update center of mass velocity.
 	m_linearVelocity += MathUtils::Cross2(m_angularVelocity, m_sweep.c - oldCenter);
@@ -412,7 +415,7 @@ void Body::SetTransform2D(const glm::vec2& position, real32 angle)
 	m_xf.q.Set(angle);
 	m_xf.p = position;
 
-	m_sweep.c = MathUtils::Mul(m_xf, m_sweep.localCenter);
+	m_sweep.c = Transform2D::Mul(m_xf, m_sweep.localCenter);
 	m_sweep.a = angle;
 
 	m_sweep.c0 = m_sweep.c;
@@ -429,7 +432,7 @@ void Body::SynchronizeFixtures()
 {
 	Transform2D xf1;
 	xf1.q.Set(m_sweep.a0);
-	xf1.p = m_sweep.c0 - MathUtils::Mul(xf1.q, m_sweep.localCenter);
+	xf1.p = m_sweep.c0 - Rotation2D::Mul(xf1.q, m_sweep.localCenter);
 
 	BroadPhase* broadPhase = &m_world->m_contactManager.m_broadPhase;
 	for (Fixture* f = m_fixtureList; f; f = f->m_next)
@@ -533,4 +536,396 @@ void Body::Dump()
 		printf("  }\n");
 	}
 	printf("}\n");
+}
+
+
+inline BodyType Body::GetType() const
+{
+	return m_type;
+}
+
+inline const Transform2D& Body::GetTransform2D() const
+{
+	return m_xf;
+}
+
+inline const glm::vec2& Body::GetPosition() const
+{
+	return m_xf.p;
+}
+
+inline real32 Body::GetAngle() const
+{
+	return m_sweep.a;
+}
+
+inline const glm::vec2& Body::GetWorldCenter() const
+{
+	return m_sweep.c;
+}
+
+inline const glm::vec2& Body::GetLocalCenter() const
+{
+	return m_sweep.localCenter;
+}
+
+inline void Body::SetLinearVelocity(const glm::vec2& v)
+{
+	if (m_type == staticBody)
+	{
+		return;
+	}
+
+	if (glm::dot(v,v) > 0.0f)
+	{
+		SetAwake(true);
+	}
+
+	m_linearVelocity = v;
+}
+
+inline const glm::vec2& Body::GetLinearVelocity() const
+{
+	return m_linearVelocity;
+}
+
+inline void Body::SetAngularVelocity(real32 w)
+{
+	if (m_type == staticBody)
+	{
+		return;
+	}
+
+	if (w * w > 0.0f)
+	{
+		SetAwake(true);
+	}
+
+	m_angularVelocity = w;
+}
+
+inline real32 Body::GetAngularVelocity() const
+{
+	return m_angularVelocity;
+}
+
+inline real32 Body::GetMass() const
+{
+	return m_mass;
+}
+
+inline real32 Body::GetInertia() const
+{
+	return m_I + m_mass * glm::dot(m_sweep.localCenter, m_sweep.localCenter);
+}
+
+inline void Body::GetMassData(MassData* data) const
+{
+	data->mass = m_mass;
+	data->I = m_I + m_mass * glm::dot(m_sweep.localCenter, m_sweep.localCenter);
+	data->center = m_sweep.localCenter;
+}
+
+inline glm::vec2 Body::GetWorldPoint(const glm::vec2& localPoint) const
+{
+	return Transform2D::Mul(m_xf, localPoint);
+}
+
+inline glm::vec2 Body::GetWorldVector(const glm::vec2& localVector) const
+{
+	return Rotation2D::Mul(m_xf.q, localVector);
+}
+
+inline glm::vec2 Body::GetLocalPoint(const glm::vec2& worldPoint) const
+{
+	return Transform2D::MulT(m_xf, worldPoint);
+}
+
+inline glm::vec2 Body::GetLocalVector(const glm::vec2& worldVector) const
+{
+	return Rotation2D::MulT(m_xf.q, worldVector);
+}
+
+inline glm::vec2 Body::GetLinearVelocityFromWorldPoint(const glm::vec2& worldPoint) const
+{
+	return m_linearVelocity + MathUtils::Cross2(m_angularVelocity, worldPoint - m_sweep.c);
+}
+
+inline glm::vec2 Body::GetLinearVelocityFromLocalPoint(const glm::vec2& localPoint) const
+{
+	return GetLinearVelocityFromWorldPoint(GetWorldPoint(localPoint));
+}
+
+inline real32 Body::GetLinearDamping() const
+{
+	return m_linearDamping;
+}
+
+inline void Body::SetLinearDamping(real32 linearDamping)
+{
+	m_linearDamping = linearDamping;
+}
+
+inline real32 Body::GetAngularDamping() const
+{
+	return m_angularDamping;
+}
+
+inline void Body::SetAngularDamping(real32 angularDamping)
+{
+	m_angularDamping = angularDamping;
+}
+
+inline real32 Body::GetGravityScale() const
+{
+	return m_gravityScale;
+}
+
+inline void Body::SetGravityScale(real32 scale)
+{
+	m_gravityScale = scale;
+}
+
+inline void Body::SetBullet(bool flag)
+{
+	if (flag)
+	{
+		m_flags |= bulletFlag;
+	}
+	else
+	{
+		m_flags &= ~bulletFlag;
+	}
+}
+
+inline bool Body::IsBullet() const
+{
+	return (m_flags & bulletFlag) == bulletFlag;
+}
+
+inline void Body::SetAwake(bool flag)
+{
+	if (flag)
+	{
+		if ((m_flags & awakeFlag) == 0)
+		{
+			m_flags |= awakeFlag;
+			m_sleepTime = 0.0f;
+		}
+	}
+	else
+	{
+		m_flags &= ~awakeFlag;
+		m_sleepTime = 0.0f;
+		m_linearVelocity = glm::vec2(0.0f,0.0f);
+		m_angularVelocity = 0.0f;
+		m_force = glm::vec2(0.0f,0.0f);
+		m_torque = 0.0f;
+	}
+}
+
+inline bool Body::IsAwake() const
+{
+	return (m_flags & awakeFlag) == awakeFlag;
+}
+
+inline bool Body::IsActive() const
+{
+	return (m_flags & activeFlag) == activeFlag;
+}
+
+inline bool Body::IsFixedRotation() const
+{
+	return (m_flags & fixedRotationFlag) == fixedRotationFlag;
+}
+
+inline void Body::SetSleepingAllowed(bool flag)
+{
+	if (flag)
+	{
+		m_flags |= autoSleepFlag;
+	}
+	else
+	{
+		m_flags &= ~autoSleepFlag;
+		SetAwake(true);
+	}
+}
+
+inline bool Body::IsSleepingAllowed() const
+{
+	return (m_flags & autoSleepFlag) == autoSleepFlag;
+}
+
+inline Fixture* Body::GetFixtureList()
+{
+	return m_fixtureList;
+}
+
+inline const Fixture* Body::GetFixtureList() const
+{
+	return m_fixtureList;
+}
+
+inline JointEdge* Body::GetJointList()
+{
+	return m_jointList;
+}
+
+inline const JointEdge* Body::GetJointList() const
+{
+	return m_jointList;
+}
+
+inline ContactEdge* Body::GetContactList()
+{
+	return m_contactList;
+}
+
+inline const ContactEdge* Body::GetContactList() const
+{
+	return m_contactList;
+}
+
+inline Body* Body::GetNext()
+{
+	return m_next;
+}
+
+inline const Body* Body::GetNext() const
+{
+	return m_next;
+}
+
+inline void Body::SetUserData(void* data)
+{
+	m_userData = data;
+}
+
+inline void* Body::GetUserData() const
+{
+	return m_userData;
+}
+
+inline void Body::ApplyForce(const glm::vec2& force, const glm::vec2& point, bool wake)
+{
+	if (m_type != dynamicBody)
+	{
+		return;
+	}
+
+	if (wake && (m_flags & awakeFlag) == 0)
+	{
+		SetAwake(true);
+	}
+
+	// Don't accumulate a force if the body is sleeping.
+	if (m_flags & awakeFlag)
+	{
+		m_force += force;
+		m_torque += MathUtils::Cross2(point - m_sweep.c, force);
+	}
+}
+
+inline void Body::ApplyForceToCenter(const glm::vec2& force, bool wake)
+{
+	if (m_type != dynamicBody)
+	{
+		return;
+	}
+
+	if (wake && (m_flags & awakeFlag) == 0)
+	{
+		SetAwake(true);
+	}
+
+	// Don't accumulate a force if the body is sleeping
+	if (m_flags & awakeFlag)
+	{
+		m_force += force;
+	}
+}
+
+inline void Body::ApplyTorque(real32 torque, bool wake)
+{
+	if (m_type != dynamicBody)
+	{
+		return;
+	}
+
+	if (wake && (m_flags & awakeFlag) == 0)
+	{
+		SetAwake(true);
+	}
+
+	// Don't accumulate a force if the body is sleeping
+	if (m_flags & awakeFlag)
+	{
+		m_torque += torque;
+	}
+}
+
+inline void Body::ApplyLinearImpulse(const glm::vec2& impulse, const glm::vec2& point, bool wake)
+{
+	if (m_type != dynamicBody)
+	{
+		return;
+	}
+
+	if (wake && (m_flags & awakeFlag) == 0)
+	{
+		SetAwake(true);
+	}
+
+	// Don't accumulate velocity if the body is sleeping
+	if (m_flags & awakeFlag)
+	{
+		m_linearVelocity += m_invMass * impulse;
+		m_angularVelocity += m_invI * MathUtils::Cross2(point - m_sweep.c, impulse);
+	}
+}
+
+inline void Body::ApplyAngularImpulse(real32 impulse, bool wake)
+{
+	if (m_type != dynamicBody)
+	{
+		return;
+	}
+
+	if (wake && (m_flags & awakeFlag) == 0)
+	{
+		SetAwake(true);
+	}
+
+	// Don't accumulate velocity if the body is sleeping
+	if (m_flags & awakeFlag)
+	{
+		m_angularVelocity += m_invI * impulse;
+	}
+}
+
+inline void Body::SynchronizeTransform2D()
+{
+	m_xf.q.Set(m_sweep.a);
+	m_xf.p = m_sweep.c - Rotation2D::Mul(m_xf.q, m_sweep.localCenter);
+}
+
+inline void Body::Advance(real32 alpha)
+{
+	// Advance to the new safe time. This doesn't sync the broad-phase.
+	m_sweep.Advance(alpha);
+	m_sweep.c = m_sweep.c0;
+	m_sweep.a = m_sweep.a0;
+	m_xf.q.Set(m_sweep.a);
+	m_xf.p = m_sweep.c - Rotation2D::Mul(m_xf.q, m_sweep.localCenter);
+}
+
+inline World* Body::GetWorld()
+{
+	return m_world;
+}
+
+inline const World* Body::GetWorld() const
+{
+	return m_world;
 }

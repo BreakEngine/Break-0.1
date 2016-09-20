@@ -79,7 +79,7 @@ GPUHandlePtr GPU_VM::execute(GPUIns& ins){
             }
         }else if(tag_01 == GPU_ISA::PROGRAM)
         {
-            std::string* vertex = pop(ins.args);
+            std::string* vertex = pop(ins.args); 
             std::string* pixel = pop(ins.args);
             MemoryLayout* input_layout = pop(ins.args);
 

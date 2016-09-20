@@ -17,17 +17,22 @@ project "Break_Graphics"
 	includedirs{
 		"Infrastructure/inc",
 		"Graphics/deps/glm/include",
+		"Graphics/deps/freetype/include"
 	}
+	
+	libdirs{"Graphics/deps/freetype/lib"}
 	
 	configuration {"linux", "gmake"}
 		buildoptions{"-std=c++11", "-pthread"}
 	
 	filter "configurations:Debug"
 		defines {"DEBUG","COMPILE_DLL"}
+		links{"freetype262d"}
 		flags {"Symbols"}
 	
 	filter "configurations:Release"
 		defines {"NDEBUG","COMPILE_DLL"}
+		links{"freetype262"}
 		optimize "On"
 		
 project "Break_Physics"

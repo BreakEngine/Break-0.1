@@ -8,10 +8,14 @@ using namespace Break;
 using namespace Break::Infrastructure;
 
 
-void GLKeyboard::update(){
+void GLKeyboard::update()
+{ 
     Keyboard::m_data.clear();
 }
-void GLKeyboard::keyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods){
+
+void GLKeyboard::keyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+
     switch (key)
     {
         case GLFW_KEY_A:

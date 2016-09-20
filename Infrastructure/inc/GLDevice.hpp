@@ -9,10 +9,14 @@
 #include "IGXDevice.hpp"
 #include <glm/glm.hpp>
 
+struct GLFWwindow;
+
 namespace Break{
     namespace Infrastructure{
         class BREAK_API GLDevice: public IGXDevice{
         protected:
+
+			static void resizeWindowFunc(GLFWwindow* window, s32 width, s32 height);
             /**
 			 * \brief applys filter to a texture based on our enums
 			 * \param filter filter that will be applied
@@ -40,13 +44,26 @@ namespace Break{
         public:
             ~GLDevice();
 
-            void init(Window* window) override;
+            void init(Window* window) override; 
 
             void start(Window* window) override;
 
             void clearBuffer() override;
 
             void swapBuffer(Window* window) override;
+
+			void updateViewport(u32 width, u32 height) override;
+
+
+			static GLuint GetUniformLocation(GLuint program , std::string str);
+			static void setUniform(GLuint location , glm::mat4 Matrix);
+			static void useShaderProgram(GLuint program);
+			static void deleteShaderProgram(GLuint program);
+			static void Prepare_texturing(unsigned char* tex_data, int x , int y, bool mipmaps , int unit , u32& m_texture , u32& sampler);
+			static void Bind_texture(int unit , u32 m_texture,  u32 &sampler);
+			static void uniform(GLuint prog_id , GLuint samp);
+			static GLFWwindow* Mainwindow;
+
 
             void setCursorPostion(int x, int y) override;
 
@@ -115,6 +132,10 @@ namespace Break{
                                                   TextureAddressMode V, TextureFilter filter, CompareFunction func,
                                                   Color border_color
             ) override;
+
+
+
+		
         };
     }
 }

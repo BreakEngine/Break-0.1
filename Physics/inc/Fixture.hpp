@@ -2,10 +2,10 @@
 #include "Body2D.hpp"
 #include "Collision.hpp"
 #include "Shape.hpp"
-
+#include <MathUtils.hpp>
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 
@@ -278,7 +278,7 @@ namespace Break
 
 		inline void Fixture::SetDensity(real32 density)
 		{
-			assert(MathUtils::IsVal(density) && density >= 0.0f);
+			assert(Infrastructure::MathUtils::IsVal(density) && density >= 0.0f);
 			m_density = density;
 		}
 

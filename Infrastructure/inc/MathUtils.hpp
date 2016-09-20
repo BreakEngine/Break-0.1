@@ -1,26 +1,27 @@
-#pragma once
+//
+// Created by Moustapha on 07/10/2015.
+//
+
+#ifndef BREAK_0_1_MATHUTILS_HPP
+#define BREAK_0_1_MATHUTILS_HPP
+
 #include "Globals.hpp"
-#include "Transform2D.hpp"
+#include <glm/common.hpp>
+#include <glm/glm.hpp>
 
+namespace Break{
+    namespace Infrastructure{
+        class BREAK_API MathUtils{
+        public:
 
-namespace Break
-{
-	namespace Infrastructure
-	{
-
-		class BREAK_API MathUtils
-		{
-
-		public:
-			static inline real32 toDegrees(real32 rad)
-			{
-				return rad * (180/glm::pi<real32>());
-			}
-			static inline real32 toRadians(real32 deg)
-			{
-				return deg * (glm::pi<real32>()/180);
-			}
-
+            static inline real32 toDegrees(real32 rad)
+            {
+                return rad * (180/PI);
+            }
+            static inline real32 toRadians(real32 deg)
+            {
+                return deg * (PI/180);
+            }
 
 			/// This function is used to ensure that a floating point number is not a NaN or infinity.
 			static inline bool IsVal(real32 x)
@@ -83,89 +84,6 @@ namespace Break
 			{
 				return  (v.length() * v.length());
 			}
-
-
-
-			/// Multiply two rotations: q * r
-			static inline Rotation2D Mul(const Rotation2D& q, const Rotation2D& r)
-			{
-				// [qc -qs] * [rc -rs] = [qc*rc-qs*rs -qc*rs-qs*rc]
-				// [qs  qc]   [rs  rc]   [qs*rc+qc*rs -qs*rs+qc*rc]
-				// s = qs * rc + qc * rs
-				// c = qc * rc - qs * rs
-				Rotation2D qr;
-				qr.s = q.s * r.c + q.c * r.s;
-				qr.c = q.c * r.c - q.s * r.s;
-				return qr;
-			}
-
-			/// Transpose multiply two rotations: qT * r
-			static inline Rotation2D MulT(const Rotation2D& q, const Rotation2D& r)
-			{
-				// [ qc qs] * [rc -rs] = [qc*rc+qs*rs -qc*rs+qs*rc]
-				// [-qs qc]   [rs  rc]   [-qs*rc+qc*rs qs*rs+qc*rc]
-				// s = qc * rs - qs * rc
-				// c = qc * rc + qs * rs
-				Rotation2D qr;
-				qr.s = q.c * r.s - q.s * r.c;
-				qr.c = q.c * r.c + q.s * r.s;
-				return qr;
-			}
-
-			/// Rotate a vector
-			static inline glm::vec2 Mul(const Rotation2D& q, const glm::vec2& v)
-			{
-				return glm::vec2(q.c * v.x - q.s * v.y, q.s * v.x + q.c * v.y);
-			}
-
-			/// Inverse rotate a vector
-			static inline glm::vec2 MulT(const Rotation2D& q, const glm::vec2& v)
-			{
-				return glm::vec2(q.c * v.x + q.s * v.y, -q.s * v.x + q.c * v.y);
-			}
-
-
-
-
-			static inline glm::vec2 Mul(const Transform2D& T, const glm::vec2& v)
-			{
-				real32 x = (T.q.c * v.x - T.q.s * v.y) + T.p.x;
-				real32 y = (T.q.s * v.x + T.q.c * v.y) + T.p.y;
-
-				return glm::vec2(x, y);
-			}
-
-			static inline glm::vec2 MulT(const Transform2D& T, const glm::vec2& v)
-			{
-				real32 px = v.x - T.p.x;
-				real32 py = v.y - T.p.y;
-				real32 x = (T.q.c * px + T.q.s * py);
-				real32 y = (-T.q.s * px + T.q.c * py);
-
-				return glm::vec2(x, y);
-			}
-
-			// v2 = A.q.Rot(B.q.Rot(v1) + B.p) + A.p
-			//    = (A.q * B.q).Rot(v1) + A.q.Rot(B.p) + A.p
-			static inline Transform2D Mul(const Transform2D& A, const Transform2D& B)
-			{
-				Transform2D C;
-				C.q = Mul(A.q, B.q);
-				C.p = Mul(A.q, B.p) + A.p;
-				return C;
-			}
-
-			// v2 = A.q' * (B.q * v1 + B.p - A.p)
-			//    = A.q' * B.q * v1 + A.q' * (B.p - A.p)
-			static inline Transform2D MulT(const Transform2D& A, const Transform2D& B)
-			{
-				Transform2D C;
-				C.q = MulT(A.q, B.q);
-				C.p = MulT(A.q, B.p - A.p);
-				return C;
-			}
-
-
 
 
 			/// Multiply a matrix times a vector.
@@ -288,43 +206,7 @@ namespace Break
 
 				return M;
 			}
-
-
-
-		};
-
-
-		//----------------inline funcs from Transform..
-		inline void Sweep::GetTransform(Transform2D* xf, real32 beta) const 
-		{
-			xf->p = (1.0f - beta) * c0 + beta * c;
-			real32 angle = (1.0f - beta) * a0 + beta * a;
-			xf->q.Set(angle);
-
-			// Shift to origin
-			xf->p -= MathUtils::Mul(xf->q, localCenter);
-		}
-
-		inline void Sweep::Advance(real32 alpha)
-		{
-			assert(alpha0 < 1.0f);
-			real32 beta = (alpha - alpha0) / (1.0f - alpha0);
-			c0 += beta * (c - c0);
-			a0 += beta * (a - a0);
-			alpha0 = alpha;
-		}
-
-		/// Normalize an angle in radians to be between -pi and pi
-		inline void Sweep::Normalize()
-		{
-			real32 twoPi = 2.0f * glm::pi<float>();
-			real32 d =  twoPi * floorf(a0 / twoPi);
-			a0 -= d;
-			a -= d;
-		}
-
-
-
-
-	}
+        };
+    }
 }
+#endif //BREAK_0_1_MATHUTILS_HPP

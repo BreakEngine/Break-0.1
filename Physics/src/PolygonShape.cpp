@@ -1,9 +1,10 @@
 #include "PolygonShape.hpp"
 #include <new>
+#include <Transform2D.hpp>
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 
@@ -55,8 +56,8 @@ void PolygonShape::SetAsBox(real32 hx, real32 hy, const glm::vec2& center, real3
 	// Transform2D vertices and normals.
 	for (s32 i = 0; i < m_count; ++i)
 	{
-		m_vertices[i] = MathUtils::Mul(xf, m_vertices[i]);
-		m_normals[i] =  MathUtils::Mul(xf.q, m_normals[i]);
+		m_vertices[i] = Transform2D::Mul(xf, m_vertices[i]);
+		m_normals[i] =  Rotation2D::Mul(xf.q, m_normals[i]);
 	}
 }
 
@@ -242,7 +243,7 @@ void PolygonShape::Set(const glm::vec2* vertices, s32 count)
 
 bool PolygonShape::TestPoint(const Transform2D& xf, const glm::vec2& p) const
 {
-	glm::vec2 pLocal = MathUtils::MulT(xf.q, p - xf.p);
+	glm::vec2 pLocal = Rotation2D::MulT(xf.q, p - xf.p);
 
 	for (s32 i = 0; i < m_count; ++i)
 	{
@@ -261,8 +262,8 @@ bool PolygonShape::RayCast(RayCastOutput* output, const RayCastInput& input,cons
 	NOT_USED(childIndex);  //using of not_used <<-----
 
 	// Put the ray into the polygon's frame of reference.
-	glm::vec2 p1 = MathUtils::MulT(xf.q, input.p1 - xf.p);
-	glm::vec2 p2 = MathUtils::MulT(xf.q, input.p2 - xf.p);
+	glm::vec2 p1 = Rotation2D::MulT(xf.q, input.p1 - xf.p);
+	glm::vec2 p2 = Rotation2D::MulT(xf.q, input.p2 - xf.p);
 	glm::vec2 d = p2 - p1;
 
 	real32 lower = 0.0f, upper = input.maxFraction;
@@ -320,7 +321,7 @@ bool PolygonShape::RayCast(RayCastOutput* output, const RayCastInput& input,cons
 	if (index >= 0)
 	{
 		output->fraction = lower;
-		output->normal = MathUtils::Mul(xf.q, m_normals[index]);
+		output->normal = Rotation2D::Mul(xf.q, m_normals[index]);
 		return true;
 	}
 
@@ -331,12 +332,12 @@ void PolygonShape::ComputeAABB(AABB* aabb, const Transform2D& xf, s32 childIndex
 {
 	NOT_USED(childIndex);
 
-	glm::vec2 lower = MathUtils::Mul(xf, m_vertices[0]);
+	glm::vec2 lower = Transform2D::Mul(xf, m_vertices[0]);
 	glm::vec2 upper = lower;
 
 	for (s32 i = 1; i < m_count; ++i)
 	{
-		glm::vec2 v = MathUtils::Mul(xf, m_vertices[i]);
+		glm::vec2 v = Transform2D::Mul(xf, m_vertices[i]);
 		lower = glm::min(lower, v);
 		upper = glm::max(upper, v);
 	}

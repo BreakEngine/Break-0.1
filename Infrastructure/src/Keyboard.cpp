@@ -3,7 +3,8 @@
 //
 
 #include "Keyboard.hpp"
-
+#include "GLDevice.hpp"
+#include <GLFW/glfw3.h>
 using namespace std;
 using namespace Break;
 using namespace Break::Infrastructure;
@@ -18,11 +19,20 @@ Keyboard::Keyboard(){
 Keyboard::~Keyboard(){
     //_data.clear();
 }
-Keyboard::KeyState Keyboard::getKey(Keyboard::Keys key){
-    auto it = m_data.find(key);
+Keyboard::KeyState Keyboard::getKey(Keyboard::Keys key)
+{ 
+    auto it = m_data.find(key); 
     if (it == m_data.end())
         return Keyboard::KeyState::State_None;
     return it->second;
+}
+
+bool Keyboard::GetPressedKey(int key)
+{
+
+
+	return false;
+
 }
 
 void Keyboard::update(){

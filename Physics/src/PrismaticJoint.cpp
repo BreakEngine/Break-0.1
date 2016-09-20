@@ -4,7 +4,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 // Linear constraint (point-to-line)
@@ -134,8 +134,8 @@ void PrismaticJoint::InitVelocityConstraints(const SolverData& data)
 	Rotation2D qA(aA), qB(aB);
 
 	// Compute the effective masses.
-	glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 	glm::vec2 d = (cB - cA) + rB - rA;
 
 	real32 mA = m_invMassA, mB = m_invMassB;
@@ -143,7 +143,7 @@ void PrismaticJoint::InitVelocityConstraints(const SolverData& data)
 
 	// Compute motor Jacobian and effective mass.
 	{
-		m_axis = MathUtils::Mul(qA, m_localXAxisA);
+		m_axis = Rotation2D::Mul(qA, m_localXAxisA);
 		m_a1 = MathUtils::Cross2(d + rA, m_axis);
 		m_a2 = MathUtils::Cross2(rB, m_axis);
 
@@ -156,7 +156,7 @@ void PrismaticJoint::InitVelocityConstraints(const SolverData& data)
 
 	// Prismatic constraint.
 	{
-		m_perp = MathUtils::Mul(qA, m_localYAxisA);
+		m_perp = Rotation2D::Mul(qA, m_localYAxisA);
 
 		m_s1 = MathUtils::Cross2(d + rA, m_perp);
 		m_s2 = MathUtils::Cross2(rB, m_perp);
@@ -379,14 +379,14 @@ bool PrismaticJoint::SolvePositionConstraints(const SolverData& data)
 	real32 iA = m_invIA, iB = m_invIB;
 
 	// Compute fresh Jacobians
-	glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 	glm::vec2 d = cB + rB - cA - rA;
 
-	glm::vec2 axis = MathUtils::Mul(qA, m_localXAxisA);
+	glm::vec2 axis = Rotation2D::Mul(qA, m_localXAxisA);
 	real32 a1 = MathUtils::Cross2(d + rA, axis);
 	real32 a2 = MathUtils::Cross2(rB, axis);
-	glm::vec2 perp = MathUtils::Mul(qA, m_localYAxisA);
+	glm::vec2 perp = Rotation2D::Mul(qA, m_localYAxisA);
 
 	real32 s1 = MathUtils::Cross2(d + rA, perp);
 	real32 s2 = MathUtils::Cross2(rB, perp);
@@ -553,12 +553,12 @@ real32 PrismaticJoint::GetJointSpeed() const
 	Body* bA = m_bodyA;
 	Body* bB = m_bodyB;
 
-	glm::vec2 rA = MathUtils::Mul(bA->m_xf.q, m_localAnchorA - bA->m_sweep.localCenter);
-	glm::vec2 rB = MathUtils::Mul(bB->m_xf.q, m_localAnchorB - bB->m_sweep.localCenter);
+	glm::vec2 rA = Rotation2D::Mul(bA->m_xf.q, m_localAnchorA - bA->m_sweep.localCenter);
+	glm::vec2 rB = Rotation2D::Mul(bB->m_xf.q, m_localAnchorB - bB->m_sweep.localCenter);
 	glm::vec2 p1 = bA->m_sweep.c + rA;
 	glm::vec2 p2 = bB->m_sweep.c + rB;
 	glm::vec2 d = p2 - p1;
-	glm::vec2 axis = MathUtils::Mul(bA->m_xf.q, m_localXAxisA);
+	glm::vec2 axis = Rotation2D::Mul(bA->m_xf.q, m_localXAxisA);
 
 	glm::vec2 vA = bA->m_linearVelocity;
 	glm::vec2 vB = bB->m_linearVelocity;

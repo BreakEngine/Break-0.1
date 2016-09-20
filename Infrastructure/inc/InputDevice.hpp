@@ -14,7 +14,7 @@ namespace Break{
         class Engine;
         ///represents an input device
         class BREAK_API InputDevice{
-            friend class Engine;
+            friend class Engine; 
         public:
             InputDevice(){}
 

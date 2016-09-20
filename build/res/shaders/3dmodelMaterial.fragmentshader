@@ -1,0 +1,22 @@
+#version 330 core
+
+// input data
+in vec3 fragmentColor;
+in vec3 position_worldspace;
+in vec3 normal_worldspace;
+in vec2 TexCoord;
+
+uniform vec3 LightPosition_worldspace;
+uniform vec3 EyePosition_worldspace;
+uniform vec3 ambientLight;
+
+uniform sampler2D myTextureSampler;
+
+
+// Ouput data
+out vec3 color;
+void main()
+{
+
+	color = texture( myTextureSampler, TexCoord ).rgb;
+}

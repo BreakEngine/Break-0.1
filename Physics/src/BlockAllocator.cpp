@@ -5,7 +5,7 @@
 #include <assert.h>
 
 using namespace Break;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 s32 BlockAllocator::s_blockSizes[blockSizes] =

@@ -1,12 +1,13 @@
 #pragma once
-#include "Globals.hpp"
-#include "MathUtils.hpp"
-
-using namespace Break::Infrastructure;
+#include <Globals.hpp>
+#include <MathUtils.hpp>
+#include <glm/common.hpp>
+#include "PhysicsGlobals.hpp"
+#include "Transform2D.hpp"
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		class BREAK_API Shape;
@@ -230,7 +231,7 @@ namespace Break
 		{
 			glm::vec2 d = upperBound - lowerBound;
 			bool valid = d.x >= 0.0f && d.y >= 0.0f;
-			valid = valid && MathUtils::IsValid(lowerBound) && MathUtils::IsValid(upperBound);
+			valid = valid && Infrastructure::MathUtils::IsValid(lowerBound) && Infrastructure::MathUtils::IsValid(upperBound);
 			return valid;
 		}
 

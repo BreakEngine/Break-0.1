@@ -8,10 +8,14 @@
 #include "Joint2D.hpp"
 #include "StackAllocator.hpp"
 #include "TimeManager.hpp"
+#include <Profile.hpp>
+#include <PTimeStep.hpp>
+#include <Services.hpp>
+#include "PhysicsGlobals.hpp"
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 
@@ -163,7 +167,7 @@ Island::~Island()
 	m_allocator->Free(m_bodies);
 }
 
-void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const glm::vec2& gravity, bool allowSleep)
+void Island::Solve(Profile* profile, const PTimeStep& step, const glm::vec2& gravity, bool allowSleep)
 {
 	Time timer;
 
@@ -206,10 +210,10 @@ void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const
 		m_velocities[i].w = w;
 	}
 
-	timer.Reset();
+	auto captureTimer = Services::getPlatform()->getTime();
 
 	// Solver data
-	Infrastructure::SolverData solverData;
+	SolverData solverData;
 	solverData.step = step;
 	solverData.positions = m_positions;
 	solverData.velocities = m_velocities;
@@ -236,10 +240,10 @@ void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const
 		m_joints[i]->InitVelocityConstraints(solverData);
 	}
 
-	profile->solveInit = timer.GetMilliseconds();
+	profile->solveInit = Services::getPlatform()->getTime()-captureTimer;
 
 	// Solve velocity constraints
-	timer.Reset();
+	captureTimer = Services::getPlatform()->getTime();
 	for (s32 i = 0; i < step.velocityIterations; ++i)
 	{
 		for (s32 j = 0; j < m_jointCount; ++j)
@@ -252,7 +256,7 @@ void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const
 
 	// Store impulses for warm starting
 	contactSolver.StoreImpulses();
-	profile->solveVelocity = timer.GetMilliseconds();
+	profile->solveVelocity = Services::getPlatform()->getTime()-captureTimer;
 
 	// Integrate positions
 	for (s32 i = 0; i < m_bodyCount; ++i)
@@ -288,7 +292,7 @@ void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const
 	}
 
 	// Solve position constraints
-	timer.Reset();
+	captureTimer = Services::getPlatform()->getTime();
 	bool positionSolved = false;
 	for (s32 i = 0; i < step.positionIterations; ++i)
 	{
@@ -320,7 +324,7 @@ void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const
 		body->SynchronizeTransform2D();
 	}
 
-	profile->solvePosition = timer.GetMilliseconds();
+	profile->solvePosition = Services::getPlatform()->getTime()-captureTimer;
 
 	Report(contactSolver.m_velocityConstraints);
 
@@ -364,7 +368,7 @@ void Island::Solve(Infrastructure::Profile* profile, const TimeStep& step, const
 	}
 }
 
-void Island::SolveTOI(const TimeStep& subStep, s32 toiIndexA, s32 toiIndexB)
+void Island::SolveTOI(const PTimeStep& subStep, s32 toiIndexA, s32 toiIndexB)
 {
 	assert(toiIndexA < m_bodyCount);
 	assert(toiIndexB < m_bodyCount);

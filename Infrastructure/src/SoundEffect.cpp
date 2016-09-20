@@ -12,6 +12,8 @@ SoundEffect::SoundEffect(byte* dataRecived,u32 dataSize, real64 volume ){
 	m_loop = false;
 	m_playing = false;
 	m_pausing = false;
+	m_SampleRate = 0;
+	m_SampleSize = 0;
 }
 SoundEffect::~SoundEffect(){
     delete m_data;
@@ -55,6 +57,7 @@ bool SoundEffect::isPlaying(){
 void SoundEffect::play(bool looping){
 	m_playing = true;
 	m_pausing = false;
+	m_loop = looping;
 	Services::getSoundDevice()->play(this);
 }
 
@@ -69,4 +72,21 @@ void SoundEffect::stop(){
 	m_pausing = false;
 	m_playingCursor = 0;
 	Services::getSoundDevice()->stop(this);
+}
+
+void SoundEffect::setSampleRate(u32 val)
+{
+	m_SampleRate = val;
+}
+
+u32 SoundEffect::getSampleRate(){
+	return m_SampleRate;
+}
+
+void SoundEffect::setSampleSize(u32 val){
+	m_SampleSize = val;
+}
+
+u32 SoundEffect::getSampleSize(){
+	return m_SampleSize;
 }

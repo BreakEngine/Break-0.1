@@ -1,9 +1,10 @@
 #pragma once
 #include "Shape.hpp"
+#include "PhysicsGlobals.hpp"
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
 
 		/// A convex polygon. It is assumed that the interior of the polygon is to

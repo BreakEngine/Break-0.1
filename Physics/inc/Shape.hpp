@@ -6,8 +6,9 @@
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
+		class Transform2D;
 
 		/// This holds the mass data computed for a shape.
 		//need to hold all mass data and recive maass from here <<------

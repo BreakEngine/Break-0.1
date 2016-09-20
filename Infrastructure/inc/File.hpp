@@ -2,6 +2,7 @@
 #define FILE_HPP
 
 #include "Globals.hpp"
+#include <string>
 
 namespace Break
 {
@@ -27,12 +28,17 @@ namespace Break
 			AccessPermission m_accessPermission;
 		public:
 			File();
-			File(const std::string& path, AccessPermission permission = AccessPermission::READ);
+
+			File(const std::string& path,
+				AccessPermission permission = AccessPermission::READ);
 			~File();
 
-			void open(const std::string& path, AccessPermission permission = AccessPermission::READ);
 
-			void create(const std::string& path, AccessPermission permission = AccessPermission::WRITE);
+			void open(const std::string& path,
+				AccessPermission permission = AccessPermission::READ);
+
+			void create(const std::string& path,
+				AccessPermission permission = AccessPermission::WRITE);
 
 			void close();
 
@@ -50,15 +56,21 @@ namespace Break
 
 			u32 getReadCursor() const;
 
+			bool write(void* data, u32 writtenSize);
+
+			bool write(const std::string& str);
+
 			static bool Exists(const std::string& path);
 
-			/*
-			To be Added
-			void rename();
-			void copy();
-			void move();
-			static Exists();
-			*/
+			static bool Rename(const std::string& filePath, std::string newFilePath);
+
+			static bool Copy(const std::string& fileName, const std::string& copyName,
+				bool overwriteFlag);
+
+			static bool Move(const std::string& currentLocation,
+				const std::string& newLocation);
+
+			static bool Delete(const std::string& path);
 		};
 		typedef std::shared_ptr<File> FilePtr;
 	}

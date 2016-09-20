@@ -1,9 +1,10 @@
 #include "Chains.hpp"
+#include <RevoluteJoint.hpp>
+#include "World2D.hpp"
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::Graphics;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 ChainBody::ChainBody(World *world,Body *ground)
 {

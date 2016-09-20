@@ -57,13 +57,15 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>inc;..\Infrastructure\inc;deps\glm\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;..\Infrastructure\inc;deps\glm\include;deps\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>freetype262d.lib;Break_Infrastructure.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\freetype\lib;C:\Users\Sho3la\Desktop\kookk\Break-0.1-master\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug\Break_Graphics.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -72,7 +74,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;COMPILE_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>inc;..\Infrastructure\inc;deps\glm\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>inc;..\Infrastructure\inc;deps\glm\include;deps\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -84,21 +86,35 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>freetype262.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>deps\freetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release\Break_Graphics.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="inc\Component.hpp" />
     <ClInclude Include="inc\Entity.hpp" />
+    <ClInclude Include="inc\FontFace.h" />
+    <ClInclude Include="inc\FP_Camera.h" />
+    <ClInclude Include="inc\FTRenderer.hpp" />
     <ClInclude Include="inc\Graphics.hpp" />
-    <ClInclude Include="inc\Rect.hpp" />
+    <ClInclude Include="inc\Model_3D.h" />
+    <ClInclude Include="inc\Scene3D.h" />
+    <ClInclude Include="inc\ShapeBatch.h" />
     <ClInclude Include="inc\Sprite.hpp" />
     <ClInclude Include="inc\SpriteBatch.hpp" />
+    <ClInclude Include="inc\Text.h" />
     <ClInclude Include="inc\Transform.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Rect.cpp" />
+    <ClCompile Include="src\FontFace.cpp" />
+    <ClCompile Include="src\FP_Camera.cpp" />
+    <ClCompile Include="src\FTRenderer.cpp" />
+    <ClCompile Include="src\Model_3D.cpp" />
+    <ClCompile Include="src\Scene3D.cpp" />
+    <ClCompile Include="src\ShapeBatch.cpp" />
     <ClCompile Include="src\SpriteBatch.cpp" />
+    <ClCompile Include="src\Text.cpp" />
     <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>

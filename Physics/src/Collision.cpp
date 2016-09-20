@@ -3,7 +3,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 void WorldManifold::Initialize(const Manifold* manifold,const Transform2D& xfA, real32 radiusA, const Transform2D& xfB, real32 radiusB)
 {
@@ -17,8 +17,8 @@ void WorldManifold::Initialize(const Manifold* manifold,const Transform2D& xfA, 
 	case Manifold::circles:
 		{
 			normal = glm::vec2(1.0f, 0.0f);
-			glm::vec2 pointA = MathUtils::Mul(xfA, manifold->localPoint);
-			glm::vec2 pointB = MathUtils::Mul(xfB, manifold->points[0].localPoint);
+			glm::vec2 pointA = Transform2D::Mul(xfA, manifold->localPoint);
+			glm::vec2 pointB = Transform2D::Mul(xfB, manifold->points[0].localPoint);
 			if (MathUtils::DistanceSquared(pointA, pointB) > FLT_EPSILON * FLT_EPSILON)
 			{
 				normal = pointB - pointA;
@@ -34,12 +34,12 @@ void WorldManifold::Initialize(const Manifold* manifold,const Transform2D& xfA, 
 
 	case Manifold::faceA:
 		{
-			normal = MathUtils::Mul(xfA.q, manifold->localNormal);
-			glm::vec2 planePoint = MathUtils::Mul(xfA, manifold->localPoint);
+			normal = Rotation2D::Mul(xfA.q, manifold->localNormal);
+			glm::vec2 planePoint = Transform2D::Mul(xfA, manifold->localPoint);
 
 			for (s32 i = 0; i < manifold->pointCount; ++i)
 			{
-				glm::vec2 clipPoint = MathUtils::Mul(xfB, manifold->points[i].localPoint);
+				glm::vec2 clipPoint = Transform2D::Mul(xfB, manifold->points[i].localPoint);
 				glm::vec2 cA = clipPoint + (radiusA - glm::dot(clipPoint - planePoint, normal)) * normal;
 				glm::vec2 cB = clipPoint - radiusB * normal;
 				points[i] = 0.5f * (cA + cB);
@@ -50,12 +50,12 @@ void WorldManifold::Initialize(const Manifold* manifold,const Transform2D& xfA, 
 
 	case Manifold::faceB:
 		{
-			normal = MathUtils::Mul(xfB.q, manifold->localNormal);
-			glm::vec2 planePoint = MathUtils::Mul(xfB, manifold->localPoint);
+			normal = Rotation2D::Mul(xfB.q, manifold->localNormal);
+			glm::vec2 planePoint = Transform2D::Mul(xfB, manifold->localPoint);
 
 			for (s32 i = 0; i < manifold->pointCount; ++i)
 			{
-				glm::vec2 clipPoint = MathUtils::Mul(xfA, manifold->points[i].localPoint);
+				glm::vec2 clipPoint = Transform2D::Mul(xfA, manifold->points[i].localPoint);
 				glm::vec2 cB = clipPoint + (radiusB - glm::dot(clipPoint - planePoint, normal)) * normal;
 				glm::vec2 cA = clipPoint - radiusA * normal;
 				points[i] = 0.5f * (cA + cB);
@@ -70,7 +70,7 @@ void WorldManifold::Initialize(const Manifold* manifold,const Transform2D& xfA, 
 }
 
 
-void physics::GetPointStates(PointState state1[maxManifoldPoints], PointState state2[maxManifoldPoints], const Manifold* manifold1, const Manifold* manifold2)
+void Physics::GetPointStates(PointState state1[maxManifoldPoints], PointState state2[maxManifoldPoints], const Manifold* manifold1, const Manifold* manifold2)
 {
 	for (s32 i = 0; i < maxManifoldPoints; ++i)
 	{
@@ -186,7 +186,7 @@ bool AABB::RayCast(RayCastOutput* output, const RayCastInput& input) const
 
 
 // Sutherland-Hodgman clipping algorithm..
-s32 physics::ClipSegmentToLine(ClipVertex vOut[2], const ClipVertex vIn[2], const glm::vec2& normal, real32 offset, s32 vertexIndexA)
+s32 Physics::ClipSegmentToLine(ClipVertex vOut[2], const ClipVertex vIn[2], const glm::vec2& normal, real32 offset, s32 vertexIndexA)
 {
 	// Start with no output points
 	s32 numOut = 0;
@@ -220,7 +220,7 @@ s32 physics::ClipSegmentToLine(ClipVertex vOut[2], const ClipVertex vIn[2], cons
 
 
 //testing overlaping by calculating distance between two polygons using GJK algorithm..
-bool physics::TestOverlap(const Shape* shapeA, s32 indexA,const Shape* shapeB, s32 indexB,const Transform2D& xfA, const Transform2D& xfB)
+bool Physics::TestOverlap(const Shape* shapeA, s32 indexA,const Shape* shapeB, s32 indexB,const Transform2D& xfA, const Transform2D& xfB)
 {
 	DistanceInput input;
 	input.proxyA.Set(shapeA, indexA);

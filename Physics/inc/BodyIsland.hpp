@@ -2,12 +2,15 @@
 #include "MathUtils.hpp"
 #include "Body2D.hpp"
 #include "TimeStep.hpp"
+#include "Profile.hpp"
 
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
+		class BREAK_API PTimeStep;
+		struct BREAK_API Profile;
 
 		class BREAK_API Contact;
 		class BREAK_API Joint;
@@ -31,9 +34,9 @@ namespace Break
 				m_jointCount = 0;
 			}
 
-			void Solve(Infrastructure::Profile* profile, const TimeStep& step, const glm::vec2& gravity, bool allowSleep);
+			void Solve(Profile* profile, const PTimeStep& step, const glm::vec2& gravity, bool allowSleep);
 
-			void SolveTOI(const TimeStep& subStep, s32 toiIndexA, s32 toiIndexB);
+			void SolveTOI(const PTimeStep& subStep, s32 toiIndexA, s32 toiIndexB);
 
 			void Add(Body* body)
 			{

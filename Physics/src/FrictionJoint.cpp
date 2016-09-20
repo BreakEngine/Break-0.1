@@ -4,7 +4,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 // Point-to-point constraint
@@ -62,8 +62,8 @@ void FrictionJoint::InitVelocityConstraints(const SolverData& data)
 	Rotation2D qA(aA), qB(aB);
 
 	// Compute the effective mass matrix.
-	m_rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	m_rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	m_rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	m_rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 
 	// J = [-I -r1_skew I r2_skew]
 	//     [ 0       -1 0       1]

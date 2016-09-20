@@ -4,7 +4,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 // Linear constraint (point-to-line)
@@ -88,13 +88,13 @@ void WheelJoint::InitVelocityConstraints(const SolverData& data)
 	Rotation2D qA(aA), qB(aB);
 
 	// Compute the effective masses.
-	glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 	glm::vec2 d = cB + rB - cA - rA;
 
 	// Point to line constraint
 	{
-		m_ay = MathUtils::Mul(qA, m_localYAxisA);
+		m_ay = Rotation2D::Mul(qA, m_localYAxisA);
 		m_sAy = MathUtils::Cross2(d + rA, m_ay);
 		m_sBy = MathUtils::Cross2(rB, m_ay);
 
@@ -112,7 +112,7 @@ void WheelJoint::InitVelocityConstraints(const SolverData& data)
 	m_gamma = 0.0f;
 	if (m_frequencyHz > 0.0f)
 	{
-		m_ax = MathUtils::Mul(qA, m_localXAxisA);
+		m_ax = Rotation2D::Mul(qA, m_localXAxisA);
 		m_sAx = MathUtils::Cross2(d + rA, m_ax);
 		m_sBx = MathUtils::Cross2(rB, m_ax);
 
@@ -273,11 +273,11 @@ bool WheelJoint::SolvePositionConstraints(const SolverData& data)
 
 	Rotation2D qA(aA), qB(aB);
 
-	glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 	glm::vec2 d = (cB - cA) + rB - rA;
 
-	glm::vec2 ay = MathUtils::Mul(qA, m_localYAxisA);
+	glm::vec2 ay = Rotation2D::Mul(qA, m_localYAxisA);
 
 	real32 sAy = MathUtils::Cross2(d + rA, ay);
 	real32 sBy = MathUtils::Cross2(rB, ay);

@@ -8,12 +8,12 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 #define _DEBUG_SOLVER 0
 
-struct physics::ContactPositionConstraint
+struct Physics::ContactPositionConstraint
 {
 	glm::vec2 localPoints[maxManifoldPoints];
 	glm::vec2 localNormal;
@@ -158,8 +158,8 @@ void ContactSolver::InitializeVelocityConstraints()
 		Transform2D xfA, xfB;
 		xfA.q.Set(aA);
 		xfB.q.Set(aB);
-		xfA.p = cA - MathUtils::Mul(xfA.q, localCenterA);
-		xfB.p = cB - MathUtils::Mul(xfB.q, localCenterB);
+		xfA.p = cA - Rotation2D::Mul(xfA.q, localCenterA);
+		xfB.p = cB - Rotation2D::Mul(xfB.q, localCenterB);
 
 		WorldManifold worldManifold;
 		worldManifold.Initialize(manifold, xfA, radiusA, xfB, radiusB);
@@ -615,8 +615,8 @@ struct PositionSolverManifold
 		{
 		case Manifold::circles:
 			{
-				glm::vec2 pointA = MathUtils::Mul(xfA, pc->localPoint);
-				glm::vec2 pointB = MathUtils::Mul(xfB, pc->localPoints[0]);
+				glm::vec2 pointA = Transform2D::Mul(xfA, pc->localPoint);
+				glm::vec2 pointB = Transform2D::Mul(xfB, pc->localPoints[0]);
 				normal = pointB - pointA;
 				normal = glm::normalize(normal);
 				point = 0.5f * (pointA + pointB);
@@ -626,10 +626,10 @@ struct PositionSolverManifold
 
 		case Manifold::faceA:
 			{
-				normal = MathUtils::Mul(xfA.q, pc->localNormal);
-				glm::vec2 planePoint = MathUtils::Mul(xfA, pc->localPoint);
+				normal = Rotation2D::Mul(xfA.q, pc->localNormal);
+				glm::vec2 planePoint = Transform2D::Mul(xfA, pc->localPoint);
 
-				glm::vec2 clipPoint = MathUtils::Mul(xfB, pc->localPoints[index]);
+				glm::vec2 clipPoint = Transform2D::Mul(xfB, pc->localPoints[index]);
 				separation = glm::dot(clipPoint - planePoint, normal) - pc->radiusA - pc->radiusB;
 				point = clipPoint;
 			}
@@ -637,10 +637,10 @@ struct PositionSolverManifold
 
 		case Manifold::faceB:
 			{
-				normal = MathUtils::Mul(xfB.q, pc->localNormal);
-				glm::vec2 planePoint = MathUtils::Mul(xfB, pc->localPoint);
+				normal = Rotation2D::Mul(xfB.q, pc->localNormal);
+				glm::vec2 planePoint = Transform2D::Mul(xfB, pc->localPoint);
 
-				glm::vec2 clipPoint = MathUtils::Mul(xfA, pc->localPoints[index]);
+				glm::vec2 clipPoint = Transform2D::Mul(xfA, pc->localPoints[index]);
 				separation = glm::dot(clipPoint - planePoint, normal) - pc->radiusA - pc->radiusB;
 				point = clipPoint;
 
@@ -687,8 +687,8 @@ bool ContactSolver::SolvePositionConstraints()
 			Transform2D xfA, xfB;
 			xfA.q.Set(aA);
 			xfB.q.Set(aB);
-			xfA.p = cA - MathUtils::Mul(xfA.q, localCenterA);
-			xfB.p = cB - MathUtils::Mul(xfB.q, localCenterB);
+			xfA.p = cA - Rotation2D::Mul(xfA.q, localCenterA);
+			xfB.p = cB - Rotation2D::Mul(xfB.q, localCenterB);
 
 			PositionSolverManifold psm;
 			psm.Initialize(pc, xfA, xfB, j);
@@ -779,8 +779,8 @@ bool ContactSolver::SolveTOIPositionConstraints(s32 toiIndexA, s32 toiIndexB)
 			Transform2D xfA, xfB;
 			xfA.q.Set(aA);
 			xfB.q.Set(aB);
-			xfA.p = cA - MathUtils::Mul(xfA.q, localCenterA);
-			xfB.p = cB - MathUtils::Mul(xfB.q, localCenterB);
+			xfA.p = cA - Rotation2D::Mul(xfA.q, localCenterA);
+			xfB.p = cB - Rotation2D::Mul(xfB.q, localCenterB);
 
 			PositionSolverManifold psm;
 			psm.Initialize(pc, xfA, xfB, j);

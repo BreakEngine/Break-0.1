@@ -11,11 +11,11 @@
 namespace Break{
     namespace Infrastructure{
 
-        class BREAK_API Keyboard: public InputDevice{
+        class BREAK_API Keyboard: public InputDevice{ 
         public:
 
             Keyboard();
-
+			 
             virtual ~Keyboard();
 
             /**
@@ -157,6 +157,8 @@ namespace Break{
              */
 
             static KeyState getKey(Keys key);
+
+			static bool GetPressedKey(int key);
 
         protected:
 

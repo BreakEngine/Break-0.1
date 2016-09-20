@@ -28,7 +28,7 @@ namespace Break{
 			 */
             static void keyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-        protected:
+        protected: 
             /**
 			 * @fn	void GLKeyboard::update();
 			 *

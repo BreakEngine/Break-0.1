@@ -4,13 +4,12 @@
 
 #include "Transform.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-#include "MathUtils.hpp"
+#include <MathUtils.hpp>
 
 using namespace std;
 using namespace glm;
 using namespace Break;
 using namespace Break::Graphics;
-using namespace Break::Infrastructure;
 
 Transform::Transform(const glm::vec3 pos, const glm::quat rot, glm::vec3 scl):Object("Transform",Transform::Type)
 {
@@ -22,7 +21,7 @@ Transform::Transform(const glm::vec3 pos, const glm::quat rot, glm::vec3 scl):Ob
 Transform::Transform(const Transform& val):Object(val)
 {
     position = val.position;
-    rotation = val.rotation;
+    rotation = val.rotation; 
     scale = val.scale;
 }
 
@@ -36,9 +35,9 @@ glm::mat4 Transform::getMatrix()
 }
 
 void Transform::rotate(const glm::vec3 axis, float angle)
-{
+{ 
 
-    rotation *= glm::angleAxis(MathUtils::toRadians(angle),axis);
+    rotation = glm::angleAxis(Infrastructure::MathUtils::toRadians(angle),axis);
 }
 
 void Transform::move(const glm::vec3 dir, float val)

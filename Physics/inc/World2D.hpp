@@ -4,12 +4,12 @@
 #include "StackAllocator.hpp"
 #include "ContactManager.hpp"
 #include "WorldCallBacks.hpp"
-#include "TimeStep.hpp"
-
+#include "PTimeStep.hpp"
+#include "Profile.hpp"
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 		struct BREAK_API AABB;
@@ -202,8 +202,8 @@ namespace Break
 			friend class ContactManager;
 			friend class Controller;
 
-			void Solve(const TimeStep& step);
-			void SolveTOI(const TimeStep& step);
+			void Solve(const PTimeStep& step);
+			void SolveTOI(const PTimeStep& step);
 
 			BlockAllocator m_blockAllocator;
 			StackAllocator m_stackAllocator;
@@ -234,7 +234,7 @@ namespace Break
 
 			bool m_stepComplete;
 
-			Infrastructure::Profile m_profile;
+			Profile m_profile;
 		};
 
 		inline Body* World::GetBodyList()

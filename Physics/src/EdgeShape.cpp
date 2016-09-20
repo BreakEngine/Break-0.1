@@ -3,7 +3,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 void EdgeShape::Set(const glm::vec2& v1, const glm::vec2& v2)
@@ -43,8 +43,8 @@ bool EdgeShape::RayCast(RayCastOutput* output, const RayCastInput& input,const T
 	NOT_USED(childIndex);
 
 	// Put the ray into the edge's frame of reference.
-	glm::vec2 p1 = MathUtils::MulT(xf.q, input.p1 - xf.p);
-	glm::vec2 p2 = MathUtils::MulT(xf.q, input.p2 - xf.p);
+	glm::vec2 p1 = Rotation2D::MulT(xf.q, input.p1 - xf.p);
+	glm::vec2 p2 = Rotation2D::MulT(xf.q, input.p2 - xf.p);
 	glm::vec2 d = p2 - p1;
 
 	glm::vec2 v1 = m_vertex1;
@@ -90,11 +90,11 @@ bool EdgeShape::RayCast(RayCastOutput* output, const RayCastInput& input,const T
 	output->fraction = t;
 	if (numerator > 0.0f)
 	{
-		output->normal = -MathUtils::Mul(xf.q, normal);
+		output->normal = -Rotation2D::Mul(xf.q, normal);
 	}
 	else
 	{
-		output->normal = MathUtils::Mul(xf.q, normal);
+		output->normal = Rotation2D::Mul(xf.q, normal);
 	}
 	return true;
 }
@@ -103,8 +103,8 @@ void EdgeShape::ComputeAABB(AABB* aabb, const Transform2D& xf, s32 childIndex) c
 {
 	NOT_USED(childIndex);
 
-	glm::vec2 v1 = MathUtils::Mul(xf, m_vertex1);
-	glm::vec2 v2 = MathUtils::Mul(xf, m_vertex2);
+	glm::vec2 v1 = Transform2D::Mul(xf, m_vertex1);
+	glm::vec2 v2 = Transform2D::Mul(xf, m_vertex2);
 
 	glm::vec2 lower = glm::min(v1, v2);
 	glm::vec2 upper = glm::max(v1, v2);

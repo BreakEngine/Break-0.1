@@ -22,7 +22,7 @@ namespace Break{
     namespace Infrastructure{
 
 		class SoundDevice;
-        class BREAK_API Engine{
+        class BREAK_API Engine{ 
             friend class IGXDevice;
         public:
             /**
@@ -167,6 +167,7 @@ namespace Break{
 
 			///sound device pointer
 			std::shared_ptr<ISoundDevice> m_soundDevice;
+
         };
 
     }

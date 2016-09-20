@@ -2,20 +2,25 @@
 
 #include "Break2D.hpp"
 #include "Rect.hpp"
+#include <glm/glm.hpp>
+#include "Body2D.hpp"
+#include "Fixture.hpp"
+#include "PolygonShape.hpp"
 
 namespace Break
 {
-	namespace physics
+	namespace Physics
 	{
+		class World;
 
 		class BREAK_API BoxBody
 		{
 		public:
 			BoxBody(){}
-			BoxBody(World *world,Graphics::Rect position ,  bool isDynamic); 
+			BoxBody(World *world, Infrastructure::Rect position ,  bool isDynamic); 
 			~BoxBody();
 
-			Graphics::Rect GetRect();
+			Infrastructure::Rect GetRect();
 
 			double GetAngle();
 
@@ -38,7 +43,7 @@ namespace Break
 		private:
 
 			World *_world;
-			Graphics::Rect R;
+			Infrastructure::Rect R;
 
 			BodyDef bodyDef;
 			FixtureDef fixturedef;

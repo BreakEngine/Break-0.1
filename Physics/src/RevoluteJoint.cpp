@@ -4,7 +4,7 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 
@@ -70,8 +70,8 @@ void RevoluteJoint::InitVelocityConstraints(const SolverData& data)
 
 	Rotation2D qA(aA), qB(aB);
 
-	m_rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-	m_rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+	m_rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+	m_rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 
 	// J = [-I -r1_skew I r2_skew]
 	//     [ 0       -1 0       1]
@@ -351,8 +351,8 @@ bool RevoluteJoint::SolvePositionConstraints(const SolverData& data)
 	{
 		qA.Set(aA);
 		qB.Set(aB);
-		glm::vec2 rA = MathUtils::Mul(qA, m_localAnchorA - m_localCenterA);
-		glm::vec2 rB = MathUtils::Mul(qB, m_localAnchorB - m_localCenterB);
+		glm::vec2 rA = Rotation2D::Mul(qA, m_localAnchorA - m_localCenterA);
+		glm::vec2 rB = Rotation2D::Mul(qB, m_localAnchorB - m_localCenterB);
 
 		glm::vec2 C = cB + rB - cA - rA;
 		positionError = C.length();

@@ -14,11 +14,14 @@ using namespace std;
 using namespace Break;
 using namespace Break::Infrastructure;
 
+GLFWwindow* GLDevice::Mainwindow = NULL;
+
 GLDevice::~GLDevice(){
 
 }
 
-void GLDevice::init(Window* my_window){
+void GLDevice::init(Window* my_window)
+{
     GLFWwindow* window;
     if( !glfwInit() )
     {
@@ -51,32 +54,45 @@ void GLDevice::init(Window* my_window){
     glEnable(GL_RGBA);
     glEnable(GL_DOUBLE);
     glEnable(GL_BLEND);
-    glEnable(GL_CULL_FACE);
+   // glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glEnable(GL_MULTISAMPLE);
-
+	glEnable(GL_TEXTURE_2D);
     glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
     glPointSize(5);
-    glClearColor(0,0,0,0);
+    glClearColor(0.1,0.1,0.3,0);
     //glViewport(0,0,my_window->getWidth(),my_window->getHeight());
 
     //glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 
     my_window->setHandle<GLFWwindow*>(window);
+
+
+	//todoo here..
+	Mainwindow = window;
 }
 
-void GLDevice::start(Window* window){
+void GLDevice::start(Window* window)
+{
 
-    glfwSetKeyCallback(window->getHandle<GLFWwindow*>(),&GLKeyboard::keyboardFunc);
+    glfwSetKeyCallback(window->getHandle<GLFWwindow*>(),&GLKeyboard::keyboardFunc); 
+
     glfwSetMouseButtonCallback(window->getHandle<GLFWwindow*>(),&GLMouse::mouseFunc);
     glfwSetCursorPosCallback(window->getHandle<GLFWwindow*>(),&GLMouse::mouseMotion);
+	glfwSetWindowSizeCallback(window->getHandle<GLFWwindow*>(),&GLDevice::resizeWindowFunc);
 
-    while(!glfwWindowShouldClose(window->getHandle<GLFWwindow*>())){
+    while(!glfwWindowShouldClose(window->getHandle<GLFWwindow*>()))
+	{
         IGXDevice::gameloop();
+
+
+
+
         //check if the engine is shutting down
         if(Services::getEngine()->getShutdown())
             break;
+
         glfwPollEvents();
         //glfwWaitEvents();
     }
@@ -90,9 +106,22 @@ void GLDevice::swapBuffer(Window* window){
     glfwSwapBuffers(window->getHandle<GLFWwindow*>());
 }
 
+void GLDevice::updateViewport(u32 width, u32 height)
+{
+	glViewport(0,0,width,height);
+}
+
 void GLDevice::setCursorPostion(int x, int y){
     Window* win = Services::getEngine()->getApplication()->getWindow();
     glfwSetCursorPos(win->getHandle<GLFWwindow*>(),(double)x,(double)y);
+}
+
+void GLDevice::resizeWindowFunc(GLFWwindow* window, s32 width, s32 height)
+{
+	Window* win = Services::getEngine()->getApplication()->getWindow();
+	Services::getGraphicsDevice()->updateViewport(width,height);
+	win->setWidth((u32)width);
+	win->setHeight((u32)height);
 }
 
 void GLDevice::applyFilter2D(TextureFilter filter, bool mipmap,GLenum target)
@@ -485,6 +514,41 @@ GPUHandlePtr GLDevice::vm_createTexture2D(Image& img, bool mipmaps)
     return handle;
 }
 
+void GLDevice::Prepare_texturing(unsigned char* tex_data, int x , int y, bool mipmaps , int unit , u32& m_texture, u32 &sampler)
+{
+
+	glActiveTexture(unit);
+    glGenTextures(1, &m_texture);
+    glBindTexture(GL_TEXTURE_2D, m_texture); 
+    
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);       
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	    if(mipmaps)
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+	glGenSamplers(1, &sampler);
+
+    glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,x,y,0,GL_BGRA,GL_UNSIGNED_BYTE,tex_data);
+	glBindTexture(GL_TEXTURE_2D, 0); 
+}
+
+void GLDevice::Bind_texture(int unit , u32 m_texture ,  u32 &sampler)
+{
+	glActiveTexture(unit);
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+	glBindSampler(unit, sampler);
+
+}
+
+
+ void GLDevice::uniform(GLuint prog_id , GLuint samp)
+ {
+	 glUniform1i(prog_id , samp);
+ }
+
 void GLDevice::vm_mapTexture2D(GPUHandle* _handle, Image& img)
 {
     auto handle = dynamic_cast<GLHandle*>(_handle);
@@ -506,7 +570,8 @@ void GLDevice::vm_bindTexture2D(GPUHandle* _handle, GPU_ISA type, u32 unit)
 {
     auto handle = dynamic_cast<GLHandle*>(_handle);
 
-    glActiveTexture(GL_TEXTURE0+unit);
+    //glActiveTexture(GL_TEXTURE0+unit);
+	glActiveTexture(unit);
     glBindTexture(GL_TEXTURE_2D,handle->ID);
 }
 
@@ -634,4 +699,24 @@ void GLDevice::vm_applySamplerTexture2D(GPUHandle* sampler, GPUHandle* texture, 
     if(func != CompareFunction::NEVER)
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_COMPARE_FUNC,getCompareFunc(func));
     glBindTexture(GL_TEXTURE_2D,0);
+}
+
+GLuint GLDevice::GetUniformLocation(GLuint program , std::string str)
+{
+	return glGetUniformLocation(program, str.c_str());
+}
+
+void GLDevice::setUniform(GLuint location , glm::mat4 Matrix)
+{
+	glUniformMatrix4fv(location, 1, GL_FALSE, &Matrix[0][0]);
+}
+
+void  GLDevice::deleteShaderProgram(GLuint program)
+{
+	glDeleteProgram(program);
+}
+
+void  GLDevice::useShaderProgram(GLuint program)
+{
+	glUseProgram(program);
 }

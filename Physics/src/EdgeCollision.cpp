@@ -5,17 +5,17 @@
 
 using namespace Break;
 using namespace Break::Infrastructure;
-using namespace Break::physics;
+using namespace Break::Physics;
 
 
 // Compute contact points for edge versus circle.
 // This accounts for edge connectivity.
-void physics::CollideEdgeAndCircle(Manifold* manifold,const EdgeShape* edgeA, const Transform2D& xfA,const CircleShape* circleB, const Transform2D& xfB)
+void Physics::CollideEdgeAndCircle(Manifold* manifold,const EdgeShape* edgeA, const Transform2D& xfA,const CircleShape* circleB, const Transform2D& xfB)
 {
 	manifold->pointCount = 0;
 
 	// Compute circle in frame of edge
-	glm::vec2 Q = MathUtils::MulT(xfA, MathUtils::Mul(xfB, circleB->m_p));
+	glm::vec2 Q = Transform2D::MulT(xfA, Transform2D::Mul(xfB, circleB->m_p));
 
 	glm::vec2 A = edgeA->m_vertex1, B = edgeA->m_vertex2;
 	glm::vec2 e = B - A;
@@ -214,9 +214,9 @@ struct BREAK_API EPCollider
 // 8. Clip
 void EPCollider::Collide(Manifold* manifold, const EdgeShape* edgeA, const Transform2D& xfA, const PolygonShape* polygonB, const Transform2D& xfB)
 {
-	m_xf = MathUtils::MulT(xfA, xfB);
+	m_xf = Transform2D::MulT(xfA, xfB);
 
-	m_centroidB = MathUtils::Mul(m_xf, polygonB->m_centroid);
+	m_centroidB = Transform2D::Mul(m_xf, polygonB->m_centroid);
 
 	m_v0 = edgeA->m_vertex0;
 	m_v1 = edgeA->m_vertex1;
@@ -412,8 +412,8 @@ void EPCollider::Collide(Manifold* manifold, const EdgeShape* edgeA, const Trans
 	m_polygonB.count = polygonB->m_count;
 	for (s32 i = 0; i < polygonB->m_count; ++i)
 	{
-		m_polygonB.vertices[i] = MathUtils::Mul(m_xf, polygonB->m_vertices[i]);
-		m_polygonB.normals[i] = MathUtils::Mul(m_xf.q, polygonB->m_normals[i]);
+		m_polygonB.vertices[i] = Transform2D::Mul(m_xf, polygonB->m_vertices[i]);
+		m_polygonB.normals[i] = Rotation2D::Mul(m_xf.q, polygonB->m_normals[i]);
 	}
 
 	m_radius = 2.0f * polygonRadius;
@@ -582,7 +582,7 @@ void EPCollider::Collide(Manifold* manifold, const EdgeShape* edgeA, const Trans
 
 			if (primaryAxis.type == EPAxis::edgeA)
 			{
-				cp->localPoint = MathUtils::MulT(m_xf, clipPoints2[i].v);
+				cp->localPoint = Transform2D::MulT(m_xf, clipPoints2[i].v);
 				cp->id = clipPoints2[i].id;
 			}
 			else
@@ -673,7 +673,7 @@ EPAxis EPCollider::ComputePolygonSeparation()
 	return axis;
 }
 
-void  physics::CollideEdgeAndPolygon(	Manifold* manifold,const EdgeShape* edgeA, const Transform2D& xfA, const PolygonShape* polygonB, const Transform2D& xfB)
+void  Physics::CollideEdgeAndPolygon(	Manifold* manifold,const EdgeShape* edgeA, const Transform2D& xfA, const PolygonShape* polygonB, const Transform2D& xfB)
 {
 	EPCollider collider;
 	collider.Collide(manifold, edgeA, xfA, polygonB, xfB);

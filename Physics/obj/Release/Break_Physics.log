@@ -1,0 +1,55 @@
+﻿Build started 01/01/2016 08:25:05 م.
+     1>Project "H:\Projects\Break-0.1\Physics\Break_Physics.vcxproj" on node 3 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\bin\Release\Break_Physics.dll" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"..\bin\Release\Break_Physics.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\bin\Release\Break_Physics.lib" /MACHINE:X86 /SAFESEH /DLL obj\Release\BlockAllocator.obj
+         obj\Release\Body2D.obj
+         obj\Release\BodyIsland.obj
+         obj\Release\BoxBody.obj
+         obj\Release\BroadPhase.obj
+         obj\Release\ChainCircleContact.obj
+         obj\Release\ChainPolygonContact.obj
+         obj\Release\ChainShape.obj
+         obj\Release\Chains.obj
+         obj\Release\CircleBody.obj
+         obj\Release\CircleCollision.obj
+         obj\Release\CircleContact.obj
+         obj\Release\CircleShape.obj
+         obj\Release\Collision.obj
+         obj\Release\Contact2D.obj
+         obj\Release\ContactManager.obj
+         obj\Release\ContactSolver.obj
+         obj\Release\Distance.obj
+         obj\Release\DistanceJoint.obj
+         obj\Release\DynamicTree.obj
+         obj\Release\EdgeCircleContact.obj
+         obj\Release\EdgeCollision.obj
+         obj\Release\EdgePolygonContact.obj
+         obj\Release\EdgeShape.obj
+         obj\Release\Fixture.obj
+         obj\Release\FrictionJoint.obj
+         obj\Release\GearJoint.obj
+         obj\Release\Joint2D.obj
+         obj\Release\MotorJoint.obj
+         obj\Release\MouseJoint.obj
+         obj\Release\PolygonCircleContact.obj
+         obj\Release\PolygonCollision.obj
+         obj\Release\PolygonContact.obj
+         obj\Release\PolygonShape.obj
+         obj\Release\PrismaticJoint.obj
+         obj\Release\PullyJoint.obj
+         obj\Release\RevoluteJoint.obj
+         obj\Release\RopeJoint.obj
+         obj\Release\StackAllocator.obj
+         obj\Release\TimeOfImpact.obj
+         obj\Release\WeldJoint.obj
+         obj\Release\WheelJoint.obj
+         obj\Release\World2D.obj
+         obj\Release\WorldCallBacks.obj
+         "H:\Projects\Break-0.1\bin\Release\Break_Infrastructure.lib"
+            Creating library ..\bin\Release\Break_Physics.lib and object ..\bin\Release\Break_Physics.exp
+         Break_Physics.vcxproj -> H:\Projects\Break-0.1\Physics\..\bin\Release\Break_Physics.dll
+     1>Done Building Project "H:\Projects\Break-0.1\Physics\Break_Physics.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.77

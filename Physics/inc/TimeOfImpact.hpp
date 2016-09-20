@@ -2,13 +2,14 @@
 #include "Globals.hpp"
 #include "MathUtils.hpp"
 #include "Distance.hpp"
+#include "Sweep.hpp"
 
 using namespace Break::Infrastructure;
 
 namespace Break
 {
 
-	namespace physics
+	namespace Physics
 	{
 
 
